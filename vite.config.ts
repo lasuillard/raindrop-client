@@ -11,9 +11,9 @@ export default defineConfig({
 			fileName: 'raindrop-client'
 		}
 	},
-  define: {
-    'import.meta.vitest': 'undefined'
-  },
+	define: {
+		'import.meta.vitest': 'undefined'
+	},
 	test: {
 		include: [
 			'{tests,e2e}/**/*.{test,spec}.{js,ts}',

@@ -1,8 +1,12 @@
 {
 	"name": "raindrop-client",
 	"version": "0.1.0",
-  "description": "Axios client built with OpenAPI generator for Raindrop.io.",
-  "keywords": ["raindrop.io", "axios", "openapi"],
+	"description": "Axios client built with OpenAPI generator for Raindrop.io.",
+	"keywords": [
+		"raindrop.io",
+		"axios",
+		"openapi"
+	],
 	"author": {
 		"name": "Yuchan Lee",
 		"url": "https://github.com/lasuillard",
