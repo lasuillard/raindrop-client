@@ -3,8 +3,8 @@ info:
   title: Raindrop API (Unofficial)
   description: |-
     This document is hand-crafted, **UNOFFICIAL** OpenAPI specification of Raindrop API.
-    
-    Currently, as so far as we discovered, the official API documentation is outdated and not maintained well such as lacking some fields, mismatching actual response schema.   
+
+    Currently, as so far as we discovered, the official API documentation is outdated and not maintained well such as lacking some fields, mismatching actual response schema.
   termsOfService: https://developer.raindrop.io/terms
   version: 0.1.0
 externalDocs:
@@ -45,7 +45,7 @@ tags:
     externalDocs:
       description: Official documentation
       url: https://developer.raindrop.io/v1/import
-security: 
+security:
   - bearerAuth: []
 paths:
   /oauth/authorize:
@@ -55,9 +55,9 @@ paths:
       summary: Authorization request
       description: |-
         Direct the user to our authorization URL with specified request parameters.
-        
+
         - If the user is not logged in, they will be asked to log in
-        
+
         - The user will be asked if he would like to grant your application access to his Raindrop.io data
       security: []
       parameters:
@@ -81,7 +81,7 @@ paths:
       summary: Obtain or refresh access token
       description: |
         Once you have the authorization code, you can exchange it for the access_token by doing a POST request with all required body parameters as JSON.
-        
+
         For security reasons access tokens (except "test tokens") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON).
       security: []
       requestBody:
@@ -98,7 +98,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TokenResponse'
-                
+
         400:
           description: Occurs when code parameter is invalid
           content:
@@ -142,7 +142,7 @@ paths:
                       type: boolean
                       description: |-
                         TRUE = expand all
-                        
+
                         FALSE = collapse all
       responses:
         200:
@@ -167,7 +167,7 @@ paths:
               properties:
                 ids:
                   type: array
-                  items: 
+                  items:
                     $ref: '#/components/schemas/CollectionID'
       responses:
         200:
@@ -390,7 +390,7 @@ paths:
                   type: array
                   description: |-
                     The user email(s) with whom to share the project.
-                  
+
                     Maximum 10
                   items:
                     type: string
@@ -429,7 +429,7 @@ paths:
                 Email is empty:
                   value:
                     result: false
-                    errorMessage: "no emails"
+                    errorMessage: 'no emails'
                 Length of email is large than 10:
                   value:
                     result: false
@@ -546,7 +546,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
               examples:
                 Incorrect token:
-                  value: 
+                  value:
                     result: false
                     error: CollaboratorsIncorrectToken
                     errorMessage: Incorrect or expired token
@@ -706,7 +706,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
               examples:
                 File is not specified:
-                  value: 
+                  value:
                     result: false
                     error: -1
                     errorMessage: no file
@@ -758,7 +758,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
               examples:
                 File is not specified:
-                  value: 
+                  value:
                     result: false
                     error: -1
                     errorMessage: no file
@@ -885,7 +885,7 @@ paths:
                   type: boolean
                   description: |-
                     TRUE - mark as "favorite"
-                    
+
                     FALSE - unmark as "favorite"
                 tags:
                   type: array
@@ -937,7 +937,7 @@ paths:
               properties:
                 ids:
                   type: array
-                  items: 
+                  items:
                     type: integer
       responses:
         200:
@@ -1252,7 +1252,7 @@ paths:
                   type: array
                   description: |-
                     Rename: Specify **array** with **only one** string (name of a tag)
-                    
+
                     Merge: List of tags
                   items:
                     type: string
@@ -1305,7 +1305,7 @@ paths:
             type: integer
         - name: tagsSort
           in: query
-          description: "Sort tags by: `-count` by count, default `_id` by name"
+          description: 'Sort tags by: `-count` by count, default `_id` by name'
           schema:
             type: string
             enum: [-count, _id]
@@ -1430,7 +1430,7 @@ paths:
                 Not found:
                   value:
                     result: false
-                    ids: []                
+                    ids: []
   /rest/v1/import/file:
     post:
       tags:
@@ -1438,7 +1438,7 @@ paths:
       summary: Parse HTML import file
       description: |-
         Convert HTML bookmark file to JSON. 
-        
+
         Support Nestcape, Pocket and Instapaper file formats
       requestBody:
         content:
@@ -1592,14 +1592,14 @@ components:
               type: string
               example: 5dc1759a0e123be5f2654b6f
         color:
-          type: string 
+          type: string
           description: Primary color of collection cover as HEX
           example: '#0c797d'
-        count: 
+        count:
           type: integer
           description: Count of raindrops in collection
           example: 16
-        cover: 
+        cover:
           type: array
           description: Collection cover URL. This array always have one item due to legacy reasons
           items:
@@ -1635,7 +1635,7 @@ components:
         user:
           type: object
           properties:
-            $id: 
+            $id:
               type: integer
               description: Owner ID
               example: 32
@@ -1730,7 +1730,7 @@ components:
           items:
             type: object
             properties:
-              _id: 
+              _id:
                 type: integer
               count:
                 type: integer
@@ -1808,7 +1808,7 @@ components:
           type: integer
           description: |-
             Specify sort order (ascending).
-            
+
             For example if you want to move raindrop to the first place set this field to 0
         important:
           type: boolean
@@ -1847,7 +1847,7 @@ components:
         - $ref: '#/components/schemas/RaindropBase'
         - type: object
           properties:
-            _id: 
+            _id:
               type: integer
               description: Unique identifier
             domain:
@@ -1941,7 +1941,7 @@ components:
           description: |-
             Color of highlight. 
             Default yellow
-            
+
             Can be blue, brown, cyan, gray, green, indigo, orange, pink, purple, red, teal, yellow
           enum: [blue, brown, cyan, gray, green, indigo, orange, pink, purple, red, teal, yellow]
         note:
@@ -1968,7 +1968,7 @@ components:
     HighlightResponse:
       type: object
       properties:
-        result: 
+        result:
           type: boolean
         items:
           $ref: '#/components/schemas/HighlightItem'
@@ -1997,7 +1997,7 @@ components:
             raindropRef: 123
             link: https://apple.com
             title: Apple
-        
+
     Response:
       type: object
       properties:
@@ -2325,7 +2325,7 @@ components:
       type: integer
       description: |-
         Collection ID. Reserved system collection IDs are:
-        
+
         - -99 for Trash
         - -1 for Unsorted
         - 0 for All
@@ -2338,7 +2338,7 @@ components:
         - simple
         - grid
         - masonry 
-        
+
           Pinterest like grid
       enum: [list, simple, grid, masonry]
       example: list
@@ -2373,12 +2373,12 @@ components:
     CollectionRef:
       type: object
       properties:
-        $id: 
+        $id:
           type: integer
     UserRef:
       type: object
       properties:
-        $id: 
+        $id:
           type: integer
     MD5:
       type: string

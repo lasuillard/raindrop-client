@@ -1,0 +1,13 @@
+.DS_Store
+node_modules
+/covearge
+/dist
+.env
+.env.*
+!.env.example
+/src/generated
+
+# Ignore files for PNPM, NPM and YARN
+pnpm-lock.yaml
+package-lock.json
+yarn.lock

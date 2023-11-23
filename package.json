@@ -1,0 +1,56 @@
+{
+	"name": "raindrop-client",
+	"version": "0.1.0",
+  "description": "Axios client built with OpenAPI generator for Raindrop.io.",
+  "keywords": ["raindrop.io", "axios", "openapi"],
+	"author": {
+		"name": "Yuchan Lee",
+		"url": "https://github.com/lasuillard",
+		"email": "lasuillard@gmail.com"
+	},
+	"homepage": "https://github.com/lasuillard/raindrop-client",
+	"private": true,
+	"main": "./dist/raindrop-client.umd.cjs",
+	"module": "./dist/raindrop-client.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"import": "./dist/raindrop-client.js",
+			"require": "./dist/raindrop-client.umd.cjs"
+		}
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"generate": "openapi --input openapi.yaml --client axios --output ./src/generated",
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview",
+		"test": "vitest --coverage --run src",
+		"test:watch": "vitest --silent --coverage --watch --ui src",
+		"e2e": "vitest --coverage --run e2e",
+		"e2e:watch": "vitest --silent --coverage --watch --ui e2e"
+	},
+	"devDependencies": {
+		"@types/node": "^20.9.4",
+		"@typescript-eslint/eslint-plugin": "^5.62.0",
+		"@typescript-eslint/parser": "^5.62.0",
+		"@vitest/coverage-v8": "^0.34.6",
+		"@vitest/ui": "^0.34.6",
+		"eslint": "^8.52.0",
+		"eslint-config-prettier": "^9.0.0",
+		"eslint-plugin-jsdoc": "^46.8.2",
+		"openapi-typescript-codegen": "^0.25.0",
+		"prettier": "^3.0.3",
+		"tslib": "^2.6.2",
+		"typescript": "^5.3.2",
+		"vite": "^5.0.2",
+		"vite-plugin-dts": "^3.6.3",
+		"vitest": "^0.34.6"
+	},
+	"dependencies": {
+		"axios": "^1.6.2",
+		"form-data": "^4.0.0"
+	}
+}

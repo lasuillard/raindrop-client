@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  workspace:
+    build:
+      args:
+        WORKSPACE: /workspaces/raindrop-client
+    volumes:
+      - .:/workspaces/raindrop-client
+    healthcheck:
+      disable: true
