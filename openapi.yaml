@@ -1,0 +1,2384 @@
+openapi: 3.0.3
+info:
+  title: Raindrop API (Unofficial)
+  description: |-
+    This document is hand-crafted, **UNOFFICIAL** OpenAPI specification of Raindrop API.
+    
+    Currently, as so far as we discovered, the official API documentation is outdated and not maintained well such as lacking some fields, mismatching actual response schema.   
+  termsOfService: https://developer.raindrop.io/terms
+  version: 0.1.0
+externalDocs:
+  description: Official Raindrop API documentation
+  url: https://developer.raindrop.io/
+servers:
+  - url: https://api.raindrop.io
+tags:
+  - name: authentication
+    externalDocs:
+      description: Official documentation
+      url: https://developer.raindrop.io/v1/authentication
+  - name: collection
+    externalDocs:
+      description: Official documentation
+      url: https://developer.raindrop.io/v1/collections
+  - name: raindrop
+    externalDocs:
+      description: Official documentation
+      url: https://developer.raindrop.io/v1/raindrops
+  - name: highlight
+    externalDocs:
+      description: Official documentation
+      url: https://developer.raindrop.io/v1/highlights
+  - name: user
+    externalDocs:
+      description: Official documentation
+      url: https://developer.raindrop.io/v1/user
+  - name: tag
+    externalDocs:
+      description: Official documentation
+      url: https://developer.raindrop.io/v1/tags
+  - name: filter
+    externalDocs:
+      description: Official documentation
+      url: https://developer.raindrop.io/v1/filters
+  - name: import
+    externalDocs:
+      description: Official documentation
+      url: https://developer.raindrop.io/v1/import
+security: 
+  - bearerAuth: []
+paths:
+  /oauth/authorize:
+    get:
+      tags:
+        - authentication
+      summary: Authorization request
+      description: |-
+        Direct the user to our authorization URL with specified request parameters.
+        
+        - If the user is not logged in, they will be asked to log in
+        
+        - The user will be asked if he would like to grant your application access to his Raindrop.io data
+      security: []
+      parameters:
+        - name: redirect_uri
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        307:
+          description: Direct to Raindrop authorization page.
+  /oauth/access_token:
+    post:
+      tags:
+        - authentication
+      summary: Obtain or refresh access token
+      description: |
+        Once you have the authorization code, you can exchange it for the access_token by doing a POST request with all required body parameters as JSON.
+        
+        For security reasons access tokens (except "test tokens") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON).
+      security: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - $ref: '#/components/schemas/ObtainToken'
+                - $ref: '#/components/schemas/RefreshToken'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+                
+        400:
+          description: Occurs when code parameter is invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    enum: [bad_authorization_code]
+  /rest/v1/collections:
+    get:
+      tags:
+        - collection
+      summary: Get root collectins
+      description: Returns JSON-encoded array containing all root collections.
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionMultiResponse'
+    put:
+      tags:
+        - collection
+      summary: Reorder all collections
+      description: Updates order of all collections
+      requestBody:
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: object
+                  properties:
+                    sort:
+                      $ref: '#/components/schemas/SortBy'
+                - type: object
+                  properties:
+                    expanded:
+                      type: boolean
+                      description: |-
+                        TRUE = expand all
+                        
+                        FALSE = collapse all
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
+    delete:
+      tags:
+        - collection
+      summary: Remove multiple collections
+      description: |-
+        Remove multiple collections at once.
+
+        Nested collections are ignored (include ID's in ids array to remove them)
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  items: 
+                    $ref: '#/components/schemas/CollectionID'
+      responses:
+        200:
+          description: Success
+  /rest/v1/collections/childrens:
+    get:
+      tags:
+        - collection
+      summary: Get child collections
+      description: Returns JSON-encoded array containing all nested collections (that have positive `parent.$id`)
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionMultiResponse'
+  /rest/v1/collection/{id}:
+    parameters:
+      - name: id
+        in: path
+        description: Collection ID
+        required: true
+        schema:
+          $ref: '#/components/schemas/CollectionID'
+    get:
+      tags:
+        - collection
+      summary: Get collection
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionSingleResponse'
+    put:
+      tags:
+        - collection
+      summary: Update collection
+      description: Update an existing collection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCollection'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionSingleResponse'
+    delete:
+      tags:
+        - collection
+      summary: Remove collection
+      description: |-
+        Remove an existing collection and all its descendants.
+
+        Raindrops will be moved to "Trash" collection
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
+  /rest/v1/collection:
+    post:
+      tags:
+        - collection
+      summary: Create collection
+      description: Create a new collection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCollection'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionSingleResponse'
+        400:
+          description: "Incorrect 'view' field value"
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/ErrorResponse'
+                  - example:
+                      result: false
+                      error: view
+                      errorMessage: 'Collection validation failed: view: `bla` is not a valid enum value for path `view`.'
+  /rest/v1/collections/{id}/cover:
+    put:
+      tags:
+        - collection
+      summary: Upload cover
+      description: It's possible to upload cover from desktop. PNG, GIF and JPEG supported
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Existing collection ID
+          schema:
+            $ref: '#/components/schemas/CollectionID'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                cover:
+                  type: string
+                  format: binary
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionSingleResponse'
+  /rest/v1/collections/merge:
+    put:
+      tags:
+        - collection
+      summary: Merge collections
+      description: Merge multiple collections
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                to:
+                  $ref: '#/components/schemas/CollectionID'
+                ids:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/CollectionID'
+      responses:
+        200:
+          description: Success
+  /rest/v1/collections/clean:
+    put:
+      tags:
+        - collection
+      summary: Remove all empty collections
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                    example: true
+                  count:
+                    type: integer
+                    example: 3
+  /rest/v1/collection/-99:
+    delete:
+      tags:
+        - collection
+      summary: Empty Trash
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
+  /rest/v1/user/stats:
+    get:
+      tags:
+        - collection
+        - user
+      summary: Get system collections count
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatResponse'
+  /rest/v1/collections/{id}/sharing:
+    parameters:
+      - name: id
+        in: path
+        description: Existing collection ID
+        required: true
+        schema:
+          $ref: '#/components/schemas/CollectionID'
+    get:
+      tags:
+        - collection
+      responses:
+        200:
+          description: Success
+    post:
+      tags:
+        - collection
+      summary: Share collection
+      description: Share collection with another user(s). As result invitation(s) will be send to specified email(s) with link to join collection.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role:
+                  $ref: '#/components/schemas/Role'
+                emails:
+                  type: array
+                  description: |-
+                    The user email(s) with whom to share the project.
+                  
+                    Maximum 10
+                  items:
+                    type: string
+                    format: email
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                    example: true
+                  emails:
+                    type: array
+                    items:
+                      type: string
+                      format: email
+                    example:
+                      - some@user.com
+                      - other@user.com
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  errorMessage:
+                    type: string
+              examples:
+                Email is empty:
+                  value:
+                    result: false
+                    errorMessage: "no emails"
+                Length of email is large than 10:
+                  value:
+                    result: false
+                    errorMessage: you cant send more than 10 invites at once
+        403:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  errorMessage:
+                    type: string
+              examples:
+                Too many (100+) pending invitations:
+                  value:
+                    result: false
+                    errorMessage: you have too many pending invitations, you will be banned if you continue send more
+                Not enough permission:
+                  value:
+                    result: false
+                    errorMessage: you dont have permissions to invite more people
+    delete:
+      tags:
+        - collection
+      summary: Unshare or leave collection
+      description: |-
+        There two possible results of calling this method, depends on who authenticated user is:
+        - Owner: collection will be unshared and all collaborators will be removed
+        - Member or viewer: authenticated user will be removed from collaborators list
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
+  /rest/v1/collections/{id}/sharing/{userId}:
+    parameters:
+      - name: userId
+        in: path
+        description: User ID of collaborator
+        required: true
+        schema:
+          type: integer
+      - name: id
+        in: path
+        description: Existing collection ID
+        required: true
+        schema:
+          $ref: '#/components/schemas/CollectionID'
+    put:
+      tags:
+        - collection
+      summary: Change access level of collaborator
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role:
+                  $ref: '#/components/schemas/Role'
+      responses:
+        200:
+          description: Success
+    delete:
+      tags:
+        - collection
+      summary: Delet a collaborator
+      description: Remove an user from shared collection
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
+  /rest/v1/collections/{id}/join:
+    post:
+      tags:
+        - collection
+      summary: Accept an invitation
+      description: Accept an invitation to join a shared collection
+      parameters:
+        - name: id
+          in: path
+          description: Existing collection
+          required: true
+          schema:
+            $ref: '#/components/schemas/CollectionID'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  role:
+                    $ref: '#/components/schemas/Role'
+                example:
+                  result: true
+                  role: member
+        403:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Incorrect token:
+                  value: 
+                    result: false
+                    error: CollaboratorsIncorrectToken
+                    errorMessage: Incorrect or expired token
+                Collection no more exists:
+                  value:
+                    result: false
+                    error: CollaboratorsNoCollection
+                    errorMessage: Shared collection not found or removed
+                Is collaborator already:
+                  value:
+                    result: false
+                    error: CollaboratorsAlready
+                    errorMessage: You already owner of this collection
+  /rest/v1/collections/covers/{text}:
+    get:
+      tags:
+        - collection
+      summary: Search for cover
+      description: Search for specific cover (icon)
+      parameters:
+        - name: text
+          in: path
+          required: true
+          description: For example "pokemon"
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoverResponse'
+              example:
+                items:
+                  - title: Icons8
+                    icons:
+                      - png: https://rd-icons-icons8.gumlet.com/color/5x/mystic-pokemon.png?fill-color=transparent
+                  - title: Iconfinder
+                    icons:
+                      - png: https://cdn4.iconfinder.com/data/icons/pokemon-go/512/Pokemon_Go-01-128.png
+                        svg: https://api.iconfinder.com/v2/icons/1320040/formats/svg/1760420/download
+                result: true
+  /rest/v1/collections/covers:
+    get:
+      tags:
+        - collection
+      summary: Featured covers
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CoverResponse'
+              example:
+                items:
+                  - title: Colors circle
+                    icons:
+                      - png: https://up.raindrop.io/collection/templates/colors/ios1.png
+                  - title: Hockey
+                    icons:
+                      - png: https://up.raindrop.io/collection/templates/hockey-18/12i.png
+  /rest/v1/raindrop:
+    post:
+      tags:
+        - raindrop
+      summary: Create raindrop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRaindrop'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RaindropSingleResponse'
+  /rest/v1/raindrop/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        description: Existing raindrop ID
+        schema:
+          type: integer
+    get:
+      tags:
+        - raindrop
+        - highlight
+      summary: Get raindrop
+      responses:
+        200:
+          description: Success
+    put:
+      tags:
+        - raindrop
+        - highlight
+      summary: Update raindrop
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRaindrop'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RaindropSingleResponse'
+    delete:
+      tags:
+        - raindrop
+      summary: Remove raindrop
+      description: When you remove raindrop it will be moved to user Trash collection. But if you try to remove raindrop from Trash, it will be removed permanently.
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
+  /rest/v1/raindrop/file:
+    put:
+      tags:
+        - raindrop
+      summary: Upload file
+      description: Make sure to send PUT request with [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST#example) body
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: File
+                collectionId:
+                  type: integer
+                  description: Collection Id
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RaindropSingleResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                File is not specified:
+                  value: 
+                    result: false
+                    error: -1
+                    errorMessage: no file
+                Unsupported file format:
+                  value:
+                    result: false
+                    error: file_invalid
+                    errorMessage: File is invalid
+                File size is big:
+                  value:
+                    result: false
+                    error: file_size_limit
+                    errorMessage: File size limit
+  /rest/v1/raindrop/{id}/cover:
+    put:
+      tags:
+        - raindrop
+      summary: Upload cover
+      description: PNG, GIF or JPEG
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Existing raindrop ID
+          schema:
+            type: integer
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                cover:
+                  type: string
+                  format: binary
+                  description: File
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RaindropSingleResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                File is not specified:
+                  value: 
+                    result: false
+                    error: -1
+                    errorMessage: no file
+                Unsupported file format:
+                  value:
+                    result: false
+                    error: file_invalid
+                    errorMessage: File is invalid
+                File size is big:
+                  value:
+                    result: false
+                    error: file_size_limit
+                    errorMessage: File size limit
+  /rest/v1/raindrop/{id}/cache:
+    get:
+      tags:
+        - raindrop
+      summary: Get permanent copy
+      description: Links permanently saved with all content (only in PRO plan). Using this method you can navigate to this copy.
+      parameters:
+        - name: id
+          in: path
+          description: Existing raindrop ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        307:
+          description: Success
+          headers:
+            Location:
+              schema:
+                type: string
+                example: https://s3.aws...
+  /rest/v1/raindrop/suggest:
+    post:
+      tags:
+        - raindrop
+      summary: Suggest collection and tags for new bookmark
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                link:
+                  type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestResponse'
+  /rest/v1/raindrop/{id}/suggest:
+    get:
+      tags:
+        - raindrop
+      summary: Suggest collection and tags for existing bookmark
+      parameters:
+        - name: id
+          in: path
+          description: Bookmark id
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestResponse'
+  /rest/v1/raindrops/{collectionId}:
+    parameters:
+      - name: collectionId
+        description: Collection ID
+        in: path
+        required: true
+        schema:
+          type: integer
+    get:
+      tags:
+        - raindrop
+      summary: Get raindrops
+      parameters:
+        - name: sort
+          in: query
+          schema:
+            type: string
+        - name: perpage
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: string
+        - name: search
+          in: query
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+    put:
+      tags:
+        - raindrop
+      summary: Update many raindrops
+      description: |-
+        Specify optional search and/or ids parameters to limit raindrops that will be updated.
+        Possible fields that could be updated are described in "Body Parameters"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  items:
+                    type: integer
+                important:
+                  type: boolean
+                  description: |-
+                    TRUE - mark as "favorite"
+                    
+                    FALSE - unmark as "favorite"
+                tags:
+                  type: array
+                  description: |-
+                    Will append specified tags to raindrops.
+                    Or will remove all tags from raindrops if [] (empty array) is specified
+                  items:
+                    type: string
+                media:
+                  type: array
+                  items:
+                    type: string
+                    description: |-
+                      Will append specified media items to raindrops.
+                      Or will remove all media from raindrops if [] (empty array) is specified
+                    format: uri
+                cover:
+                  type: string
+                  description: |-
+                    Set URL for cover.
+                    Tip: specify <screenshot> to set screenshots for all raindrops
+                collection:
+                  type: object
+                  description: |-
+                    Specify {"$id": collectionId} to move raindrops to other collection
+                  properties:
+                    $id:
+                      type: integer
+      responses:
+        200:
+          description: Success
+    delete:
+      tags:
+        - raindrop
+      summary: Remove many raindrops
+      description: |-
+        Specify optional search and/or ids parameters to limit raindrops that will be moved to "Trash"
+        When :collectionId is -99, raindrops will be permanently removed!
+      parameters:
+        - name: search
+          in: query
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  items: 
+                    type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: boolean
+                  modified:
+                    type: integer
+                example:
+                  result: true
+                  modified: 330
+  /rest/v1/raindrops:
+    post:
+      tags:
+        - raindrop
+      summary: Create many raindrops
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  description: |-
+                    Array of objects. Format of single object described in "Create single raindrop".
+                    Maximum 100 objects in array!
+                  items:
+                    $ref: '#/components/schemas/CreateRaindrop'
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RaindropMultiResponse'
+  /rest/v1/highlights:
+    get:
+      tags:
+        - highlight
+      summary: Get all highlights
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: perpage
+          in: query
+          description: How many highlights per page. 50 max. Default 25
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HighlightResponse'
+  /rest/v1/highlights/{collectionId}:
+    get:
+      tags:
+        - highlight
+      summary: Get all highlights in a collection
+      parameters:
+        - name: collectionId
+          description: Collection ID
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: perpage
+          in: query
+          description: How many highlights per page. 50 max. Default 25
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HighlightResponse'
+  /rest/v1/user:
+    get:
+      tags:
+        - user
+      summary: Get user
+      description: Get currently authenticated user details
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        401:
+          description: Unauthenticated
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Unauthorized
+    put:
+      tags:
+        - user
+      summary: Update user
+      description: To change email, config, password, etc... you can do it from single endpoint
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                groups:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Group'
+                config:
+                  $ref: '#/components/schemas/UserConfig'
+                newpassword:
+                  type: string
+                oldpassword:
+                  type: string
+                fullName:
+                  type: string
+                email:
+                  type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        400:
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                Email specified but empty:
+                  value:
+                    result: false
+                    error: 1
+                    errorMessage: email required
+                fullName specified but empty:
+                  value:
+                    result: false
+                    error: 2
+                    errorMessage: 'User validation failed: fullName: is required'
+                newpassword specified, but oldpassword is empty:
+                  value:
+                    result: false
+                    error: 3
+                    errorMessage: oldpassword incorrect
+                incorrect config key value:
+                  value:
+                    result: false
+                    error: config.raindrops_sort
+                    errorMessage: 'User validation failed: config.raindrops_sort: `1` is not a valid enum value for path `raindrops_sort`., config: Validation failed: raindrops_sort: `1` is not a valid enum value for path `raindrops_sort`.'
+  /rest/v1/user/{name}:
+    get:
+      tags:
+        - user
+      summary: Get user by name
+      description: Get's publicly available user details
+      parameters:
+        - name: name
+          in: path
+          description: Username
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Response'
+                  - properties:
+                      _id:
+                        type: integer
+                      email_MD5:
+                        $ref: '#/components/schemas/MD5'
+                      fullName:
+                        type: string
+                      pro:
+                        type: boolean
+                      registered:
+                        type: string
+                        format: date-time
+              example:
+                result: true
+                user:
+                  _id: 32
+                  email_MD5: 13a0a20681d8781912e5314150694bf7
+                  fullName: Mussabekov Rustem
+                  pro: true
+                  registered: '2014-09-30T07:51:15.406Z'
+        404:
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: -1
+                errorMessage: not found
+                result: false
+  /rest/v1/user/connect/{provider}:
+    get:
+      tags:
+        - user
+      summary: Connect social network acount
+      description: Connect social network account as sign in authentication option
+      parameters:
+        - name: provider
+          in: path
+          required: true
+          description: facebook google twitter vkontakte dropbox or gdrive
+          schema:
+            type: string
+            enum: [facebook, google, twitter, vkontate, dropbox, gdrive]
+      responses:
+        307:
+          description: Temporary redirect
+          headers:
+            Location:
+              schema:
+                type: string
+                example: https://some.com/...
+  /rest/v1/user/connect/{provider}/revoke:
+    get:
+      tags:
+        - user
+      summary: Disconnect social network account
+      description: Disconnect social network account from available authentication options
+      parameters:
+        - name: provider
+          in: path
+          required: true
+          description: facebook google twitter vkontakte dropbox or gdrive
+          schema:
+            type: string
+            enum: [facebook, google, twitter, vkontate, dropbox, gdrive]
+      responses:
+        200:
+          description: Success
+  /rest/v1/tags/{collectionId}:
+    get:
+      tags:
+        - tag
+      summary: Get tags
+      parameters:
+        - name: collectionId
+          in: path
+          required: false
+          description: Optional collection ID, when not specified all tags from all collections will be retrieved
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Response'
+                  - properties:
+                      items:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            _id:
+                              type: string
+                            count:
+                              type: integer
+    put:
+      tags:
+        - tag
+      summary: Rename tag / Merge tags
+      parameters:
+        - name: collectionId
+          in: path
+          required: false
+          description: It's possible to restrict rename action to just one collection. It's optional
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                replace:
+                  type: string
+                  description: New name
+                tags:
+                  type: array
+                  description: |-
+                    Rename: Specify **array** with **only one** string (name of a tag)
+                    
+                    Merge: List of tags
+                  items:
+                    type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
+    delete:
+      tags:
+        - tag
+      summary: Remove tags
+      parameters:
+        - name: collectionId
+          in: path
+          required: false
+          description: It's possible to restrict rename action to just one collection. It's optional
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tags:
+                  type: array
+                  description: List of tags
+                  items:
+                    type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EmptyResponse'
+  /rest/v1/filters/{collectionId}:
+    get:
+      tags:
+        - filter
+      parameters:
+        - name: collectionId
+          description: Collection ID
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: tagsSort
+          in: query
+          description: "Sort tags by: `-count` by count, default `_id` by name"
+          schema:
+            type: string
+            enum: [-count, _id]
+        - name: search
+          in: query
+          description: Check "raindrops" documentation for more details
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterResponse'
+  /rest/v1/import/url/parse:
+    get:
+      tags:
+        - import
+      summary: Parse URL
+      description: Parse and extract useful info from any URL
+      parameters:
+        - name: url
+          in: query
+          description: URL
+          schema:
+            type: string
+            format: uri
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/UrlParseResponse'
+                  - $ref: '#/components/schemas/UrlParseErrorResponse'
+              examples:
+                Success:
+                  value:
+                    item:
+                      title: Яндекс
+                      excerpt: Найдётся всё
+                      media:
+                        - type: image
+                          link: http://yastatic.net/s3/home/logos/share/share-logo_ru.png
+                      type: link
+                      meta:
+                        possibleArticle: false
+                        canonical: https://ya.ru
+                        site: Яндекс
+                        tags: []
+                    result: true
+                Invalid URL:
+                  value:
+                    error: not_found
+                    errorMessage: invalid_url
+                    item:
+                      title: Fdfdfdf
+                      excerpt: ''
+                      media:
+                        - link: <screenshot>
+                      type: link
+                      parser: local
+                      meta:
+                        possibleArticle: false
+                        tags: []
+                    result: true
+                Not found:
+                  value:
+                    error: not_found
+                    errorMessage: url_status_404
+                    item:
+                      title: Some
+                      excerpt: ''
+                      media:
+                        - link: <screenshot>
+                      type: link
+                      parser: local
+                      meta:
+                        possibleArticle: false
+                        tags: []
+                    result: true
+  /rest/v1/import/url/exists:
+    post:
+      tags:
+        - import
+      summary: Check URL(s) existence
+      description: Does specified URL's are already saved?
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                urls:
+                  type: array
+                  items:
+                    type: string
+                    format: uri
+                    description: URL's
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Response'
+                  - properties:
+                      ids:
+                        type: array
+                        items:
+                          type: integer
+              examples:
+                Found:
+                  value:
+                    result: true
+                    ids:
+                      - 3322
+                      - 12323
+                Not found:
+                  value:
+                    result: false
+                    ids: []                
+  /rest/v1/import/file:
+    post:
+      tags:
+        - import
+      summary: Parse HTML import file
+      description: |-
+        Convert HTML bookmark file to JSON. 
+        
+        Support Nestcape, Pocket and Instapaper file formats
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                import:
+                  type: string
+                  format: binary
+                  description: File
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportFileResponse'
+              example:
+                result: true
+                items:
+                  - title: Web
+                    folders:
+                      - title: Default
+                        folders: []
+                        bookmarks:
+                          - link: https://aaa.com/a
+                            title: Name 1
+                            lastUpdate: '2016-09-13T11:17:09.000Z'
+                            tags:
+                              - tag
+                            excerpt: ''
+                    bookmarks:
+                      - link: https://bbb.com/b
+                        title: Name 2
+                        lastUpdate: '2016-09-13T11:17:09.000Z'
+                        tags:
+                          - tag
+                        excerpt: ''
+                  - title: Home
+                    folders:
+                      - title: Inspiration
+                        folders: []
+                        bookmarks:
+                          - link: https://ccc.com/c
+                            title: Name 3
+                            lastUpdate: '2016-09-13T11:17:09.000Z'
+                            tags:
+                              - tag
+                            excerpt: ''
+                    bookmarks: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    ObtainToken:
+      type: object
+      properties:
+        grant_type:
+          type: string
+          description: Grant type
+          enum: [authorization_code]
+        code:
+          type: string
+          description: Received authorization code
+          example: c8983220-1cca-4626-a19d-801a6aae003c
+        client_id:
+          type: string
+          description: Unique client ID of your Raindrop.io app
+          example: 5e1c382cf6f48c0211359083
+        client_secret:
+          type: string
+          description: Client secret of your Raindrop.io app
+          example: c3363988-9d27-4bc6-a0ae-d126ce78dc09
+        redirect_uri:
+          type: string
+          description: Redirect URI registered at your Raindrop.io app
+          example: https://oauthdebugger.com/debug
+    RefreshToken:
+      type: object
+      properties:
+        client_id:
+          type: string
+          description: Unique client ID of your Raindrop.io app
+          example: 5e1c382cf6f48c0211359083
+        client_secret:
+          type: string
+          description: Client secret of your Raindrop.io app
+          example: c3363988-9d27-4bc6-a0ae-d126ce78dc09
+        grant_type:
+          type: string
+          description: Grant type
+          enum: [refresh_token]
+        refresh_token:
+          type: string
+          description: Refresh token received when obtain access token
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: API access token
+          example: ae261404-11r4-47c0-bce3-e18a423da828
+        refresh_token:
+          type: string
+          description: Token used to refresh access token
+          example: c8080368-fad2-4a3f-b2c9-71d3z85011vb
+        expires:
+          type: integer
+          description: Remaining time until access token expires, in miliseconds
+          format: int32
+          example: 1209599768
+          deprecated: true
+        expires_in:
+          type: integer
+          description: Reamining time until access token expires, in seconds
+          format: int32
+          example: 1209599
+        token_type:
+          type: string
+          description: Type of token
+          enum: [Bearer]
+    Collection:
+      type: object
+      properties:
+        _id:
+          type: integer
+          description: The id of the collection.
+        access:
+          type: object
+          properties:
+            level:
+              type: integer
+              enum: [1, 2, 3, 4]
+              description: |-
+                1. read only access (equal to public=true)
+                2. collaborator with read only access
+                3. collaborator with write only access
+                4. owner
+            draggable:
+              type: boolean
+              description: Does it possible to change parent of this collection?
+              example: true
+        collaborators:
+          type: object
+          description: When this object is present, means that collections is shared. Content of this object is private and not very useful.
+          properties:
+            $id:
+              type: string
+              example: 5dc1759a0e123be5f2654b6f
+        color:
+          type: string 
+          description: Primary color of collection cover as HEX
+          example: '#0c797d'
+        count: 
+          type: integer
+          description: Count of raindrops in collection
+          example: 16
+        cover: 
+          type: array
+          description: Collection cover URL. This array always have one item due to legacy reasons
+          items:
+            type: string
+            format: uri
+            example: https://up.raindrop.io/collection/thumbs/849/239/3/333ce18769311113836cf93a223a14a3.png
+        created:
+          type: string
+          description: When collection is created
+          format: date-time
+          example: 2019-10-09T11:49:53.518Z
+        expanded:
+          type: boolean
+          description: Whether the collection’s sub-collections are expanded
+          example: false
+        lastUpdate:
+          type: string
+          description: When collection is updated
+          format: date-time
+          example: 2019-11-27T17:51:19.085Z
+        parent:
+          $ref: '#/components/schemas/Parent'
+        public:
+          type: boolean
+          description: Collection and raindrops that it contains will be accessible without authentication by public link
+          example: false
+        sort:
+          $ref: '#/components/schemas/Sort'
+        title:
+          type: string
+          description: Name of the collection
+          example: Development
+        user:
+          type: object
+          properties:
+            $id: 
+              type: integer
+              description: Owner ID
+              example: 32
+        view:
+          $ref: '#/components/schemas/View'
+      example:
+        _id: 8492393
+        access:
+          level: 4
+          draggable: true
+        collaborators:
+          $id: 5dc1759a0e123be5f2654b6f
+        color: '#0c797d'
+        count: 16
+        cover:
+          - https://up.raindrop.io/collection/thumbs/849/239/3/333ce18769311113836cf93a223a14a3.png
+        created: '2019-10-09T11:49:53.518Z'
+        expanded: false
+        lastUpdate: '2019-11-27T17:51:19.085Z'
+        public: false
+        sort: 8492393
+        title: Development
+        user:
+          $id: 32
+        view: list
+    CollectionSingleResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+          example: true
+        item:
+          $ref: '#/components/schemas/Collection'
+    CollectionMultiResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+          example: true
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Collection'
+    CreateCollection:
+      type: object
+      properties:
+        view:
+          $ref: '#/components/schemas/View'
+        title:
+          type: string
+          description: 'Name of the collection'
+          example: Development
+        sort:
+          $ref: '#/components/schemas/Sort'
+        public:
+          type: boolean
+          description: 'Collection and raindrops that it contains will be accessible without authentication?'
+        parent:
+          $ref: '#/components/schemas/Parent'
+        cover:
+          type: array
+          items:
+            type: string
+            format: uri
+    UpdateCollection:
+      allOf:
+        - $ref: '#/components/schemas/CreateCollection'
+        - type: object
+          properties:
+            expanded:
+              type: boolean
+              description: 'Whether the collection`s sub-collections are expanded'
+    ErrorResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+        error:
+          type: string
+        errorMessage:
+          type: string
+    EmptyResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+    StatResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              _id: 
+                type: integer
+              count:
+                type: integer
+            example:
+              - _id: 0
+                count: 1570
+              - _id: -1
+                count: 34
+              - _id: -99
+                count: 543
+        meta:
+          type: object
+          properties:
+            pro:
+              type: boolean
+              example: true
+            _id:
+              type: integer
+              example: 32
+            changedBookmarksDate:
+              type: string
+              format: date-time
+              example: 2020-02-11T11:23:43.143Z
+            duplicates:
+              type: object
+              properties:
+                count:
+                  type: integer
+                  example: 3
+            broken:
+              type: object
+              properties:
+                count:
+                  type: integer
+                  example: 31
+        result:
+          type: boolean
+          example: true
+    Cover:
+      type: object
+      properties:
+        title:
+          type: string
+        icons:
+          type: array
+          items:
+            type: object
+            required: [png]
+            properties:
+              png:
+                type: string
+                format: uri
+              svg:
+                type: string
+                format: uri
+    CoverResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Cover'
+    RaindropBase:
+      type: object
+      properties:
+        created:
+          type: string
+          format: date-time
+        lastUpdate:
+          type: string
+          format: date-time
+        order:
+          type: integer
+          description: |-
+            Specify sort order (ascending).
+            
+            For example if you want to move raindrop to the first place set this field to 0
+        important:
+          type: boolean
+          description: Marked as "favorite"
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags list
+        media:
+          type: array
+          items:
+            type: object
+            properties:
+              link:
+                type: string
+                format: uri
+        cover:
+          type: string
+        collection:
+          $ref: '#/components/schemas/CollectionRef'
+        type:
+          type: string
+        excerpt:
+          type: string
+        title:
+          type: string
+        link:
+          type: string
+        highlights:
+          type: array
+          items:
+            $ref: '#/components/schemas/Highlight'
+    Raindrop:
+      allOf:
+        - $ref: '#/components/schemas/RaindropBase'
+        - type: object
+          properties:
+            _id: 
+              type: integer
+              description: Unique identifier
+            domain:
+              type: string
+              description: |-
+                Hostname of a link.
+                Files always have `raindrop.io` hostname
+            user:
+              $ref: '#/components/schemas/UserRef'
+            broken:
+              type: boolean
+              description: Marked as broken (original link is not reachable anymore)
+            cache:
+              type: object
+              description: Permanent copy (cached version) details
+              properties:
+                status:
+                  type: string
+                  description: ready retry failed invalid-origin invalid-timeout or invalid-size
+                  enum: [ready, retry, failed, invalid-origin, invalid-timeout, invalid-size]
+                size:
+                  type: integer
+                  description: Full size in bytes
+                created:
+                  type: string
+                  format: date-time
+                  description: Date when copy is successfully made
+            creatorRef:
+              type: object
+              description: |-
+                Sometime raindrop may belong to other user, not to the one who created it. 
+                For example when this raindrop is created in shared collection by other user.
+                This object contains info about original author.
+              properties:
+                _id:
+                  type: integer
+                  description: Original author (user ID) of raindrop
+                fullName:
+                  type: string
+                  description: Original author name of a raindrop
+            file:
+              type: object
+              description: |-
+                This raindrop uploaded from desktop
+                [Supported file formats](https://help.raindrop.io/article/48-uploading-files)
+              properties:
+                name:
+                  type: string
+                  description: File name
+                size:
+                  type: integer
+                  description: File size in bytes
+                type:
+                  type: string
+                  description: Mime type
+    RaindropSingleResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+        item:
+          $ref: '#/components/schemas/Raindrop'
+    RaindropMultiResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Raindrop'
+    CreateRaindrop:
+      allOf:
+        - $ref: '#/components/schemas/RaindropBase'
+        - type: object
+          properties:
+            pleaseParse:
+              type: object
+              description: Specify empty object to automatically parse meta data (cover, description, html) in the background
+    Highlight:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: Unique id of highlight
+        text:
+          type: string
+          description: Text of highlight (required)
+        color:
+          type: string
+          description: |-
+            Color of highlight. 
+            Default yellow
+            
+            Can be blue, brown, cyan, gray, green, indigo, orange, pink, purple, red, teal, yellow
+          enum: [blue, brown, cyan, gray, green, indigo, orange, pink, purple, red, teal, yellow]
+        note:
+          type: string
+          description: Optional note for highlight
+        created:
+          type: string
+          description: Creation date of highlight
+    HighlightItem:
+      allOf:
+        - $ref: '#/components/schemas/Highlight'
+        - properties:
+            raindropRef:
+              type: integer
+            link:
+              type: string
+              format: uri
+            title:
+              type: string
+            tags:
+              type: array
+              items:
+                type: string
+    HighlightResponse:
+      type: object
+      properties:
+        result: 
+          type: boolean
+        items:
+          $ref: '#/components/schemas/HighlightItem'
+      example:
+        result: true
+        items:
+          - note: Trully native macOS app
+            color: red
+            text: Orion is the new WebKit-based browser for Mac
+            created: '2022-03-21T14:41:34.059Z'
+            tags:
+              - tag1
+              - tag2
+            _id: 62388e9e48b63606f41e44a6
+            raindropRef: 123
+            link: https://apple.com
+            title: Orion Browser
+          - note: ''
+            color: green
+            text: Built on WebKit, Orion gives you a fast, smooth and lightweight browsing experience
+            created: '2022-03-21T15:13:21.128Z'
+            tags:
+              - tag1
+              - tag2
+            _id: 62389611058af151c840f667
+            raindropRef: 123
+            link: https://apple.com
+            title: Apple
+        
+    Response:
+      type: object
+      properties:
+        result:
+          type: boolean
+          example: true
+    Suggest:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            type: object
+            properties:
+              $id:
+                type: integer
+        tags:
+          type: array
+          items:
+            type: string
+      example:
+        collections:
+          - $id: 568368
+          - $id: 8519567
+          - $id: 1385626
+          - $id: 8379661
+          - $id: 20865985
+        tags:
+          - fonts
+          - free
+          - engineering
+          - icons
+          - invalid_parser
+    SuggestResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - properties:
+            item:
+              $ref: '#/components/schemas/Suggest'
+    UserConfig:
+      type: object
+      properties:
+        borken_level:
+          type: string
+        font_color:
+          type: string
+        font_size:
+          type: integer
+        lang:
+          type: string
+        last_collection:
+          type: integer
+        raindrops_sort:
+          $ref: '#/components/schemas/SortBy'
+        raindrops_view:
+          $ref: '#/components/schemas/View'
+    User:
+      type: object
+      properties:
+        _id:
+          type: integer
+        config:
+          $ref: '#/components/schemas/UserConfig'
+        dropbox:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+        email:
+          type: string
+          format: email
+        email_MD5:
+          $ref: '#/components/schemas/MD5'
+        files:
+          type: object
+          properties:
+            used:
+              type: integer
+            size:
+              type: integer
+            lastCheckPoint:
+              type: string
+              format: date-tiem
+        fullName:
+          type: string
+        gdrive:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/Group'
+        password:
+          type: boolean
+        pro:
+          type: boolean
+        proExpire:
+          type: string
+          format: date-time
+        registered:
+          type: string
+          format: date-time
+    Group:
+      type: object
+      properties:
+        title:
+          type: string
+        hidden:
+          type: boolean
+        sort:
+          type: integer
+        collections:
+          type: array
+          items:
+            type: integer
+    UserResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - properties:
+            user:
+              $ref: '#/components/schemas/User'
+      example:
+        result: true
+        user:
+          _id: 32
+          config:
+            broken_level: strict
+            font_color: ''
+            font_size: 0
+            lang: ru_RU
+            last_collection: 8492393
+            raindrops_sort: '-lastUpdate'
+            raindrops_view: list
+          dropbox:
+            enabled: true
+          email: some@email.com
+          email_MD5: 13a0a20681d8781912e5314150694bf7
+          files:
+            used: 6766094
+            size: 10000000000
+            lastCheckPoint: '2020-01-26T23:53:19.676Z'
+          fullName: Mussabekov Rustem
+          gdrive:
+            enabled: true
+          groups:
+            - title: My Collections
+              hidden: false
+              sort: 0
+              collections:
+                - 8364483
+                - 8364403
+                - 66
+          password: true
+          pro: true
+          proExpire: '2028-09-27T22:00:00.000Z'
+          registered: '2014-09-30T07:51:15.406Z'
+    Filter:
+      type: object
+      properties:
+        broken:
+          type: object
+          properties:
+            count:
+              type: integer
+        duplicates:
+          type: object
+          properties:
+            count:
+              type: integer
+        important:
+          type: object
+          properties:
+            count:
+              type: integer
+        notag:
+          type: object
+          properties:
+            count:
+              type: integer
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+              count:
+                type: integer
+        types:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+              count:
+                type: integer
+    FilterResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - $ref: '#/components/schemas/Filter'
+      example:
+        result: true
+        broken:
+          count: 31
+        duplicates:
+          count: 7
+        important:
+          count: 59
+        notag:
+          count: 1366
+        tags:
+          - _id: performanc
+            count: 19
+          - _id: guides
+            count: 9
+        types:
+          - _id: article
+            count: 313
+          - _id: image
+            count: 143
+          - _id: video
+            count: 26
+          - _id: document
+            count: 7
+    UrlParse:
+      type: object
+      properties:
+        title:
+          type: string
+        excerpt:
+          type: string
+        media:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              link:
+                type: string
+                format: uri
+        type:
+          type: string
+        meta:
+          type: object
+          properties:
+            possibleArticle:
+              type: boolean
+            canonical:
+              type: string
+            site:
+              type: string
+            tags:
+              type: array
+              items:
+                type: string
+    UrlParseResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - properties:
+            item:
+              $ref: '#/components/schemas/UrlParse'
+      example:
+        item:
+          title: Яндекс
+          excerpt: Найдётся всё
+          media:
+            - type: image
+              link: http://yastatic.net/s3/home/logos/share/share-logo_ru.png
+          type: link
+          meta:
+            possibleArticle: false
+            canonical: https://ya.ru
+            site: Яндекс
+            tags: []
+        result: true
+    UrlParseErrorResponse:
+      allOf:
+        - $ref: '#/components/schemas/ErrorResponse'
+        - properties:
+            item:
+              $ref: '#/components/schemas/UrlParse'
+    Bookmark:
+      type: object
+      properties:
+        link:
+          type: string
+          format: uri
+        title:
+          type: string
+        lastUpdate:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            type: string
+        excerpt:
+          type: string
+    Folder:
+      type: object
+      properties:
+        title:
+          type: string
+        folders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Folder'
+        bookmarks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bookmark'
+    ImportFileResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Folder'
+    CollectionID:
+      type: integer
+      description: |-
+        Collection ID. Reserved system collection IDs are:
+        
+        - -99 for Trash
+        - -1 for Unsorted
+        - 0 for All
+      example: 1111
+    View:
+      type: string
+      description: |-
+        View style of collection, can be:
+        - list (default)
+        - simple
+        - grid
+        - masonry 
+        
+          Pinterest like grid
+      enum: [list, simple, grid, masonry]
+      example: list
+    Sort:
+      type: integer
+      description: 'The order of collection (descending). Defines the position of the collection among all the collections with the same `parent.$id`'
+      example: 8492393
+    Parent:
+      type: object
+      properties:
+        $id:
+          type: integer
+          description: The id of the parent collection. Not specified for root collections
+          example: 1111
+    SortBy:
+      type: string
+      enum: [title, -title, -count, -lastUpdate]
+      description: |-
+        Change order of all collections.
+
+        Possible values:
+
+        "title" - sort alphabetically ascending
+
+        "-title" - sort alphabetically descending
+
+        "-count" - sort by raindrops count descending
+      example: title
+    Role:
+      type: string
+      enum: [member, viewer]
+    CollectionRef:
+      type: object
+      properties:
+        $id: 
+          type: integer
+    UserRef:
+      type: object
+      properties:
+        $id: 
+          type: integer
+    MD5:
+      type: string
