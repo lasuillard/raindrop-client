@@ -5,13 +5,17 @@ info:
     This document is hand-crafted, **UNOFFICIAL** OpenAPI specification of Raindrop API.
 
     Currently, as so far as we discovered, the official API documentation is outdated and not maintained well such as lacking some fields, mismatching actual response schema.
-  termsOfService: https://developer.raindrop.io/terms
   version: 0.1.0
+  termsOfService: https://developer.raindrop.io/terms
+  contact:
+    name: API documentation issues
+    url: https://github.com/lasuillard/raindrop-client/issues
 externalDocs:
   description: Official Raindrop API documentation
   url: https://developer.raindrop.io/
 servers:
   - url: https://api.raindrop.io
+    description: Raindrop API Server
 tags:
   - name: authentication
     externalDocs:
