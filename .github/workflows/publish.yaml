@@ -1,7 +1,8 @@
-name: Publish Package to GitHub Packages
+name: Publish to GitHub Packages
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 permissions: read-all
 
@@ -36,5 +37,5 @@ jobs:
 
       - name: Publish to NPM
         env:
-          NODE_AUTH_TOKEN: ${{ github.token }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm publish
