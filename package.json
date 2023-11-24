@@ -1,5 +1,5 @@
 {
-	"name": "raindrop-client",
+	"name": "@lasuillard/raindrop-client",
 	"version": "0.1.0",
 	"description": "Axios client built with OpenAPI generator for Raindrop.io.",
 	"keywords": [
