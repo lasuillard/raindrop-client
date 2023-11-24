@@ -35,7 +35,7 @@ jobs:
       - name: Build app
         run: pnpm run build
 
-      - name: Publish to NPM
+      - name: Publish package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm publish
