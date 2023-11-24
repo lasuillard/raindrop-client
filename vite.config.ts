@@ -4,11 +4,16 @@ import { defineConfig } from 'vitest/config';
 import packageManifest from './package.json';
 
 export default defineConfig({
-	plugins: [dts()],
+	plugins: [
+		dts({
+			rollupTypes: true
+		})
+	],
 	build: {
 		lib: {
 			entry: resolve(__dirname, 'src/index.ts'),
-			formats: ['es']
+			formats: ['es', 'cjs'],
+			fileName: (format) => `index.${format}.js`
 		},
 		rollupOptions: {
 			external: [...Object.keys(packageManifest.dependencies), /^node:.*/]
