@@ -12,13 +12,15 @@
 		"type": "git",
 		"url": "https://github.com/lasuillard/raindrop-client.git"
 	},
+	"publishConfig": {
+		"@lasuillard:registry": "https://npm.pkg.github.com"
+	},
 	"author": {
 		"name": "Yuchan Lee",
 		"url": "https://github.com/lasuillard",
 		"email": "lasuillard@gmail.com"
 	},
 	"homepage": "https://github.com/lasuillard/raindrop-client",
-	"private": true,
 	"main": "./dist/raindrop-client.umd.cjs",
 	"module": "./dist/raindrop-client.js",
 	"types": "./dist/index.d.ts",
