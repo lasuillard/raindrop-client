@@ -9,10 +9,11 @@ import type { RaindropSingleResponse } from '../models/RaindropSingleResponse';
 import type { SuggestResponse } from '../models/SuggestResponse';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 
 export class RaindropService {
+
+    constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
      * Create raindrop
@@ -20,10 +21,10 @@ export class RaindropService {
      * @returns RaindropSingleResponse Success
      * @throws ApiError
      */
-    public static postRestV1Raindrop(
+    public postRestV1Raindrop(
         requestBody?: CreateRaindrop,
     ): CancelablePromise<RaindropSingleResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'POST',
             url: '/rest/v1/raindrop',
             body: requestBody,
@@ -37,10 +38,10 @@ export class RaindropService {
      * @returns any Success
      * @throws ApiError
      */
-    public static getRestV1Raindrop(
+    public getRestV1Raindrop(
         id: number,
     ): CancelablePromise<any> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/raindrop/{id}',
             path: {
@@ -56,11 +57,11 @@ export class RaindropService {
      * @returns RaindropSingleResponse Success
      * @throws ApiError
      */
-    public static putRestV1Raindrop(
+    public putRestV1Raindrop(
         id: number,
         requestBody?: CreateRaindrop,
     ): CancelablePromise<RaindropSingleResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/raindrop/{id}',
             path: {
@@ -78,10 +79,10 @@ export class RaindropService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public static deleteRestV1Raindrop(
+    public deleteRestV1Raindrop(
         id: number,
     ): CancelablePromise<EmptyResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/raindrop/{id}',
             path: {
@@ -97,7 +98,7 @@ export class RaindropService {
      * @returns RaindropSingleResponse Success
      * @throws ApiError
      */
-    public static putRestV1RaindropFile(
+    public putRestV1RaindropFile(
         formData?: {
             /**
              * File
@@ -109,7 +110,7 @@ export class RaindropService {
             collectionId?: number;
         },
     ): CancelablePromise<RaindropSingleResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/raindrop/file',
             formData: formData,
@@ -128,7 +129,7 @@ export class RaindropService {
      * @returns RaindropSingleResponse Success
      * @throws ApiError
      */
-    public static putRestV1RaindropCover(
+    public putRestV1RaindropCover(
         id: number,
         formData?: {
             /**
@@ -137,7 +138,7 @@ export class RaindropService {
             cover?: Blob;
         },
     ): CancelablePromise<RaindropSingleResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/raindrop/{id}/cover',
             path: {
@@ -158,10 +159,10 @@ export class RaindropService {
      * @returns void
      * @throws ApiError
      */
-    public static getRestV1RaindropCache(
+    public getRestV1RaindropCache(
         id: number,
     ): CancelablePromise<void> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/raindrop/{id}/cache',
             path: {
@@ -179,12 +180,12 @@ export class RaindropService {
      * @returns SuggestResponse Success
      * @throws ApiError
      */
-    public static postRestV1RaindropSuggest(
+    public postRestV1RaindropSuggest(
         requestBody?: {
             link?: string;
         },
     ): CancelablePromise<SuggestResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'POST',
             url: '/rest/v1/raindrop/suggest',
             body: requestBody,
@@ -198,10 +199,10 @@ export class RaindropService {
      * @returns SuggestResponse Success
      * @throws ApiError
      */
-    public static getRestV1RaindropSuggest(
+    public getRestV1RaindropSuggest(
         id: number,
     ): CancelablePromise<SuggestResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/raindrop/{id}/suggest',
             path: {
@@ -220,14 +221,14 @@ export class RaindropService {
      * @returns any Success
      * @throws ApiError
      */
-    public static getRestV1Raindrops(
+    public getRestV1Raindrops(
         collectionId: number,
         sort?: string,
         perpage?: string,
         page?: string,
         search?: string,
     ): CancelablePromise<any> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/raindrops/{collectionId}',
             path: {
@@ -251,7 +252,7 @@ export class RaindropService {
      * @returns any Success
      * @throws ApiError
      */
-    public static putRestV1Raindrops(
+    public putRestV1Raindrops(
         collectionId: number,
         requestBody?: {
             ids?: Array<number>;
@@ -280,7 +281,7 @@ export class RaindropService {
             };
         },
     ): CancelablePromise<any> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/raindrops/{collectionId}',
             path: {
@@ -301,7 +302,7 @@ export class RaindropService {
      * @returns any Success
      * @throws ApiError
      */
-    public static deleteRestV1Raindrops(
+    public deleteRestV1Raindrops(
         collectionId: number,
         search?: string,
         requestBody?: {
@@ -311,7 +312,7 @@ export class RaindropService {
         result?: boolean;
         modified?: number;
     }> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/raindrops/{collectionId}',
             path: {
@@ -331,7 +332,7 @@ export class RaindropService {
      * @returns RaindropMultiResponse Success
      * @throws ApiError
      */
-    public static postRestV1Raindrops(
+    public postRestV1Raindrops(
         requestBody?: {
             /**
              * Array of objects. Format of single object described in "Create single raindrop".
@@ -340,7 +341,7 @@ export class RaindropService {
             items?: Array<CreateRaindrop>;
         },
     ): CancelablePromise<RaindropMultiResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'POST',
             url: '/rest/v1/raindrops',
             body: requestBody,

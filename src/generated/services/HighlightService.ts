@@ -7,10 +7,11 @@ import type { HighlightResponse } from '../models/HighlightResponse';
 import type { RaindropSingleResponse } from '../models/RaindropSingleResponse';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 
 export class HighlightService {
+
+    constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
      * Get raindrop
@@ -18,10 +19,10 @@ export class HighlightService {
      * @returns any Success
      * @throws ApiError
      */
-    public static getRestV1Raindrop(
+    public getRestV1Raindrop(
         id: number,
     ): CancelablePromise<any> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/raindrop/{id}',
             path: {
@@ -37,11 +38,11 @@ export class HighlightService {
      * @returns RaindropSingleResponse Success
      * @throws ApiError
      */
-    public static putRestV1Raindrop(
+    public putRestV1Raindrop(
         id: number,
         requestBody?: CreateRaindrop,
     ): CancelablePromise<RaindropSingleResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/raindrop/{id}',
             path: {
@@ -59,11 +60,11 @@ export class HighlightService {
      * @returns HighlightResponse OK
      * @throws ApiError
      */
-    public static getRestV1Highlights(
+    public getRestV1Highlights(
         page?: number,
         perpage?: number,
     ): CancelablePromise<HighlightResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/highlights',
             query: {
@@ -81,12 +82,12 @@ export class HighlightService {
      * @returns HighlightResponse Success
      * @throws ApiError
      */
-    public static getRestV1Highlights1(
+    public getRestV1Highlights1(
         collectionId: number,
         page?: number,
         perpage?: number,
     ): CancelablePromise<HighlightResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/highlights/{collectionId}',
             path: {

@@ -7,10 +7,11 @@ import type { RefreshToken } from '../models/RefreshToken';
 import type { TokenResponse } from '../models/TokenResponse';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 
 export class AuthenticationService {
+
+    constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
      * Authorization request
@@ -24,11 +25,11 @@ export class AuthenticationService {
      * @returns void
      * @throws ApiError
      */
-    public static getOauthAuthorize(
+    public getOauthAuthorize(
         redirectUri: string,
         clientId: string,
     ): CancelablePromise<void> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/oauth/authorize',
             query: {
@@ -51,10 +52,10 @@ export class AuthenticationService {
      * @returns TokenResponse Success
      * @throws ApiError
      */
-    public static postOauthAccessToken(
+    public postOauthAccessToken(
         requestBody?: (ObtainToken | RefreshToken),
     ): CancelablePromise<TokenResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'POST',
             url: '/oauth/access_token',
             body: requestBody,

@@ -5,10 +5,11 @@
 import type { FilterResponse } from '../models/FilterResponse';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 
 export class FilterService {
+
+    constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
      * @param collectionId Collection ID
@@ -17,12 +18,12 @@ export class FilterService {
      * @returns FilterResponse Success
      * @throws ApiError
      */
-    public static getRestV1Filters(
+    public getRestV1Filters(
         collectionId: number,
         tagsSort?: '-count' | '_id',
         search?: string,
     ): CancelablePromise<FilterResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/filters/{collectionId}',
             path: {

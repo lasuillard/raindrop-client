@@ -6,10 +6,11 @@ import type { EmptyResponse } from '../models/EmptyResponse';
 import type { Response } from '../models/Response';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 
 export class TagService {
+
+    constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
      * Get tags
@@ -17,10 +18,10 @@ export class TagService {
      * @returns any Success
      * @throws ApiError
      */
-    public static getRestV1Tags(
+    public getRestV1Tags(
         collectionId?: number,
     ): CancelablePromise<Response> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/tags/{collectionId}',
             path: {
@@ -36,7 +37,7 @@ export class TagService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public static putRestV1Tags(
+    public putRestV1Tags(
         collectionId?: number,
         requestBody?: {
             /**
@@ -51,7 +52,7 @@ export class TagService {
             tags?: Array<string>;
         },
     ): CancelablePromise<EmptyResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/tags/{collectionId}',
             path: {
@@ -69,7 +70,7 @@ export class TagService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public static deleteRestV1Tags(
+    public deleteRestV1Tags(
         collectionId?: number,
         requestBody?: {
             /**
@@ -78,7 +79,7 @@ export class TagService {
             tags?: Array<string>;
         },
     ): CancelablePromise<EmptyResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/tags/{collectionId}',
             path: {

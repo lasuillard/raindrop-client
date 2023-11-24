@@ -8,10 +8,11 @@ import type { UrlParseErrorResponse } from '../models/UrlParseErrorResponse';
 import type { UrlParseResponse } from '../models/UrlParseResponse';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 
 export class ImportService {
+
+    constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
      * Parse URL
@@ -20,10 +21,10 @@ export class ImportService {
      * @returns any Success
      * @throws ApiError
      */
-    public static getRestV1ImportUrlParse(
+    public getRestV1ImportUrlParse(
         url?: string,
     ): CancelablePromise<(UrlParseResponse | UrlParseErrorResponse)> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/import/url/parse',
             query: {
@@ -39,12 +40,12 @@ export class ImportService {
      * @returns any Success
      * @throws ApiError
      */
-    public static postRestV1ImportUrlExists(
+    public postRestV1ImportUrlExists(
         requestBody?: {
             urls?: Array<string>;
         },
     ): CancelablePromise<Response> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'POST',
             url: '/rest/v1/import/url/exists',
             body: requestBody,
@@ -61,7 +62,7 @@ export class ImportService {
      * @returns ImportFileResponse Success
      * @throws ApiError
      */
-    public static postRestV1ImportFile(
+    public postRestV1ImportFile(
         formData?: {
             /**
              * File
@@ -69,7 +70,7 @@ export class ImportService {
             import?: Blob;
         },
     ): CancelablePromise<ImportFileResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'POST',
             url: '/rest/v1/import/file',
             formData: formData,

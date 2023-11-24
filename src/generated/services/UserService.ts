@@ -9,18 +9,19 @@ import type { UserConfig } from '../models/UserConfig';
 import type { UserResponse } from '../models/UserResponse';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 
 export class UserService {
+
+    constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
      * Get system collections count
      * @returns StatResponse Success
      * @throws ApiError
      */
-    public static getRestV1UserStats(): CancelablePromise<StatResponse> {
-        return __request(OpenAPI, {
+    public getRestV1UserStats(): CancelablePromise<StatResponse> {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/user/stats',
         });
@@ -32,8 +33,8 @@ export class UserService {
      * @returns UserResponse Success
      * @throws ApiError
      */
-    public static getRestV1User(): CancelablePromise<UserResponse> {
-        return __request(OpenAPI, {
+    public getRestV1User(): CancelablePromise<UserResponse> {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/user',
             errors: {
@@ -49,7 +50,7 @@ export class UserService {
      * @returns UserResponse Success
      * @throws ApiError
      */
-    public static putRestV1User(
+    public putRestV1User(
         requestBody?: {
             groups?: Array<Group>;
             config?: UserConfig;
@@ -59,7 +60,7 @@ export class UserService {
             email?: string;
         },
     ): CancelablePromise<UserResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/user',
             body: requestBody,
@@ -77,10 +78,10 @@ export class UserService {
      * @returns any Success
      * @throws ApiError
      */
-    public static getRestV1User1(
+    public getRestV1User1(
         name: number,
     ): CancelablePromise<Response> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/user/{name}',
             path: {
@@ -99,10 +100,10 @@ export class UserService {
      * @returns void
      * @throws ApiError
      */
-    public static getRestV1UserConnect(
+    public getRestV1UserConnect(
         provider: 'facebook' | 'google' | 'twitter' | 'vkontate' | 'dropbox' | 'gdrive',
     ): CancelablePromise<void> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/user/connect/{provider}',
             path: {
@@ -121,10 +122,10 @@ export class UserService {
      * @returns any Success
      * @throws ApiError
      */
-    public static getRestV1UserConnectRevoke(
+    public getRestV1UserConnectRevoke(
         provider: 'facebook' | 'google' | 'twitter' | 'vkontate' | 'dropbox' | 'gdrive',
     ): CancelablePromise<any> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/user/connect/{provider}/revoke',
             path: {

@@ -8,6 +8,9 @@ export function add(a: number, b: number): number {
 	return a + b;
 }
 
+import { Client } from './generated';
+export { Client };
+
 /* c8 ignore start */
 if (import.meta.vitest) {
 	const { expect, it } = import.meta.vitest;

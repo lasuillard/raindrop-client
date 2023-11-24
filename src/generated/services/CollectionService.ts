@@ -14,10 +14,11 @@ import type { StatResponse } from '../models/StatResponse';
 import type { UpdateCollection } from '../models/UpdateCollection';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
-import { OpenAPI } from '../core/OpenAPI';
-import { request as __request } from '../core/request';
+import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 
 export class CollectionService {
+
+    constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
      * Get root collectins
@@ -25,8 +26,8 @@ export class CollectionService {
      * @returns CollectionMultiResponse Success
      * @throws ApiError
      */
-    public static getRestV1Collections(): CancelablePromise<CollectionMultiResponse> {
-        return __request(OpenAPI, {
+    public getRestV1Collections(): CancelablePromise<CollectionMultiResponse> {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/collections',
         });
@@ -39,7 +40,7 @@ export class CollectionService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public static putRestV1Collections(
+    public putRestV1Collections(
         requestBody?: ({
             sort?: SortBy;
         } | {
@@ -51,7 +52,7 @@ export class CollectionService {
             expanded?: boolean;
         }),
     ): CancelablePromise<EmptyResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/collections',
             body: requestBody,
@@ -68,12 +69,12 @@ export class CollectionService {
      * @returns any Success
      * @throws ApiError
      */
-    public static deleteRestV1Collections(
+    public deleteRestV1Collections(
         requestBody?: {
             ids?: Array<CollectionID>;
         },
     ): CancelablePromise<any> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/collections',
             body: requestBody,
@@ -87,8 +88,8 @@ export class CollectionService {
      * @returns CollectionMultiResponse Success
      * @throws ApiError
      */
-    public static getRestV1CollectionsChildrens(): CancelablePromise<CollectionMultiResponse> {
-        return __request(OpenAPI, {
+    public getRestV1CollectionsChildrens(): CancelablePromise<CollectionMultiResponse> {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/collections/childrens',
         });
@@ -100,10 +101,10 @@ export class CollectionService {
      * @returns CollectionSingleResponse Success
      * @throws ApiError
      */
-    public static getRestV1Collection(
+    public getRestV1Collection(
         id: CollectionID,
     ): CancelablePromise<CollectionSingleResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/collection/{id}',
             path: {
@@ -120,11 +121,11 @@ export class CollectionService {
      * @returns CollectionSingleResponse Success
      * @throws ApiError
      */
-    public static putRestV1Collection(
+    public putRestV1Collection(
         id: CollectionID,
         requestBody?: UpdateCollection,
     ): CancelablePromise<CollectionSingleResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/collection/{id}',
             path: {
@@ -144,10 +145,10 @@ export class CollectionService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public static deleteRestV1Collection(
+    public deleteRestV1Collection(
         id: CollectionID,
     ): CancelablePromise<EmptyResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/collection/{id}',
             path: {
@@ -163,10 +164,10 @@ export class CollectionService {
      * @returns CollectionSingleResponse Success
      * @throws ApiError
      */
-    public static postRestV1Collection(
+    public postRestV1Collection(
         requestBody?: CreateCollection,
     ): CancelablePromise<CollectionSingleResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'POST',
             url: '/rest/v1/collection',
             body: requestBody,
@@ -185,13 +186,13 @@ export class CollectionService {
      * @returns CollectionSingleResponse Success
      * @throws ApiError
      */
-    public static putRestV1CollectionsCover(
+    public putRestV1CollectionsCover(
         id: CollectionID,
         formData?: {
             cover?: Blob;
         },
     ): CancelablePromise<CollectionSingleResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/collections/{id}/cover',
             path: {
@@ -209,13 +210,13 @@ export class CollectionService {
      * @returns any Success
      * @throws ApiError
      */
-    public static putRestV1CollectionsMerge(
+    public putRestV1CollectionsMerge(
         requestBody?: {
             to?: CollectionID;
             ids?: Array<CollectionID>;
         },
     ): CancelablePromise<any> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/collections/merge',
             body: requestBody,
@@ -228,11 +229,11 @@ export class CollectionService {
      * @returns any Success
      * @throws ApiError
      */
-    public static putRestV1CollectionsClean(): CancelablePromise<{
+    public putRestV1CollectionsClean(): CancelablePromise<{
         result?: boolean;
         count?: number;
     }> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/collections/clean',
         });
@@ -243,8 +244,8 @@ export class CollectionService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public static deleteRestV1Collection99(): CancelablePromise<EmptyResponse> {
-        return __request(OpenAPI, {
+    public deleteRestV1Collection99(): CancelablePromise<EmptyResponse> {
+        return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/collection/-99',
         });
@@ -255,8 +256,8 @@ export class CollectionService {
      * @returns StatResponse Success
      * @throws ApiError
      */
-    public static getRestV1UserStats(): CancelablePromise<StatResponse> {
-        return __request(OpenAPI, {
+    public getRestV1UserStats(): CancelablePromise<StatResponse> {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/user/stats',
         });
@@ -267,10 +268,10 @@ export class CollectionService {
      * @returns any Success
      * @throws ApiError
      */
-    public static getRestV1CollectionsSharing(
+    public getRestV1CollectionsSharing(
         id: CollectionID,
     ): CancelablePromise<any> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/collections/{id}/sharing',
             path: {
@@ -287,7 +288,7 @@ export class CollectionService {
      * @returns any Success
      * @throws ApiError
      */
-    public static postRestV1CollectionsSharing(
+    public postRestV1CollectionsSharing(
         id: CollectionID,
         requestBody?: {
             role?: Role;
@@ -302,7 +303,7 @@ export class CollectionService {
         result?: boolean;
         emails?: Array<string>;
     }> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'POST',
             url: '/rest/v1/collections/{id}/sharing',
             path: {
@@ -326,10 +327,10 @@ export class CollectionService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public static deleteRestV1CollectionsSharing(
+    public deleteRestV1CollectionsSharing(
         id: CollectionID,
     ): CancelablePromise<EmptyResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/collections/{id}/sharing',
             path: {
@@ -346,14 +347,14 @@ export class CollectionService {
      * @returns any Success
      * @throws ApiError
      */
-    public static putRestV1CollectionsSharing(
+    public putRestV1CollectionsSharing(
         userId: number,
         id: CollectionID,
         requestBody?: {
             role?: Role;
         },
     ): CancelablePromise<any> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/collections/{id}/sharing/{userId}',
             path: {
@@ -373,11 +374,11 @@ export class CollectionService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public static deleteRestV1CollectionsSharing1(
+    public deleteRestV1CollectionsSharing1(
         userId: number,
         id: CollectionID,
     ): CancelablePromise<EmptyResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/collections/{id}/sharing/{userId}',
             path: {
@@ -394,13 +395,13 @@ export class CollectionService {
      * @returns any Success
      * @throws ApiError
      */
-    public static postRestV1CollectionsJoin(
+    public postRestV1CollectionsJoin(
         id: CollectionID,
     ): CancelablePromise<{
         result?: boolean;
         role?: Role;
     }> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'POST',
             url: '/rest/v1/collections/{id}/join',
             path: {
@@ -419,10 +420,10 @@ export class CollectionService {
      * @returns CoverResponse Success
      * @throws ApiError
      */
-    public static getRestV1CollectionsCovers(
+    public getRestV1CollectionsCovers(
         text: string,
     ): CancelablePromise<CoverResponse> {
-        return __request(OpenAPI, {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/collections/covers/{text}',
             path: {
@@ -436,8 +437,8 @@ export class CollectionService {
      * @returns CoverResponse Success
      * @throws ApiError
      */
-    public static getRestV1CollectionsCovers1(): CancelablePromise<CoverResponse> {
-        return __request(OpenAPI, {
+    public getRestV1CollectionsCovers1(): CancelablePromise<CoverResponse> {
+        return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/collections/covers',
         });

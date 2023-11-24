@@ -25,7 +25,7 @@
 		"dist"
 	],
 	"scripts": {
-		"generate": "openapi --input openapi.yaml --client axios --output ./src/generated",
+		"generate": "openapi --input openapi.yaml --client axios --output ./src/generated --name Client",
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
