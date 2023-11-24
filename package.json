@@ -12,9 +12,6 @@
 		"type": "git",
 		"url": "https://github.com/lasuillard/raindrop-client.git"
 	},
-	"publishConfig": {
-		"@lasuillard:registry": "https://npm.pkg.github.com"
-	},
 	"author": {
 		"name": "Yuchan Lee",
 		"url": "https://github.com/lasuillard",
