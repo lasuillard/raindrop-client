@@ -98,10 +98,10 @@ jobs:
       - name: Install PNPM deps
         run: pnpm install
 
-      - name: Create release
-        uses: softprops/action-gh-release@v1
-        with:
-          generate_release_notes: true
+      # - name: Create release
+      #   uses: softprops/action-gh-release@v1
+      #   with:
+      #     generate_release_notes: true
 
       - name: Build app
         run: pnpm run build
