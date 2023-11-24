@@ -18,15 +18,9 @@
 		"email": "lasuillard@gmail.com"
 	},
 	"homepage": "https://github.com/lasuillard/raindrop-client",
-	"main": "./dist/raindrop-client.umd.cjs",
-	"module": "./dist/raindrop-client.js",
+	"main": "./dist/index.cjs.js",
+	"module": "./dist/index.es.js",
 	"types": "./dist/index.d.ts",
-	"exports": {
-		".": {
-			"import": "./dist/raindrop-client.js",
-			"require": "./dist/raindrop-client.umd.cjs"
-		}
-	},
 	"files": [
 		"dist"
 	],

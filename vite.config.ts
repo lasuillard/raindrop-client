@@ -1,15 +1,19 @@
 import { resolve } from 'path';
 import dts from 'vite-plugin-dts';
 import { defineConfig } from 'vitest/config';
+import packageManifest from './package.json';
 
 export default defineConfig({
 	plugins: [dts()],
 	build: {
 		lib: {
 			entry: resolve(__dirname, 'src/index.ts'),
-			name: 'raindrop-client',
-			fileName: 'raindrop-client'
-		}
+			formats: ['es']
+		},
+		rollupOptions: {
+			external: [...Object.keys(packageManifest.dependencies), /^node:.*/]
+		},
+		target: 'ESNext'
 	},
 	define: {
 		'import.meta.vitest': 'undefined'
