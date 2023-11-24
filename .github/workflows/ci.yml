@@ -116,4 +116,4 @@ jobs:
       - name: Publish package
         env:
           NODE_AUTH_TOKEN: ${{ github.token }}
-        run: pnpm publish
+        run: pnpm publish --no-git-checks # BUG: https://github.com/pnpm/pnpm/issues/5894
