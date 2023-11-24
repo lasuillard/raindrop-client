@@ -1,6 +1,7 @@
 exclude: |
   (?x)(
     \.snap$
+    | src/generated
   )
 default_stages: [commit]
 fail_fast: true

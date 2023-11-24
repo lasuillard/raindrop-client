@@ -59,6 +59,7 @@ paths:
         - If the user is not logged in, they will be asked to log in
 
         - The user will be asked if he would like to grant your application access to his Raindrop.io data
+      # checkov:skip=CKV_OPENAPI_5:Auth endpoint open to unauthorized users
       security: []
       parameters:
         - name: redirect_uri
@@ -165,6 +166,7 @@ paths:
             schema:
               type: object
               properties:
+                # checkov:skip=CKV_OPENAPI_21:Source documentation does not provide max item detail
                 ids:
                   type: array
                   items:
@@ -1437,7 +1439,7 @@ paths:
         - import
       summary: Parse HTML import file
       description: |-
-        Convert HTML bookmark file to JSON. 
+        Convert HTML bookmark file to JSON.
 
         Support Nestcape, Pocket and Instapaper file formats
       requestBody:
@@ -1492,6 +1494,7 @@ paths:
                     bookmarks: []
 components:
   securitySchemes:
+    # checkov:skip=CKV_OPENAPI_3:FIXME
     bearerAuth:
       type: http
       scheme: bearer
@@ -1878,7 +1881,7 @@ components:
             creatorRef:
               type: object
               description: |-
-                Sometime raindrop may belong to other user, not to the one who created it. 
+                Sometime raindrop may belong to other user, not to the one who created it.
                 For example when this raindrop is created in shared collection by other user.
                 This object contains info about original author.
               properties:
@@ -1939,7 +1942,7 @@ components:
         color:
           type: string
           description: |-
-            Color of highlight. 
+            Color of highlight.
             Default yellow
 
             Can be blue, brown, cyan, gray, green, indigo, orange, pink, purple, red, teal, yellow
@@ -2337,7 +2340,7 @@ components:
         - list (default)
         - simple
         - grid
-        - masonry 
+        - masonry
 
           Pinterest like grid
       enum: [list, simple, grid, masonry]
