@@ -72,33 +72,15 @@ jobs:
           files: coverage/e2e/clover.xml
           flags: e2e
 
-  build-and-release:
-    name: Build and Release
+  release:
+    name: Release
     needs: lint-and-test
     runs-on: ubuntu-latest
     if: startswith(github.ref, 'refs/tags/v') # For v* tags
     permissions:
       contents: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up PNPM
-        uses: pnpm/action-setup@v2
+      - name: Create release
+        uses: softprops/action-gh-release@v1
         with:
-          version: latest
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: pnpm
-
-      - name: Install PNPM deps
-        run: pnpm install
-
-      - name: Build app
-        run: pnpm run build
-
-      - name: Publish to NPM
-        run: pnpm publish --dry-run # TODO: Not ready to publish, yet
+          generate_release_notes: true

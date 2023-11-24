@@ -1,0 +1,40 @@
+name: Publish Package to GitHub Packages
+on:
+  release:
+    types: [published]
+
+permissions: read-all
+
+jobs:
+  build-and-publish:
+    name: Build and Publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+          registry-url: https://npm.pkg.github.com
+
+      - name: Install PNPM deps
+        run: pnpm install
+
+      - name: Build app
+        run: pnpm run build
+
+      - name: Publish to NPM
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
+        run: pnpm publish
