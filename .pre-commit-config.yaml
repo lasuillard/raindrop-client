@@ -18,7 +18,7 @@ repos:
         language: system
         files: openapi.yaml
         pass_filenames: false
-        entry: pnpm run generate
+        entry: make generate
 
       - id: prettier
         name: Format with Prettier

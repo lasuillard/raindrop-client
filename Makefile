@@ -41,7 +41,20 @@ ci: generate lint scan test benchmark e2e-test  ## Run CI tasks
 .PHONY: ci
 
 generate:  ## Generate codes from schemas
+	mkdir -p ./src/generated
+
+	function sig() {
+		find ./src/generated -type f -print0 | sort -z | xargs -0 sha1sum | sha1sum | awk '{ print $$1 }'
+	}
+
+	before="$$(sig)"
 	pnpm run generate
+	after="$$(sig)"
+
+	if [[ "$$after" != "$$before" ]]; then
+		echo 'There are changes in generated codes.'
+		exit 1
+	fi
 .PHONY: generate
 
 format:  ## Run autoformatters
