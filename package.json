@@ -18,6 +18,9 @@
 		"email": "lasuillard@gmail.com"
 	},
 	"homepage": "https://github.com/lasuillard/raindrop-client",
+	"bugs": {
+		"url": "https://github.com/lasuillard/raindrop-client/issues"
+	},
 	"main": "./dist/index.cjs.js",
 	"module": "./dist/index.es.js",
 	"types": "./dist/index.d.ts",
