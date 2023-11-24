@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  workspace:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      target: workspace
+    ports:
+      - 127.0.0.1:51204:51204 # Vitest UI
+    environment:
+      CONTAINER: 1
+    command: sleep infinity
+    init: true
+    extra_hosts:
+      - host.docker.internal:host-gateway

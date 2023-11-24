@@ -1,0 +1,104 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - v*
+    paths-ignore:
+      - '.devcontainer/**'
+      - '.vscode/**'
+      - '**.md'
+  pull_request:
+    branches:
+      - main
+    paths-ignore:
+      - '.devcontainer/**'
+      - '.vscode/**'
+      - '**.md'
+  workflow_dispatch:
+
+permissions: read-all
+
+jobs:
+  lint-and-test:
+    name: Lint and Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install PNPM deps
+        run: pnpm install
+
+      - name: Lint code
+        run: pnpm exec eslint .
+
+      - name: Run type checks
+        run: pnpm exec tsc --noEmit
+
+      - name: Run tests
+        run: pnpm run test
+
+      - name: Upload unittest coverage report
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+          files: coverage/unit/clover.xml
+          flags: unit
+
+      - name: Run end-to-end tests
+        run: pnpm run e2e
+
+      - name: Upload e2e coverage report
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+          files: coverage/e2e/clover.xml
+          flags: e2e
+
+  build-and-release:
+    name: Build and Release
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    if: startswith(github.ref, 'refs/tags/v') # For v* tags
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install PNPM deps
+        run: pnpm install
+
+      - name: Build app
+        run: pnpm run build
+
+      - name: Publish to NPM
+        run: pnpm publish --dry-run # TODO: Not ready to publish, yet

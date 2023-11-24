@@ -1,0 +1,28 @@
+{
+	"[jsonc]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[yaml]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"conventionalCommits.scopes": ["deps-dev", "deps", "vscode", "workspace"],
+	"cSpell.words": [],
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true,
+		"source.organizeImports": true
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"eslint.enable": true,
+	"eslint.format.enable": true,
+	"files.eol": "\n",
+	"files.insertFinalNewline": true,
+	"files.trimFinalNewlines": true,
+	"json.format.enable": false,
+	"prettier.enable": true,
+	"yaml.schemas": {
+		"https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json": [
+			"openapi.yaml"
+		]
+	}
+}

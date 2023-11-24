@@ -1,0 +1,58 @@
+exclude: |
+  (?x)(
+    \.snap$
+    | src/generated
+  )
+default_stages: [commit]
+fail_fast: true
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+
+  - repo: local
+    hooks:
+      - id: generate
+        name: Generate stubs and codes
+        language: system
+        files: openapi.yaml
+        pass_filenames: false
+        entry: make generate
+
+      - id: prettier
+        name: Format with Prettier
+        language: system
+        types_or: [javascript, ts, json, yaml]
+        entry: pnpm exec prettier
+        args: [--write]
+
+      - id: eslint
+        name: Lint with ESLint
+        language: system
+        types_or: [javascript, ts]
+        entry: pnpm exec eslint
+        args: [--fix]
+
+      - id: typescript
+        name: Type check with TypeScript
+        language: system
+        types_or: [javascript, ts]
+        pass_filenames: false
+        entry: pnpm exec tsc
+        args: [--noEmit]
+
+      - id: checkov
+        name: Scan using Checkov
+        language: system
+        types: [file]
+        entry: checkov
+        args: [-f]
+
+      - id: vitest
+        name: Run tests with Vitest
+        language: system
+        types_or: [javascript, ts]
+        pass_filenames: false
+        entry: pnpm run test
