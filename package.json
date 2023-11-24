@@ -8,6 +8,10 @@
 		"openapi"
 	],
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lasuillard/raindrop-client.git"
+	},
 	"author": {
 		"name": "Yuchan Lee",
 		"url": "https://github.com/lasuillard",
