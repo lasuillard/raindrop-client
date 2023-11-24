@@ -76,8 +76,7 @@ jobs:
     name: Build and Release
     needs: lint-and-test
     runs-on: ubuntu-latest
-    # TODO: Uncomment this before merge
-    # if: startswith(github.ref, 'refs/tags/v') # For v* tags
+    if: startswith(github.ref, 'refs/tags/v') # For v* tags
     permissions:
       contents: write
     steps:
@@ -97,11 +96,6 @@ jobs:
 
       - name: Install PNPM deps
         run: pnpm install
-
-      # - name: Create release
-      #   uses: softprops/action-gh-release@v1
-      #   with:
-      #     generate_release_notes: true
 
       - name: Build app
         run: pnpm run build
