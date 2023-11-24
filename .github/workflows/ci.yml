@@ -40,7 +40,6 @@ jobs:
         with:
           node-version-file: .node-version
           cache: pnpm
-          registry-url: https://npm.pkg.github.com
 
       - name: Install PNPM deps
         run: pnpm install
@@ -107,6 +106,7 @@ jobs:
         with:
           node-version-file: .node-version
           cache: pnpm
+          registry-url: https://npm.pkg.github.com
 
       - name: Install PNPM deps
         run: pnpm install
