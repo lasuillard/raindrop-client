@@ -21,6 +21,8 @@
 	"json.format.enable": false,
 	"prettier.enable": true,
 	"yaml.schemas": {
-		"https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json": "file:///home/lasuillard/Private/lasuillard/raindrop-client/openapi.yaml"
+		"https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/schemas/v3.0/schema.json": [
+			"openapi.yaml"
+		]
 	}
 }
