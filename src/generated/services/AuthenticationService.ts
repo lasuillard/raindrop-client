@@ -44,7 +44,7 @@ export class AuthenticationService {
 
     /**
      * Obtain or refresh access token
-     * Once you have the authorization code, you can exchange it for the access_token by doing a POST request with all required body parameters as JSON.
+     * Once you have the authorization code, you can exchange it for the `access_token` by doing a POST request with all required body parameters as JSON.
      *
      * For security reasons access tokens (except "test tokens") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON).
      *

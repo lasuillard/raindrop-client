@@ -4,6 +4,9 @@
 /* eslint-disable */
 
 export type CollectionRef = {
+    /**
+     * The id of the parent collection. Not specified for root collections
+     */
     $id?: number;
 };
 

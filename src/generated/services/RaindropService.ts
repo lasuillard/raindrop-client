@@ -3,9 +3,9 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { CreateRaindrop } from '../models/CreateRaindrop';
-import type { EmptyResponse } from '../models/EmptyResponse';
-import type { RaindropMultiResponse } from '../models/RaindropMultiResponse';
-import type { RaindropSingleResponse } from '../models/RaindropSingleResponse';
+import type { RaindropResponseMany } from '../models/RaindropResponseMany';
+import type { RaindropResponseOne } from '../models/RaindropResponseOne';
+import type { Response } from '../models/Response';
 import type { SuggestResponse } from '../models/SuggestResponse';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -18,12 +18,12 @@ export class RaindropService {
     /**
      * Create raindrop
      * @param requestBody
-     * @returns RaindropSingleResponse Success
+     * @returns RaindropResponseOne Success
      * @throws ApiError
      */
     public createRaindrop(
         requestBody?: CreateRaindrop,
-    ): CancelablePromise<RaindropSingleResponse> {
+    ): CancelablePromise<RaindropResponseOne> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/rest/v1/raindrop',
@@ -54,13 +54,13 @@ export class RaindropService {
      * Update raindrop
      * @param id Existing raindrop ID
      * @param requestBody
-     * @returns RaindropSingleResponse Success
+     * @returns RaindropResponseOne Success
      * @throws ApiError
      */
     public updateRaindrop(
         id: number,
         requestBody?: CreateRaindrop,
-    ): CancelablePromise<RaindropSingleResponse> {
+    ): CancelablePromise<RaindropResponseOne> {
         return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/raindrop/{id}',
@@ -76,12 +76,12 @@ export class RaindropService {
      * Remove raindrop
      * When you remove raindrop it will be moved to user Trash collection. But if you try to remove raindrop from Trash, it will be removed permanently.
      * @param id Existing raindrop ID
-     * @returns EmptyResponse Success
+     * @returns Response Success
      * @throws ApiError
      */
     public removeRaindrop(
         id: number,
-    ): CancelablePromise<EmptyResponse> {
+    ): CancelablePromise<Response> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/raindrop/{id}',
@@ -95,7 +95,7 @@ export class RaindropService {
      * Upload file
      * Make sure to send PUT request with [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST#example) body
      * @param formData
-     * @returns RaindropSingleResponse Success
+     * @returns RaindropResponseOne Success
      * @throws ApiError
      */
     public uploadFile(
@@ -109,7 +109,7 @@ export class RaindropService {
              */
             collectionId?: number;
         },
-    ): CancelablePromise<RaindropSingleResponse> {
+    ): CancelablePromise<RaindropResponseOne> {
         return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/raindrop/file',
@@ -126,7 +126,7 @@ export class RaindropService {
      * PNG, GIF or JPEG
      * @param id Existing raindrop ID
      * @param formData
-     * @returns RaindropSingleResponse Success
+     * @returns RaindropResponseOne Success
      * @throws ApiError
      */
     public uploadRaindropCover(
@@ -137,7 +137,7 @@ export class RaindropService {
              */
             cover?: Blob;
         },
-    ): CancelablePromise<RaindropSingleResponse> {
+    ): CancelablePromise<RaindropResponseOne> {
         return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/raindrop/{id}/cover',
@@ -329,7 +329,7 @@ export class RaindropService {
     /**
      * Create many raindrops
      * @param requestBody
-     * @returns RaindropMultiResponse Success
+     * @returns RaindropResponseMany Success
      * @throws ApiError
      */
     public createRaindrops(
@@ -340,7 +340,7 @@ export class RaindropService {
              */
             items?: Array<CreateRaindrop>;
         },
-    ): CancelablePromise<RaindropMultiResponse> {
+    ): CancelablePromise<RaindropResponseMany> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/rest/v1/raindrops',

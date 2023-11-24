@@ -5,7 +5,7 @@
 
 import type { Raindrop } from './Raindrop';
 
-export type RaindropSingleResponse = {
+export type RaindropResponseOne = {
     result?: boolean;
     item?: Raindrop;
 };

@@ -2,7 +2,6 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { EmptyResponse } from '../models/EmptyResponse';
 import type { Response } from '../models/Response';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
@@ -34,7 +33,7 @@ export class TagService {
      * Rename tag / Merge tags
      * @param collectionId It's possible to restrict rename action to just one collection. It's optional
      * @param requestBody
-     * @returns EmptyResponse Success
+     * @returns Response Success
      * @throws ApiError
      */
     public renameOrMergeTags(
@@ -51,7 +50,7 @@ export class TagService {
              */
             tags?: Array<string>;
         },
-    ): CancelablePromise<EmptyResponse> {
+    ): CancelablePromise<Response> {
         return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/tags/{collectionId}',
@@ -67,7 +66,7 @@ export class TagService {
      * Remove tags
      * @param collectionId It's possible to restrict rename action to just one collection. It's optional
      * @param requestBody
-     * @returns EmptyResponse Success
+     * @returns Response Success
      * @throws ApiError
      */
     public removeTagsFromCollection(
@@ -78,7 +77,7 @@ export class TagService {
              */
             tags?: Array<string>;
         },
-    ): CancelablePromise<EmptyResponse> {
+    ): CancelablePromise<Response> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/tags/{collectionId}',

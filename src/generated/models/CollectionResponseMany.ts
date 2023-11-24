@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type EmptyResponse = {
-    result?: boolean;
-};
+import type { Response } from './Response';
+
+export type CollectionResponseMany = Response;
 

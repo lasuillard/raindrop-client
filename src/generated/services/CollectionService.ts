@@ -3,11 +3,11 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { CollectionID } from '../models/CollectionID';
-import type { CollectionMultiResponse } from '../models/CollectionMultiResponse';
-import type { CollectionSingleResponse } from '../models/CollectionSingleResponse';
+import type { CollectionResponseMany } from '../models/CollectionResponseMany';
+import type { CollectionResponseOne } from '../models/CollectionResponseOne';
 import type { CoverResponse } from '../models/CoverResponse';
 import type { CreateCollection } from '../models/CreateCollection';
-import type { EmptyResponse } from '../models/EmptyResponse';
+import type { Response } from '../models/Response';
 import type { Role } from '../models/Role';
 import type { SortBy } from '../models/SortBy';
 import type { StatResponse } from '../models/StatResponse';
@@ -23,10 +23,10 @@ export class CollectionService {
     /**
      * Get root collections
      * Returns JSON-encoded array containing all root collections.
-     * @returns CollectionMultiResponse Success
+     * @returns CollectionResponseMany Success
      * @throws ApiError
      */
-    public getRootCollections(): CancelablePromise<CollectionMultiResponse> {
+    public getRootCollections(): CancelablePromise<CollectionResponseMany> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/collections',
@@ -37,7 +37,7 @@ export class CollectionService {
      * Reorder all collections
      * Updates order of all collections
      * @param requestBody
-     * @returns EmptyResponse Success
+     * @returns Response Success
      * @throws ApiError
      */
     public reorderAllCollections(
@@ -51,7 +51,7 @@ export class CollectionService {
              */
             expanded?: boolean;
         }),
-    ): CancelablePromise<EmptyResponse> {
+    ): CancelablePromise<Response> {
         return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/collections',
@@ -85,10 +85,10 @@ export class CollectionService {
     /**
      * Get child collections
      * Returns JSON-encoded array containing all nested collections (that have positive `parent.$id`)
-     * @returns CollectionMultiResponse Success
+     * @returns CollectionResponseMany Success
      * @throws ApiError
      */
-    public getChildCollections(): CancelablePromise<CollectionMultiResponse> {
+    public getChildCollections(): CancelablePromise<CollectionResponseMany> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/collections/childrens',
@@ -98,12 +98,12 @@ export class CollectionService {
     /**
      * Get collection
      * @param id Collection ID
-     * @returns CollectionSingleResponse Success
+     * @returns CollectionResponseOne Success
      * @throws ApiError
      */
     public getCollection(
         id: CollectionID,
-    ): CancelablePromise<CollectionSingleResponse> {
+    ): CancelablePromise<CollectionResponseOne> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/collection/{id}',
@@ -118,13 +118,13 @@ export class CollectionService {
      * Update an existing collection
      * @param id Collection ID
      * @param requestBody
-     * @returns CollectionSingleResponse Success
+     * @returns CollectionResponseOne Success
      * @throws ApiError
      */
     public updateCollection(
         id: CollectionID,
         requestBody?: UpdateCollection,
-    ): CancelablePromise<CollectionSingleResponse> {
+    ): CancelablePromise<CollectionResponseOne> {
         return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/collection/{id}',
@@ -142,12 +142,12 @@ export class CollectionService {
      *
      * Raindrops will be moved to "Trash" collection
      * @param id Collection ID
-     * @returns EmptyResponse Success
+     * @returns Response Success
      * @throws ApiError
      */
     public removeCollection(
         id: CollectionID,
-    ): CancelablePromise<EmptyResponse> {
+    ): CancelablePromise<Response> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/collection/{id}',
@@ -161,12 +161,12 @@ export class CollectionService {
      * Create collection
      * Create a new collection
      * @param requestBody
-     * @returns CollectionSingleResponse Success
+     * @returns CollectionResponseOne Success
      * @throws ApiError
      */
     public createCollection(
         requestBody?: CreateCollection,
-    ): CancelablePromise<CollectionSingleResponse> {
+    ): CancelablePromise<CollectionResponseOne> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/rest/v1/collection',
@@ -183,7 +183,7 @@ export class CollectionService {
      * It's possible to upload cover from desktop. PNG, GIF and JPEG supported
      * @param id Existing collection ID
      * @param formData
-     * @returns CollectionSingleResponse Success
+     * @returns CollectionResponseOne Success
      * @throws ApiError
      */
     public uploadCollectionCover(
@@ -191,7 +191,7 @@ export class CollectionService {
         formData?: {
             cover?: Blob;
         },
-    ): CancelablePromise<CollectionSingleResponse> {
+    ): CancelablePromise<CollectionResponseOne> {
         return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/collections/{id}/cover',
@@ -241,10 +241,10 @@ export class CollectionService {
 
     /**
      * Empty Trash
-     * @returns EmptyResponse Success
+     * @returns Response Success
      * @throws ApiError
      */
-    public emptyTrash(): CancelablePromise<EmptyResponse> {
+    public emptyTrash(): CancelablePromise<Response> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/collection/-99',
@@ -325,12 +325,12 @@ export class CollectionService {
      * - Owner: collection will be unshared and all collaborators will be removed
      * - Member or viewer: authenticated user will be removed from collaborators list
      * @param id Existing collection ID
-     * @returns EmptyResponse Success
+     * @returns Response Success
      * @throws ApiError
      */
     public unshareOrLeaveCollection(
         id: CollectionID,
-    ): CancelablePromise<EmptyResponse> {
+    ): CancelablePromise<Response> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/collections/{id}/sharing',
@@ -372,13 +372,13 @@ export class CollectionService {
      * Remove an user from shared collection
      * @param userId User ID of collaborator
      * @param id Existing collection ID
-     * @returns EmptyResponse Success
+     * @returns Response Success
      * @throws ApiError
      */
     public deleteCollaborator(
         userId: number,
         id: CollectionID,
-    ): CancelablePromise<EmptyResponse> {
+    ): CancelablePromise<Response> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/collections/{id}/sharing/{userId}',

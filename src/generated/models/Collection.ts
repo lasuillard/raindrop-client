@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Parent } from './Parent';
+import type { CollectionRef } from './CollectionRef';
 import type { Sort } from './Sort';
 import type { View } from './View';
 
@@ -55,7 +55,7 @@ export type Collection = {
      * When collection is updated
      */
     lastUpdate?: string;
-    parent?: Parent;
+    parent?: CollectionRef;
     /**
      * Collection and raindrops that it contains will be accessible without authentication by public link
      */

@@ -87,7 +87,7 @@ paths:
         - authentication
       summary: Obtain or refresh access token
       description: |
-        Once you have the authorization code, you can exchange it for the access_token by doing a POST request with all required body parameters as JSON.
+        Once you have the authorization code, you can exchange it for the `access_token` by doing a POST request with all required body parameters as JSON.
 
         For security reasons access tokens (except "test tokens") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON).
       security: []
@@ -98,6 +98,21 @@ paths:
               oneOf:
                 - $ref: '#/components/schemas/ObtainToken'
                 - $ref: '#/components/schemas/RefreshToken'
+            examples:
+              Obtain new token:
+                value:
+                  code: c8983220-1cca-4626-a19d-801a6aae003c
+                  client_id: 5e1c589cf6f48c0211311383
+                  redirect_uri: https://oauthdebugger.com/debug
+                  client_secret: c3363988-9d27-4bc6-a0ae-d126ce78dc09
+                  grant_type: authorization_code
+              Refresh existing token:
+                value:
+                  client_id: 5e1c589cf6f48c0211311383
+                  client_secret: c3363988-9d27-4bc6-a0ae-d126ce78dc09
+                  grant_type: refresh_token
+                  # checkov:skip=CKV_SECRET_6:Just an example secrets
+                  refresh_token: c8080368-fad2-4a9f-b2c9-73d3z850111b
       responses:
         200:
           description: Success
@@ -105,7 +120,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TokenResponse'
-
         400:
           description: Occurs when code parameter is invalid
           content:
@@ -129,7 +143,29 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionMultiResponse'
+                $ref: '#/components/schemas/CollectionResponseMany'
+              example:
+                result: true
+                items:
+                  - _id: 8492393
+                    access:
+                      level: 4
+                      draggable: true
+                    collaborators:
+                      $id: 5dc1759a0e123be5f2654b6f
+                    color: '#0c797d'
+                    count: 16
+                    cover:
+                      - https://up.raindrop.io/collection/thumbs/849/239/3/333ce18769311113836cf93a223a14a3.png
+                    created: '2019-10-09T11:49:53.518Z'
+                    expanded: false
+                    lastUpdate: '2019-11-27T17:51:19.085Z'
+                    public: false
+                    sort: 8492393
+                    title: Development
+                    user:
+                      $id: 32
+                    view: list
     put:
       operationId: reorderAllCollections
       tags:
@@ -159,7 +195,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmptyResponse'
+                $ref: '#/components/schemas/Response'
+              example:
+                result: true
     delete:
       operationId: removeCollections
       tags:
@@ -196,7 +234,30 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionMultiResponse'
+                $ref: '#/components/schemas/CollectionResponseMany'
+              example:
+                result: true
+                items:
+                  - _id: 8492393
+                    access:
+                      level: 4
+                      draggable: true
+                    collaborators:
+                      $id: 5dc1759a0e123be5f2654b6f
+                    color: '#0c797d'
+                    count: 16
+                    cover:
+                      - https://up.raindrop.io/collection/thumbs/849/239/3/333ce18769311113836cf93a223a14a3.png
+                    created: '2019-10-09T11:49:53.518Z'
+                    expanded: false
+                    lastUpdate: '2019-11-27T17:51:19.085Z'
+                    parent_id: 1111
+                    public: false
+                    sort: 8492393
+                    title: Development
+                    user:
+                      $id: 32
+                    view: list
   /rest/v1/collection/{id}:
     parameters:
       - name: id
@@ -216,7 +277,32 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionSingleResponse'
+                $ref: '#/components/schemas/CollectionResponseOne'
+              example:
+                result: true
+                item:
+                  _id: 8492393
+                  access:
+                    for: 32
+                    level: 4
+                    root: true
+                    draggable: true
+                  author: true
+                  collaborators:
+                    $id: 5dc1759a0e123be5f2654b6f
+                  color: '#0c797d'
+                  count: 16
+                  cover:
+                    - https://up.raindrop.io/collection/thumbs/849/239/3/333ce18769311113836cf93a223a14a3.png
+                  created: '2019-10-09T11:49:53.518Z'
+                  expanded: false
+                  lastUpdate: '2019-11-27T17:51:19.085Z'
+                  public: false
+                  sort: 8492393
+                  title: Development
+                  user:
+                    $id: 32
+                  view: list
     put:
       operationId: updateCollection
       tags:
@@ -234,7 +320,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionSingleResponse'
+                $ref: '#/components/schemas/CollectionResponseOne'
     delete:
       operationId: removeCollection
       tags:
@@ -250,7 +336,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmptyResponse'
+                $ref: '#/components/schemas/Response'
   /rest/v1/collection:
     post:
       operationId: createCollection
@@ -269,7 +355,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionSingleResponse'
+                $ref: '#/components/schemas/CollectionResponseOne'
         400:
           description: "Incorrect 'view' field value"
           content:
@@ -310,7 +396,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionSingleResponse'
+                $ref: '#/components/schemas/CollectionResponseOne'
   /rest/v1/collections/merge:
     put:
       operationId: mergeCollections
@@ -365,7 +451,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmptyResponse'
+                $ref: '#/components/schemas/Response'
   /rest/v1/user/stats:
     get:
       operationId: getSystemCollectionStats
@@ -380,6 +466,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/StatResponse'
+              example:
+                items:
+                  - _id: 0
+                    count: 1570
+                  - _id: -1
+                    count: 34
+                  - _id: -99
+                    count: 543
+                meta:
+                  pro: true
+                  _id: 32
+                  changedBookmarksDate: '2020-02-11T11:23:43.143Z'
+                  duplicates:
+                    count: 3
+                  broken:
+                    count: 31
+                result: true
   /rest/v1/collections/{id}/sharing:
     parameters:
       - name: id
@@ -493,7 +596,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmptyResponse'
+                $ref: '#/components/schemas/Response'
   /rest/v1/collections/{id}/sharing/{userId}:
     parameters:
       - name: userId
@@ -536,7 +639,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmptyResponse'
+                $ref: '#/components/schemas/Response'
   /rest/v1/collections/{id}/join:
     post:
       operationId: acceptInvitation
@@ -657,7 +760,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RaindropSingleResponse'
+                $ref: '#/components/schemas/RaindropResponseOne'
   /rest/v1/raindrop/{id}:
     parameters:
       - name: id
@@ -692,7 +795,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RaindropSingleResponse'
+                $ref: '#/components/schemas/RaindropResponseOne'
     delete:
       operationId: removeRaindrop
       tags:
@@ -705,7 +808,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmptyResponse'
+                $ref: '#/components/schemas/Response'
   /rest/v1/raindrop/file:
     put:
       operationId: uploadFile
@@ -732,7 +835,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RaindropSingleResponse'
+                $ref: '#/components/schemas/RaindropResponseOne'
         400:
           description: Bad Request
           content:
@@ -785,7 +888,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RaindropSingleResponse'
+                $ref: '#/components/schemas/RaindropResponseOne'
         400:
           description: Bad request
           content:
@@ -851,6 +954,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SuggestResponse'
+              example:
+                result: true
+                item:
+                  collections:
+                    - $id: 568368
+                    - $id: 8519567
+                    - $id: 1385626
+                    - $id: 8379661
+                    - $id: 20865985
+                  tags:
+                    - fonts
+                    - free
+                    - engineering
+                    - icons
+                    - invalid_parser
   /rest/v1/raindrop/{id}/suggest:
     get:
       operationId: suggestForExistingBookmark
@@ -871,6 +989,21 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/SuggestResponse'
+              example:
+                result: true
+                item:
+                  collections:
+                    - $id: 568368
+                    - $id: 8519567
+                    - $id: 1385626
+                    - $id: 8379661
+                    - $id: 20865985
+                  tags:
+                    - fonts
+                    - free
+                    - engineering
+                    - icons
+                    - invalid_parser
   /rest/v1/raindrops/{collectionId}:
     parameters:
       - name: collectionId
@@ -1021,7 +1154,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RaindropMultiResponse'
+                $ref: '#/components/schemas/RaindropResponseMany'
   /rest/v1/highlights:
     get:
       operationId: getAllHighlights
@@ -1045,6 +1178,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/HighlightResponse'
+              example:
+                result: true
+                items:
+                  - note: Trully native macOS app
+                    color: red
+                    text: Orion is the new WebKit-based browser for Mac
+                    created: '2022-03-21T14:41:34.059Z'
+                    tags:
+                      - tag1
+                      - tag2
+                    _id: 62388e9e48b63606f41e44a6
+                    raindropRef: 123
+                    link: https://apple.com
+                    title: Orion Browser
+                  - note: ''
+                    color: green
+                    text: Built on WebKit, Orion gives you a fast, smooth and lightweight browsing experience
+                    created: '2022-03-21T15:13:21.128Z'
+                    tags:
+                      - tag1
+                      - tag2
+                    _id: 62389611058af151c840f667
+                    raindropRef: 123
+                    link: https://apple.com
+                    title: Apple
   /rest/v1/highlights/{collectionId}:
     get:
       operationId: getHighlightsInCollection
@@ -1088,6 +1246,41 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserResponse'
+              example:
+                result: true
+                user:
+                  _id: 32
+                  config:
+                    broken_level: strict
+                    font_color: ''
+                    font_size: 0
+                    lang: ru_RU
+                    last_collection: 8492393
+                    raindrops_sort: '-lastUpdate'
+                    raindrops_view: list
+                  dropbox:
+                    enabled: true
+                  email: some@email.com
+                  email_MD5: 13a0a20681d8781912e5314150694bf7
+                  files:
+                    used: 6766094
+                    size: 10000000000
+                    lastCheckPoint: '2020-01-26T23:53:19.676Z'
+                  fullName: Mussabekov Rustem
+                  gdrive:
+                    enabled: true
+                  groups:
+                    - title: My Collections
+                      hidden: false
+                      sort: 0
+                      collections:
+                        - 8364483
+                        - 8364403
+                        - 66
+                  password: true
+                  pro: true
+                  proExpire: '2028-09-27T22:00:00.000Z'
+                  registered: '2014-09-30T07:51:15.406Z'
         401:
           description: Unauthenticated
           content:
@@ -1314,7 +1507,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmptyResponse'
+                $ref: '#/components/schemas/Response'
     delete:
       operationId: removeTagsFromCollection
       tags:
@@ -1344,7 +1537,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EmptyResponse'
+                $ref: '#/components/schemas/Response'
   /rest/v1/filters/{collectionId}:
     get:
       operationId: getFilters
@@ -1376,6 +1569,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FilterResponse'
+              example:
+                result: true
+                broken:
+                  count: 31
+                duplicates:
+                  count: 7
+                important:
+                  count: 59
+                notag:
+                  count: 1366
+                tags:
+                  - _id: performanc
+                    count: 19
+                  - _id: guides
+                    count: 9
+                types:
+                  - _id: article
+                    count: 313
+                  - _id: image
+                    count: 143
+                  - _id: video
+                    count: 26
+                  - _id: document
+                    count: 7
+
   /rest/v1/import/url/parse:
     get:
       operationId: parseURL
@@ -1555,6 +1773,19 @@ components:
       type: http
       scheme: bearer
   schemas:
+    Response:
+      type: object
+      properties:
+        result:
+          type: boolean
+    ErrorResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - properties:
+            error:
+              type: string
+            errorMessage:
+              type: string
     ObtainToken:
       type: object
       properties:
@@ -1565,30 +1796,24 @@ components:
         code:
           type: string
           description: Received authorization code
-          example: c8983220-1cca-4626-a19d-801a6aae003c
         client_id:
           type: string
           description: Unique client ID of your Raindrop.io app
-          example: 5e1c382cf6f48c0211359083
         client_secret:
           type: string
           description: Client secret of your Raindrop.io app
-          example: c3363988-9d27-4bc6-a0ae-d126ce78dc09
         redirect_uri:
           type: string
           description: Redirect URI registered at your Raindrop.io app
-          example: https://oauthdebugger.com/debug
     RefreshToken:
       type: object
       properties:
         client_id:
           type: string
           description: Unique client ID of your Raindrop.io app
-          example: 5e1c382cf6f48c0211359083
         client_secret:
           type: string
           description: Client secret of your Raindrop.io app
-          example: c3363988-9d27-4bc6-a0ae-d126ce78dc09
         grant_type:
           type: string
           description: Grant type
@@ -1602,22 +1827,16 @@ components:
         access_token:
           type: string
           description: API access token
-          example: ae261404-11r4-47c0-bce3-e18a423da828
         refresh_token:
           type: string
           description: Token used to refresh access token
-          example: c8080368-fad2-4a3f-b2c9-71d3z85011vb
         expires:
           type: integer
           description: Remaining time until access token expires, in miliseconds
-          format: int32
-          example: 1209599768
           deprecated: true
         expires_in:
           type: integer
           description: Reamining time until access token expires, in seconds
-          format: int32
-          example: 1209599
         token_type:
           type: string
           description: Type of token
@@ -1642,102 +1861,67 @@ components:
             draggable:
               type: boolean
               description: Does it possible to change parent of this collection?
-              example: true
         collaborators:
           type: object
           description: When this object is present, means that collections is shared. Content of this object is private and not very useful.
           properties:
             $id:
               type: string
-              example: 5dc1759a0e123be5f2654b6f
         color:
           type: string
           description: Primary color of collection cover as HEX
-          example: '#0c797d'
         count:
           type: integer
           description: Count of raindrops in collection
-          example: 16
         cover:
           type: array
           description: Collection cover URL. This array always have one item due to legacy reasons
           items:
             type: string
             format: uri
-            example: https://up.raindrop.io/collection/thumbs/849/239/3/333ce18769311113836cf93a223a14a3.png
         created:
           type: string
           description: When collection is created
           format: date-time
-          example: 2019-10-09T11:49:53.518Z
         expanded:
           type: boolean
           description: Whether the collection’s sub-collections are expanded
-          example: false
         lastUpdate:
           type: string
           description: When collection is updated
           format: date-time
-          example: 2019-11-27T17:51:19.085Z
         parent:
-          $ref: '#/components/schemas/Parent'
+          $ref: '#/components/schemas/CollectionRef'
         public:
           type: boolean
           description: Collection and raindrops that it contains will be accessible without authentication by public link
-          example: false
         sort:
           $ref: '#/components/schemas/Sort'
         title:
           type: string
           description: Name of the collection
-          example: Development
         user:
           type: object
           properties:
             $id:
               type: integer
               description: Owner ID
-              example: 32
         view:
           $ref: '#/components/schemas/View'
-      example:
-        _id: 8492393
-        access:
-          level: 4
-          draggable: true
-        collaborators:
-          $id: 5dc1759a0e123be5f2654b6f
-        color: '#0c797d'
-        count: 16
-        cover:
-          - https://up.raindrop.io/collection/thumbs/849/239/3/333ce18769311113836cf93a223a14a3.png
-        created: '2019-10-09T11:49:53.518Z'
-        expanded: false
-        lastUpdate: '2019-11-27T17:51:19.085Z'
-        public: false
-        sort: 8492393
-        title: Development
-        user:
-          $id: 32
-        view: list
-    CollectionSingleResponse:
-      type: object
-      properties:
-        result:
-          type: boolean
-          example: true
-        item:
-          $ref: '#/components/schemas/Collection'
-    CollectionMultiResponse:
-      type: object
-      properties:
-        result:
-          type: boolean
-          example: true
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Collection'
+    CollectionResponseOne:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - properties:
+            item:
+              $ref: '#/components/schemas/Collection'
+    CollectionResponseMany:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Collection'
     CreateCollection:
       type: object
       properties:
@@ -1746,14 +1930,13 @@ components:
         title:
           type: string
           description: 'Name of the collection'
-          example: Development
         sort:
           $ref: '#/components/schemas/Sort'
         public:
           type: boolean
           description: 'Collection and raindrops that it contains will be accessible without authentication?'
         parent:
-          $ref: '#/components/schemas/Parent'
+          $ref: '#/components/schemas/CollectionRef'
         cover:
           type: array
           items:
@@ -1767,67 +1950,40 @@ components:
             expanded:
               type: boolean
               description: 'Whether the collection`s sub-collections are expanded'
-    ErrorResponse:
-      type: object
-      properties:
-        result:
-          type: boolean
-        error:
-          type: string
-        errorMessage:
-          type: string
-    EmptyResponse:
-      type: object
-      properties:
-        result:
-          type: boolean
     StatResponse:
       type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              _id:
-                type: integer
-              count:
-                type: integer
-            example:
-              - _id: 0
-                count: 1570
-              - _id: -1
-                count: 34
-              - _id: -99
-                count: 543
-        meta:
-          type: object
-          properties:
-            pro:
-              type: boolean
-              example: true
-            _id:
-              type: integer
-              example: 32
-            changedBookmarksDate:
-              type: string
-              format: date-time
-              example: 2020-02-11T11:23:43.143Z
-            duplicates:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - properties:
+            items:
+              type: array
+              items:
+                type: object
+                properties:
+                  _id:
+                    type: integer
+                  count:
+                    type: integer
+            meta:
               type: object
               properties:
-                count:
+                pro:
+                  type: boolean
+                _id:
                   type: integer
-                  example: 3
-            broken:
-              type: object
-              properties:
-                count:
-                  type: integer
-                  example: 31
-        result:
-          type: boolean
-          example: true
+                changedBookmarksDate:
+                  type: string
+                  format: date-time
+                duplicates:
+                  type: object
+                  properties:
+                    count:
+                      type: integer
+                broken:
+                  type: object
+                  properties:
+                    count:
+                      type: integer
     Cover:
       type: object
       properties:
@@ -1962,14 +2118,14 @@ components:
                 type:
                   type: string
                   description: Mime type
-    RaindropSingleResponse:
+    RaindropResponseOne:
       type: object
       properties:
         result:
           type: boolean
         item:
           $ref: '#/components/schemas/Raindrop'
-    RaindropMultiResponse:
+    RaindropResponseMany:
       type: object
       properties:
         result:
@@ -2031,38 +2187,6 @@ components:
           type: boolean
         items:
           $ref: '#/components/schemas/HighlightItem'
-      example:
-        result: true
-        items:
-          - note: Trully native macOS app
-            color: red
-            text: Orion is the new WebKit-based browser for Mac
-            created: '2022-03-21T14:41:34.059Z'
-            tags:
-              - tag1
-              - tag2
-            _id: 62388e9e48b63606f41e44a6
-            raindropRef: 123
-            link: https://apple.com
-            title: Orion Browser
-          - note: ''
-            color: green
-            text: Built on WebKit, Orion gives you a fast, smooth and lightweight browsing experience
-            created: '2022-03-21T15:13:21.128Z'
-            tags:
-              - tag1
-              - tag2
-            _id: 62389611058af151c840f667
-            raindropRef: 123
-            link: https://apple.com
-            title: Apple
-
-    Response:
-      type: object
-      properties:
-        result:
-          type: boolean
-          example: true
     Suggest:
       type: object
       properties:
@@ -2077,19 +2201,6 @@ components:
           type: array
           items:
             type: string
-      example:
-        collections:
-          - $id: 568368
-          - $id: 8519567
-          - $id: 1385626
-          - $id: 8379661
-          - $id: 20865985
-        tags:
-          - fonts
-          - free
-          - engineering
-          - icons
-          - invalid_parser
     SuggestResponse:
       allOf:
         - $ref: '#/components/schemas/Response'
@@ -2180,41 +2291,6 @@ components:
         - properties:
             user:
               $ref: '#/components/schemas/User'
-      example:
-        result: true
-        user:
-          _id: 32
-          config:
-            broken_level: strict
-            font_color: ''
-            font_size: 0
-            lang: ru_RU
-            last_collection: 8492393
-            raindrops_sort: '-lastUpdate'
-            raindrops_view: list
-          dropbox:
-            enabled: true
-          email: some@email.com
-          email_MD5: 13a0a20681d8781912e5314150694bf7
-          files:
-            used: 6766094
-            size: 10000000000
-            lastCheckPoint: '2020-01-26T23:53:19.676Z'
-          fullName: Mussabekov Rustem
-          gdrive:
-            enabled: true
-          groups:
-            - title: My Collections
-              hidden: false
-              sort: 0
-              collections:
-                - 8364483
-                - 8364403
-                - 66
-          password: true
-          pro: true
-          proExpire: '2028-09-27T22:00:00.000Z'
-          registered: '2014-09-30T07:51:15.406Z'
     Filter:
       type: object
       properties:
@@ -2260,30 +2336,6 @@ components:
       allOf:
         - $ref: '#/components/schemas/Response'
         - $ref: '#/components/schemas/Filter'
-      example:
-        result: true
-        broken:
-          count: 31
-        duplicates:
-          count: 7
-        important:
-          count: 59
-        notag:
-          count: 1366
-        tags:
-          - _id: performanc
-            count: 19
-          - _id: guides
-            count: 9
-        types:
-          - _id: article
-            count: 313
-          - _id: image
-            count: 143
-          - _id: video
-            count: 26
-          - _id: document
-            count: 7
     UrlParse:
       type: object
       properties:
@@ -2322,20 +2374,6 @@ components:
         - properties:
             item:
               $ref: '#/components/schemas/UrlParse'
-      example:
-        item:
-          title: Яндекс
-          excerpt: Найдётся всё
-          media:
-            - type: image
-              link: http://yastatic.net/s3/home/logos/share/share-logo_ru.png
-          type: link
-          meta:
-            possibleArticle: false
-            canonical: https://ya.ru
-            site: Яндекс
-            tags: []
-        result: true
     UrlParseErrorResponse:
       allOf:
         - $ref: '#/components/schemas/ErrorResponse'
@@ -2388,7 +2426,6 @@ components:
         - -99 for Trash
         - -1 for Unsorted
         - 0 for All
-      example: 1111
     View:
       type: string
       description: |-
@@ -2400,18 +2437,9 @@ components:
 
           Pinterest like grid
       enum: [list, simple, grid, masonry]
-      example: list
     Sort:
       type: integer
       description: 'The order of collection (descending). Defines the position of the collection among all the collections with the same `parent.$id`'
-      example: 8492393
-    Parent:
-      type: object
-      properties:
-        $id:
-          type: integer
-          description: The id of the parent collection. Not specified for root collections
-          example: 1111
     SortBy:
       type: string
       enum: [title, -title, -count, -lastUpdate]
@@ -2425,7 +2453,6 @@ components:
         "-title" - sort alphabetically descending
 
         "-count" - sort by raindrops count descending
-      example: title
     Role:
       type: string
       enum: [member, viewer]
@@ -2434,6 +2461,7 @@ components:
       properties:
         $id:
           type: integer
+          description: The id of the parent collection. Not specified for root collections
     UserRef:
       type: object
       properties:

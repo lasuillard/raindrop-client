@@ -3,10 +3,10 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Collection } from './Collection';
+import type { Raindrop } from './Raindrop';
 
-export type CollectionSingleResponse = {
+export type RaindropResponseMany = {
     result?: boolean;
-    item?: Collection;
+    items?: Array<Raindrop>;
 };
 

@@ -4,7 +4,7 @@
 /* eslint-disable */
 import type { CreateRaindrop } from '../models/CreateRaindrop';
 import type { HighlightResponse } from '../models/HighlightResponse';
-import type { RaindropSingleResponse } from '../models/RaindropSingleResponse';
+import type { RaindropResponseOne } from '../models/RaindropResponseOne';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -35,13 +35,13 @@ export class HighlightService {
      * Update raindrop
      * @param id Existing raindrop ID
      * @param requestBody
-     * @returns RaindropSingleResponse Success
+     * @returns RaindropResponseOne Success
      * @throws ApiError
      */
     public updateRaindrop(
         id: number,
         requestBody?: CreateRaindrop,
-    ): CancelablePromise<RaindropSingleResponse> {
+    ): CancelablePromise<RaindropResponseOne> {
         return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/raindrop/{id}',

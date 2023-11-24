@@ -3,9 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type ErrorResponse = {
-    result?: boolean;
-    error?: string;
-    errorMessage?: string;
-};
+import type { Response } from './Response';
+
+export type ErrorResponse = Response;
 
