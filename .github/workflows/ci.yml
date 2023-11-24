@@ -53,21 +53,21 @@ jobs:
       - name: Run tests
         run: pnpm run test
 
-      - name: Upload coverage report
+      - name: Upload unittest coverage report
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: false
-          files: coverage/clover.xml
+          files: coverage/unit/clover.xml
           flags: unit
 
       - name: Run end-to-end tests
         run: pnpm run e2e
 
-      - name: Upload coverage report
+      - name: Upload e2e coverage report
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: false
-          files: coverage/clover.xml
+          files: coverage/e2e/clover.xml
           flags: e2e

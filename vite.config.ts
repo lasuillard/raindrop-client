@@ -24,7 +24,8 @@ export default defineConfig({
 			all: true,
 			include: ['src/**'],
 			exclude: ['src/**/__mocks__/*', 'src/**/*.d.ts'],
-			reporter: ['text', 'clover', 'html']
+			reporter: ['text', 'clover', 'html'],
+			reportsDirectory: `coverage/${process.env.VITEST_ENV || 'unit'}`
 		},
 		setupFiles: ['tests/setup.ts'],
 		api: {
