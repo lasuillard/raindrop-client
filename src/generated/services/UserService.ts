@@ -20,7 +20,7 @@ export class UserService {
      * @returns StatResponse Success
      * @throws ApiError
      */
-    public getRestV1UserStats(): CancelablePromise<StatResponse> {
+    public getSystemCollectionStats(): CancelablePromise<StatResponse> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/user/stats',
@@ -33,7 +33,7 @@ export class UserService {
      * @returns UserResponse Success
      * @throws ApiError
      */
-    public getRestV1User(): CancelablePromise<UserResponse> {
+    public getCurrentUser(): CancelablePromise<UserResponse> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/user',
@@ -50,7 +50,7 @@ export class UserService {
      * @returns UserResponse Success
      * @throws ApiError
      */
-    public putRestV1User(
+    public updateCurrentUser(
         requestBody?: {
             groups?: Array<Group>;
             config?: UserConfig;
@@ -78,7 +78,7 @@ export class UserService {
      * @returns any Success
      * @throws ApiError
      */
-    public getRestV1User1(
+    public getPublicUserByName(
         name: number,
     ): CancelablePromise<Response> {
         return this.httpRequest.request({
@@ -100,7 +100,7 @@ export class UserService {
      * @returns void
      * @throws ApiError
      */
-    public getRestV1UserConnect(
+    public connectSocialNetworkProvider(
         provider: 'facebook' | 'google' | 'twitter' | 'vkontate' | 'dropbox' | 'gdrive',
     ): CancelablePromise<void> {
         return this.httpRequest.request({
@@ -122,7 +122,7 @@ export class UserService {
      * @returns any Success
      * @throws ApiError
      */
-    public getRestV1UserConnectRevoke(
+    public disconnectSocialNetworkProvider(
         provider: 'facebook' | 'google' | 'twitter' | 'vkontate' | 'dropbox' | 'gdrive',
     ): CancelablePromise<any> {
         return this.httpRequest.request({

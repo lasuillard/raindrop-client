@@ -25,7 +25,7 @@ export class AuthenticationService {
      * @returns void
      * @throws ApiError
      */
-    public getOauthAuthorize(
+    public authorize(
         redirectUri: string,
         clientId: string,
     ): CancelablePromise<void> {
@@ -52,7 +52,7 @@ export class AuthenticationService {
      * @returns TokenResponse Success
      * @throws ApiError
      */
-    public postOauthAccessToken(
+    public getOrRefreshToken(
         requestBody?: (ObtainToken | RefreshToken),
     ): CancelablePromise<TokenResponse> {
         return this.httpRequest.request({

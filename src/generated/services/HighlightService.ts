@@ -19,7 +19,7 @@ export class HighlightService {
      * @returns any Success
      * @throws ApiError
      */
-    public getRestV1Raindrop(
+    public getRaindrop(
         id: number,
     ): CancelablePromise<any> {
         return this.httpRequest.request({
@@ -38,7 +38,7 @@ export class HighlightService {
      * @returns RaindropSingleResponse Success
      * @throws ApiError
      */
-    public putRestV1Raindrop(
+    public updateRaindrop(
         id: number,
         requestBody?: CreateRaindrop,
     ): CancelablePromise<RaindropSingleResponse> {
@@ -60,7 +60,7 @@ export class HighlightService {
      * @returns HighlightResponse OK
      * @throws ApiError
      */
-    public getRestV1Highlights(
+    public getAllHighlights(
         page?: number,
         perpage?: number,
     ): CancelablePromise<HighlightResponse> {
@@ -82,7 +82,7 @@ export class HighlightService {
      * @returns HighlightResponse Success
      * @throws ApiError
      */
-    public getRestV1Highlights1(
+    public getHighlightsInCollection(
         collectionId: number,
         page?: number,
         perpage?: number,

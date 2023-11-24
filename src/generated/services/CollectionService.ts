@@ -21,12 +21,12 @@ export class CollectionService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
-     * Get root collectins
+     * Get root collections
      * Returns JSON-encoded array containing all root collections.
      * @returns CollectionMultiResponse Success
      * @throws ApiError
      */
-    public getRestV1Collections(): CancelablePromise<CollectionMultiResponse> {
+    public getRootCollections(): CancelablePromise<CollectionMultiResponse> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/collections',
@@ -40,7 +40,7 @@ export class CollectionService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public putRestV1Collections(
+    public reorderAllCollections(
         requestBody?: ({
             sort?: SortBy;
         } | {
@@ -69,7 +69,7 @@ export class CollectionService {
      * @returns any Success
      * @throws ApiError
      */
-    public deleteRestV1Collections(
+    public removeCollections(
         requestBody?: {
             ids?: Array<CollectionID>;
         },
@@ -88,7 +88,7 @@ export class CollectionService {
      * @returns CollectionMultiResponse Success
      * @throws ApiError
      */
-    public getRestV1CollectionsChildrens(): CancelablePromise<CollectionMultiResponse> {
+    public getChildCollections(): CancelablePromise<CollectionMultiResponse> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/collections/childrens',
@@ -101,7 +101,7 @@ export class CollectionService {
      * @returns CollectionSingleResponse Success
      * @throws ApiError
      */
-    public getRestV1Collection(
+    public getCollection(
         id: CollectionID,
     ): CancelablePromise<CollectionSingleResponse> {
         return this.httpRequest.request({
@@ -121,7 +121,7 @@ export class CollectionService {
      * @returns CollectionSingleResponse Success
      * @throws ApiError
      */
-    public putRestV1Collection(
+    public updateCollection(
         id: CollectionID,
         requestBody?: UpdateCollection,
     ): CancelablePromise<CollectionSingleResponse> {
@@ -145,7 +145,7 @@ export class CollectionService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public deleteRestV1Collection(
+    public removeCollection(
         id: CollectionID,
     ): CancelablePromise<EmptyResponse> {
         return this.httpRequest.request({
@@ -164,7 +164,7 @@ export class CollectionService {
      * @returns CollectionSingleResponse Success
      * @throws ApiError
      */
-    public postRestV1Collection(
+    public createCollection(
         requestBody?: CreateCollection,
     ): CancelablePromise<CollectionSingleResponse> {
         return this.httpRequest.request({
@@ -186,7 +186,7 @@ export class CollectionService {
      * @returns CollectionSingleResponse Success
      * @throws ApiError
      */
-    public putRestV1CollectionsCover(
+    public uploadCollectionCover(
         id: CollectionID,
         formData?: {
             cover?: Blob;
@@ -210,7 +210,7 @@ export class CollectionService {
      * @returns any Success
      * @throws ApiError
      */
-    public putRestV1CollectionsMerge(
+    public mergeCollections(
         requestBody?: {
             to?: CollectionID;
             ids?: Array<CollectionID>;
@@ -229,7 +229,7 @@ export class CollectionService {
      * @returns any Success
      * @throws ApiError
      */
-    public putRestV1CollectionsClean(): CancelablePromise<{
+    public removeAllEmptyCollections(): CancelablePromise<{
         result?: boolean;
         count?: number;
     }> {
@@ -244,7 +244,7 @@ export class CollectionService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public deleteRestV1Collection99(): CancelablePromise<EmptyResponse> {
+    public emptyTrash(): CancelablePromise<EmptyResponse> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/rest/v1/collection/-99',
@@ -256,7 +256,7 @@ export class CollectionService {
      * @returns StatResponse Success
      * @throws ApiError
      */
-    public getRestV1UserStats(): CancelablePromise<StatResponse> {
+    public getSystemCollectionStats(): CancelablePromise<StatResponse> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/user/stats',
@@ -264,11 +264,12 @@ export class CollectionService {
     }
 
     /**
+     * Get collaborators list of collection
      * @param id Existing collection ID
      * @returns any Success
      * @throws ApiError
      */
-    public getRestV1CollectionsSharing(
+    public getCollaborators(
         id: CollectionID,
     ): CancelablePromise<any> {
         return this.httpRequest.request({
@@ -288,7 +289,7 @@ export class CollectionService {
      * @returns any Success
      * @throws ApiError
      */
-    public postRestV1CollectionsSharing(
+    public shareCollection(
         id: CollectionID,
         requestBody?: {
             role?: Role;
@@ -327,7 +328,7 @@ export class CollectionService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public deleteRestV1CollectionsSharing(
+    public unshareOrLeaveCollection(
         id: CollectionID,
     ): CancelablePromise<EmptyResponse> {
         return this.httpRequest.request({
@@ -347,7 +348,7 @@ export class CollectionService {
      * @returns any Success
      * @throws ApiError
      */
-    public putRestV1CollectionsSharing(
+    public changeCollaboratorAccessLevel(
         userId: number,
         id: CollectionID,
         requestBody?: {
@@ -367,14 +368,14 @@ export class CollectionService {
     }
 
     /**
-     * Delet a collaborator
+     * Delete a collaborator
      * Remove an user from shared collection
      * @param userId User ID of collaborator
      * @param id Existing collection ID
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public deleteRestV1CollectionsSharing1(
+    public deleteCollaborator(
         userId: number,
         id: CollectionID,
     ): CancelablePromise<EmptyResponse> {
@@ -395,7 +396,7 @@ export class CollectionService {
      * @returns any Success
      * @throws ApiError
      */
-    public postRestV1CollectionsJoin(
+    public acceptInvitation(
         id: CollectionID,
     ): CancelablePromise<{
         result?: boolean;
@@ -420,7 +421,7 @@ export class CollectionService {
      * @returns CoverResponse Success
      * @throws ApiError
      */
-    public getRestV1CollectionsCovers(
+    public searchCovers(
         text: string,
     ): CancelablePromise<CoverResponse> {
         return this.httpRequest.request({
@@ -437,7 +438,7 @@ export class CollectionService {
      * @returns CoverResponse Success
      * @throws ApiError
      */
-    public getRestV1CollectionsCovers1(): CancelablePromise<CoverResponse> {
+    public getFeaturedCovers(): CancelablePromise<CoverResponse> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/rest/v1/collections/covers',

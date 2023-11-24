@@ -12,13 +12,14 @@ export class FilterService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
 
     /**
+     * Get filters
      * @param collectionId Collection ID
      * @param tagsSort Sort tags by: `-count` by count, default `_id` by name
      * @param search Check "raindrops" documentation for more details
      * @returns FilterResponse Success
      * @throws ApiError
      */
-    public getRestV1Filters(
+    public getFilters(
         collectionId: number,
         tagsSort?: '-count' | '_id',
         search?: string,

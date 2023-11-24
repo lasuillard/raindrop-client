@@ -21,7 +21,7 @@ export class RaindropService {
      * @returns RaindropSingleResponse Success
      * @throws ApiError
      */
-    public postRestV1Raindrop(
+    public createRaindrop(
         requestBody?: CreateRaindrop,
     ): CancelablePromise<RaindropSingleResponse> {
         return this.httpRequest.request({
@@ -38,7 +38,7 @@ export class RaindropService {
      * @returns any Success
      * @throws ApiError
      */
-    public getRestV1Raindrop(
+    public getRaindrop(
         id: number,
     ): CancelablePromise<any> {
         return this.httpRequest.request({
@@ -57,7 +57,7 @@ export class RaindropService {
      * @returns RaindropSingleResponse Success
      * @throws ApiError
      */
-    public putRestV1Raindrop(
+    public updateRaindrop(
         id: number,
         requestBody?: CreateRaindrop,
     ): CancelablePromise<RaindropSingleResponse> {
@@ -79,7 +79,7 @@ export class RaindropService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public deleteRestV1Raindrop(
+    public removeRaindrop(
         id: number,
     ): CancelablePromise<EmptyResponse> {
         return this.httpRequest.request({
@@ -98,7 +98,7 @@ export class RaindropService {
      * @returns RaindropSingleResponse Success
      * @throws ApiError
      */
-    public putRestV1RaindropFile(
+    public uploadFile(
         formData?: {
             /**
              * File
@@ -129,7 +129,7 @@ export class RaindropService {
      * @returns RaindropSingleResponse Success
      * @throws ApiError
      */
-    public putRestV1RaindropCover(
+    public uploadRaindropCover(
         id: number,
         formData?: {
             /**
@@ -159,7 +159,7 @@ export class RaindropService {
      * @returns void
      * @throws ApiError
      */
-    public getRestV1RaindropCache(
+    public getPermanentCopy(
         id: number,
     ): CancelablePromise<void> {
         return this.httpRequest.request({
@@ -180,7 +180,7 @@ export class RaindropService {
      * @returns SuggestResponse Success
      * @throws ApiError
      */
-    public postRestV1RaindropSuggest(
+    public suggestForNewBookmark(
         requestBody?: {
             link?: string;
         },
@@ -199,7 +199,7 @@ export class RaindropService {
      * @returns SuggestResponse Success
      * @throws ApiError
      */
-    public getRestV1RaindropSuggest(
+    public suggestForExistingBookmark(
         id: number,
     ): CancelablePromise<SuggestResponse> {
         return this.httpRequest.request({
@@ -221,7 +221,7 @@ export class RaindropService {
      * @returns any Success
      * @throws ApiError
      */
-    public getRestV1Raindrops(
+    public getRaindrops(
         collectionId: number,
         sort?: string,
         perpage?: string,
@@ -252,7 +252,7 @@ export class RaindropService {
      * @returns any Success
      * @throws ApiError
      */
-    public putRestV1Raindrops(
+    public updateRaindrops(
         collectionId: number,
         requestBody?: {
             ids?: Array<number>;
@@ -302,7 +302,7 @@ export class RaindropService {
      * @returns any Success
      * @throws ApiError
      */
-    public deleteRestV1Raindrops(
+    public removeRaindrops(
         collectionId: number,
         search?: string,
         requestBody?: {
@@ -332,7 +332,7 @@ export class RaindropService {
      * @returns RaindropMultiResponse Success
      * @throws ApiError
      */
-    public postRestV1Raindrops(
+    public createRaindrops(
         requestBody?: {
             /**
              * Array of objects. Format of single object described in "Create single raindrop".

@@ -18,7 +18,7 @@ export class TagService {
      * @returns any Success
      * @throws ApiError
      */
-    public getRestV1Tags(
+    public getTagsInCollection(
         collectionId?: number,
     ): CancelablePromise<Response> {
         return this.httpRequest.request({
@@ -37,7 +37,7 @@ export class TagService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public putRestV1Tags(
+    public renameOrMergeTags(
         collectionId?: number,
         requestBody?: {
             /**
@@ -70,7 +70,7 @@ export class TagService {
      * @returns EmptyResponse Success
      * @throws ApiError
      */
-    public deleteRestV1Tags(
+    public removeTagsFromCollection(
         collectionId?: number,
         requestBody?: {
             /**

@@ -54,6 +54,7 @@ security:
 paths:
   /oauth/authorize:
     get:
+      operationId: authorize
       tags:
         - authentication
       summary: Authorization request
@@ -81,6 +82,7 @@ paths:
           description: Direct to Raindrop authorization page.
   /oauth/access_token:
     post:
+      operationId: getOrRefreshToken
       tags:
         - authentication
       summary: Obtain or refresh access token
@@ -116,9 +118,10 @@ paths:
                     enum: [bad_authorization_code]
   /rest/v1/collections:
     get:
+      operationId: getRootCollections
       tags:
         - collection
-      summary: Get root collectins
+      summary: Get root collections
       description: Returns JSON-encoded array containing all root collections.
       responses:
         200:
@@ -128,6 +131,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CollectionMultiResponse'
     put:
+      operationId: reorderAllCollections
       tags:
         - collection
       summary: Reorder all collections
@@ -157,6 +161,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EmptyResponse'
     delete:
+      operationId: removeCollections
       tags:
         - collection
       summary: Remove multiple collections
@@ -180,6 +185,7 @@ paths:
           description: Success
   /rest/v1/collections/childrens:
     get:
+      operationId: getChildCollections
       tags:
         - collection
       summary: Get child collections
@@ -200,6 +206,7 @@ paths:
         schema:
           $ref: '#/components/schemas/CollectionID'
     get:
+      operationId: getCollection
       tags:
         - collection
       summary: Get collection
@@ -211,6 +218,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CollectionSingleResponse'
     put:
+      operationId: updateCollection
       tags:
         - collection
       summary: Update collection
@@ -228,6 +236,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/CollectionSingleResponse'
     delete:
+      operationId: removeCollection
       tags:
         - collection
       summary: Remove collection
@@ -244,6 +253,7 @@ paths:
                 $ref: '#/components/schemas/EmptyResponse'
   /rest/v1/collection:
     post:
+      operationId: createCollection
       tags:
         - collection
       summary: Create collection
@@ -273,6 +283,7 @@ paths:
                       errorMessage: 'Collection validation failed: view: `bla` is not a valid enum value for path `view`.'
   /rest/v1/collections/{id}/cover:
     put:
+      operationId: uploadCollectionCover
       tags:
         - collection
       summary: Upload cover
@@ -302,6 +313,7 @@ paths:
                 $ref: '#/components/schemas/CollectionSingleResponse'
   /rest/v1/collections/merge:
     put:
+      operationId: mergeCollections
       tags:
         - collection
       summary: Merge collections
@@ -323,6 +335,7 @@ paths:
           description: Success
   /rest/v1/collections/clean:
     put:
+      operationId: removeAllEmptyCollections
       tags:
         - collection
       summary: Remove all empty collections
@@ -342,6 +355,7 @@ paths:
                     example: 3
   /rest/v1/collection/-99:
     delete:
+      operationId: emptyTrash
       tags:
         - collection
       summary: Empty Trash
@@ -354,6 +368,7 @@ paths:
                 $ref: '#/components/schemas/EmptyResponse'
   /rest/v1/user/stats:
     get:
+      operationId: getSystemCollectionStats
       tags:
         - collection
         - user
@@ -374,12 +389,15 @@ paths:
         schema:
           $ref: '#/components/schemas/CollectionID'
     get:
+      operationId: getCollaborators
+      summary: Get collaborators list of collection
       tags:
         - collection
       responses:
         200:
           description: Success
     post:
+      operationId: shareCollection
       tags:
         - collection
       summary: Share collection
@@ -461,6 +479,7 @@ paths:
                     result: false
                     errorMessage: you dont have permissions to invite more people
     delete:
+      operationId: unshareOrLeaveCollection
       tags:
         - collection
       summary: Unshare or leave collection
@@ -490,6 +509,7 @@ paths:
         schema:
           $ref: '#/components/schemas/CollectionID'
     put:
+      operationId: changeCollaboratorAccessLevel
       tags:
         - collection
       summary: Change access level of collaborator
@@ -505,9 +525,10 @@ paths:
         200:
           description: Success
     delete:
+      operationId: deleteCollaborator
       tags:
         - collection
-      summary: Delet a collaborator
+      summary: Delete a collaborator
       description: Remove an user from shared collection
       responses:
         200:
@@ -518,6 +539,7 @@ paths:
                 $ref: '#/components/schemas/EmptyResponse'
   /rest/v1/collections/{id}/join:
     post:
+      operationId: acceptInvitation
       tags:
         - collection
       summary: Accept an invitation
@@ -568,6 +590,7 @@ paths:
                     errorMessage: You already owner of this collection
   /rest/v1/collections/covers/{text}:
     get:
+      operationId: searchCovers
       tags:
         - collection
       summary: Search for cover
@@ -598,6 +621,7 @@ paths:
                 result: true
   /rest/v1/collections/covers:
     get:
+      operationId: getFeaturedCovers
       tags:
         - collection
       summary: Featured covers
@@ -618,6 +642,7 @@ paths:
                       - png: https://up.raindrop.io/collection/templates/hockey-18/12i.png
   /rest/v1/raindrop:
     post:
+      operationId: createRaindrop
       tags:
         - raindrop
       summary: Create raindrop
@@ -642,6 +667,7 @@ paths:
         schema:
           type: integer
     get:
+      operationId: getRaindrop
       tags:
         - raindrop
         - highlight
@@ -650,6 +676,7 @@ paths:
         200:
           description: Success
     put:
+      operationId: updateRaindrop
       tags:
         - raindrop
         - highlight
@@ -667,6 +694,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/RaindropSingleResponse'
     delete:
+      operationId: removeRaindrop
       tags:
         - raindrop
       summary: Remove raindrop
@@ -680,6 +708,7 @@ paths:
                 $ref: '#/components/schemas/EmptyResponse'
   /rest/v1/raindrop/file:
     put:
+      operationId: uploadFile
       tags:
         - raindrop
       summary: Upload file
@@ -728,6 +757,7 @@ paths:
                     errorMessage: File size limit
   /rest/v1/raindrop/{id}/cover:
     put:
+      operationId: uploadRaindropCover
       tags:
         - raindrop
       summary: Upload cover
@@ -780,6 +810,7 @@ paths:
                     errorMessage: File size limit
   /rest/v1/raindrop/{id}/cache:
     get:
+      operationId: getPermanentCopy
       tags:
         - raindrop
       summary: Get permanent copy
@@ -801,6 +832,7 @@ paths:
                 example: https://s3.aws...
   /rest/v1/raindrop/suggest:
     post:
+      operationId: suggestForNewBookmark
       tags:
         - raindrop
       summary: Suggest collection and tags for new bookmark
@@ -821,6 +853,7 @@ paths:
                 $ref: '#/components/schemas/SuggestResponse'
   /rest/v1/raindrop/{id}/suggest:
     get:
+      operationId: suggestForExistingBookmark
       tags:
         - raindrop
       summary: Suggest collection and tags for existing bookmark
@@ -847,6 +880,7 @@ paths:
         schema:
           type: integer
     get:
+      operationId: getRaindrops
       tags:
         - raindrop
       summary: Get raindrops
@@ -871,6 +905,7 @@ paths:
         200:
           description: Success
     put:
+      operationId: updateRaindrops
       tags:
         - raindrop
       summary: Update many raindrops
@@ -924,6 +959,7 @@ paths:
         200:
           description: Success
     delete:
+      operationId: removeRaindrops
       tags:
         - raindrop
       summary: Remove many raindrops
@@ -962,6 +998,7 @@ paths:
                   modified: 330
   /rest/v1/raindrops:
     post:
+      operationId: createRaindrops
       tags:
         - raindrop
       summary: Create many raindrops
@@ -987,6 +1024,7 @@ paths:
                 $ref: '#/components/schemas/RaindropMultiResponse'
   /rest/v1/highlights:
     get:
+      operationId: getAllHighlights
       tags:
         - highlight
       summary: Get all highlights
@@ -1009,6 +1047,7 @@ paths:
                 $ref: '#/components/schemas/HighlightResponse'
   /rest/v1/highlights/{collectionId}:
     get:
+      operationId: getHighlightsInCollection
       tags:
         - highlight
       summary: Get all highlights in a collection
@@ -1037,6 +1076,7 @@ paths:
                 $ref: '#/components/schemas/HighlightResponse'
   /rest/v1/user:
     get:
+      operationId: getCurrentUser
       tags:
         - user
       summary: Get user
@@ -1056,6 +1096,7 @@ paths:
                 type: string
                 example: Unauthorized
     put:
+      operationId: updateCurrentUser
       tags:
         - user
       summary: Update user
@@ -1116,6 +1157,7 @@ paths:
                     errorMessage: 'User validation failed: config.raindrops_sort: `1` is not a valid enum value for path `raindrops_sort`., config: Validation failed: raindrops_sort: `1` is not a valid enum value for path `raindrops_sort`.'
   /rest/v1/user/{name}:
     get:
+      operationId: getPublicUserByName
       tags:
         - user
       summary: Get user by name
@@ -1167,6 +1209,7 @@ paths:
                 result: false
   /rest/v1/user/connect/{provider}:
     get:
+      operationId: connectSocialNetworkProvider
       tags:
         - user
       summary: Connect social network acount
@@ -1189,6 +1232,7 @@ paths:
                 example: https://some.com/...
   /rest/v1/user/connect/{provider}/revoke:
     get:
+      operationId: disconnectSocialNetworkProvider
       tags:
         - user
       summary: Disconnect social network account
@@ -1206,6 +1250,7 @@ paths:
           description: Success
   /rest/v1/tags/{collectionId}:
     get:
+      operationId: getTagsInCollection
       tags:
         - tag
       summary: Get tags
@@ -1235,6 +1280,7 @@ paths:
                             count:
                               type: integer
     put:
+      operationId: renameOrMergeTags
       tags:
         - tag
       summary: Rename tag / Merge tags
@@ -1270,6 +1316,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/EmptyResponse'
     delete:
+      operationId: removeTagsFromCollection
       tags:
         - tag
       summary: Remove tags
@@ -1300,8 +1347,10 @@ paths:
                 $ref: '#/components/schemas/EmptyResponse'
   /rest/v1/filters/{collectionId}:
     get:
+      operationId: getFilters
       tags:
         - filter
+      summary: Get filters
       parameters:
         - name: collectionId
           description: Collection ID
@@ -1329,6 +1378,7 @@ paths:
                 $ref: '#/components/schemas/FilterResponse'
   /rest/v1/import/url/parse:
     get:
+      operationId: parseURL
       tags:
         - import
       summary: Parse URL
@@ -1397,6 +1447,7 @@ paths:
                     result: true
   /rest/v1/import/url/exists:
     post:
+      operationId: checkURLsExist
       tags:
         - import
       summary: Check URL(s) existence
@@ -1439,6 +1490,7 @@ paths:
                     ids: []
   /rest/v1/import/file:
     post:
+      operationId: importHTMLBookmarkFile
       tags:
         - import
       summary: Parse HTML import file
@@ -2047,7 +2099,7 @@ components:
     UserConfig:
       type: object
       properties:
-        borken_level:
+        broken_level:
           type: string
         font_color:
           type: string
@@ -2087,7 +2139,7 @@ components:
               type: integer
             lastCheckPoint:
               type: string
-              format: date-tiem
+              format: date-time
         fullName:
           type: string
         gdrive:

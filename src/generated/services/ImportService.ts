@@ -21,7 +21,7 @@ export class ImportService {
      * @returns any Success
      * @throws ApiError
      */
-    public getRestV1ImportUrlParse(
+    public parseUrl(
         url?: string,
     ): CancelablePromise<(UrlParseResponse | UrlParseErrorResponse)> {
         return this.httpRequest.request({
@@ -40,7 +40,7 @@ export class ImportService {
      * @returns any Success
      * @throws ApiError
      */
-    public postRestV1ImportUrlExists(
+    public checkUrLsExist(
         requestBody?: {
             urls?: Array<string>;
         },
@@ -62,7 +62,7 @@ export class ImportService {
      * @returns ImportFileResponse Success
      * @throws ApiError
      */
-    public postRestV1ImportFile(
+    public importHtmlBookmarkFile(
         formData?: {
             /**
              * File

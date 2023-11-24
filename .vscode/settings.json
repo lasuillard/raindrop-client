@@ -6,7 +6,7 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"conventionalCommits.scopes": ["deps-dev", "deps", "vscode", "workspace"],
-	"cSpell.words": [],
+	"cSpell.words": ["openapi"],
 	"editor.codeActionsOnSave": {
 		"source.fixAll": true,
 		"source.organizeImports": true

@@ -7,7 +7,7 @@ import type { SortBy } from './SortBy';
 import type { View } from './View';
 
 export type UserConfig = {
-    borken_level?: string;
+    broken_level?: string;
     font_color?: string;
     font_size?: number;
     lang?: string;
