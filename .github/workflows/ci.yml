@@ -83,5 +83,37 @@ jobs:
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           generate_release_notes: true
+
+  build-and-publish:
+    name: Build and Publish
+    needs: release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - name: Install PNPM deps
+        run: pnpm install
+
+      - name: Build app
+        run: pnpm run build
+
+      - name: Publish package
+        env:
+          NODE_AUTH_TOKEN: ${{ github.token }}
+        run: pnpm publish
