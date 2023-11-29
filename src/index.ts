@@ -11,6 +11,8 @@ export function add(a: number, b: number): number {
 import * as api from './generated';
 export { api };
 
+export default api;
+
 /* c8 ignore start */
 if (import.meta.vitest) {
 	const { expect, it } = import.meta.vitest;
