@@ -1,0 +1,4 @@
+.gitignore
+.npmignore
+docs
+git_push.sh
