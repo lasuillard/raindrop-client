@@ -119,7 +119,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TokenResponse'
+                oneOf:
+                  - $ref: '#/components/schemas/TokenResponse'
+                  - $ref: '#/components/schemas/TokenErrorResponse'
         400:
           description: Occurs when code parameter is invalid
           content:
@@ -1846,6 +1848,16 @@ components:
           type: string
           description: Type of token
           enum: [Bearer]
+    TokenErrorResponse:
+      type: object
+      required: [result, status, errorMessage]
+      properties:
+        result:
+          type: boolean
+        status:
+          type: integer
+        errorMessage:
+          type: string
     Collection:
       type: object
       required:

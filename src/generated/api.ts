@@ -739,6 +739,12 @@ export interface Folder {
     'bookmarks': Array<Bookmark>;
 }
 /**
+ * @type GetOrRefreshToken200Response
+ * @export
+ */
+export type GetOrRefreshToken200Response = TokenErrorResponse | TokenResponse;
+
+/**
  * 
  * @export
  * @interface GetOrRefreshToken400Response
@@ -1929,6 +1935,31 @@ export interface SuggestResponse {
 /**
  * 
  * @export
+ * @interface TokenErrorResponse
+ */
+export interface TokenErrorResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TokenErrorResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof TokenErrorResponse
+     */
+    'status': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TokenErrorResponse
+     */
+    'errorMessage': string;
+}
+/**
+ * 
+ * @export
  * @interface TokenResponse
  */
 export interface TokenResponse {
@@ -2596,7 +2627,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse>> {
+        async getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrRefreshToken200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getOrRefreshToken(getOrRefreshTokenRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['AuthenticationApi.getOrRefreshToken']?.[index]?.url;
@@ -2630,7 +2661,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: any): AxiosPromise<TokenResponse> {
+        getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: any): AxiosPromise<GetOrRefreshToken200Response> {
             return localVarFp.getOrRefreshToken(getOrRefreshTokenRequest, options).then((request) => request(axios, basePath));
         },
     };
