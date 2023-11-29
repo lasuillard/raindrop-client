@@ -31,7 +31,7 @@ export class AuthenticationService {
     ): CancelablePromise<void> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/oauth/authorize',
+            url: '/v1/oauth/authorize',
             query: {
                 'redirect_uri': redirectUri,
                 'client_id': clientId,
@@ -57,7 +57,7 @@ export class AuthenticationService {
     ): CancelablePromise<TokenResponse> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/oauth/access_token',
+            url: '/v1/oauth/access_token',
             body: requestBody,
             mediaType: 'application/json',
             errors: {

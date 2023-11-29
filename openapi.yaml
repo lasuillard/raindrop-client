@@ -52,7 +52,7 @@ tags:
 security:
   - bearerAuth: []
 paths:
-  /oauth/authorize:
+  /v1/oauth/authorize:
     get:
       operationId: authorize
       tags:
@@ -80,7 +80,7 @@ paths:
       responses:
         307:
           description: Direct to Raindrop authorization page.
-  /oauth/access_token:
+  /v1/oauth/access_token:
     post:
       operationId: getOrRefreshToken
       tags:
