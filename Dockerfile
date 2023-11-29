@@ -7,6 +7,7 @@ SHELL ["/bin/bash", "-c"]
 # Install core tools
 RUN apt-get update && apt-get install --no-install-recommends -y \
     curl \
+    default-jre-headless \
     git \
     gnupg2 \
     make \
