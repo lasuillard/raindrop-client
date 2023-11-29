@@ -25,13 +25,13 @@ export class AuthenticationService {
      * @returns void
      * @throws ApiError
      */
-    public getOauthAuthorize(
+    public authorize(
         redirectUri: string,
         clientId: string,
     ): CancelablePromise<void> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/oauth/authorize',
+            url: '/v1/oauth/authorize',
             query: {
                 'redirect_uri': redirectUri,
                 'client_id': clientId,
@@ -44,7 +44,7 @@ export class AuthenticationService {
 
     /**
      * Obtain or refresh access token
-     * Once you have the authorization code, you can exchange it for the access_token by doing a POST request with all required body parameters as JSON.
+     * Once you have the authorization code, you can exchange it for the `access_token` by doing a POST request with all required body parameters as JSON.
      *
      * For security reasons access tokens (except "test tokens") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON).
      *
@@ -52,12 +52,12 @@ export class AuthenticationService {
      * @returns TokenResponse Success
      * @throws ApiError
      */
-    public postOauthAccessToken(
+    public getOrRefreshToken(
         requestBody?: (ObtainToken | RefreshToken),
     ): CancelablePromise<TokenResponse> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/oauth/access_token',
+            url: '/v1/oauth/access_token',
             body: requestBody,
             mediaType: 'application/json',
             errors: {

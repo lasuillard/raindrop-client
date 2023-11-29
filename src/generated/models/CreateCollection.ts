@@ -3,7 +3,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { Parent } from './Parent';
+import type { CollectionRef } from './CollectionRef';
 import type { Sort } from './Sort';
 import type { View } from './View';
 
@@ -18,7 +18,7 @@ export type CreateCollection = {
      * Collection and raindrops that it contains will be accessible without authentication?
      */
     public?: boolean;
-    parent?: Parent;
+    parent?: CollectionRef;
     cover?: Array<string>;
 };
 

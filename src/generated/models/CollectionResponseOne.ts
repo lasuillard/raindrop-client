@@ -5,5 +5,5 @@
 
 import type { Response } from './Response';
 
-export type StatResponse = Response;
+export type CollectionResponseOne = Response;
 

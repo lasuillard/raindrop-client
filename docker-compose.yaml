@@ -7,7 +7,7 @@ services:
       dockerfile: ./Dockerfile
       target: workspace
     ports:
-      - 127.0.0.1:51204:51204 # Vitest UI
+      - ${VITEST_UI_HOST:-127.0.0.1}:${VITEST_UI_PORT:-51204}:51204 # Vitest UI
     environment:
       CONTAINER: 1
     command: sleep infinity

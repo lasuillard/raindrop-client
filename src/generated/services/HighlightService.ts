@@ -4,7 +4,7 @@
 /* eslint-disable */
 import type { CreateRaindrop } from '../models/CreateRaindrop';
 import type { HighlightResponse } from '../models/HighlightResponse';
-import type { RaindropSingleResponse } from '../models/RaindropSingleResponse';
+import type { RaindropResponseOne } from '../models/RaindropResponseOne';
 
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -19,7 +19,7 @@ export class HighlightService {
      * @returns any Success
      * @throws ApiError
      */
-    public getRestV1Raindrop(
+    public getRaindrop(
         id: number,
     ): CancelablePromise<any> {
         return this.httpRequest.request({
@@ -35,13 +35,13 @@ export class HighlightService {
      * Update raindrop
      * @param id Existing raindrop ID
      * @param requestBody
-     * @returns RaindropSingleResponse Success
+     * @returns RaindropResponseOne Success
      * @throws ApiError
      */
-    public putRestV1Raindrop(
+    public updateRaindrop(
         id: number,
         requestBody?: CreateRaindrop,
-    ): CancelablePromise<RaindropSingleResponse> {
+    ): CancelablePromise<RaindropResponseOne> {
         return this.httpRequest.request({
             method: 'PUT',
             url: '/rest/v1/raindrop/{id}',
@@ -60,7 +60,7 @@ export class HighlightService {
      * @returns HighlightResponse OK
      * @throws ApiError
      */
-    public getRestV1Highlights(
+    public getAllHighlights(
         page?: number,
         perpage?: number,
     ): CancelablePromise<HighlightResponse> {
@@ -82,7 +82,7 @@ export class HighlightService {
      * @returns HighlightResponse Success
      * @throws ApiError
      */
-    public getRestV1Highlights1(
+    public getHighlightsInCollection(
         collectionId: number,
         page?: number,
         perpage?: number,
