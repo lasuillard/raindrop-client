@@ -28,7 +28,7 @@
 		"dist"
 	],
 	"scripts": {
-		"generate": "openapi --input openapi.yaml --client axios --output ./src/generated --name Client",
+		"generate": "openapi-generator-cli generate -i openapi.yaml -g typescript-axios -o ./src/generated/ --skip-validate-spec",
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
@@ -38,6 +38,7 @@
 		"e2e:watch": "VITEST_ENV=e2e vitest --silent --coverage --watch --ui e2e"
 	},
 	"devDependencies": {
+		"@openapitools/openapi-generator-cli": "^2.7.0",
 		"@types/node": "^20.9.4",
 		"@typescript-eslint/eslint-plugin": "^5.62.0",
 		"@typescript-eslint/parser": "^5.62.0",
@@ -46,7 +47,6 @@
 		"eslint": "^8.52.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-jsdoc": "^46.8.2",
-		"openapi-typescript-codegen": "^0.25.0",
 		"prettier": "^3.0.3",
 		"tslib": "^2.6.2",
 		"typescript": "^5.3.2",
@@ -55,7 +55,6 @@
 		"vitest": "^0.34.6"
 	},
 	"dependencies": {
-		"axios": "^1.6.2",
-		"form-data": "^4.0.0"
+		"axios": "^1.6.2"
 	}
 }

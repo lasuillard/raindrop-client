@@ -8,11 +8,10 @@ export function add(a: number, b: number): number {
 	return a + b;
 }
 
-import * as generated from './generated';
-export { generated };
+import * as api from './generated';
+export { api };
 
-import { Client } from './generated';
-export { Client };
+export default api;
 
 /* c8 ignore start */
 if (import.meta.vitest) {

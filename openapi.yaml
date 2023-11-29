@@ -1615,8 +1615,8 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/UrlParseResponse'
-                  - $ref: '#/components/schemas/UrlParseErrorResponse'
+                  - $ref: '#/components/schemas/ParseUrlResponse'
+                  - $ref: '#/components/schemas/ParseUrlErrorResponse'
               examples:
                 Success:
                   value:
@@ -1775,19 +1775,22 @@ components:
   schemas:
     Response:
       type: object
+      required: [result]
       properties:
         result:
           type: boolean
     ErrorResponse:
       allOf:
         - $ref: '#/components/schemas/Response'
-        - properties:
+        - required: [error, errorMessage]
+          properties:
             error:
               type: string
             errorMessage:
               type: string
     ObtainToken:
       type: object
+      required: [grant_type, code, client_id, client_secret, redirect_uri]
       properties:
         grant_type:
           type: string
@@ -1807,6 +1810,7 @@ components:
           description: Redirect URI registered at your Raindrop.io app
     RefreshToken:
       type: object
+      required: [client_id, client_secret, grant_type, refresh_token]
       properties:
         client_id:
           type: string
@@ -1823,6 +1827,7 @@ components:
           description: Refresh token received when obtain access token
     TokenResponse:
       type: object
+      required: [access_token, refresh_token, expires_in, token_type]
       properties:
         access_token:
           type: string
@@ -1843,12 +1848,31 @@ components:
           enum: [Bearer]
     Collection:
       type: object
+      required:
+        [
+          _id,
+          access,
+          collaborators,
+          color,
+          count,
+          cover,
+          created,
+          expanded,
+          lastUpdate,
+          parent,
+          public,
+          sort,
+          title,
+          user,
+          view
+        ]
       properties:
         _id:
           type: integer
           description: The id of the collection.
         access:
           type: object
+          required: [level, draggable]
           properties:
             level:
               type: integer
@@ -1862,11 +1886,9 @@ components:
               type: boolean
               description: Does it possible to change parent of this collection?
         collaborators:
-          type: object
-          description: When this object is present, means that collections is shared. Content of this object is private and not very useful.
-          properties:
-            $id:
-              type: string
+          allOf:
+            - $ref: '#/components/schemas/UserRef'
+            - description: When this object is present, means that collections is shared. Content of this object is private and not very useful.
         color:
           type: string
           description: Primary color of collection cover as HEX
@@ -1901,29 +1923,33 @@ components:
           type: string
           description: Name of the collection
         user:
-          type: object
-          properties:
-            $id:
-              type: integer
-              description: Owner ID
+          allOf:
+            - $ref: '#/components/schemas/UserRef'
+            - properties:
+                $id:
+                  type: integer
+                  description: Owner ID
         view:
           $ref: '#/components/schemas/View'
     CollectionResponseOne:
       allOf:
         - $ref: '#/components/schemas/Response'
-        - properties:
+        - required: [items]
+          properties:
             item:
               $ref: '#/components/schemas/Collection'
     CollectionResponseMany:
       allOf:
         - $ref: '#/components/schemas/Response'
-        - properties:
+        - required: [items]
+          properties:
             items:
               type: array
               items:
                 $ref: '#/components/schemas/Collection'
     CreateCollection:
       type: object
+      required: [view, title, sort, public, parent, cover]
       properties:
         view:
           $ref: '#/components/schemas/View'
@@ -1946,6 +1972,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/CreateCollection'
         - type: object
+          required: [expanded]
           properties:
             expanded:
               type: boolean
@@ -1954,11 +1981,13 @@ components:
       type: object
       allOf:
         - $ref: '#/components/schemas/Response'
-        - properties:
+        - required: [items, meta]
+          properties:
             items:
               type: array
               items:
                 type: object
+                required: [_id, count]
                 properties:
                   _id:
                     type: integer
@@ -1966,6 +1995,7 @@ components:
                     type: integer
             meta:
               type: object
+              required: [pro, _id, changedBookmarksDate, duplicates, broken]
               properties:
                 pro:
                   type: boolean
@@ -1976,16 +2006,19 @@ components:
                   format: date-time
                 duplicates:
                   type: object
+                  required: [count]
                   properties:
                     count:
                       type: integer
                 broken:
                   type: object
+                  required: [count]
                   properties:
                     count:
                       type: integer
     Cover:
       type: object
+      required: [title, icons]
       properties:
         title:
           type: string
@@ -1993,7 +2026,7 @@ components:
           type: array
           items:
             type: object
-            required: [png]
+            required: [png] # SVG possibly not given
             properties:
               png:
                 type: string
@@ -2002,16 +2035,32 @@ components:
                 type: string
                 format: uri
     CoverResponse:
-      type: object
-      properties:
-        result:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Cover'
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - required: [items]
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Cover'
     RaindropBase:
       type: object
+      required:
+        [
+          created,
+          lastUpdate,
+          order,
+          important,
+          tags,
+          media,
+          cover,
+          collection,
+          type,
+          excerpt,
+          title,
+          link,
+          highlights
+        ]
       properties:
         created:
           type: string
@@ -2037,6 +2086,7 @@ components:
           type: array
           items:
             type: object
+            required: [link]
             properties:
               link:
                 type: string
@@ -2061,6 +2111,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/RaindropBase'
         - type: object
+          required: [_id, domain, user, broken, cache, creatorRef, file]
           properties:
             _id:
               type: integer
@@ -2078,6 +2129,7 @@ components:
             cache:
               type: object
               description: Permanent copy (cached version) details
+              required: [status, size, created]
               properties:
                 status:
                   type: string
@@ -2096,6 +2148,7 @@ components:
                 Sometime raindrop may belong to other user, not to the one who created it.
                 For example when this raindrop is created in shared collection by other user.
                 This object contains info about original author.
+              required: [_id, fullName]
               properties:
                 _id:
                   type: integer
@@ -2108,6 +2161,7 @@ components:
               description: |-
                 This raindrop uploaded from desktop
                 [Supported file formats](https://help.raindrop.io/article/48-uploading-files)
+              required: [name, size, type]
               properties:
                 name:
                   type: string
@@ -2119,31 +2173,31 @@ components:
                   type: string
                   description: Mime type
     RaindropResponseOne:
-      type: object
-      properties:
-        result:
-          type: boolean
-        item:
-          $ref: '#/components/schemas/Raindrop'
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - required: [item]
+          properties:
+            item:
+              $ref: '#/components/schemas/Raindrop'
     RaindropResponseMany:
-      type: object
-      properties:
-        result:
-          type: boolean
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Raindrop'
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - required: [items]
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/Raindrop'
     CreateRaindrop:
       allOf:
         - $ref: '#/components/schemas/RaindropBase'
-        - type: object
-          properties:
+        - properties:
             pleaseParse:
               type: object
               description: Specify empty object to automatically parse meta data (cover, description, html) in the background
     Highlight:
       type: object
+      required: [_id, text, color, note, created]
       properties:
         _id:
           type: string
@@ -2168,7 +2222,8 @@ components:
     HighlightItem:
       allOf:
         - $ref: '#/components/schemas/Highlight'
-        - properties:
+        - required: [raindropRef, link, title, tags]
+          properties:
             raindropRef:
               type: integer
             link:
@@ -2181,22 +2236,22 @@ components:
               items:
                 type: string
     HighlightResponse:
-      type: object
-      properties:
-        result:
-          type: boolean
-        items:
-          $ref: '#/components/schemas/HighlightItem'
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - required: [items]
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/HighlightItem'
     Suggest:
       type: object
+      required: [collections, tags]
       properties:
         collections:
           type: array
           items:
-            type: object
-            properties:
-              $id:
-                type: integer
+            $ref: '#/components/schemas/CollectionRef'
         tags:
           type: array
           items:
@@ -2204,11 +2259,14 @@ components:
     SuggestResponse:
       allOf:
         - $ref: '#/components/schemas/Response'
-        - properties:
+        - required: [item]
+          properties:
             item:
               $ref: '#/components/schemas/Suggest'
     UserConfig:
       type: object
+      required:
+        [broken_level, font_color, font_size, lang, last_collection, raindrops_sort, raindrops_view]
       properties:
         broken_level:
           type: string
@@ -2226,6 +2284,22 @@ components:
           $ref: '#/components/schemas/View'
     User:
       type: object
+      required:
+        [
+          _id,
+          config,
+          dropbox,
+          email,
+          email_MD5,
+          files,
+          fullName,
+          gdrive,
+          groups,
+          password,
+          pro,
+          proExpire,
+          registered
+        ]
       properties:
         _id:
           type: integer
@@ -2233,6 +2307,7 @@ components:
           $ref: '#/components/schemas/UserConfig'
         dropbox:
           type: object
+          required: [enabled]
           properties:
             enabled:
               type: boolean
@@ -2243,6 +2318,7 @@ components:
           $ref: '#/components/schemas/MD5'
         files:
           type: object
+          required: [used, size, lastCheckPoint]
           properties:
             used:
               type: integer
@@ -2255,6 +2331,7 @@ components:
           type: string
         gdrive:
           type: object
+          required: [enabled]
           properties:
             enabled:
               type: boolean
@@ -2274,6 +2351,7 @@ components:
           format: date-time
     Group:
       type: object
+      required: [title, hidden, sort, collections]
       properties:
         title:
           type: string
@@ -2288,29 +2366,35 @@ components:
     UserResponse:
       allOf:
         - $ref: '#/components/schemas/Response'
-        - properties:
+        - required: [user]
+          properties:
             user:
               $ref: '#/components/schemas/User'
     Filter:
       type: object
+      required: [broken, duplicates, important, notag, tags, types]
       properties:
         broken:
           type: object
+          required: [count]
           properties:
             count:
               type: integer
         duplicates:
           type: object
+          required: [count]
           properties:
             count:
               type: integer
         important:
           type: object
+          required: [count]
           properties:
             count:
               type: integer
         notag:
           type: object
+          required: [count]
           properties:
             count:
               type: integer
@@ -2318,6 +2402,7 @@ components:
           type: array
           items:
             type: object
+            required: [_id, count]
             properties:
               _id:
                 type: string
@@ -2327,6 +2412,7 @@ components:
           type: array
           items:
             type: object
+            required: [_id, count]
             properties:
               _id:
                 type: string
@@ -2338,6 +2424,7 @@ components:
         - $ref: '#/components/schemas/Filter'
     UrlParse:
       type: object
+      required: [title, excerpt, media, type, meta]
       properties:
         title:
           type: string
@@ -2347,6 +2434,7 @@ components:
           type: array
           items:
             type: object
+            required: [type, link]
             properties:
               type:
                 type: string
@@ -2357,6 +2445,7 @@ components:
           type: string
         meta:
           type: object
+          required: [possibleArticle, canonical, site, tags]
           properties:
             possibleArticle:
               type: boolean
@@ -2371,17 +2460,20 @@ components:
     UrlParseResponse:
       allOf:
         - $ref: '#/components/schemas/Response'
-        - properties:
+        - required: [item]
+          properties:
             item:
               $ref: '#/components/schemas/UrlParse'
     UrlParseErrorResponse:
       allOf:
         - $ref: '#/components/schemas/ErrorResponse'
-        - properties:
+        - required: [item]
+          properties:
             item:
               $ref: '#/components/schemas/UrlParse'
     Bookmark:
       type: object
+      required: [link, title, lastUpdate, tags, excerpt]
       properties:
         link:
           type: string
@@ -2399,6 +2491,7 @@ components:
           type: string
     Folder:
       type: object
+      required: [title, folders, bookmarks]
       properties:
         title:
           type: string
@@ -2413,7 +2506,8 @@ components:
     ImportFileResponse:
       allOf:
         - $ref: '#/components/schemas/Response'
-        - properties:
+        - required: [items]
+          properties:
             items:
               type: array
               items:
@@ -2458,14 +2552,32 @@ components:
       enum: [member, viewer]
     CollectionRef:
       type: object
+      required: [$id]
       properties:
         $id:
           type: integer
           description: The id of the parent collection. Not specified for root collections
     UserRef:
       type: object
+      required: [$id]
       properties:
         $id:
           type: integer
     MD5:
       type: string
+
+    ParseUrlResponse:
+      allOf:
+        - $ref: '#/components/schemas/Response'
+        - required: [item]
+          properties:
+            item:
+              $ref: '#/components/schemas/UrlParse'
+
+    ParseUrlErrorResponse:
+      allOf:
+        - $ref: '#/components/schemas/ErrorResponse'
+        - required: [item]
+          properties:
+            item:
+              $ref: '#/components/schemas/UrlParse'
