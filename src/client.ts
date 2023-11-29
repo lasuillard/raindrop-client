@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
+import { AuthenticationApi } from './auth';
 import {
-	AuthenticationApi,
 	CollectionApi,
 	Configuration,
 	FilterApi,
