@@ -85,7 +85,7 @@ e2e-test: generate  ## Run e2e tests
 .PHONY: e2e-test
 
 docs:  ## Generate dev documents
-
+	pnpm run make-docs
 .PHONY: docs
 
 

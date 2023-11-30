@@ -1,4 +1,4 @@
-# ...
+docs/
 
 # User hook scripts for VSC devcontainer lifecycle
 .devcontainer/initializeCommand/
