@@ -62,7 +62,7 @@ export class RaindropApi extends _RaindropApi {
 
 /* c8 ignore start */
 if (import.meta.vitest) {
-	const { describe, expect, it, afterEach, beforeEach } = import.meta.vitest;
+	const { describe, expect, it, afterEach } = import.meta.vitest;
 
 	// Mocks
 	const mockAxios = new MockAdapter(axios, { onNoMatch: 'throwException' });
@@ -77,10 +77,6 @@ if (import.meta.vitest) {
 	const getParams = (url: string) => Object.fromEntries(new URL(url).searchParams.entries());
 
 	const raindropApi = new RaindropApi(new Configuration(), undefined, axios);
-
-	beforeEach(() => {
-		// ...
-	});
 
 	afterEach(() => {
 		mockAxios.resetHandlers();

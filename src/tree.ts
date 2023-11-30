@@ -127,7 +127,7 @@ if (import.meta.vitest) {
 		 *      /
 		 *     6
 		 */
-		const data: Pick<TreeSource<string, string>, 'data' | 'id' | 'parent'>[] = [
+		const data: Pick<TreeSource<string>, 'data' | 'id' | 'parent'>[] = [
 			{ data: '1', id: '1', parent: null },
 			{ data: '2', id: '2', parent: '1' },
 			{ data: '3', id: '3', parent: '1' },
@@ -135,7 +135,7 @@ if (import.meta.vitest) {
 			{ data: '5', id: '5', parent: '3' },
 			{ data: '6', id: '6', parent: '5' }
 		];
-		const source: TreeSource<string, string>[] = data.map((data) => ({
+		const source: TreeSource<string>[] = data.map((data) => ({
 			...data,
 			toNode() {
 				return new TreeNode(this.data);

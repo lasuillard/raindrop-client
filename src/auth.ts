@@ -72,8 +72,9 @@ if (import.meta.vitest) {
 	const code = '<AUTHORIZATION_CODE>';
 	const refresh_token = '<REFRESH_TOKEN>';
 
-	// Mocked API instance
+	// Mocks
 	const mockAxios = new MockAdapter(axios, { onNoMatch: 'throwException' });
+
 	const authApi = new AuthenticationApi(new Configuration(), undefined, axios);
 
 	afterEach(() => {
