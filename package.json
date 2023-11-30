@@ -32,8 +32,8 @@
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
-		"test": "VITEST_ENV=unit vitest --coverage --run src",
-		"test:watch": "VITEST_ENV=unit vitest --silent --coverage --watch --ui src",
+		"test": "VITEST_ENV=unit vitest --coverage --run src tests",
+		"test:watch": "VITEST_ENV=unit vitest --silent --coverage --watch --ui src tests",
 		"e2e": "VITEST_ENV=e2e vitest --coverage --run e2e",
 		"e2e:watch": "VITEST_ENV=e2e vitest --silent --coverage --watch --ui e2e"
 	},
