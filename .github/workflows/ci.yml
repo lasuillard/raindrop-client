@@ -75,6 +75,15 @@ jobs:
           files: coverage/e2e/clover.xml
           flags: e2e
 
+      - name: Generate API docs
+        run: pnpm run make-docs
+
+      - name: Upload docs artifact
+        uses: actions/upload-pages-artifact@v2
+        if: ${{ github.event_name == 'push' }}
+        with:
+          path: docs/
+
   release:
     name: Release
     needs: lint-and-test
@@ -87,6 +96,21 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           generate_release_notes: true
+
+  api-docs:
+    name: API Docs
+    needs: release
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish API docs to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
 
   build-and-publish:
     name: Build and Publish
