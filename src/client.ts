@@ -6,10 +6,10 @@ import {
 	FilterApi,
 	HighlightApi,
 	ImportApi,
-	RaindropApi,
 	TagApi,
 	UserApi
 } from './generated';
+import { RaindropApi } from './raindrop';
 
 /**
  * Raindrop API set.

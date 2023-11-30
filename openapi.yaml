@@ -1027,11 +1027,11 @@ paths:
         - name: perpage
           in: query
           schema:
-            type: string
+            type: integer
         - name: page
           in: query
           schema:
-            type: string
+            type: integer
         - name: search
           in: query
           schema:
@@ -1039,6 +1039,10 @@ paths:
       responses:
         200:
           description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RaindropResponseMany'
     put:
       operationId: updateRaindrops
       tags:
@@ -2063,12 +2067,14 @@ components:
           lastUpdate,
           order,
           important,
+          reminder,
           tags,
           media,
           cover,
           collection,
           type,
           excerpt,
+          note,
           title,
           link,
           highlights
@@ -2080,7 +2086,7 @@ components:
         lastUpdate:
           type: string
           format: date-time
-        order:
+        sort:
           type: integer
           description: |-
             Specify sort order (ascending).
@@ -2089,6 +2095,14 @@ components:
         important:
           type: boolean
           description: Marked as "favorite"
+        reminder:
+          type: object
+          required: [date]
+          properties:
+            date:
+              type: string
+              format: uri
+              nullable: true
         tags:
           type: array
           items:
@@ -2098,8 +2112,11 @@ components:
           type: array
           items:
             type: object
-            required: [link]
+            required: [type, link]
             properties:
+              type:
+                type: string
+                enum: [link, image]
               link:
                 type: string
                 format: uri
@@ -2110,6 +2127,8 @@ components:
         type:
           type: string
         excerpt:
+          type: string
+        note:
           type: string
         title:
           type: string
@@ -2123,7 +2142,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/RaindropBase'
         - type: object
-          required: [_id, domain, user, broken, cache, creatorRef, file]
+          required: [_id, domain, user, broken, cache, creatorRef]
           properties:
             _id:
               type: integer
@@ -2133,6 +2152,8 @@ components:
               description: |-
                 Hostname of a link.
                 Files always have `raindrop.io` hostname
+            creatorRef:
+              $ref: '#/components/schemas/CreatorRef'
             user:
               $ref: '#/components/schemas/UserRef'
             broken:
@@ -2154,20 +2175,6 @@ components:
                   type: string
                   format: date-time
                   description: Date when copy is successfully made
-            creatorRef:
-              type: object
-              description: |-
-                Sometime raindrop may belong to other user, not to the one who created it.
-                For example when this raindrop is created in shared collection by other user.
-                This object contains info about original author.
-              required: [_id, fullName]
-              properties:
-                _id:
-                  type: integer
-                  description: Original author (user ID) of raindrop
-                fullName:
-                  type: string
-                  description: Original author name of a raindrop
             file:
               type: object
               description: |-
@@ -2187,19 +2194,25 @@ components:
     RaindropResponseOne:
       allOf:
         - $ref: '#/components/schemas/Response'
-        - required: [item]
+        - required: [item, author]
           properties:
             item:
               $ref: '#/components/schemas/Raindrop'
+            author:
+              type: boolean
     RaindropResponseMany:
       allOf:
         - $ref: '#/components/schemas/Response'
-        - required: [items]
+        - required: [items, count, collectionId]
           properties:
             items:
               type: array
               items:
                 $ref: '#/components/schemas/Raindrop'
+            count:
+              type: integer
+            collectionId:
+              $ref: '#/components/schemas/CollectionID'
     CreateRaindrop:
       allOf:
         - $ref: '#/components/schemas/RaindropBase'
@@ -2564,17 +2577,36 @@ components:
       enum: [member, viewer]
     CollectionRef:
       type: object
-      required: [$id]
+      required: [$ref, $id, oid]
       properties:
+        $ref:
+          type: string
+          enum: [collections]
         $id:
           type: integer
           description: The id of the parent collection. Not specified for root collections
+        oid:
+          type: integer
     UserRef:
       type: object
-      required: [$id]
+      required: [$ref, $id]
       properties:
+        $ref:
+          type: string
         $id:
           type: integer
+    CreatorRef:
+      type: object
+      required: [_id, avatar, name, email]
+      properties:
+        _id:
+          type: integer
+        avatar:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
     MD5:
       type: string
 
