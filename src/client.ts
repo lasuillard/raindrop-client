@@ -1,14 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 import { AuthenticationApi } from './auth';
-import {
-	CollectionApi,
-	Configuration,
-	FilterApi,
-	HighlightApi,
-	ImportApi,
-	TagApi,
-	UserApi
-} from './generated';
+import { CollectionApi } from './collection';
+import { Configuration, FilterApi, HighlightApi, ImportApi, TagApi, UserApi } from './generated';
 import { RaindropApi } from './raindrop';
 
 /**
