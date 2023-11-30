@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Raindrop API (Unofficial)
- * This document is hand-crafted, **UNOFFICIAL** OpenAPI specification of Raindrop API.  Currently, as so far as we discovered, the official API documentation is outdated and not maintained well such as lacking some fields, mismatching actual response schema.
+ * **UNOFFICIAL** OpenAPI specification of Raindrop API.  This OpenAPI spec has been made by hand with reference to official documentation because it is not provided by Raindrop.io.  Because official documentation not maintained well, there are very (highly) likely to have mismatch in schemas. As we can\'t inspect and address all issues, schema being updated as we find issues.  Any contributions are welcome. Bug report, schema update, adding descriptions or functions, please don\'t hesitate to create an issue.
  *
  * The version of the OpenAPI document: 0.1.0
  * 
@@ -264,6 +264,12 @@ export type CollectionAccessLevelEnum = typeof CollectionAccessLevelEnum[keyof t
 export interface CollectionCollaborators {
     /**
      * 
+     * @type {string}
+     * @memberof CollectionCollaborators
+     */
+    '$ref': string;
+    /**
+     * 
      * @type {number}
      * @memberof CollectionCollaborators
      */
@@ -276,12 +282,31 @@ export interface CollectionCollaborators {
  */
 export interface CollectionRef {
     /**
+     * 
+     * @type {string}
+     * @memberof CollectionRef
+     */
+    '$ref': CollectionRefRefEnum;
+    /**
      * The id of the parent collection. Not specified for root collections
      * @type {number}
      * @memberof CollectionRef
      */
     '$id': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CollectionRef
+     */
+    'oid': number;
 }
+
+export const CollectionRefRefEnum = {
+    Collections: 'collections'
+} as const;
+
+export type CollectionRefRefEnum = typeof CollectionRefRefEnum[keyof typeof CollectionRefRefEnum];
+
 /**
  * 
  * @export
@@ -326,6 +351,12 @@ export interface CollectionResponseOne {
  * @interface CollectionUser
  */
 export interface CollectionUser {
+    /**
+     * 
+     * @type {string}
+     * @memberof CollectionUser
+     */
+    '$ref': string;
     /**
      * Owner ID
      * @type {number}
@@ -483,13 +514,19 @@ export interface CreateRaindrop {
      * @type {number}
      * @memberof CreateRaindrop
      */
-    'order': number;
+    'sort'?: number;
     /**
      * Marked as \"favorite\"
      * @type {boolean}
      * @memberof CreateRaindrop
      */
     'important': boolean;
+    /**
+     * 
+     * @type {RaindropBaseReminder}
+     * @memberof CreateRaindrop
+     */
+    'reminder': RaindropBaseReminder;
     /**
      * Tags list
      * @type {Array<string>}
@@ -531,6 +568,12 @@ export interface CreateRaindrop {
      * @type {string}
      * @memberof CreateRaindrop
      */
+    'note': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindrop
+     */
     'title': string;
     /**
      * 
@@ -563,6 +606,37 @@ export interface CreateRaindropsRequest {
      * @memberof CreateRaindropsRequest
      */
     'items'?: Array<CreateRaindrop>;
+}
+/**
+ * 
+ * @export
+ * @interface CreatorRef
+ */
+export interface CreatorRef {
+    /**
+     * 
+     * @type {number}
+     * @memberof CreatorRef
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatorRef
+     */
+    'avatar': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatorRef
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatorRef
+     */
+    'email': string;
 }
 /**
  * 
@@ -738,6 +812,12 @@ export interface Folder {
      */
     'bookmarks': Array<Bookmark>;
 }
+/**
+ * @type GetOrRefreshToken200Response
+ * @export
+ */
+export type GetOrRefreshToken200Response = TokenErrorResponse | TokenResponse;
+
 /**
  * 
  * @export
@@ -1190,13 +1270,19 @@ export interface Raindrop {
      * @type {number}
      * @memberof Raindrop
      */
-    'order': number;
+    'sort'?: number;
     /**
      * Marked as \"favorite\"
      * @type {boolean}
      * @memberof Raindrop
      */
     'important': boolean;
+    /**
+     * 
+     * @type {RaindropBaseReminder}
+     * @memberof Raindrop
+     */
+    'reminder': RaindropBaseReminder;
     /**
      * Tags list
      * @type {Array<string>}
@@ -1238,6 +1324,12 @@ export interface Raindrop {
      * @type {string}
      * @memberof Raindrop
      */
+    'note': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Raindrop
+     */
     'title': string;
     /**
      * 
@@ -1265,6 +1357,12 @@ export interface Raindrop {
     'domain': string;
     /**
      * 
+     * @type {CreatorRef}
+     * @memberof Raindrop
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
      * @type {UserRef}
      * @memberof Raindrop
      */
@@ -1283,16 +1381,10 @@ export interface Raindrop {
     'cache': RaindropAllOfCache;
     /**
      * 
-     * @type {RaindropAllOfCreatorRef}
-     * @memberof Raindrop
-     */
-    'creatorRef': RaindropAllOfCreatorRef;
-    /**
-     * 
      * @type {RaindropAllOfFile}
      * @memberof Raindrop
      */
-    'file': RaindropAllOfFile;
+    'file'?: RaindropAllOfFile;
 }
 /**
  * Permanent copy (cached version) details
@@ -1331,25 +1423,6 @@ export const RaindropAllOfCacheStatusEnum = {
 
 export type RaindropAllOfCacheStatusEnum = typeof RaindropAllOfCacheStatusEnum[keyof typeof RaindropAllOfCacheStatusEnum];
 
-/**
- * Sometime raindrop may belong to other user, not to the one who created it. For example when this raindrop is created in shared collection by other user. This object contains info about original author.
- * @export
- * @interface RaindropAllOfCreatorRef
- */
-export interface RaindropAllOfCreatorRef {
-    /**
-     * Original author (user ID) of raindrop
-     * @type {number}
-     * @memberof RaindropAllOfCreatorRef
-     */
-    '_id': number;
-    /**
-     * Original author name of a raindrop
-     * @type {string}
-     * @memberof RaindropAllOfCreatorRef
-     */
-    'fullName': string;
-}
 /**
  * This raindrop uploaded from desktop [Supported file formats](https://help.raindrop.io/article/48-uploading-files)
  * @export
@@ -1398,13 +1471,19 @@ export interface RaindropBase {
      * @type {number}
      * @memberof RaindropBase
      */
-    'order': number;
+    'sort'?: number;
     /**
      * Marked as \"favorite\"
      * @type {boolean}
      * @memberof RaindropBase
      */
     'important': boolean;
+    /**
+     * 
+     * @type {RaindropBaseReminder}
+     * @memberof RaindropBase
+     */
+    'reminder': RaindropBaseReminder;
     /**
      * Tags list
      * @type {Array<string>}
@@ -1446,6 +1525,12 @@ export interface RaindropBase {
      * @type {string}
      * @memberof RaindropBase
      */
+    'note': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RaindropBase
+     */
     'title': string;
     /**
      * 
@@ -1471,7 +1556,34 @@ export interface RaindropBaseMediaInner {
      * @type {string}
      * @memberof RaindropBaseMediaInner
      */
+    'type': RaindropBaseMediaInnerTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof RaindropBaseMediaInner
+     */
     'link': string;
+}
+
+export const RaindropBaseMediaInnerTypeEnum = {
+    Link: 'link',
+    Image: 'image'
+} as const;
+
+export type RaindropBaseMediaInnerTypeEnum = typeof RaindropBaseMediaInnerTypeEnum[keyof typeof RaindropBaseMediaInnerTypeEnum];
+
+/**
+ * 
+ * @export
+ * @interface RaindropBaseReminder
+ */
+export interface RaindropBaseReminder {
+    /**
+     * 
+     * @type {string}
+     * @memberof RaindropBaseReminder
+     */
+    'date': string | null;
 }
 /**
  * 
@@ -1491,6 +1603,18 @@ export interface RaindropResponseMany {
      * @memberof RaindropResponseMany
      */
     'items': Array<Raindrop>;
+    /**
+     * 
+     * @type {number}
+     * @memberof RaindropResponseMany
+     */
+    'count': number;
+    /**
+     * Collection ID. Reserved system collection IDs are:  - -99 for Trash - -1 for Unsorted - 0 for All
+     * @type {number}
+     * @memberof RaindropResponseMany
+     */
+    'collectionId': number;
 }
 /**
  * 
@@ -1510,6 +1634,12 @@ export interface RaindropResponseOne {
      * @memberof RaindropResponseOne
      */
     'item': Raindrop;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RaindropResponseOne
+     */
+    'author': boolean;
 }
 /**
  * 
@@ -1925,6 +2055,31 @@ export interface SuggestResponse {
      * @memberof SuggestResponse
      */
     'item': Suggest;
+}
+/**
+ * 
+ * @export
+ * @interface TokenErrorResponse
+ */
+export interface TokenErrorResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof TokenErrorResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof TokenErrorResponse
+     */
+    'status': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof TokenErrorResponse
+     */
+    'errorMessage': string;
 }
 /**
  * 
@@ -2440,6 +2595,12 @@ export interface UserFiles {
 export interface UserRef {
     /**
      * 
+     * @type {string}
+     * @memberof UserRef
+     */
+    '$ref': string;
+    /**
+     * 
      * @type {number}
      * @memberof UserRef
      */
@@ -2596,7 +2757,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<TokenResponse>> {
+        async getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrRefreshToken200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getOrRefreshToken(getOrRefreshTokenRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['AuthenticationApi.getOrRefreshToken']?.[index]?.url;
@@ -2630,7 +2791,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: any): AxiosPromise<TokenResponse> {
+        getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: any): AxiosPromise<GetOrRefreshToken200Response> {
             return localVarFp.getOrRefreshToken(getOrRefreshTokenRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -5174,13 +5335,13 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @summary Get raindrops
          * @param {number} collectionId Collection ID
          * @param {string} [sort] 
-         * @param {string} [perpage] 
-         * @param {string} [page] 
+         * @param {number} [perpage] 
+         * @param {number} [page] 
          * @param {string} [search] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRaindrops: async (collectionId: number, sort?: string, perpage?: string, page?: string, search?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRaindrops: async (collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'collectionId' is not null or undefined
             assertParamExists('getRaindrops', 'collectionId', collectionId)
             const localVarPath = `/rest/v1/raindrops/{collectionId}`
@@ -5634,13 +5795,13 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @summary Get raindrops
          * @param {number} collectionId Collection ID
          * @param {string} [sort] 
-         * @param {string} [perpage] 
-         * @param {string} [page] 
+         * @param {number} [perpage] 
+         * @param {number} [page] 
          * @param {string} [search] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRaindrops(collectionId: number, sort?: string, perpage?: string, page?: string, search?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseMany>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRaindrops(collectionId, sort, perpage, page, search, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['RaindropApi.getRaindrops']?.[index]?.url;
@@ -5811,13 +5972,13 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
          * @summary Get raindrops
          * @param {number} collectionId Collection ID
          * @param {string} [sort] 
-         * @param {string} [perpage] 
-         * @param {string} [page] 
+         * @param {number} [perpage] 
+         * @param {number} [page] 
          * @param {string} [search] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRaindrops(collectionId: number, sort?: string, perpage?: string, page?: string, search?: string, options?: any): AxiosPromise<void> {
+        getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: any): AxiosPromise<RaindropResponseMany> {
             return localVarFp.getRaindrops(collectionId, sort, perpage, page, search, options).then((request) => request(axios, basePath));
         },
         /**
@@ -5969,14 +6130,14 @@ export class RaindropApi extends BaseAPI {
      * @summary Get raindrops
      * @param {number} collectionId Collection ID
      * @param {string} [sort] 
-     * @param {string} [perpage] 
-     * @param {string} [page] 
+     * @param {number} [perpage] 
+     * @param {number} [page] 
      * @param {string} [search] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public getRaindrops(collectionId: number, sort?: string, perpage?: string, page?: string, search?: string, options?: AxiosRequestConfig) {
+    public getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: AxiosRequestConfig) {
         return RaindropApiFp(this.configuration).getRaindrops(collectionId, sort, perpage, page, search, options).then((request) => request(this.axios, this.basePath));
     }
 

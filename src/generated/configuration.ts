@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Raindrop API (Unofficial)
- * This document is hand-crafted, **UNOFFICIAL** OpenAPI specification of Raindrop API.  Currently, as so far as we discovered, the official API documentation is outdated and not maintained well such as lacking some fields, mismatching actual response schema.
+ * **UNOFFICIAL** OpenAPI specification of Raindrop API.  This OpenAPI spec has been made by hand with reference to official documentation because it is not provided by Raindrop.io.  Because official documentation not maintained well, there are very (highly) likely to have mismatch in schemas. As we can\'t inspect and address all issues, schema being updated as we find issues.  Any contributions are welcome. Bug report, schema update, adding descriptions or functions, please don\'t hesitate to create an issue.
  *
  * The version of the OpenAPI document: 0.1.0
  * 
