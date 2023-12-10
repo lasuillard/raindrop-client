@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import tokenResponse from '../tests/fixtures/token.json';
+import tokenResponse from '../../tests/fixtures/token.json';
 import {
 	Configuration,
 	GetOrRefreshToken200Response,
@@ -11,7 +11,7 @@ import {
 	TokenErrorResponse,
 	TokenResponse,
 	AuthenticationApi as _AuthenticationApi
-} from './generated';
+} from '../generated';
 
 export class AuthenticationApi extends _AuthenticationApi {
 	/**

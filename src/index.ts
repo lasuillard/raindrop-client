@@ -1,10 +1,11 @@
-import * as api from './generated';
-export default api;
+import * as client from './client';
+import * as generated from './generated'; // For those who think this library lacks something
+import * as utils from './utils';
 
-import * as tree from './tree';
-export { tree };
+export { client, generated, utils };
 
-export { Raindrop } from './client';
+// Handy default
+export default client.Raindrop;
 
 /* c8 ignore start */
 if (import.meta.vitest) {

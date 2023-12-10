@@ -1,9 +1,9 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import collections from '../tests/fixtures/collections-childrens.json';
-import groups from '../tests/fixtures/collections.json';
-import { Collection, Configuration, CollectionApi as _CollectionApi } from './generated';
-import { TreeNode, TreeSource, makeTree } from './tree';
+import collections from '../../tests/fixtures/collections-childrens.json';
+import groups from '../../tests/fixtures/collections.json';
+import { Collection, Configuration, CollectionApi as _CollectionApi } from '../generated';
+import { TreeNode, TreeSource, makeTree } from '../utils/tree';
 
 export class CollectionApi extends _CollectionApi {
 	/**

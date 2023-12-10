@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import raindropResponse from '../tests/fixtures/raindrops.json';
-import { Configuration, Raindrop, RaindropApi as _RaindropApi } from './generated';
+import raindropResponse from '../../tests/fixtures/raindrops.json';
+import { Configuration, Raindrop, RaindropApi as _RaindropApi } from '../generated';
 
 export interface GetAllRaindropsParams {
 	/** Sort option. See https://developer.raindrop.io/v1/raindrops/multiple#common-parameters */
