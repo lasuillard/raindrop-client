@@ -26,9 +26,9 @@ export default defineConfig({
 	test: {
 		include: [
 			'{tests,e2e}/**/*.{test,spec}.{js,ts}',
-			'src/**.{js,ts}' // In-source testing
+			'src/**/*.{js,ts}' // In-source testing
 		],
-		exclude: ['**/__mocks__/*'],
+		exclude: ['**/__mocks__/*', 'src/generated/**/*'],
 		coverage: {
 			all: true,
 			include: ['src/**'],
