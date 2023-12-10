@@ -1,6 +1,9 @@
 import * as api from './generated';
 export default api;
 
+import * as tree from './tree';
+export { tree };
+
 export { Raindrop } from './client';
 
 /* c8 ignore start */
