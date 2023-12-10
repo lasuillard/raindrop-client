@@ -14,7 +14,11 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"noFallthroughCasesInSwitch": true,
-		"types": ["vitest/importMeta"]
+		"types": ["vitest/importMeta"],
+		"paths": {
+			"^/*": ["./*"],
+			"~/*": ["./src/*"]
+		}
 	},
 	"include": ["src"]
 }

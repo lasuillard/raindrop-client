@@ -1,10 +1,12 @@
 import { resolve } from 'path';
 import dts from 'vite-plugin-dts';
+import tsconfigPaths from 'vite-tsconfig-paths';
 import { defineConfig } from 'vitest/config';
 import packageManifest from './package.json';
 
 export default defineConfig({
 	plugins: [
+		tsconfigPaths(),
 		dts({
 			rollupTypes: true
 		})

@@ -1,5 +1,5 @@
 import axios, { AxiosInstance } from 'axios';
-import { Configuration, FilterApi, HighlightApi, ImportApi, TagApi, UserApi } from '../generated';
+import { Configuration, FilterApi, HighlightApi, ImportApi, TagApi, UserApi } from '~/generated';
 import { AuthenticationApi } from './auth';
 import { CollectionApi } from './collection';
 import { RaindropApi } from './raindrop';

@@ -1,6 +1,6 @@
+import tokenResponse from '^/tests/fixtures/token.json';
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import tokenResponse from '../../tests/fixtures/token.json';
 import {
 	Configuration,
 	GetOrRefreshToken200Response,
