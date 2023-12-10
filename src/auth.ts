@@ -1,15 +1,16 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import tokenResponse from '../tests/fixtures/token.json';
 import {
-	AuthenticationApi as _AuthenticationApi,
 	Configuration,
 	GetOrRefreshToken200Response,
 	ObtainToken,
 	ObtainTokenGrantTypeEnum,
 	RefreshToken,
 	RefreshTokenGrantTypeEnum,
-	TokenErrorResponse
+	TokenErrorResponse,
+	TokenResponse,
+	AuthenticationApi as _AuthenticationApi
 } from './generated';
 
 export class AuthenticationApi extends _AuthenticationApi {
@@ -17,10 +18,14 @@ export class AuthenticationApi extends _AuthenticationApi {
 	 * Wrapper function of {@link _AuthenticationApi.getOrRefreshToken} for token exchange.
 	 * @param request {@link ObtainToken} but without `grant_type` field.
 	 * @param options Axios request configuration.
-	 * @returns Returns what {@link _AuthenticationApi.getOrRefreshToken} returns.
+	 * @returns API response.
 	 */
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	async exchangeToken(request: Omit<ObtainToken, 'grant_type'>, options?: AxiosRequestConfig<any>) {
+	async exchangeToken(
+		request: Omit<ObtainToken, 'grant_type'>,
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		options?: AxiosRequestConfig<any>
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	): Promise<AxiosResponse<TokenResponse, any>> {
 		return this.getOrRefreshToken(
 			{ ...request, grant_type: ObtainTokenGrantTypeEnum.AuthorizationCode },
 			options
@@ -28,7 +33,8 @@ export class AuthenticationApi extends _AuthenticationApi {
 			if (isErrorResponse(response.data)) {
 				throw new Error(`Request failed with error: ${response.data.errorMessage}`);
 			}
-			return response;
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			return response as AxiosResponse<TokenResponse, any>;
 		});
 	}
 
@@ -36,10 +42,14 @@ export class AuthenticationApi extends _AuthenticationApi {
 	 * Wrapper function of {@link _AuthenticationApi.getOrRefreshToken} for token refresh.
 	 * @param request {@link RefreshToken} but without `grant_type` field.
 	 * @param options Axios request configuration.
-	 * @returns Returns what {@link _AuthenticationApi.getOrRefreshToken} returns.
+	 * @returns API response.
 	 */
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	async refreshToken(request: Omit<RefreshToken, 'grant_type'>, options?: AxiosRequestConfig<any>) {
+	async refreshToken(
+		request: Omit<RefreshToken, 'grant_type'>,
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		options?: AxiosRequestConfig<any>
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	): Promise<AxiosResponse<TokenResponse, any>> {
 		return this.getOrRefreshToken(
 			{ ...request, grant_type: RefreshTokenGrantTypeEnum.RefreshToken },
 			options
@@ -47,18 +57,19 @@ export class AuthenticationApi extends _AuthenticationApi {
 			if (isErrorResponse(response.data)) {
 				throw new Error(`Request failed with error: ${response.data.errorMessage}`);
 			}
-			return response;
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			return response as AxiosResponse<TokenResponse, any>;
 		});
 	}
 }
 
 /**
  * Determine response is error or not.
- * @param response Response data to judge.
+ * @param data Response data to judge.
  * @returns Whether it is error.
  */
-function isErrorResponse(response: GetOrRefreshToken200Response): response is TokenErrorResponse {
-	return 'result' in response && response.result === false;
+function isErrorResponse(data: GetOrRefreshToken200Response): data is TokenErrorResponse {
+	return 'result' in data && data.result === false;
 }
 
 /* c8 ignore start */
