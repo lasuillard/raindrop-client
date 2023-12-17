@@ -85,7 +85,7 @@ if (import.meta.vitest) {
 
 	describe(raindropApi.getAllRaindrops, () => {
 		it('fetch full pagination results', async () => {
-			mockAxios.onGet(/https:\/\/api.raindrop.io\/rest\/v1\/raindrops\/0/).reply((config) => {
+			mockAxios.onGet(/https:\/\/api\.raindrop\.io\/rest\/v1\/raindrops\/0/).reply((config) => {
 				const params = getParams(config.url ?? '');
 				expect(params).toEqual({
 					sort: '',
@@ -103,7 +103,7 @@ if (import.meta.vitest) {
 		});
 
 		it('single page size', async () => {
-			mockAxios.onGet(/https:\/\/api.raindrop.io\/rest\/v1\/raindrops\/0/).reply((config) => {
+			mockAxios.onGet(/https:\/\/api\.raindrop\.io\/rest\/v1\/raindrops\/0/).reply((config) => {
 				const params = getParams(config.url ?? '');
 				expect(params).toEqual({
 					sort: '',
@@ -120,7 +120,7 @@ if (import.meta.vitest) {
 
 		it('collection not found', () => {
 			mockAxios
-				.onGet(/https:\/\/api.raindrop.io\/rest\/v1\/raindrops\/35947374/)
+				.onGet(/https:\/\/api\.raindrop\.io\/rest\/v1\/raindrops\/35947374/)
 				.reply((config) => {
 					const params = getParams(config.url ?? '');
 					expect(params).toEqual({
