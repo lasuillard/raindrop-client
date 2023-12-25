@@ -81,7 +81,7 @@ jobs:
         run: pnpm run make-docs
 
       - name: Upload docs artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         if: ${{ github.event_name == 'push' }}
         with:
           path: docs/
