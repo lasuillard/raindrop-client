@@ -115,7 +115,7 @@ jobs:
     steps:
       - name: Publish API docs to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4
 
   build-and-publish:
     name: Build and Publish
