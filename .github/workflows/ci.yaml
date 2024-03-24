@@ -39,7 +39,7 @@ jobs:
       - uses: pre-commit-ci/lite-action@v1.0.2
         if: always()
 
-      - name: Upload unittest coverage report
+      - name: Upload coverage report
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
