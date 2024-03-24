@@ -1,17 +1,14 @@
 {
 	"name": "lasuillard/raindrop-client",
-	"dockerComposeFile": ["../docker-compose.yaml", "./docker-compose.override.yaml"],
-	"runServices": ["workspace"],
-	"service": "workspace",
-	"overrideCommand": true,
-	"initializeCommand": "./.devcontainer/initializeCommand.sh",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/pnpm:2": {},
+		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
+		"ghcr.io/devcontainers/features/java:1": {}
+	},
 	"onCreateCommand": "./.devcontainer/onCreateCommand.sh",
-	"updateContentCommand": "./.devcontainer/updateContentCommand.sh",
-	"postCreateCommand": "./.devcontainer/postCreateCommand.sh",
-	"postStartCommand": "./.devcontainer/postStartCommand.sh",
 	"postAttachCommand": "./.devcontainer/postAttachCommand.sh",
-	"shutdownAction": "stopCompose",
-	"workspaceFolder": "/workspaces/raindrop-client",
+	"postCreateCommand": "./.devcontainer/postCreateCommand.sh",
 	"customizations": {
 		"vscode": {
 			"extensions": [
@@ -26,5 +23,11 @@
 				"vivaxy.vscode-conventional-commits"
 			]
 		}
+	},
+	"containerEnv": {
+		"PNPM_HOME": "/pnpm"
+	},
+	"remoteEnv": {
+		"PATH": "${containerEnv:PATH}:${containerEnv:PNPM_HOME}"
 	}
 }

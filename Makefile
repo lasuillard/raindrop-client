@@ -28,16 +28,15 @@ install:  ## Install the app locally
 .PHONY: install
 
 init:  ## Initialize project repository
-	git submodule update --init
 	pre-commit autoupdate
-	pre-commit install --install-hooks --hook-type pre-commit --hook-type commit-msg
+	pre-commit install --install-hooks --hook-type pre-commit
 .PHONY: init
 
 
 # =============================================================================
 # CI
 # =============================================================================
-ci: generate lint scan test benchmark e2e-test  ## Run CI tasks
+ci: generate lint test  ## Run CI tasks
 .PHONY: ci
 
 generate:  ## Generate codes from schemas
@@ -68,21 +67,9 @@ lint: generate  ## Run all linters
 	pnpm exec tsc --noEmit
 .PHONY: lint
 
-scan:  ## Run all scans
-	checkov --quiet --directory .
-.PHONY: scan
-
 test: generate  ## Run tests
 	pnpm run test
 .PHONY: test
-
-benchmark:  ## Run benchmarks
-
-.PHONY: benchmark
-
-e2e-test: generate  ## Run e2e tests
-	pnpm run e2e
-.PHONY: e2e-test
 
 docs:  ## Generate dev documents
 	pnpm run make-docs

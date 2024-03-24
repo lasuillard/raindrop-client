@@ -2,21 +2,12 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
-    tags:
-      - v*
-    paths-ignore:
-      - '.devcontainer/**'
-      - '.vscode/**'
-      - '**.md'
+    branches: [main]
+    tags: [v*]
+
   pull_request:
-    branches:
-      - main
-    paths-ignore:
-      - '.devcontainer/**'
-      - '.vscode/**'
-      - '**.md'
+    branches: [main]
+
   workflow_dispatch:
 
 permissions: read-all
@@ -31,7 +22,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up PNPM
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v3
         with:
           version: latest
 
@@ -44,109 +35,13 @@ jobs:
       - name: Install PNPM deps
         run: pnpm install
 
-      - name: Check generated codes are up to date
-        run: make generate
-
-      - name: Lint code
-        run: pnpm exec eslint .
-
-      - name: Run type checks
-        run: pnpm exec tsc --noEmit
-
-      - name: Run tests
-        run: pnpm run test
+      - uses: pre-commit/action@v3.0.1
+      - uses: pre-commit-ci/lite-action@v1.0.2
+        if: always()
 
       - name: Upload unittest coverage report
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: false
-          files: coverage/unit/clover.xml
-          flags: unit
-
-      - name: Run end-to-end tests
-        run: |
-          pnpm run build
-          pnpm run e2e
-
-      - name: Upload e2e coverage report
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          fail_ci_if_error: false
-          files: coverage/e2e/clover.xml
-          flags: e2e
-
-      - name: Generate API docs
-        run: pnpm run make-docs
-
-      - name: Upload docs artifact
-        uses: actions/upload-pages-artifact@v2
-        if: ${{ github.event_name == 'push' }}
-        with:
-          path: docs/
-
-  release:
-    name: Release
-    needs: lint-and-test
-    runs-on: ubuntu-latest
-    if: startswith(github.ref, 'refs/tags/v') # For v* tags
-    permissions:
-      contents: write
-    steps:
-      - name: Create release
-        uses: softprops/action-gh-release@v1
-        with:
-          generate_release_notes: true
-
-  api-docs:
-    name: API Docs
-    needs: release
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    concurrency:
-      group: pages
-      cancel-in-progress: false
-    steps:
-      - name: Publish API docs to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v3
-
-  build-and-publish:
-    name: Build and Publish
-    needs: release
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up PNPM
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-
-      - name: Set up Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .node-version
-          cache: pnpm
-          registry-url: https://npm.pkg.github.com
-
-      - name: Install PNPM deps
-        run: pnpm install
-
-      - name: Build app
-        run: pnpm run build
-
-      - name: Publish package
-        env:
-          NODE_AUTH_TOKEN: ${{ github.token }}
-        run: pnpm publish --no-git-checks # BUG: https://github.com/pnpm/pnpm/issues/5894
+          files: coverage/clover.xml

@@ -6,12 +6,6 @@ exclude: |
 default_stages: [commit]
 fail_fast: true
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
-    hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-
   - repo: local
     hooks:
       - id: generate
@@ -35,6 +29,14 @@ repos:
         entry: pnpm exec eslint
         args: [--fix]
 
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+
+  - repo: local
+    hooks:
       - id: typescript
         name: Type check with TypeScript
         language: system
