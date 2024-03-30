@@ -14,25 +14,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up PNPM
-        uses: pnpm/action-setup@v3
-        with:
-          version: latest
-
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
-          cache: pnpm
+          cache: yarn
 
-      - name: Install PNPM deps
-        run: pnpm install
+      - name: Install deps
+        run: yarn install --frozen-lockfile
 
       - name: Build package
-        run: pnpm run build
+        run: yarn run build
 
       - name: Generate API docs
-        run: pnpm run make-docs
+        run: yarn run make-docs
 
       - name: Upload docs artifact
         uses: actions/upload-pages-artifact@v3

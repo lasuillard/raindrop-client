@@ -16,23 +16,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up PNPM
-        uses: pnpm/action-setup@v3
-        with:
-          version: latest
-
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version-file: .node-version
-          cache: pnpm
-          registry-url: https://npm.pkg.github.com
+          cache: yarn
 
-      - name: Install PNPM deps
-        run: pnpm install
+      - name: Install deps
+        run: yarn install --frozen-lockfile
 
       - name: Build app
-        run: pnpm run build
+        run: yarn run build
 
       - name: Create release
         uses: softprops/action-gh-release@v2
@@ -63,4 +57,4 @@ jobs:
       - name: Publish package
         env:
           NODE_AUTH_TOKEN: ${{ github.token }}
-        run: pnpm publish --no-git-checks # BUG: https://github.com/pnpm/pnpm/issues/5894
+        run: yarn publish

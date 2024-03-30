@@ -23,14 +23,15 @@ help: Makefile  ## Show help
 # =============================================================================
 # Common
 # =============================================================================
-install:  ## Install the app locally
-	pnpm install
+install:  ## Install deps and tools
+	yarn install
+	pre-commit install --install-hooks
 .PHONY: install
 
-init:  ## Initialize project repository
+update:  ## Update deps and tools
+	yarn upgrade
 	pre-commit autoupdate
-	pre-commit install --install-hooks --hook-type pre-commit
-.PHONY: init
+.PHONY: update
 
 
 # =============================================================================
@@ -47,7 +48,7 @@ generate:  ## Generate codes from schemas
 	}
 
 	before="$$(sig)"
-	pnpm run generate
+	yarn run generate
 	after="$$(sig)"
 
 	if [[ "$$after" != "$$before" ]]; then
@@ -57,22 +58,22 @@ generate:  ## Generate codes from schemas
 .PHONY: generate
 
 format:  ## Run autoformatters
-	pnpm exec prettier --list-different --write .
-	pnpm exec eslint --fix .
+	yarn run prettier --list-different --write .
+	yarn run eslint --fix .
 .PHONY: format
 
 lint: generate  ## Run all linters
-	pnpm exec prettier --check .
-	pnpm exec eslint .
-	pnpm exec tsc --noEmit
+	yarn run prettier --check .
+	yarn run eslint .
+	yarn run tsc --noEmit
 .PHONY: lint
 
 test: generate  ## Run tests
-	pnpm run test
+	yarn run test
 .PHONY: test
 
 docs:  ## Generate dev documents
-	pnpm run make-docs
+	yarn run make-docs
 .PHONY: docs
 
 

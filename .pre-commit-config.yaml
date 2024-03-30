@@ -19,14 +19,14 @@ repos:
         name: Format with Prettier
         language: system
         types_or: [javascript, ts, json, yaml]
-        entry: pnpm exec prettier
+        entry: yarn run prettier
         args: [--write]
 
       - id: eslint
         name: Lint with ESLint
         language: system
         types_or: [javascript, ts]
-        entry: pnpm exec eslint
+        entry: yarn run eslint
         args: [--fix]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -42,7 +42,7 @@ repos:
         language: system
         types_or: [javascript, ts]
         pass_filenames: false
-        entry: pnpm exec tsc
+        entry: yarn run tsc
         args: [--noEmit]
 
       - id: vitest
@@ -50,4 +50,4 @@ repos:
         language: system
         types_or: [javascript, ts]
         pass_filenames: false
-        entry: pnpm run test
+        entry: yarn run test

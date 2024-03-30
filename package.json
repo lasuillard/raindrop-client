@@ -34,7 +34,7 @@
 		"preview": "vite preview",
 		"test": "vitest --coverage --run src tests",
 		"test:watch": "vitest --silent --coverage --watch --ui src tests",
-		"make-docs": "pnpm exec typedoc --plugin typedoc-plugin-missing-exports src"
+		"make-docs": "yarn run typedoc --plugin typedoc-plugin-missing-exports src"
 	},
 	"devDependencies": {
 		"@openapitools/openapi-generator-cli": "^2.13.1",
