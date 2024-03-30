@@ -57,4 +57,4 @@ jobs:
       - name: Publish package
         env:
           NODE_AUTH_TOKEN: ${{ github.token }}
-        run: yarn publish
+        run: yarn publish ./dist
