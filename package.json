@@ -27,6 +27,9 @@
 	"files": [
 		"dist"
 	],
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
 		"generate": "openapi-generator-cli generate -i openapi.yaml -g typescript-axios -o ./src/generated/ --skip-validate-spec",
 		"dev": "vite",
