@@ -6,6 +6,7 @@
 		"ghcr.io/devcontainers/features/java:1": {}
 	},
 	"onCreateCommand": "./.devcontainer/onCreateCommand.sh",
+	"postAttachCommand": "pre-commit install",
 	"customizations": {
 		"vscode": {
 			"extensions": [
