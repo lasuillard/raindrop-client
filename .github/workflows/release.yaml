@@ -22,7 +22,7 @@ jobs:
         with:
           node-version-file: .node-version
           cache: yarn
-          registry-url: https://npm.pkg.github.com
+          registry-url: https://registry.npmjs.org
           scope: '@lasuillard'
 
       - name: Install deps
@@ -39,5 +39,5 @@ jobs:
 
       - name: Publish package
         env:
-          NODE_AUTH_TOKEN: ${{ github.token }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: yarn publish
