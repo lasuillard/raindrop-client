@@ -18,7 +18,8 @@
 				"streetsidesoftware.code-spell-checker",
 				"editorconfig.editorconfig",
 				"vitest.explorer",
-				"vivaxy.vscode-conventional-commits"
+				"vivaxy.vscode-conventional-commits",
+				"42Crunch.vscode-openapi"
 			]
 		}
 	}
