@@ -1,6 +1,6 @@
+import { it } from '^/tests/_helpers';
+import tokenResponse from '^/tests/fixtures/token.json';
 import { describe, expect } from 'vitest';
-import { it } from '../_helpers';
-import tokenResponse from '../fixtures/token.json';
 
 // For sample data creation
 const client_id = '<CLIENT_ID>';
@@ -9,7 +9,7 @@ const redirect_uri = '<REDIRECT_URI>';
 const code = '<AUTHORIZATION_CODE>';
 const refresh_token = '<REFRESH_TOKEN>';
 
-describe('authApi.exchangeToken', () => {
+describe('auth.exchangeToken', () => {
 	it('exchange authorization code with access token', async ({ mockAxios, client }) => {
 		mockAxios.onPost('https://api.raindrop.io/v1/oauth/access_token').reply((config) => {
 			expect(JSON.parse(config.data)).toEqual({
@@ -89,7 +89,7 @@ describe('authApi.exchangeToken', () => {
 	});
 });
 
-describe('authApi.refreshToken', () => {
+describe('auth.refreshToken', () => {
 	it('refresh token', async ({ mockAxios, client }) => {
 		mockAxios.onPost('https://api.raindrop.io/v1/oauth/access_token').reply((config) => {
 			expect(JSON.parse(config.data)).toEqual({

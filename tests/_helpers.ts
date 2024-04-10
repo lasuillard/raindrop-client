@@ -1,48 +1,41 @@
 import { Configuration } from '^/src/generated';
-import * as _axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { test as base } from 'vitest';
-import { Raindrop } from '../src/client';
+import { Raindrop } from '~/client';
 
-// eslint-disable-next-line jsdoc/require-jsdoc
-async function axios(
-	// eslint-disable-next-line no-empty-pattern
-	{},
-	// @ts-expect-error Don't know type of `use()`
-	use
-) {
-	await use(_axios);
+// @ts-expect-error Don't waste time typing this
+// eslint-disable-next-line no-empty-pattern, jsdoc/require-jsdoc
+async function axiosInstance({}, use) {
+	const instance = axios.create();
+	await use(instance);
 }
 
+// @ts-expect-error Don't waste time typing this
 // eslint-disable-next-line jsdoc/require-jsdoc
-async function mockAxios(
-	{ axios }: { axios: _axios.AxiosInstance },
-	// @ts-expect-error Don't know type of `use()`
-	use
-) {
-	const mockAxios = new MockAdapter(axios, { onNoMatch: 'throwException' });
+async function mockAxios({ axiosInstance }, use) {
+	const mockAxios = new MockAdapter(axiosInstance, { onNoMatch: 'throwException' });
 	await use(mockAxios);
+	mockAxios.resetHandlers();
+	mockAxios.resetHistory();
 }
 
+// @ts-expect-error Don't waste time typing this
 // eslint-disable-next-line jsdoc/require-jsdoc
-async function client(
-	{ axios }: { axios: _axios.AxiosInstance },
-	// @ts-expect-error Don't know type of `use()`
-	use
-) {
-	const client = new Raindrop(new Configuration(), axios);
+async function client({ axiosInstance }, use) {
+	const client = new Raindrop(new Configuration(), axiosInstance);
 	await use(client);
 }
 
 export const it = base.extend({
-	axios,
+	axiosInstance,
 	mockAxios,
 	client
 });
 
 declare module 'vitest' {
 	export interface TestContext {
-		axios: _axios.AxiosInstance;
+		axiosInstance: AxiosInstance;
 		mockAxios: MockAdapter;
 		client: Raindrop;
 	}

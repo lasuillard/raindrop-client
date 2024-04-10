@@ -22,15 +22,9 @@ export default defineConfig({
 		},
 		target: 'ESNext'
 	},
-	define: {
-		'import.meta.vitest': 'undefined'
-	},
 	test: {
-		include: [
-			'tests/**/*.{test,spec}.{js,ts}',
-			'src/**/*.{js,ts}' // In-source testing
-		],
-		exclude: ['**/__mocks__/*', 'src/generated/**/*'],
+		include: ['tests/**/*.{test,spec}.{js,ts}'],
+		exclude: ['**/__mocks__/*'],
 		coverage: {
 			all: true,
 			include: ['src/**'],

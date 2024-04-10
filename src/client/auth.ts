@@ -8,7 +8,7 @@ import {
 	TokenErrorResponse,
 	TokenResponse,
 	AuthenticationApi as _AuthenticationApi
-} from '../generated';
+} from '~/generated';
 
 export class AuthenticationApi extends _AuthenticationApi {
 	/**
@@ -68,11 +68,3 @@ export class AuthenticationApi extends _AuthenticationApi {
 function isErrorResponse(data: GetOrRefreshToken200Response): data is TokenErrorResponse {
 	return 'result' in data && data.result === false;
 }
-
-/* c8 ignore start */
-if (import.meta.vitest) {
-	const { it } = import.meta.vitest;
-
-	it.skip('Nothing to test here');
-}
-/* c8 ignore stop */
