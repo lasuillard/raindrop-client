@@ -1,0 +1,1773 @@
+{
+	"uuid": "3c987817-d96e-404c-b0ae-5eb429dd642b",
+	"lastMigration": 32,
+	"name": "Raindrop client",
+	"endpointPrefix": "",
+	"latency": 0,
+	"port": 3000,
+	"hostname": "0.0.0.0",
+	"folders": [
+		{
+			"uuid": "05291f9e-71be-4892-8e16-90a5659013a9",
+			"name": "collection",
+			"children": [
+				{
+					"type": "route",
+					"uuid": "2140061f-46bb-472d-a46c-0f65653f38a8"
+				},
+				{
+					"type": "route",
+					"uuid": "156bf63e-5a09-40b4-b182-f64fb4efe9fb"
+				},
+				{
+					"type": "route",
+					"uuid": "53cbb43b-0dd6-4f66-b796-ad41942e75d5"
+				},
+				{
+					"type": "route",
+					"uuid": "02d084a6-47ad-48c8-b6f9-29dc10a12e1b"
+				},
+				{
+					"type": "route",
+					"uuid": "5ccaec8e-3308-44df-be70-c6ab12a68eb0"
+				},
+				{
+					"type": "route",
+					"uuid": "c885acdb-67e4-4a43-b346-4eea3f05541b"
+				},
+				{
+					"type": "route",
+					"uuid": "e56eca26-fa40-4956-8296-c89f8c0028bd"
+				},
+				{
+					"type": "route",
+					"uuid": "df924ce8-1556-46e0-ac71-dfac8ffb1faa"
+				},
+				{
+					"type": "route",
+					"uuid": "a38958b2-a092-4114-bcf0-4990fcb712bc"
+				},
+				{
+					"type": "route",
+					"uuid": "140ea76a-1b2c-4d63-8924-067650e71744"
+				},
+				{
+					"type": "route",
+					"uuid": "2263d85d-4bbb-4573-8b0f-977088a6605d"
+				},
+				{
+					"type": "route",
+					"uuid": "06142479-d026-482c-ae21-d3af6f5544fd"
+				},
+				{
+					"type": "route",
+					"uuid": "212b7195-deb5-48e5-9ced-126af74b7a4b"
+				},
+				{
+					"type": "route",
+					"uuid": "f3258eda-06ae-45fb-a7c6-af1113cf5c9f"
+				},
+				{
+					"type": "route",
+					"uuid": "748739af-465c-4f19-b889-3d35d42ace44"
+				},
+				{
+					"type": "route",
+					"uuid": "db3df4ed-c348-4e56-815c-ac51fdd71fd1"
+				},
+				{
+					"type": "route",
+					"uuid": "baaae59e-b146-4240-b282-ec62dbf0e75a"
+				},
+				{
+					"type": "route",
+					"uuid": "c1e72738-af68-4850-95c6-9875cc7a8924"
+				},
+				{
+					"type": "route",
+					"uuid": "db31ea4a-1f0f-4365-a774-91c095cfe9d9"
+				},
+				{
+					"type": "route",
+					"uuid": "39f246c4-7c5c-4d87-850c-5faf94c07f30"
+				}
+			]
+		},
+		{
+			"uuid": "d83b6f2f-9376-419e-a092-f4aba608267d",
+			"name": "authentication",
+			"children": [
+				{
+					"type": "route",
+					"uuid": "840a4064-7936-4cb3-97b6-719623dd4599"
+				},
+				{
+					"type": "route",
+					"uuid": "55ef743c-615e-4baf-b15a-0efa2b462ae2"
+				}
+			]
+		},
+		{
+			"uuid": "7459849a-9b27-4178-83f2-49bb6e89f681",
+			"name": "raindrop",
+			"children": [
+				{
+					"type": "route",
+					"uuid": "9520a022-19cb-48d7-9362-f9d1bc584d0d"
+				},
+				{
+					"type": "route",
+					"uuid": "af6d504a-5e40-4453-a03a-ca7ed7db6314"
+				},
+				{
+					"type": "route",
+					"uuid": "765d841e-9bb8-4539-9364-c6b1928cdecc"
+				},
+				{
+					"type": "route",
+					"uuid": "635d46c7-bd46-483c-a17c-87671fb0b04d"
+				},
+				{
+					"type": "route",
+					"uuid": "e84c7c7f-461a-42a1-b929-1952d4260481"
+				},
+				{
+					"type": "route",
+					"uuid": "de5feace-a0d0-4340-9136-e5331e2ee6e9"
+				},
+				{
+					"type": "route",
+					"uuid": "9a7e9131-d59f-441f-be2f-d4d15f0d1f8b"
+				},
+				{
+					"type": "route",
+					"uuid": "95decc96-b75a-4f9a-a7d4-0e216bb5c771"
+				},
+				{
+					"type": "route",
+					"uuid": "b9a02fd6-9d82-4ad9-a31e-41379eae1a83"
+				},
+				{
+					"type": "route",
+					"uuid": "3dee1335-b86b-475d-bc4c-b8ea4f253df9"
+				},
+				{
+					"type": "route",
+					"uuid": "06727912-124b-44f3-9002-f9dd29f8b5c6"
+				},
+				{
+					"type": "route",
+					"uuid": "bdab3e4b-42cb-4a01-bd05-6ebffbfa5f29"
+				},
+				{
+					"type": "route",
+					"uuid": "48f5b674-c384-4288-ad3e-3d924e0c5acf"
+				}
+			]
+		},
+		{
+			"uuid": "89f3fdd5-97c8-466e-b62f-3e6420020403",
+			"name": "highlight",
+			"children": [
+				{
+					"type": "route",
+					"uuid": "c35d12fc-e3ac-4d66-a42e-0e60f38806b3"
+				},
+				{
+					"type": "route",
+					"uuid": "cfc628ae-17c6-4074-b153-33175aa50ee8"
+				}
+			]
+		},
+		{
+			"uuid": "28a44a38-e368-49eb-beeb-543b305f7b63",
+			"name": "user",
+			"children": [
+				{
+					"type": "route",
+					"uuid": "41e04cb0-5a98-46e4-8282-ab2a827b307c"
+				},
+				{
+					"type": "route",
+					"uuid": "d5535b2d-c0f4-4ac8-823b-8d6e9b4be178"
+				},
+				{
+					"type": "route",
+					"uuid": "3c7fd60d-d99a-4f9c-8630-561b2328cb9c"
+				},
+				{
+					"type": "route",
+					"uuid": "fbba92f9-b80f-4881-81ae-750bb1f270ff"
+				},
+				{
+					"type": "route",
+					"uuid": "63a2569b-8692-4146-83ec-7cc725b688e1"
+				},
+				{
+					"type": "route",
+					"uuid": "93c4de84-9ee2-4ef2-b3c2-f3bf25f3bf4b"
+				}
+			]
+		},
+		{
+			"uuid": "ae956b09-4f26-4fc1-baba-918440d8eeaf",
+			"name": "tag",
+			"children": [
+				{
+					"type": "route",
+					"uuid": "e3d98030-0df7-49d2-a7ce-8792ba09a5a2"
+				},
+				{
+					"type": "route",
+					"uuid": "2fea3db6-ca79-447e-aa38-96694ad65147"
+				},
+				{
+					"type": "route",
+					"uuid": "cd89c239-5a82-4680-be94-582f7396b19e"
+				}
+			]
+		},
+		{
+			"uuid": "1150a3e1-06ba-45ed-b0fd-fe26825540c6",
+			"name": "filter",
+			"children": [
+				{
+					"type": "route",
+					"uuid": "e4417691-46c9-4150-9368-6997426a06c7"
+				}
+			]
+		},
+		{
+			"uuid": "1f2158d8-f3da-4139-9639-d79a6f5b6fb5",
+			"name": "import",
+			"children": [
+				{
+					"type": "route",
+					"uuid": "49d332e6-ced0-481d-9689-895fec089374"
+				},
+				{
+					"type": "route",
+					"uuid": "e3bc5fe8-1642-44e9-bb09-169e9c7fbd0d"
+				},
+				{
+					"type": "route",
+					"uuid": "22a7a877-8127-4ada-8cbc-71c319043fa0"
+				}
+			]
+		}
+	],
+	"routes": [
+		{
+			"uuid": "2140061f-46bb-472d-a46c-0f65653f38a8",
+			"type": "http",
+			"documentation": "getRootCollections",
+			"method": "get",
+			"endpoint": "rest/v1/collections",
+			"responses": [
+				{
+					"uuid": "6ec54793-320d-4e89-a721-04edbf6f2f5a",
+					"body": "{\r\n\t\"result\": true,\r\n\t\"items\": [\r\n\t\t{\r\n\t\t\t\"_id\": 32203872,\r\n\t\t\t\"title\": \"Default\",\r\n\t\t\t\"description\": \"\",\r\n\t\t\t\"public\": false,\r\n\t\t\t\"view\": \"list\",\r\n\t\t\t\"count\": 338,\r\n\t\t\t\"cover\": [\r\n\t\t\t\t\"https://up.raindrop.io/collection/thumbs/322/038/72/fe53b320ca84edcd0ab71a6444264638.png\"\r\n\t\t\t],\r\n\t\t\t\"expanded\": false,\r\n\t\t\t\"sort\": 0,\r\n\t\t\t\"user\": {\r\n\t\t\t\t\"$ref\": \"users\",\r\n\t\t\t\t\"$id\": 1215940\r\n\t\t\t},\r\n\t\t\t\"creatorRef\": {\r\n\t\t\t\t\"_id\": 1215940,\r\n\t\t\t\t\"name\": \"lasuillard\",\r\n\t\t\t\t\"email\": \"\"\r\n\t\t\t},\r\n\t\t\t\"lastAction\": \"2023-06-22T13:56:36.378Z\",\r\n\t\t\t\"created\": \"2023-03-08T10:57:28.763Z\",\r\n\t\t\t\"lastUpdate\": \"2023-08-10T00:19:12.213Z\",\r\n\t\t\t\"slug\": \"default\",\r\n\t\t\t\"color\": \"#20394d\",\r\n\t\t\t\"access\": {\r\n\t\t\t\t\"for\": 1215940,\r\n\t\t\t\t\"level\": 4,\r\n\t\t\t\t\"root\": false,\r\n\t\t\t\t\"draggable\": true\r\n\t\t\t},\r\n\t\t\t\"author\": true\r\n\t\t}\r\n\t]\r\n}\r\n",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "156bf63e-5a09-40b4-b182-f64fb4efe9fb",
+			"type": "http",
+			"documentation": "reorderAllCollections",
+			"method": "put",
+			"endpoint": "rest/v1/collections",
+			"responses": [
+				{
+					"uuid": "86e93a16-1681-4144-bdf7-fda93086a6ce",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "840a4064-7936-4cb3-97b6-719623dd4599",
+			"type": "http",
+			"documentation": "authorize",
+			"method": "get",
+			"endpoint": "v1/oauth/authorize",
+			"responses": [
+				{
+					"uuid": "8ade9cc0-cbc5-480e-80df-069e999f3f25",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "55ef743c-615e-4baf-b15a-0efa2b462ae2",
+			"type": "http",
+			"documentation": "getOrRefreshToken",
+			"method": "post",
+			"endpoint": "v1/oauth/access_token",
+			"responses": [
+				{
+					"uuid": "96f9c932-7878-4d0e-b74d-774020e5aed5",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "53cbb43b-0dd6-4f66-b796-ad41942e75d5",
+			"type": "http",
+			"documentation": "removeCollections",
+			"method": "delete",
+			"endpoint": "rest/v1/collections",
+			"responses": [
+				{
+					"uuid": "fb7540ef-5ddd-481a-811c-57a3cec441f8",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "02d084a6-47ad-48c8-b6f9-29dc10a12e1b",
+			"type": "http",
+			"documentation": "getChildCollections",
+			"method": "get",
+			"endpoint": "rest/v1/collections/childrens",
+			"responses": [
+				{
+					"uuid": "53d2ba82-b5ec-4d6b-a95a-f2dd8ab4150a",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "5ccaec8e-3308-44df-be70-c6ab12a68eb0",
+			"type": "http",
+			"documentation": "getCollection",
+			"method": "get",
+			"endpoint": "rest/v1/collection/{id}",
+			"responses": [
+				{
+					"uuid": "ac39b786-4908-40f1-8dc2-bbf38c93ba37",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "c885acdb-67e4-4a43-b346-4eea3f05541b",
+			"type": "http",
+			"documentation": "updateCollection",
+			"method": "put",
+			"endpoint": "rest/v1/collection/{id}",
+			"responses": [
+				{
+					"uuid": "cc3c7377-f94c-4b8e-b74b-6e9e7a2693b4",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "e56eca26-fa40-4956-8296-c89f8c0028bd",
+			"type": "http",
+			"documentation": "removeCollection",
+			"method": "delete",
+			"endpoint": "rest/v1/collection/{id}",
+			"responses": [
+				{
+					"uuid": "cda4494e-2209-456a-843b-7e8c41461899",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "df924ce8-1556-46e0-ac71-dfac8ffb1faa",
+			"type": "http",
+			"documentation": "createCollection",
+			"method": "post",
+			"endpoint": "rest/v1/collection/{id}",
+			"responses": [
+				{
+					"uuid": "f106f340-fb0d-4fef-ac55-9df30f4d2da8",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "a38958b2-a092-4114-bcf0-4990fcb712bc",
+			"type": "http",
+			"documentation": "uploadCollectionCover",
+			"method": "put",
+			"endpoint": "rest/v1/collection/{id}/cover",
+			"responses": [
+				{
+					"uuid": "12cad0bd-792c-4498-8adf-ac582b2139b1",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "140ea76a-1b2c-4d63-8924-067650e71744",
+			"type": "http",
+			"documentation": "mergeCollections",
+			"method": "put",
+			"endpoint": "rest/v1/collections/merge",
+			"responses": [
+				{
+					"uuid": "d612caeb-0467-4f9c-948c-d27b79b1929a",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "2263d85d-4bbb-4573-8b0f-977088a6605d",
+			"type": "http",
+			"documentation": "removeAllEmptyCollections",
+			"method": "put",
+			"endpoint": "rest/v1/collections/clean",
+			"responses": [
+				{
+					"uuid": "999ed9a6-35d1-407d-ba06-7e6a25c98b1b",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "06142479-d026-482c-ae21-d3af6f5544fd",
+			"type": "http",
+			"documentation": "emptyTrash",
+			"method": "delete",
+			"endpoint": "rest/v1/collection/-99",
+			"responses": [
+				{
+					"uuid": "b123b525-3579-4ed2-b4d3-c0a6cede81fa",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "41e04cb0-5a98-46e4-8282-ab2a827b307c",
+			"type": "http",
+			"documentation": "getSystemCollectionStats",
+			"method": "get",
+			"endpoint": "rest/v1/users/stats",
+			"responses": [
+				{
+					"uuid": "d93a164a-92c4-4978-b615-86641eb43a2a",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "212b7195-deb5-48e5-9ced-126af74b7a4b",
+			"type": "http",
+			"documentation": "getCollaborators",
+			"method": "get",
+			"endpoint": "rest/v1/collection/{id}/sharing",
+			"responses": [
+				{
+					"uuid": "7f22d2be-3491-4c02-9f08-52f9a03fbee6",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "f3258eda-06ae-45fb-a7c6-af1113cf5c9f",
+			"type": "http",
+			"documentation": "shareCollection",
+			"method": "post",
+			"endpoint": "rest/v1/collection/{id}/sharing",
+			"responses": [
+				{
+					"uuid": "3cffb85c-2280-415b-8b6e-d6da49a657dc",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "db3df4ed-c348-4e56-815c-ac51fdd71fd1",
+			"type": "http",
+			"documentation": "deleteCollaborator",
+			"method": "delete",
+			"endpoint": "rest/v1/collection/{id}/sharing/{userId}",
+			"responses": [
+				{
+					"uuid": "60c3eb30-a822-4aea-afe9-eea41cd2bab7",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "748739af-465c-4f19-b889-3d35d42ace44",
+			"type": "http",
+			"documentation": "unshareOrLeaveCollection",
+			"method": "delete",
+			"endpoint": "rest/v1/collection/{id}/sharing",
+			"responses": [
+				{
+					"uuid": "f3637d48-5197-4159-852a-d211f483608f",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "baaae59e-b146-4240-b282-ec62dbf0e75a",
+			"type": "http",
+			"documentation": "changeCollaboratorAccessLevel",
+			"method": "put",
+			"endpoint": "rest/v1/collection/{id}/sharing/{userId}",
+			"responses": [
+				{
+					"uuid": "758d8d0a-95a3-4cbb-9492-f8a7486855a9",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "c1e72738-af68-4850-95c6-9875cc7a8924",
+			"type": "http",
+			"documentation": "acceptInvitation",
+			"method": "post",
+			"endpoint": "rest/v1/collection/{id}/join",
+			"responses": [
+				{
+					"uuid": "d3f09b29-cf73-4e8b-8a08-0f843b0a6d4e",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "db31ea4a-1f0f-4365-a774-91c095cfe9d9",
+			"type": "http",
+			"documentation": "searchCovers",
+			"method": "get",
+			"endpoint": "rest/v1/collections/covers/{text}",
+			"responses": [
+				{
+					"uuid": "e644c7cc-8b02-403a-bd22-64ed7a8ebcaa",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "39f246c4-7c5c-4d87-850c-5faf94c07f30",
+			"type": "http",
+			"documentation": "getFeaturedCovers",
+			"method": "get",
+			"endpoint": "rest/v1/collections/covers",
+			"responses": [
+				{
+					"uuid": "3ec387e2-7592-4b7b-8128-f5a60168abdd",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "9520a022-19cb-48d7-9362-f9d1bc584d0d",
+			"type": "http",
+			"documentation": "createRaindrop",
+			"method": "post",
+			"endpoint": "rest/v1/raindrop",
+			"responses": [
+				{
+					"uuid": "3473ac0b-d0d5-406c-bce2-f9405717e90d",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "af6d504a-5e40-4453-a03a-ca7ed7db6314",
+			"type": "http",
+			"documentation": "getRaindrop",
+			"method": "get",
+			"endpoint": "rest/v1/raindrop/{id}",
+			"responses": [
+				{
+					"uuid": "c50f4c91-466e-4349-a577-1ca7b12cc44d",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "765d841e-9bb8-4539-9364-c6b1928cdecc",
+			"type": "http",
+			"documentation": "updateRaindrop",
+			"method": "put",
+			"endpoint": "rest/v1/raindrop/{id}",
+			"responses": [
+				{
+					"uuid": "b429b822-8496-446d-9b87-55af02849ac9",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "635d46c7-bd46-483c-a17c-87671fb0b04d",
+			"type": "http",
+			"documentation": "removeRaindrop",
+			"method": "delete",
+			"endpoint": "rest/v1/raindrop/{id}",
+			"responses": [
+				{
+					"uuid": "7c8e84c3-49a0-4e93-9e45-5cff7f787ac8",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "e84c7c7f-461a-42a1-b929-1952d4260481",
+			"type": "http",
+			"documentation": "uploadFile",
+			"method": "put",
+			"endpoint": "rest/v1/raindrop/file",
+			"responses": [
+				{
+					"uuid": "a1740bc1-59ca-4f93-94f0-b088f3f92f68",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "de5feace-a0d0-4340-9136-e5331e2ee6e9",
+			"type": "http",
+			"documentation": "uploadRaindropCover",
+			"method": "put",
+			"endpoint": "rest/v1/raindrop/{id}/cover",
+			"responses": [
+				{
+					"uuid": "351156d9-c375-4fca-869a-f3440ee5cba6",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "9a7e9131-d59f-441f-be2f-d4d15f0d1f8b",
+			"type": "http",
+			"documentation": "getPermanentCopy",
+			"method": "get",
+			"endpoint": "rest/v1/raindrop/{id}/cache",
+			"responses": [
+				{
+					"uuid": "4f300d44-9b5c-4738-92c2-bcb72fd07435",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "95decc96-b75a-4f9a-a7d4-0e216bb5c771",
+			"type": "http",
+			"documentation": "suggestForNewBookmark",
+			"method": "post",
+			"endpoint": "rest/v1/raindrop/suggest",
+			"responses": [
+				{
+					"uuid": "54beaba9-c417-44c2-816b-a0fcd1ee1e2a",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "b9a02fd6-9d82-4ad9-a31e-41379eae1a83",
+			"type": "http",
+			"documentation": "suggestForExistingBookmark",
+			"method": "get",
+			"endpoint": "rest/v1/raindrop/{id}/suggest",
+			"responses": [
+				{
+					"uuid": "a46db19a-7272-4de8-9f91-ede328f7a090",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "3dee1335-b86b-475d-bc4c-b8ea4f253df9",
+			"type": "http",
+			"documentation": "getRaindrops",
+			"method": "get",
+			"endpoint": "rest/v1/raindrops/{colectionId}",
+			"responses": [
+				{
+					"uuid": "c4df1b6c-9d2f-46e7-a1cf-a98ea374f17f",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "06727912-124b-44f3-9002-f9dd29f8b5c6",
+			"type": "http",
+			"documentation": "updateRaindrops",
+			"method": "put",
+			"endpoint": "rest/v1/raindrops/{colectionId}",
+			"responses": [
+				{
+					"uuid": "64f80669-bd13-4ae8-b4fa-17f277e5b1eb",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "bdab3e4b-42cb-4a01-bd05-6ebffbfa5f29",
+			"type": "http",
+			"documentation": "removeRaindrops",
+			"method": "delete",
+			"endpoint": "rest/v1/raindrops/{colectionId}",
+			"responses": [
+				{
+					"uuid": "2b907406-e714-4e70-8b05-f5588f34cdee",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "48f5b674-c384-4288-ad3e-3d924e0c5acf",
+			"type": "http",
+			"documentation": "createRaindrops",
+			"method": "post",
+			"endpoint": "rest/v1/raindrops",
+			"responses": [
+				{
+					"uuid": "ffcedb2c-d9fd-4e2f-8252-eaea0b7383bc",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "c35d12fc-e3ac-4d66-a42e-0e60f38806b3",
+			"type": "http",
+			"documentation": "getAllHighlights",
+			"method": "get",
+			"endpoint": "rest/v1/highlights",
+			"responses": [
+				{
+					"uuid": "2f600a8f-0439-4c88-b5a8-40c179a41141",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "cfc628ae-17c6-4074-b153-33175aa50ee8",
+			"type": "http",
+			"documentation": "getHighlightsInCollection",
+			"method": "get",
+			"endpoint": "rest/v1/highlights/{collectionId}",
+			"responses": [
+				{
+					"uuid": "f7d56852-829f-4ffd-9197-89c7973739c5",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "d5535b2d-c0f4-4ac8-823b-8d6e9b4be178",
+			"type": "http",
+			"documentation": "getCurrentUser",
+			"method": "get",
+			"endpoint": "rest/v1/user",
+			"responses": [
+				{
+					"uuid": "6209dead-86c8-4374-b071-1e5905265e1f",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "3c7fd60d-d99a-4f9c-8630-561b2328cb9c",
+			"type": "http",
+			"documentation": "updateCurrentUser",
+			"method": "put",
+			"endpoint": "rest/v1/user",
+			"responses": [
+				{
+					"uuid": "a91d8ca3-d945-42e1-887e-156d14fb604b",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "fbba92f9-b80f-4881-81ae-750bb1f270ff",
+			"type": "http",
+			"documentation": "getPublicUserByName",
+			"method": "get",
+			"endpoint": "rest/v1/user/{name}",
+			"responses": [
+				{
+					"uuid": "a8e0f663-3105-4882-843d-e28b8f876639",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "63a2569b-8692-4146-83ec-7cc725b688e1",
+			"type": "http",
+			"documentation": "connectSocialNetworkProvider",
+			"method": "get",
+			"endpoint": "rest/v1/user/connect/{provider}",
+			"responses": [
+				{
+					"uuid": "b2fe4b64-e1a3-4b79-8438-2f2573702914",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "93c4de84-9ee2-4ef2-b3c2-f3bf25f3bf4b",
+			"type": "http",
+			"documentation": "disconnectSocialNetworkProvider",
+			"method": "get",
+			"endpoint": "rest/v1/user/connect/{provider}/revoke",
+			"responses": [
+				{
+					"uuid": "599f6f7a-57a8-432b-8da7-050802bae622",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "e3d98030-0df7-49d2-a7ce-8792ba09a5a2",
+			"type": "http",
+			"documentation": "getTagsInCollection",
+			"method": "get",
+			"endpoint": "rest/v1/tags/{collectionId}",
+			"responses": [
+				{
+					"uuid": "56f55b82-9f28-47d4-979d-69a3c836fcbf",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "e4417691-46c9-4150-9368-6997426a06c7",
+			"type": "http",
+			"documentation": "getFilters",
+			"method": "get",
+			"endpoint": "rest/v1/filters/{collectionId}",
+			"responses": [
+				{
+					"uuid": "daaf71c8-1b8e-4a70-af39-1aca0c52d996",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "49d332e6-ced0-481d-9689-895fec089374",
+			"type": "http",
+			"documentation": "parseURL",
+			"method": "get",
+			"endpoint": "rest/v1/import/url/parse",
+			"responses": [
+				{
+					"uuid": "6cb6a41c-df13-47a8-ad8d-8e2db4cd3a90",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "2fea3db6-ca79-447e-aa38-96694ad65147",
+			"type": "http",
+			"documentation": "renameOrMergeTags",
+			"method": "put",
+			"endpoint": "rest/v1/tags/{collectionId}",
+			"responses": [
+				{
+					"uuid": "9d3d52fe-6596-4310-8636-4fd4c340a61d",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "cd89c239-5a82-4680-be94-582f7396b19e",
+			"type": "http",
+			"documentation": "removeTagsFromCollection",
+			"method": "delete",
+			"endpoint": "rest/v1/tags/{collectionId}",
+			"responses": [
+				{
+					"uuid": "bbaac258-447e-4cf1-ad6c-23b6a278f701",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "e3bc5fe8-1642-44e9-bb09-169e9c7fbd0d",
+			"type": "http",
+			"documentation": "checkURLsExist",
+			"method": "post",
+			"endpoint": "rest/v1/import/url/exists",
+			"responses": [
+				{
+					"uuid": "57e3be81-6544-403e-9c47-5fa8c08e8964",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		},
+		{
+			"uuid": "22a7a877-8127-4ada-8cbc-71c319043fa0",
+			"type": "http",
+			"documentation": "importHTMLBookmarkFile",
+			"method": "post",
+			"endpoint": "rest/v1/import/file",
+			"responses": [
+				{
+					"uuid": "19ab9474-1cbd-4af4-84d1-cbfb33e580fc",
+					"body": "{}",
+					"latency": 0,
+					"statusCode": 200,
+					"label": "",
+					"headers": [],
+					"bodyType": "INLINE",
+					"filePath": "",
+					"databucketID": "",
+					"sendFileAsBody": false,
+					"rules": [],
+					"rulesOperator": "OR",
+					"disableTemplating": false,
+					"fallbackTo404": false,
+					"default": true,
+					"crudKey": "id",
+					"callbacks": []
+				}
+			],
+			"responseMode": null
+		}
+	],
+	"rootChildren": [
+		{
+			"type": "folder",
+			"uuid": "d83b6f2f-9376-419e-a092-f4aba608267d"
+		},
+		{
+			"type": "folder",
+			"uuid": "05291f9e-71be-4892-8e16-90a5659013a9"
+		},
+		{
+			"type": "folder",
+			"uuid": "7459849a-9b27-4178-83f2-49bb6e89f681"
+		},
+		{
+			"type": "folder",
+			"uuid": "89f3fdd5-97c8-466e-b62f-3e6420020403"
+		},
+		{
+			"type": "folder",
+			"uuid": "28a44a38-e368-49eb-beeb-543b305f7b63"
+		},
+		{
+			"type": "folder",
+			"uuid": "ae956b09-4f26-4fc1-baba-918440d8eeaf"
+		},
+		{
+			"type": "folder",
+			"uuid": "1150a3e1-06ba-45ed-b0fd-fe26825540c6"
+		},
+		{
+			"type": "folder",
+			"uuid": "1f2158d8-f3da-4139-9639-d79a6f5b6fb5"
+		}
+	],
+	"proxyMode": false,
+	"proxyHost": "",
+	"proxyRemovePrefix": false,
+	"tlsOptions": {
+		"enabled": false,
+		"type": "CERT",
+		"pfxPath": "",
+		"certPath": "",
+		"keyPath": "",
+		"caPath": "",
+		"passphrase": ""
+	},
+	"cors": true,
+	"headers": [
+		{
+			"key": "Content-Type",
+			"value": "application/json"
+		}
+	],
+	"proxyReqHeaders": [
+		{
+			"key": "Authorization",
+			"value": "Bearer "
+		}
+	],
+	"proxyResHeaders": [],
+	"data": [],
+	"callbacks": []
+}

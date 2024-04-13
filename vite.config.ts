@@ -28,7 +28,12 @@ export default defineConfig({
 		coverage: {
 			all: true,
 			include: ['src/**'],
-			exclude: ['src/**/__mocks__/*', 'src/**/*.d.ts'],
+			exclude: [
+				'src/**/__mocks__/*',
+				'src/**/*.d.ts',
+				// Run schema tests for generated stubs
+				'src/generated/**'
+			],
 			reporter: ['text', 'clover', 'html']
 		},
 		setupFiles: ['tests/setup.ts'],
