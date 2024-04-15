@@ -295,7 +295,7 @@
 			"responses": [
 				{
 					"uuid": "86e93a16-1681-4144-bdf7-fda93086a6ce",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true\r\n}\r\n",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -382,7 +382,7 @@
 			"responses": [
 				{
 					"uuid": "fb7540ef-5ddd-481a-811c-57a3cec441f8",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"modified\": 1,\r\n  \"ids\": [\r\n    43295662\r\n  ]\r\n}\r\n",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -411,7 +411,7 @@
 			"responses": [
 				{
 					"uuid": "53d2ba82-b5ec-4d6b-a95a-f2dd8ab4150a",
-					"body": "{}",
+					"body": "{\r\n\t\"result\": true,\r\n\t\"items\": [\r\n\t\t{\r\n\t\t\t\"_id\": 35947374,\r\n\t\t\t\"title\": \"D2-2\",\r\n\t\t\t\"description\": \"\",\r\n\t\t\t\"user\": {\r\n\t\t\t\t\"$ref\": \"users\",\r\n\t\t\t\t\"$id\": 1215940\r\n\t\t\t},\r\n\t\t\t\"parent\": {\r\n\t\t\t\t\"$ref\": \"collections\",\r\n\t\t\t\t\"$id\": 35947370\r\n\t\t\t},\r\n\t\t\t\"public\": false,\r\n\t\t\t\"view\": \"list\",\r\n\t\t\t\"count\": 1,\r\n\t\t\t\"cover\": [],\r\n\t\t\t\"expanded\": true,\r\n\t\t\t\"creatorRef\": {\r\n\t\t\t\t\"_id\": 1215940,\r\n\t\t\t\t\"name\": \"<REDACTED>\",\r\n\t\t\t\t\"email\": \"\"\r\n\t\t\t},\r\n\t\t\t\"lastAction\": \"2023-07-15T10:16:25.458Z\",\r\n\t\t\t\"created\": \"2023-07-15T10:16:24.972Z\",\r\n\t\t\t\"lastUpdate\": \"2023-07-15T10:16:25.458Z\",\r\n\t\t\t\"sort\": 35947374,\r\n\t\t\t\"slug\": \"d2-2\",\r\n\t\t\t\"access\": {\r\n\t\t\t\t\"for\": 1215940,\r\n\t\t\t\t\"level\": 4,\r\n\t\t\t\t\"root\": false,\r\n\t\t\t\t\"draggable\": true\r\n\t\t\t},\r\n\t\t\t\"author\": true\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"_id\": 35947373,\r\n\t\t\t\"title\": \"D3\",\r\n\t\t\t\"description\": \"\",\r\n\t\t\t\"user\": {\r\n\t\t\t\t\"$ref\": \"users\",\r\n\t\t\t\t\"$id\": 1215940\r\n\t\t\t},\r\n\t\t\t\"parent\": {\r\n\t\t\t\t\"$ref\": \"collections\",\r\n\t\t\t\t\"$id\": 35947372\r\n\t\t\t},\r\n\t\t\t\"public\": false,\r\n\t\t\t\"view\": \"list\",\r\n\t\t\t\"count\": 1,\r\n\t\t\t\"cover\": [],\r\n\t\t\t\"expanded\": true,\r\n\t\t\t\"creatorRef\": {\r\n\t\t\t\t\"_id\": 1215940,\r\n\t\t\t\t\"name\": \"<REDACTED>\",\r\n\t\t\t\t\"email\": \"\"\r\n\t\t\t},\r\n\t\t\t\"lastAction\": \"2023-07-15T10:16:24.642Z\",\r\n\t\t\t\"created\": \"2023-07-15T10:16:24.158Z\",\r\n\t\t\t\"lastUpdate\": \"2023-07-15T10:16:24.642Z\",\r\n\t\t\t\"sort\": 35947373,\r\n\t\t\t\"slug\": \"d3\",\r\n\t\t\t\"access\": {\r\n\t\t\t\t\"for\": 1215940,\r\n\t\t\t\t\"level\": 4,\r\n\t\t\t\t\"root\": false,\r\n\t\t\t\t\"draggable\": true\r\n\t\t\t},\r\n\t\t\t\"author\": true\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"_id\": 35947372,\r\n\t\t\t\"title\": \"D2\",\r\n\t\t\t\"description\": \"\",\r\n\t\t\t\"user\": {\r\n\t\t\t\t\"$ref\": \"users\",\r\n\t\t\t\t\"$id\": 1215940\r\n\t\t\t},\r\n\t\t\t\"parent\": {\r\n\t\t\t\t\"$ref\": \"collections\",\r\n\t\t\t\t\"$id\": 35947370\r\n\t\t\t},\r\n\t\t\t\"public\": false,\r\n\t\t\t\"view\": \"list\",\r\n\t\t\t\"count\": 1,\r\n\t\t\t\"cover\": [],\r\n\t\t\t\"expanded\": true,\r\n\t\t\t\"creatorRef\": {\r\n\t\t\t\t\"_id\": 1215940,\r\n\t\t\t\t\"name\": \"<REDACTED>\",\r\n\t\t\t\t\"email\": \"\"\r\n\t\t\t},\r\n\t\t\t\"lastAction\": \"2023-07-15T10:16:23.826Z\",\r\n\t\t\t\"created\": \"2023-07-15T10:16:23.325Z\",\r\n\t\t\t\"lastUpdate\": \"2023-07-15T10:16:23.826Z\",\r\n\t\t\t\"sort\": 35947372,\r\n\t\t\t\"slug\": \"d2\",\r\n\t\t\t\"access\": {\r\n\t\t\t\t\"for\": 1215940,\r\n\t\t\t\t\"level\": 4,\r\n\t\t\t\t\"root\": false,\r\n\t\t\t\t\"draggable\": true\r\n\t\t\t},\r\n\t\t\t\"author\": true\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"_id\": 35947370,\r\n\t\t\t\"title\": \"D1\",\r\n\t\t\t\"description\": \"\",\r\n\t\t\t\"user\": {\r\n\t\t\t\t\"$ref\": \"users\",\r\n\t\t\t\t\"$id\": 1215940\r\n\t\t\t},\r\n\t\t\t\"parent\": {\r\n\t\t\t\t\"$ref\": \"collections\",\r\n\t\t\t\t\"$id\": 35947369\r\n\t\t\t},\r\n\t\t\t\"public\": false,\r\n\t\t\t\"view\": \"list\",\r\n\t\t\t\"count\": 1,\r\n\t\t\t\"cover\": [],\r\n\t\t\t\"expanded\": true,\r\n\t\t\t\"creatorRef\": {\r\n\t\t\t\t\"_id\": 1215940,\r\n\t\t\t\t\"name\": \"<REDACTED>\",\r\n\t\t\t\t\"email\": \"\"\r\n\t\t\t},\r\n\t\t\t\"lastAction\": \"2023-07-15T10:16:22.997Z\",\r\n\t\t\t\"created\": \"2023-07-15T10:16:21.390Z\",\r\n\t\t\t\"lastUpdate\": \"2023-07-15T10:16:22.997Z\",\r\n\t\t\t\"sort\": 35947370,\r\n\t\t\t\"slug\": \"d1\",\r\n\t\t\t\"access\": {\r\n\t\t\t\t\"for\": 1215940,\r\n\t\t\t\t\"level\": 4,\r\n\t\t\t\t\"root\": false,\r\n\t\t\t\t\"draggable\": true\r\n\t\t\t},\r\n\t\t\t\"author\": true\r\n\t\t}\r\n\t]\r\n}\r\n",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -436,11 +436,11 @@
 			"type": "http",
 			"documentation": "getCollection",
 			"method": "get",
-			"endpoint": "rest/v1/collection/{id}",
+			"endpoint": "rest/v1/collection/:id",
 			"responses": [
 				{
 					"uuid": "ac39b786-4908-40f1-8dc2-bbf38c93ba37",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"item\": {\r\n    \"_id\": 43295780,\r\n    \"title\": \"temp\",\r\n    \"description\": \"\",\r\n    \"user\": {\r\n      \"$ref\": \"users\",\r\n      \"$id\": 1215940\r\n    },\r\n    \"public\": false,\r\n    \"view\": \"list\",\r\n    \"count\": 1,\r\n    \"cover\": [],\r\n    \"sort\": 0,\r\n    \"expanded\": false,\r\n    \"creatorRef\": {\r\n      \"_id\": 1215940,\r\n      \"name\": \"lasuillard\",\r\n      \"email\": \"\"\r\n    },\r\n    \"lastAction\": \"2024-04-15T13:52:56.247Z\",\r\n    \"created\": \"2024-04-15T13:52:38.374Z\",\r\n    \"lastUpdate\": \"2024-04-15T13:52:56.247Z\",\r\n    \"slug\": \"temp\",\r\n    \"access\": {\r\n      \"for\": 1215940,\r\n      \"level\": 4,\r\n      \"root\": false,\r\n      \"draggable\": true\r\n    },\r\n    \"author\": true\r\n  }\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -465,7 +465,7 @@
 			"type": "http",
 			"documentation": "updateCollection",
 			"method": "put",
-			"endpoint": "rest/v1/collection/{id}",
+			"endpoint": "rest/v1/collection/:id",
 			"responses": [
 				{
 					"uuid": "cc3c7377-f94c-4b8e-b74b-6e9e7a2693b4",
@@ -494,7 +494,7 @@
 			"type": "http",
 			"documentation": "removeCollection",
 			"method": "delete",
-			"endpoint": "rest/v1/collection/{id}",
+			"endpoint": "rest/v1/collection/:id",
 			"responses": [
 				{
 					"uuid": "cda4494e-2209-456a-843b-7e8c41461899",
@@ -523,7 +523,7 @@
 			"type": "http",
 			"documentation": "createCollection",
 			"method": "post",
-			"endpoint": "rest/v1/collection/{id}",
+			"endpoint": "rest/v1/collection/:id",
 			"responses": [
 				{
 					"uuid": "f106f340-fb0d-4fef-ac55-9df30f4d2da8",
@@ -552,7 +552,7 @@
 			"type": "http",
 			"documentation": "uploadCollectionCover",
 			"method": "put",
-			"endpoint": "rest/v1/collection/{id}/cover",
+			"endpoint": "rest/v1/collection/:id/cover",
 			"responses": [
 				{
 					"uuid": "12cad0bd-792c-4498-8adf-ac582b2139b1",
@@ -697,7 +697,7 @@
 			"type": "http",
 			"documentation": "getCollaborators",
 			"method": "get",
-			"endpoint": "rest/v1/collection/{id}/sharing",
+			"endpoint": "rest/v1/collection/:id/sharing",
 			"responses": [
 				{
 					"uuid": "7f22d2be-3491-4c02-9f08-52f9a03fbee6",
@@ -726,7 +726,7 @@
 			"type": "http",
 			"documentation": "shareCollection",
 			"method": "post",
-			"endpoint": "rest/v1/collection/{id}/sharing",
+			"endpoint": "rest/v1/collection/:id/sharing",
 			"responses": [
 				{
 					"uuid": "3cffb85c-2280-415b-8b6e-d6da49a657dc",
@@ -755,7 +755,7 @@
 			"type": "http",
 			"documentation": "deleteCollaborator",
 			"method": "delete",
-			"endpoint": "rest/v1/collection/{id}/sharing/{userId}",
+			"endpoint": "rest/v1/collection/:id/sharing/:userId",
 			"responses": [
 				{
 					"uuid": "60c3eb30-a822-4aea-afe9-eea41cd2bab7",
@@ -784,7 +784,7 @@
 			"type": "http",
 			"documentation": "unshareOrLeaveCollection",
 			"method": "delete",
-			"endpoint": "rest/v1/collection/{id}/sharing",
+			"endpoint": "rest/v1/collection/:id/sharing",
 			"responses": [
 				{
 					"uuid": "f3637d48-5197-4159-852a-d211f483608f",
@@ -813,7 +813,7 @@
 			"type": "http",
 			"documentation": "changeCollaboratorAccessLevel",
 			"method": "put",
-			"endpoint": "rest/v1/collection/{id}/sharing/{userId}",
+			"endpoint": "rest/v1/collection/:id/sharing/:userId",
 			"responses": [
 				{
 					"uuid": "758d8d0a-95a3-4cbb-9492-f8a7486855a9",
@@ -842,7 +842,7 @@
 			"type": "http",
 			"documentation": "acceptInvitation",
 			"method": "post",
-			"endpoint": "rest/v1/collection/{id}/join",
+			"endpoint": "rest/v1/collection/:id/join",
 			"responses": [
 				{
 					"uuid": "d3f09b29-cf73-4e8b-8a08-0f843b0a6d4e",
@@ -871,7 +871,7 @@
 			"type": "http",
 			"documentation": "searchCovers",
 			"method": "get",
-			"endpoint": "rest/v1/collections/covers/{text}",
+			"endpoint": "rest/v1/collections/covers/:text",
 			"responses": [
 				{
 					"uuid": "e644c7cc-8b02-403a-bd22-64ed7a8ebcaa",
@@ -958,7 +958,7 @@
 			"type": "http",
 			"documentation": "getRaindrop",
 			"method": "get",
-			"endpoint": "rest/v1/raindrop/{id}",
+			"endpoint": "rest/v1/raindrop/:id",
 			"responses": [
 				{
 					"uuid": "c50f4c91-466e-4349-a577-1ca7b12cc44d",
@@ -987,7 +987,7 @@
 			"type": "http",
 			"documentation": "updateRaindrop",
 			"method": "put",
-			"endpoint": "rest/v1/raindrop/{id}",
+			"endpoint": "rest/v1/raindrop/:id",
 			"responses": [
 				{
 					"uuid": "b429b822-8496-446d-9b87-55af02849ac9",
@@ -1016,7 +1016,7 @@
 			"type": "http",
 			"documentation": "removeRaindrop",
 			"method": "delete",
-			"endpoint": "rest/v1/raindrop/{id}",
+			"endpoint": "rest/v1/raindrop/:id",
 			"responses": [
 				{
 					"uuid": "7c8e84c3-49a0-4e93-9e45-5cff7f787ac8",
@@ -1074,7 +1074,7 @@
 			"type": "http",
 			"documentation": "uploadRaindropCover",
 			"method": "put",
-			"endpoint": "rest/v1/raindrop/{id}/cover",
+			"endpoint": "rest/v1/raindrop/:id/cover",
 			"responses": [
 				{
 					"uuid": "351156d9-c375-4fca-869a-f3440ee5cba6",
@@ -1103,7 +1103,7 @@
 			"type": "http",
 			"documentation": "getPermanentCopy",
 			"method": "get",
-			"endpoint": "rest/v1/raindrop/{id}/cache",
+			"endpoint": "rest/v1/raindrop/:id/cache",
 			"responses": [
 				{
 					"uuid": "4f300d44-9b5c-4738-92c2-bcb72fd07435",
@@ -1161,7 +1161,7 @@
 			"type": "http",
 			"documentation": "suggestForExistingBookmark",
 			"method": "get",
-			"endpoint": "rest/v1/raindrop/{id}/suggest",
+			"endpoint": "rest/v1/raindrop/:id/suggest",
 			"responses": [
 				{
 					"uuid": "a46db19a-7272-4de8-9f91-ede328f7a090",
@@ -1190,7 +1190,7 @@
 			"type": "http",
 			"documentation": "getRaindrops",
 			"method": "get",
-			"endpoint": "rest/v1/raindrops/{colectionId}",
+			"endpoint": "rest/v1/raindrops/:colectionId",
 			"responses": [
 				{
 					"uuid": "c4df1b6c-9d2f-46e7-a1cf-a98ea374f17f",
@@ -1219,7 +1219,7 @@
 			"type": "http",
 			"documentation": "updateRaindrops",
 			"method": "put",
-			"endpoint": "rest/v1/raindrops/{colectionId}",
+			"endpoint": "rest/v1/raindrops/:colectionId",
 			"responses": [
 				{
 					"uuid": "64f80669-bd13-4ae8-b4fa-17f277e5b1eb",
@@ -1248,7 +1248,7 @@
 			"type": "http",
 			"documentation": "removeRaindrops",
 			"method": "delete",
-			"endpoint": "rest/v1/raindrops/{colectionId}",
+			"endpoint": "rest/v1/raindrops/:colectionId",
 			"responses": [
 				{
 					"uuid": "2b907406-e714-4e70-8b05-f5588f34cdee",
@@ -1335,7 +1335,7 @@
 			"type": "http",
 			"documentation": "getHighlightsInCollection",
 			"method": "get",
-			"endpoint": "rest/v1/highlights/{collectionId}",
+			"endpoint": "rest/v1/highlights/:collectionId",
 			"responses": [
 				{
 					"uuid": "f7d56852-829f-4ffd-9197-89c7973739c5",
@@ -1422,7 +1422,7 @@
 			"type": "http",
 			"documentation": "getPublicUserByName",
 			"method": "get",
-			"endpoint": "rest/v1/user/{name}",
+			"endpoint": "rest/v1/user/:name",
 			"responses": [
 				{
 					"uuid": "a8e0f663-3105-4882-843d-e28b8f876639",
@@ -1451,7 +1451,7 @@
 			"type": "http",
 			"documentation": "connectSocialNetworkProvider",
 			"method": "get",
-			"endpoint": "rest/v1/user/connect/{provider}",
+			"endpoint": "rest/v1/user/connect/:provider",
 			"responses": [
 				{
 					"uuid": "b2fe4b64-e1a3-4b79-8438-2f2573702914",
@@ -1480,7 +1480,7 @@
 			"type": "http",
 			"documentation": "disconnectSocialNetworkProvider",
 			"method": "get",
-			"endpoint": "rest/v1/user/connect/{provider}/revoke",
+			"endpoint": "rest/v1/user/connect/:provider/revoke",
 			"responses": [
 				{
 					"uuid": "599f6f7a-57a8-432b-8da7-050802bae622",
@@ -1509,7 +1509,7 @@
 			"type": "http",
 			"documentation": "getTagsInCollection",
 			"method": "get",
-			"endpoint": "rest/v1/tags/{collectionId}",
+			"endpoint": "rest/v1/tags/:collectionId",
 			"responses": [
 				{
 					"uuid": "56f55b82-9f28-47d4-979d-69a3c836fcbf",
@@ -1538,7 +1538,7 @@
 			"type": "http",
 			"documentation": "getFilters",
 			"method": "get",
-			"endpoint": "rest/v1/filters/{collectionId}",
+			"endpoint": "rest/v1/filters/:collectionId",
 			"responses": [
 				{
 					"uuid": "daaf71c8-1b8e-4a70-af39-1aca0c52d996",
@@ -1596,7 +1596,7 @@
 			"type": "http",
 			"documentation": "renameOrMergeTags",
 			"method": "put",
-			"endpoint": "rest/v1/tags/{collectionId}",
+			"endpoint": "rest/v1/tags/:collectionId",
 			"responses": [
 				{
 					"uuid": "9d3d52fe-6596-4310-8636-4fd4c340a61d",
@@ -1625,7 +1625,7 @@
 			"type": "http",
 			"documentation": "removeTagsFromCollection",
 			"method": "delete",
-			"endpoint": "rest/v1/tags/{collectionId}",
+			"endpoint": "rest/v1/tags/:collectionId",
 			"responses": [
 				{
 					"uuid": "bbaac258-447e-4cf1-ad6c-23b6a278f701",
