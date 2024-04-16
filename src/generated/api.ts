@@ -3080,7 +3080,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         getCollaborators: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getCollaborators', 'id', id)
-            const localVarPath = `/rest/v1/collections/{id}/sharing`
+            const localVarPath = `/rest/v1/collection/{id}/sharing`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3483,7 +3483,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         shareCollection: async (id: number, shareCollectionRequest?: ShareCollectionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('shareCollection', 'id', id)
-            const localVarPath = `/rest/v1/collections/{id}/sharing`
+            const localVarPath = `/rest/v1/collection/{id}/sharing`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3524,7 +3524,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         unshareOrLeaveCollection: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('unshareOrLeaveCollection', 'id', id)
-            const localVarPath = `/rest/v1/collections/{id}/sharing`
+            const localVarPath = `/rest/v1/collection/{id}/sharing`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3605,7 +3605,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         uploadCollectionCover: async (id: number, cover?: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('uploadCollectionCover', 'id', id)
-            const localVarPath = `/rest/v1/collections/{id}/cover`
+            const localVarPath = `/rest/v1/collection/{id}/cover`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);

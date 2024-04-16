@@ -374,7 +374,7 @@ paths:
                       result: false
                       error: view
                       errorMessage: 'Collection validation failed: view: `bla` is not a valid enum value for path `view`.'
-  /rest/v1/collections/{id}/cover:
+  /rest/v1/collection/{id}/cover:
     put:
       operationId: uploadCollectionCover
       tags:
@@ -490,7 +490,7 @@ paths:
                   broken:
                     count: 31
                 result: true
-  /rest/v1/collections/{id}/sharing:
+  /rest/v1/collection/{id}/sharing:
     parameters:
       - name: id
         in: path
