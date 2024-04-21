@@ -672,7 +672,7 @@
 			"responses": [
 				{
 					"uuid": "aa35212c-8f41-4544-8578-09b100b41667",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"items\": [\r\n    {\r\n      \"_id\": 0,\r\n      \"count\": 1\r\n    },\r\n    {\r\n      \"_id\": -1,\r\n      \"count\": 0\r\n    },\r\n    {\r\n      \"_id\": -99,\r\n      \"count\": 2\r\n    }\r\n  ],\r\n  \"meta\": {\r\n    \"_id\": 2067190,\r\n    \"changedBookmarksDate\": \"2024-04-21T08:19:14.083Z\",\r\n    \"pro\": false\r\n  }\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1219,11 +1219,11 @@
 			"type": "http",
 			"documentation": "updateRaindrops",
 			"method": "put",
-			"endpoint": "rest/v1/raindrops/:colectionId",
+			"endpoint": "rest/v1/raindrops/:collectionId",
 			"responses": [
 				{
 					"uuid": "d7accab6-4181-4cfe-8a26-bfff41d54fbf",
-					"body": "{\n  \"result\": true,\n  \"modified\": 0\n}",
+					"body": "{\r\n  \"result\": true,\r\n  \"modified\": 0\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1310,7 +1310,7 @@
 			"responses": [
 				{
 					"uuid": "bf520d38-9f35-4f65-8ab0-830003feec2d",
-					"body": "{}",
+					"body": "{\n  \"result\": true,\n  \"items\": [\n    {\n      \"link\": \"https://dzone.com/articles/leveraging-postgres-listennotify-in-spring-boot\",\n      \"title\": \"Unlocking the Power of Postgres Listen/Notify\",\n      \"tags\": [],\n      \"_id\": \"6575c11659d4ed73e9703814\",\n      \"text\": \"When aiming to simplify your architecture and reduce dependencies\",\n      \"note\": \"\",\n      \"color\": \"yellow\",\n      \"created\": \"2023-12-10T13:45:58.430Z\",\n      \"raindropRef\": 692381371\n    }\n  ]\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1339,7 +1339,7 @@
 			"responses": [
 				{
 					"uuid": "fd636144-3700-4869-9863-10e1438049a2",
-					"body": "{}",
+					"body": "{\n  \"result\": true,\n  \"items\": [\n    {\n      \"tags\": [\n        \"git\",\n        \"question\"\n      ],\n      \"title\": \"How to match SSH config based on URL path or SSH arguments (for github deploy keys)?\",\n      \"link\": \"https://stackoverflow.com/questions/60683677/how-to-match-ssh-config-based-on-url-path-or-ssh-arguments-for-github-deploy-ke\",\n      \"_id\": \"642cf94d4c4687a1db385cf0\",\n      \"text\": \"Only one url rule is applied. So this will not work:\",\n      \"note\": \"\",\n      \"color\": \"red\",\n      \"created\": \"2023-04-05T04:30:05.290Z\",\n      \"raindropRef\": 550958310\n    },\n    {\n      \"tags\": [\n        \"shell-scripting\"\n      ],\n      \"link\": \"https://www.gnu.org/software/make/manual/html_node/Phony-Targets.html\",\n      \"title\": \"Phony Targets (GNU make)\",\n      \"_id\": \"6413bf720a637e3a0acaa065\",\n      \"text\": \"A phony target is one that is not really the name of a file; rather it\\nis just a name for a recipe to be executed when you make an explicit\\nrequest.\",\n      \"note\": \"\",\n      \"created\": \"2023-03-17T01:16:34.152Z\",\n      \"raindropRef\": 536885249\n    }\n  ]\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1368,7 +1368,7 @@
 			"responses": [
 				{
 					"uuid": "c5a27d2d-4e70-4033-bb66-ee335217a563",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"user\": {\r\n    \"tfa\": {\r\n      \"enabled\": false\r\n    },\r\n    \"files\": {\r\n      \"used\": 73048,\r\n      \"size\": 100000000,\r\n      \"lastCheckPoint\": \"2024-04-21T06:46:01.479Z\"\r\n    },\r\n    \"_id\": 2067190,\r\n    \"fullName\": \"miyil99106\",\r\n    \"name\": \"miyil99106\",\r\n    \"email\": \"miyil99106@iliken.com\",\r\n    \"avatar\": \"\",\r\n    \"pro\": false,\r\n    \"groups\": [\r\n      {\r\n        \"title\": \"Collections\",\r\n        \"hidden\": false,\r\n        \"sort\": -1,\r\n        \"collections\": [\r\n          43450397\r\n        ]\r\n      }\r\n    ],\r\n    \"lastAction\": \"2024-04-21T08:19:14.073Z\",\r\n    \"lastVisit\": \"2024-04-21T06:46:01.479Z\",\r\n    \"registered\": \"2024-04-21T06:46:01.480Z\",\r\n    \"lastUpdate\": \"2024-04-21T08:19:14.073Z\",\r\n    \"config\": {\r\n      \"default_collection_view\": \"list\",\r\n      \"raindrops_hide\": [\r\n        \"list_excerpt\",\r\n        \"simple_excerpt\",\r\n        \"grid_excerpt\",\r\n        \"masonry_excerpt\"\r\n      ],\r\n      \"raindrops_buttons\": [\r\n        \"select\",\r\n        \"preview\",\r\n        \"edit\",\r\n        \"remove\"\r\n      ],\r\n      \"raindrops_search_by_score\": true,\r\n      \"raindrops_search_incollection\": false,\r\n      \"broken_level\": \"default\",\r\n      \"font_size\": 0,\r\n      \"nested_view_legacy\": true,\r\n      \"add_default_collection\": -1,\r\n      \"acknowledge\": [],\r\n      \"last_collection\": 43325344\r\n    },\r\n    \"password\": true\r\n  }\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1397,7 +1397,7 @@
 			"responses": [
 				{
 					"uuid": "57ca1e34-a5f4-4bc5-8706-5c1924da581a",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"user\": {\r\n    \"tfa\": {\r\n      \"enabled\": false\r\n    },\r\n    \"files\": {\r\n      \"used\": 73048,\r\n      \"size\": 100000000,\r\n      \"lastCheckPoint\": \"2024-04-21T06:46:01.479Z\"\r\n    },\r\n    \"_id\": 2067190,\r\n    \"fullName\": \"miyil99106\",\r\n    \"name\": \"miyil99106\",\r\n    \"email\": \"miyil99106@iliken.com\",\r\n    \"avatar\": \"\",\r\n    \"pro\": false,\r\n    \"groups\": [\r\n      {\r\n        \"title\": \"Collections\",\r\n        \"hidden\": false,\r\n        \"sort\": -1,\r\n        \"collections\": [\r\n          43450397\r\n        ]\r\n      }\r\n    ],\r\n    \"lastAction\": \"2024-04-21T08:19:14.073Z\",\r\n    \"lastVisit\": \"2024-04-21T06:46:01.479Z\",\r\n    \"registered\": \"2024-04-21T06:46:01.480Z\",\r\n    \"lastUpdate\": \"2024-04-21T08:32:36.749Z\",\r\n    \"config\": {\r\n      \"default_collection_view\": \"list\",\r\n      \"raindrops_hide\": [\r\n        \"list_excerpt\",\r\n        \"simple_excerpt\",\r\n        \"grid_excerpt\",\r\n        \"masonry_excerpt\"\r\n      ],\r\n      \"raindrops_buttons\": [\r\n        \"select\",\r\n        \"preview\",\r\n        \"edit\",\r\n        \"remove\"\r\n      ],\r\n      \"raindrops_search_by_score\": true,\r\n      \"raindrops_search_incollection\": false,\r\n      \"broken_level\": \"default\",\r\n      \"font_size\": 0,\r\n      \"nested_view_legacy\": true,\r\n      \"add_default_collection\": -1,\r\n      \"acknowledge\": [],\r\n      \"last_collection\": 43325344,\r\n      \"raindrops_sort\": \"title\"\r\n    },\r\n    \"password\": true\r\n  },\r\n  \"item\": {\r\n    \"tfa\": {\r\n      \"enabled\": false\r\n    },\r\n    \"files\": {\r\n      \"used\": 73048,\r\n      \"size\": 100000000,\r\n      \"lastCheckPoint\": \"2024-04-21T06:46:01.479Z\"\r\n    },\r\n    \"_id\": 2067190,\r\n    \"fullName\": \"miyil99106\",\r\n    \"name\": \"miyil99106\",\r\n    \"email\": \"miyil99106@iliken.com\",\r\n    \"avatar\": \"\",\r\n    \"pro\": false,\r\n    \"groups\": [\r\n      {\r\n        \"title\": \"Collections\",\r\n        \"hidden\": false,\r\n        \"sort\": -1,\r\n        \"collections\": [\r\n          43450397\r\n        ]\r\n      }\r\n    ],\r\n    \"lastAction\": \"2024-04-21T08:19:14.073Z\",\r\n    \"lastVisit\": \"2024-04-21T06:46:01.479Z\",\r\n    \"registered\": \"2024-04-21T06:46:01.480Z\",\r\n    \"lastUpdate\": \"2024-04-21T08:32:36.749Z\",\r\n    \"config\": {\r\n      \"default_collection_view\": \"list\",\r\n      \"raindrops_hide\": [\r\n        \"list_excerpt\",\r\n        \"simple_excerpt\",\r\n        \"grid_excerpt\",\r\n        \"masonry_excerpt\"\r\n      ],\r\n      \"raindrops_buttons\": [\r\n        \"select\",\r\n        \"preview\",\r\n        \"edit\",\r\n        \"remove\"\r\n      ],\r\n      \"raindrops_search_by_score\": true,\r\n      \"raindrops_search_incollection\": false,\r\n      \"broken_level\": \"default\",\r\n      \"font_size\": 0,\r\n      \"nested_view_legacy\": true,\r\n      \"add_default_collection\": -1,\r\n      \"acknowledge\": [],\r\n      \"last_collection\": 43325344,\r\n      \"raindrops_sort\": \"title\"\r\n    },\r\n    \"password\": true\r\n  }\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1426,7 +1426,7 @@
 			"responses": [
 				{
 					"uuid": "005a4319-cc52-4006-a10f-0ee54c7fd923",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"user\": {\r\n    \"_id\": 2067190,\r\n    \"fullName\": \"miyil99106\",\r\n    \"name\": \"miyil99106\",\r\n    \"email\": \"\",\r\n    \"avatar\": \"\",\r\n    \"pro\": false,\r\n    \"lastAction\": \"2024-04-21T08:19:14.073Z\",\r\n    \"registered\": \"2024-04-21T06:46:01.480Z\",\r\n    \"lastUpdate\": \"2024-04-21T08:32:36.749Z\",\r\n    \"config\": {\r\n      \"raindrops_hide\": [\r\n        \"list_excerpt\",\r\n        \"simple_excerpt\",\r\n        \"grid_excerpt\",\r\n        \"masonry_excerpt\"\r\n      ],\r\n      \"nested_view_legacy\": true\r\n    }\r\n  }\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1513,7 +1513,7 @@
 			"responses": [
 				{
 					"uuid": "757cff7e-ed02-49db-bf8f-6aa6575d437c",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"items\": [\r\n    {\r\n      \"_id\": \"community\",\r\n      \"count\": 1\r\n    }\r\n  ]\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1542,7 +1542,7 @@
 			"responses": [
 				{
 					"uuid": "1801c15b-b13f-4cfe-a331-a333003fcaea",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"tags\": [\r\n    {\r\n      \"_id\": \"community\",\r\n      \"count\": 1\r\n    }\r\n  ],\r\n  \"types\": [\r\n    {\r\n      \"_id\": \"link\",\r\n      \"count\": 4\r\n    }\r\n  ],\r\n  \"created\": [\r\n    {\r\n      \"_id\": \"2024-04\",\r\n      \"count\": 4\r\n    }\r\n  ],\r\n  \"total\": {\r\n    \"count\": 4\r\n  },\r\n  \"notag\": {\r\n    \"count\": 3\r\n  },\r\n  \"collectionId\": 43325344\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1571,7 +1571,7 @@
 			"responses": [
 				{
 					"uuid": "8d963684-a582-4784-a58d-b9a9033b3676",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"item\": {\r\n    \"title\": \"GitHub: Let’s build from here\",\r\n    \"excerpt\": \"GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...\",\r\n    \"cover\": \"https://github.githubassets.com/assets/campaign-social-031d6161fa10.png\",\r\n    \"media\": [\r\n      {\r\n        \"type\": \"image\",\r\n        \"link\": \"https://github.githubassets.com/assets/campaign-social-031d6161fa10.png\"\r\n      }\r\n    ],\r\n    \"type\": \"link\",\r\n    \"meta\": {\r\n      \"tags\": [\r\n        \"github\"\r\n      ]\r\n    }\r\n  }\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1600,7 +1600,7 @@
 			"responses": [
 				{
 					"uuid": "e269b913-f306-4af4-8e81-297fb1ddafe8",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1629,7 +1629,7 @@
 			"responses": [
 				{
 					"uuid": "7fa600a1-a0f1-4656-9c18-27817d718a58",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1658,7 +1658,7 @@
 			"responses": [
 				{
 					"uuid": "3aaf2d84-8ce7-4bba-bdde-9596a374b716",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"ids\": [\r\n    772939577\r\n  ],\r\n  \"duplicates\": [\r\n    {\r\n      \"_id\": 772939577,\r\n      \"link\": \"https://github.com/\"\r\n    }\r\n  ],\r\n  \"id\": 772939577\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
