@@ -933,7 +933,7 @@
 			"responses": [
 				{
 					"uuid": "ef24d8ec-a04b-4a13-ae37-6e080193b160",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"item\": {\r\n    \"link\": \"https://github.com/\",\r\n    \"title\": \"GitHub: Let’s build from here\",\r\n    \"excerpt\": \"GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...\",\r\n    \"note\": \"\",\r\n    \"type\": \"link\",\r\n    \"user\": {\r\n      \"$ref\": \"users\",\r\n      \"$id\": 1215940\r\n    },\r\n    \"cover\": \"https://github.githubassets.com/assets/campaign-social-031d6161fa10.png\",\r\n    \"media\": [\r\n      {\r\n        \"link\": \"https://github.githubassets.com/assets/campaign-social-031d6161fa10.png\",\r\n        \"type\": \"image\"\r\n      }\r\n    ],\r\n    \"tags\": [],\r\n    \"removed\": false,\r\n    \"collection\": {\r\n      \"$ref\": \"collections\",\r\n      \"$id\": 43325344,\r\n      \"oid\": 43325344\r\n    },\r\n    \"created\": \"2024-04-21T08:11:06.593Z\",\r\n    \"lastUpdate\": \"2024-04-21T08:11:06.593Z\",\r\n    \"domain\": \"github.com\",\r\n    \"_id\": 772943338,\r\n    \"creatorRef\": 2067190,\r\n    \"sort\": 772943338,\r\n    \"__v\": 0,\r\n    \"collectionId\": 43325344\r\n  }\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -962,7 +962,7 @@
 			"responses": [
 				{
 					"uuid": "ab0289bf-a370-4236-8861-43c0878a4ddd",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"item\": {\r\n    \"_id\": 772943338,\r\n    \"link\": \"https://github.com/\",\r\n    \"title\": \"GitHub: Let’s build from here\",\r\n    \"excerpt\": \"GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...\",\r\n    \"note\": \"\",\r\n    \"type\": \"link\",\r\n    \"user\": {\r\n      \"$ref\": \"users\",\r\n      \"$id\": 1215940\r\n    },\r\n    \"cover\": \"https://github.githubassets.com/assets/campaign-social-031d6161fa10.png\",\r\n    \"media\": [\r\n      {\r\n        \"link\": \"https://github.githubassets.com/assets/campaign-social-031d6161fa10.png\",\r\n        \"type\": \"image\"\r\n      }\r\n    ],\r\n    \"tags\": [],\r\n    \"removed\": false,\r\n    \"collection\": {\r\n      \"$ref\": \"collections\",\r\n      \"$id\": 43325344,\r\n      \"oid\": 43325344\r\n    },\r\n    \"created\": \"2024-04-21T08:11:06.593Z\",\r\n    \"lastUpdate\": \"2024-04-21T08:11:06.593Z\",\r\n    \"domain\": \"github.com\",\r\n    \"creatorRef\": {\r\n      \"_id\": 2067190,\r\n      \"name\": \"miyil99106\",\r\n      \"avatar\": \"\",\r\n      \"email\": \"\"\r\n    },\r\n    \"sort\": 772943338,\r\n    \"highlights\": [],\r\n    \"collectionId\": 43325344\r\n  },\r\n  \"author\": true\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -991,7 +991,7 @@
 			"responses": [
 				{
 					"uuid": "53219558-b818-446f-84e4-c32aad207f99",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"item\": {\r\n    \"_id\": 772943338,\r\n    \"link\": \"https://github.com/\",\r\n    \"domain\": \"github.com\",\r\n    \"title\": \"GitHub: Let’s build from here\",\r\n    \"excerpt\": \"GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...\",\r\n    \"note\": \"\",\r\n    \"type\": \"link\",\r\n    \"user\": {\r\n      \"$ref\": \"users\",\r\n      \"$id\": 1215940\r\n    },\r\n    \"creatorRef\": {\r\n      \"_id\": 2067190,\r\n      \"name\": \"miyil99106\",\r\n      \"avatar\": \"\",\r\n      \"email\": \"\"\r\n    },\r\n    \"cover\": \"https://github.githubassets.com/assets/campaign-social-031d6161fa10.png\",\r\n    \"media\": [\r\n      {\r\n        \"link\": \"https://github.githubassets.com/assets/campaign-social-031d6161fa10.png\",\r\n        \"type\": \"image\"\r\n      }\r\n    ],\r\n    \"tags\": [],\r\n    \"highlights\": [],\r\n    \"removed\": false,\r\n    \"sort\": 772943338,\r\n    \"created\": \"2024-04-21T08:11:06.593Z\",\r\n    \"lastUpdate\": \"2024-04-21T08:13:52.426Z\",\r\n    \"collection\": {\r\n      \"$ref\": \"collections\",\r\n      \"$id\": 43325344,\r\n      \"oid\": 43325344\r\n    },\r\n    \"orderLock\": \"8294e040-d493-4f29-ba0c-72de3369f8e2\",\r\n    \"__v\": 1,\r\n    \"collectionId\": 43325344,\r\n    \"order\": 0\r\n  }\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1020,7 +1020,7 @@
 			"responses": [
 				{
 					"uuid": "b8215c1b-60cc-4a9b-9562-749dc624d7ee",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"item\": {\r\n    \"_id\": 772943338,\r\n    \"link\": \"https://github.com/\",\r\n    \"title\": \"GitHub: Let’s build from here\",\r\n    \"excerpt\": \"GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...\",\r\n    \"note\": \"\",\r\n    \"type\": \"link\",\r\n    \"user\": {\r\n      \"$ref\": \"users\",\r\n      \"$id\": 2067190\r\n    },\r\n    \"cover\": \"https://github.githubassets.com/assets/campaign-social-031d6161fa10.png\",\r\n    \"media\": [\r\n      {\r\n        \"link\": \"https://github.githubassets.com/assets/campaign-social-031d6161fa10.png\",\r\n        \"type\": \"image\"\r\n      }\r\n    ],\r\n    \"tags\": [],\r\n    \"removed\": true,\r\n    \"collection\": {\r\n      \"$ref\": \"collections\",\r\n      \"$id\": -99,\r\n      \"oid\": -99\r\n    },\r\n    \"created\": \"2024-04-21T08:11:06.593Z\",\r\n    \"lastUpdate\": \"2024-04-21T08:14:12.451Z\",\r\n    \"domain\": \"github.com\",\r\n    \"creatorRef\": {\r\n      \"_id\": 2067190,\r\n      \"name\": \"miyil99106\",\r\n      \"avatar\": \"\",\r\n      \"email\": \"\"\r\n    },\r\n    \"sort\": 772943338,\r\n    \"collectionId\": -99,\r\n    \"order\": 0\r\n  }\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1049,7 +1049,7 @@
 			"responses": [
 				{
 					"uuid": "0032a91f-b3b6-4dcb-864e-bb1db9415895",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"item\": {\r\n    \"_id\": 772943656,\r\n    \"link\": \"https://api.raindrop.io/v2/raindrop/772943656/file?type=image/jpeg\",\r\n    \"domain\": \"up.raindrop.io\",\r\n    \"title\": \"Robot.jpg\",\r\n    \"excerpt\": \"\",\r\n    \"note\": \"\",\r\n    \"type\": \"image\",\r\n    \"user\": {\r\n      \"$ref\": \"users\",\r\n      \"$id\": 1215940\r\n    },\r\n    \"creatorRef\": 2067190,\r\n    \"cover\": \"https://rdl.ink/render/https%3A%2F%2Fup.raindrop.io%2Fraindrop%2Ffiles%2F772%2F943%2F656%2FRobot.jpg\",\r\n    \"media\": [],\r\n    \"tags\": [],\r\n    \"file\": {\r\n      \"name\": \"Robot.jpg\",\r\n      \"size\": 73048,\r\n      \"type\": \"image/jpeg\"\r\n    },\r\n    \"removed\": false,\r\n    \"sort\": 772943656,\r\n    \"created\": \"2024-04-21T08:14:57.518Z\",\r\n    \"lastUpdate\": \"2024-04-21T08:14:57.655Z\",\r\n    \"__v\": 0,\r\n    \"collection\": {\r\n      \"$ref\": \"collections\",\r\n      \"$id\": 43325344,\r\n      \"oid\": 43325344\r\n    },\r\n    \"collectionId\": 43325344\r\n  }\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1078,7 +1078,7 @@
 			"responses": [
 				{
 					"uuid": "9e321957-680d-406c-b3be-49cae4f6922a",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"item\": {\r\n    \"_id\": 772943278,\r\n    \"link\": \"https://github.com/\",\r\n    \"domain\": \"github.com\",\r\n    \"title\": \"GitHub: Let’s build from here\",\r\n    \"excerpt\": \"GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...\",\r\n    \"note\": \"\",\r\n    \"type\": \"link\",\r\n    \"user\": {\r\n      \"$ref\": \"users\",\r\n      \"$id\": 1215940\r\n    },\r\n    \"creatorRef\": {\r\n      \"_id\": 2067190,\r\n      \"name\": \"miyil99106\",\r\n      \"avatar\": \"\",\r\n      \"email\": \"\"\r\n    },\r\n    \"cover\": \"https://up.raindrop.io/raindrop/thumbs/772/943/278/1713687345345.jpeg\",\r\n    \"media\": [\r\n      {\r\n        \"link\": \"https://up.raindrop.io/raindrop/thumbs/772/943/278/1713687345345.jpeg\",\r\n        \"type\": \"image\"\r\n      },\r\n      {\r\n        \"link\": \"https://github.githubassets.com/assets/campaign-social-031d6161fa10.png\",\r\n        \"type\": \"image\"\r\n      }\r\n    ],\r\n    \"tags\": [],\r\n    \"removed\": false,\r\n    \"sort\": 772943278,\r\n    \"created\": \"2024-04-21T08:10:30.581Z\",\r\n    \"lastUpdate\": \"2024-04-21T08:15:45.432Z\",\r\n    \"collection\": {\r\n      \"$ref\": \"collections\",\r\n      \"$id\": 43325344,\r\n      \"oid\": 43325344\r\n    },\r\n    \"__v\": 1,\r\n    \"collectionId\": 43325344\r\n  }\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1136,7 +1136,7 @@
 			"responses": [
 				{
 					"uuid": "1dc419df-3b4f-4c51-ab8b-0eeba049120d",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"item\": {\r\n    \"collections\": [\r\n      {\r\n        \"$id\": 43450397\r\n      }\r\n    ],\r\n    \"tags\": []\r\n  }\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1165,7 +1165,7 @@
 			"responses": [
 				{
 					"uuid": "308746f0-e36c-4c1e-9bd8-28c8607f0fb2",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"item\": {\r\n    \"collections\": [\r\n      {\r\n        \"$id\": 43450397\r\n      }\r\n    ],\r\n    \"tags\": []\r\n  }\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1190,11 +1190,11 @@
 			"type": "http",
 			"documentation": "getRaindrops",
 			"method": "get",
-			"endpoint": "rest/v1/raindrops/:colectionId",
+			"endpoint": "rest/v1/raindrops/:collectionId",
 			"responses": [
 				{
 					"uuid": "0d6e8513-c255-49ca-badb-109f3b9f7d54",
-					"body": "{}",
+					"body": "{\r\n  \"result\": true,\r\n  \"items\": [\r\n    {\r\n      \"_id\": 772943656,\r\n      \"link\": \"https://api.raindrop.io/v2/raindrop/772943656/file?type=image/jpeg\",\r\n      \"title\": \"Robot.jpg\",\r\n      \"excerpt\": \"\",\r\n      \"note\": \"\",\r\n      \"type\": \"image\",\r\n      \"user\": {\r\n        \"$ref\": \"users\",\r\n        \"$id\": 1215940\r\n      },\r\n      \"cover\": \"https://rdl.ink/render/https%3A%2F%2Fup.raindrop.io%2Fraindrop%2Ffiles%2F772%2F943%2F656%2FRobot.jpg\",\r\n      \"tags\": [],\r\n      \"removed\": false,\r\n      \"collection\": {\r\n        \"$ref\": \"collections\",\r\n        \"$id\": 43325344,\r\n        \"oid\": 43325344\r\n      },\r\n      \"media\": [],\r\n      \"created\": \"2024-04-21T08:14:57.518Z\",\r\n      \"lastUpdate\": \"2024-04-21T08:14:57.655Z\",\r\n      \"domain\": \"up.raindrop.io\",\r\n      \"creatorRef\": {\r\n        \"_id\": 2067190,\r\n        \"name\": \"miyil99106\",\r\n        \"avatar\": \"\",\r\n        \"email\": \"\"\r\n      },\r\n      \"sort\": 772943656,\r\n      \"file\": {\r\n        \"name\": \"Robot.jpg\",\r\n        \"size\": 73048,\r\n        \"type\": \"image/jpeg\"\r\n      },\r\n      \"highlights\": [],\r\n      \"collectionId\": 43325344\r\n    },\r\n    {\r\n      \"_id\": 772943278,\r\n      \"link\": \"https://github.com/\",\r\n      \"title\": \"GitHub: Let’s build from here\",\r\n      \"excerpt\": \"GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...\",\r\n      \"note\": \"\",\r\n      \"type\": \"link\",\r\n      \"user\": {\r\n        \"$ref\": \"users\",\r\n        \"$id\": 1215940\r\n      },\r\n      \"cover\": \"https://up.raindrop.io/raindrop/thumbs/772/943/278/1713687345345.jpeg\",\r\n      \"media\": [\r\n        {\r\n          \"link\": \"https://up.raindrop.io/raindrop/thumbs/772/943/278/1713687345345.jpeg\",\r\n          \"type\": \"image\"\r\n        },\r\n        {\r\n          \"link\": \"https://github.githubassets.com/assets/campaign-social-031d6161fa10.png\",\r\n          \"type\": \"image\"\r\n        }\r\n      ],\r\n      \"tags\": [],\r\n      \"removed\": false,\r\n      \"collection\": {\r\n        \"$ref\": \"collections\",\r\n        \"$id\": 43325344,\r\n        \"oid\": 43325344\r\n      },\r\n      \"created\": \"2024-04-21T08:10:30.581Z\",\r\n      \"lastUpdate\": \"2024-04-21T08:15:45.432Z\",\r\n      \"domain\": \"github.com\",\r\n      \"creatorRef\": {\r\n        \"_id\": 2067190,\r\n        \"name\": \"miyil99106\",\r\n        \"avatar\": \"\",\r\n        \"email\": \"\"\r\n      },\r\n      \"sort\": 772943278,\r\n      \"highlights\": [],\r\n      \"collectionId\": 43325344\r\n    },\r\n    {\r\n      \"_id\": 770669926,\r\n      \"link\": \"https://google.com\",\r\n      \"title\": \"Google\",\r\n      \"excerpt\": \"\",\r\n      \"note\": \"\",\r\n      \"type\": \"link\",\r\n      \"user\": {\r\n        \"$ref\": \"users\",\r\n        \"$id\": 1215940\r\n      },\r\n      \"cover\": \"https://rdl.ink/render/https%3A%2F%2Fgoogle.com\",\r\n      \"media\": [],\r\n      \"tags\": [],\r\n      \"removed\": false,\r\n      \"collection\": {\r\n        \"$ref\": \"collections\",\r\n        \"$id\": 43325344,\r\n        \"oid\": 43325344\r\n      },\r\n      \"created\": \"2024-04-16T13:43:43.988Z\",\r\n      \"lastUpdate\": \"2024-04-16T13:44:33.749Z\",\r\n      \"domain\": \"google.com\",\r\n      \"creatorRef\": {\r\n        \"_id\": 1215940,\r\n        \"avatar\": \"\",\r\n        \"name\": \"lasuillard\",\r\n        \"email\": \"\"\r\n      },\r\n      \"sort\": 770669954,\r\n      \"highlights\": [],\r\n      \"collectionId\": 43325344\r\n    },\r\n    {\r\n      \"_id\": 770669954,\r\n      \"link\": \"https://reddit.com\",\r\n      \"title\": \"Reddit\",\r\n      \"excerpt\": \"\",\r\n      \"note\": \"\",\r\n      \"type\": \"link\",\r\n      \"user\": {\r\n        \"$ref\": \"users\",\r\n        \"$id\": 1215940\r\n      },\r\n      \"cover\": \"https://rdl.ink/render/https%3A%2F%2Freddit.com\",\r\n      \"media\": [],\r\n      \"tags\": [],\r\n      \"removed\": false,\r\n      \"collection\": {\r\n        \"$ref\": \"collections\",\r\n        \"$id\": 43325344,\r\n        \"oid\": 43325344\r\n      },\r\n      \"created\": \"2024-04-16T13:43:59.079Z\",\r\n      \"lastUpdate\": \"2024-04-16T13:43:59.079Z\",\r\n      \"domain\": \"reddit.com\",\r\n      \"creatorRef\": {\r\n        \"_id\": 1215940,\r\n        \"avatar\": \"\",\r\n        \"name\": \"lasuillard\",\r\n        \"email\": \"\"\r\n      },\r\n      \"sort\": 770669953,\r\n      \"highlights\": [],\r\n      \"collectionId\": 43325344\r\n    }\r\n  ],\r\n  \"count\": 4,\r\n  \"collectionId\": 43325344\r\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1223,7 +1223,7 @@
 			"responses": [
 				{
 					"uuid": "d7accab6-4181-4cfe-8a26-bfff41d54fbf",
-					"body": "{}",
+					"body": "{\n  \"result\": true,\n  \"modified\": 0\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1252,7 +1252,7 @@
 			"responses": [
 				{
 					"uuid": "c2b9094c-e7a0-4321-8576-b206affa6a5a",
-					"body": "{}",
+					"body": "{\n  \"result\": true,\n  \"modified\": 1\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
@@ -1281,7 +1281,7 @@
 			"responses": [
 				{
 					"uuid": "01259987-24b4-4cc0-b168-7bc0467fdaae",
-					"body": "{}",
+					"body": "{\n  \"result\": true,\n  \"items\": [\n    {\n      \"link\": \"https://github.com/\",\n      \"title\": \"GitHub: Let’s build from here\",\n      \"excerpt\": \"GitHub is where over 100 million developers shape the future of software, together. Contribute to the open source community, manage your Git repositories, review code like a pro, track bugs and fea...\",\n      \"note\": \"\",\n      \"type\": \"link\",\n      \"user\": {\n        \"$ref\": \"users\",\n        \"$id\": 1215940\n      },\n      \"cover\": \"https://github.githubassets.com/assets/campaign-social-031d6161fa10.png\",\n      \"media\": [\n        {\n          \"link\": \"https://github.githubassets.com/assets/campaign-social-031d6161fa10.png\",\n          \"type\": \"image\"\n        }\n      ],\n      \"tags\": [],\n      \"removed\": false,\n      \"created\": \"2024-04-21T08:11:06.593Z\",\n      \"collection\": {\n        \"$ref\": \"collections\",\n        \"$id\": 43325344,\n        \"oid\": 43325344\n      },\n      \"highlights\": [],\n      \"_id\": 772944099,\n      \"lastUpdate\": \"2024-04-21T08:19:45.945Z\",\n      \"domain\": \"github.com\",\n      \"creatorRef\": 2067190,\n      \"sort\": 772944099,\n      \"__v\": 0,\n      \"collectionId\": 43325344\n    }\n  ]\n}",
 					"latency": 0,
 					"statusCode": 200,
 					"label": "",
