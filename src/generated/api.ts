@@ -2848,7 +2848,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         acceptInvitation: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('acceptInvitation', 'id', id)
-            const localVarPath = `/rest/v1/collections/{id}/join`
+            const localVarPath = `/rest/v1/collection/{id}/join`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2890,7 +2890,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             assertParamExists('changeCollaboratorAccessLevel', 'userId', userId)
             // verify required parameter 'id' is not null or undefined
             assertParamExists('changeCollaboratorAccessLevel', 'id', id)
-            const localVarPath = `/rest/v1/collections/{id}/sharing/{userId}`
+            const localVarPath = `/rest/v1/collection/{id}/sharing/{userId}`
                 .replace(`{${"userId"}}`, encodeURIComponent(String(userId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2973,7 +2973,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             assertParamExists('deleteCollaborator', 'userId', userId)
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteCollaborator', 'id', id)
-            const localVarPath = `/rest/v1/collections/{id}/sharing/{userId}`
+            const localVarPath = `/rest/v1/collection/{id}/sharing/{userId}`
                 .replace(`{${"userId"}}`, encodeURIComponent(String(userId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
