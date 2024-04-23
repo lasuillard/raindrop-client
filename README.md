@@ -38,8 +38,6 @@ You may need Java installed as openapi-generator-cli uses it.
 
 Dev Containers configured and ready to use. Detailed installation steps and requirements will not be described here.
 
-Source codes that are not part of generated stubs tested via Vitest. Schemas are tested using [Schemathesis](https://schemathesis.io/) and [Mockoon CLI](https://mockoon.com/cli/).
-
 ## 📜 License
 
 This project is licensed under the terms of the MIT license.

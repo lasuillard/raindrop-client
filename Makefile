@@ -72,19 +72,6 @@ test: generate  ## Run tests
 	yarn run test
 .PHONY: test
 
-test-schema:
-	yarn run concurrently --kill-others --kill-signal SIGKILL --raw \
-		"yarn run mockoon-cli start \--data ./mockoon/storage/data.json" \
-		"
-		yarn run wait-on tcp:3000 --timeout 3s \
-		&& st run openapi.yaml \
-			--base-url http://localhost:3000 \
-			--checks all \
-			--exclude-checks not_a_server_error \
-			--hypothesis-phases generate
-		"
-.PHONY: test-schema
-
 docs:  ## Generate dev documents
 	yarn run make-docs
 .PHONY: docs
