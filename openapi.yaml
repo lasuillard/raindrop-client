@@ -2295,8 +2295,7 @@ components:
               $ref: '#/components/schemas/Suggest'
     UserConfig:
       type: object
-      required:
-        [broken_level, font_color, font_size, lang, last_collection, raindrops_sort, raindrops_view]
+      required: [broken_level, font_size, last_collection, raindrops_sort, raindrops_view]
       properties:
         broken_level:
           type: string
@@ -2308,28 +2307,23 @@ components:
           type: string
         last_collection:
           type: integer
+        raindrops_buttons:
+          type: array
+          items:
+            type: string
+        raindrops_hide:
+          type: array
+          items:
+            type: string
+        raindrops_search_by_score:
+          type: boolean
+        raindrops_search_by_incollection:
+          type: boolean
         raindrops_sort:
           $ref: '#/components/schemas/SortBy'
-        raindrops_view:
-          $ref: '#/components/schemas/View'
     User:
       type: object
-      required:
-        [
-          _id,
-          config,
-          dropbox,
-          email,
-          email_MD5,
-          files,
-          fullName,
-          gdrive,
-          groups,
-          password,
-          pro,
-          proExpire,
-          registered
-        ]
+      required: [_id, config, email, files, fullName, groups, password, pro, registered]
       properties:
         _id:
           type: integer
@@ -2566,7 +2560,6 @@ components:
       description: 'The order of collection (descending). Defines the position of the collection among all the collections with the same `parent.$id`'
     SortBy:
       type: string
-      enum: [title, -title, -count, -lastUpdate]
       description: |-
         Change order of all collections.
 

@@ -1775,14 +1775,12 @@ export type ReorderAllCollectionsRequest = ReorderAllCollectionsRequestOneOf | R
  */
 export interface ReorderAllCollectionsRequestOneOf {
     /**
-     * 
-     * @type {SortBy}
+     * Change order of all collections.  Possible values:  \"title\" - sort alphabetically ascending  \"-title\" - sort alphabetically descending  \"-count\" - sort by raindrops count descending
+     * @type {string}
      * @memberof ReorderAllCollectionsRequestOneOf
      */
-    'sort'?: SortBy;
+    'sort'?: string;
 }
-
-
 /**
  * 
  * @export
@@ -1880,22 +1878,6 @@ export interface ShareCollectionRequest {
      */
     'emails'?: Array<string>;
 }
-
-
-/**
- * Change order of all collections.  Possible values:  \"title\" - sort alphabetically ascending  \"-title\" - sort alphabetically descending  \"-count\" - sort by raindrops count descending
- * @export
- * @enum {string}
- */
-
-export const SortBy = {
-    Title: 'title',
-    MinusTitle: '-title',
-    MinusCount: '-count',
-    MinusLastUpdate: '-lastUpdate'
-} as const;
-
-export type SortBy = typeof SortBy[keyof typeof SortBy];
 
 
 /**
@@ -2423,7 +2405,7 @@ export interface User {
      * @type {UserDropbox}
      * @memberof User
      */
-    'dropbox': UserDropbox;
+    'dropbox'?: UserDropbox;
     /**
      * 
      * @type {string}
@@ -2435,7 +2417,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    'email_MD5': string;
+    'email_MD5'?: string;
     /**
      * 
      * @type {UserFiles}
@@ -2453,7 +2435,7 @@ export interface User {
      * @type {UserDropbox}
      * @memberof User
      */
-    'gdrive': UserDropbox;
+    'gdrive'?: UserDropbox;
     /**
      * 
      * @type {Array<Group>}
@@ -2477,7 +2459,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    'proExpire': string;
+    'proExpire'?: string;
     /**
      * 
      * @type {string}
@@ -2502,7 +2484,7 @@ export interface UserConfig {
      * @type {string}
      * @memberof UserConfig
      */
-    'font_color': string;
+    'font_color'?: string;
     /**
      * 
      * @type {number}
@@ -2514,7 +2496,7 @@ export interface UserConfig {
      * @type {string}
      * @memberof UserConfig
      */
-    'lang': string;
+    'lang'?: string;
     /**
      * 
      * @type {number}
@@ -2523,19 +2505,35 @@ export interface UserConfig {
     'last_collection': number;
     /**
      * 
-     * @type {SortBy}
+     * @type {Array<string>}
      * @memberof UserConfig
      */
-    'raindrops_sort': SortBy;
+    'raindrops_buttons'?: Array<string>;
     /**
      * 
-     * @type {View}
+     * @type {Array<string>}
      * @memberof UserConfig
      */
-    'raindrops_view': View;
+    'raindrops_hide'?: Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserConfig
+     */
+    'raindrops_search_by_score'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserConfig
+     */
+    'raindrops_search_by_incollection'?: boolean;
+    /**
+     * Change order of all collections.  Possible values:  \"title\" - sort alphabetically ascending  \"-title\" - sort alphabetically descending  \"-count\" - sort by raindrops count descending
+     * @type {string}
+     * @memberof UserConfig
+     */
+    'raindrops_sort': string;
 }
-
-
 /**
  * 
  * @export

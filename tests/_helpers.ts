@@ -30,9 +30,6 @@ async function mockAxios({ axiosInstance }, use) {
 // eslint-disable-next-line jsdoc/require-jsdoc
 async function client({ axiosInstance }, use) {
 	const accessToken = process.env.RAINDROP_API_TOKEN;
-	if (!accessToken) {
-		throw new Error('Raindrop API test account access token not provided.');
-	}
 	const client = new Raindrop(new Configuration({ accessToken }), axiosInstance);
 	await use(client);
 }
@@ -48,7 +45,12 @@ async function polly({ task }, use) {
 				recordingsDir: 'tests/__recordings__'
 			}
 		},
-		recordFailedRequests: true
+		recordFailedRequests: true,
+		matchRequestsBy: {
+			headers: {
+				exclude: ['authorization']
+			}
+		}
 	});
 	_polly.server.any().on('beforePersist', (_, recording) => {
 		// @ts-expect-error Don't care
