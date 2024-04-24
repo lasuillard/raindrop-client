@@ -14,7 +14,7 @@
 
 
 import type { Configuration } from './configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
@@ -671,28 +671,28 @@ export interface ErrorResponse {
 export interface Filter {
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof Filter
      */
-    'broken': FilterBroken;
+    'broken': StatResponseAllOfMetaDuplicates;
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof Filter
      */
-    'duplicates': FilterBroken;
+    'duplicates': StatResponseAllOfMetaDuplicates;
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof Filter
      */
-    'important': FilterBroken;
+    'important': StatResponseAllOfMetaDuplicates;
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof Filter
      */
-    'notag': FilterBroken;
+    'notag': StatResponseAllOfMetaDuplicates;
     /**
      * 
      * @type {Array<FilterTagsInner>}
@@ -709,19 +709,6 @@ export interface Filter {
 /**
  * 
  * @export
- * @interface FilterBroken
- */
-export interface FilterBroken {
-    /**
-     * 
-     * @type {number}
-     * @memberof FilterBroken
-     */
-    'count': number;
-}
-/**
- * 
- * @export
  * @interface FilterResponse
  */
 export interface FilterResponse {
@@ -733,28 +720,28 @@ export interface FilterResponse {
     'result': boolean;
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof FilterResponse
      */
-    'broken': FilterBroken;
+    'broken': StatResponseAllOfMetaDuplicates;
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof FilterResponse
      */
-    'duplicates': FilterBroken;
+    'duplicates': StatResponseAllOfMetaDuplicates;
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof FilterResponse
      */
-    'important': FilterBroken;
+    'important': StatResponseAllOfMetaDuplicates;
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof FilterResponse
      */
-    'notag': FilterBroken;
+    'notag': StatResponseAllOfMetaDuplicates;
     /**
      * 
      * @type {Array<FilterTagsInner>}
@@ -1416,9 +1403,9 @@ export const RaindropAllOfCacheStatusEnum = {
     Ready: 'ready',
     Retry: 'retry',
     Failed: 'failed',
-    InvalidOrigin: 'invalid-origin',
-    InvalidTimeout: 'invalid-timeout',
-    InvalidSize: 'invalid-size'
+    InvalidMinusOrigin: 'invalid-origin',
+    InvalidMinusTimeout: 'invalid-timeout',
+    InvalidMinusSize: 'invalid-size'
 } as const;
 
 export type RaindropAllOfCacheStatusEnum = typeof RaindropAllOfCacheStatusEnum[keyof typeof RaindropAllOfCacheStatusEnum];
@@ -1903,9 +1890,9 @@ export interface ShareCollectionRequest {
 
 export const SortBy = {
     Title: 'title',
-    Title2: '-title',
-    Count: '-count',
-    LastUpdate: '-lastUpdate'
+    MinusTitle: '-title',
+    MinusCount: '-count',
+    MinusLastUpdate: '-lastUpdate'
 } as const;
 
 export type SortBy = typeof SortBy[keyof typeof SortBy];
@@ -2656,7 +2643,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authorize: async (redirectUri: string, clientId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        authorize: async (redirectUri: string, clientId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'redirectUri' is not null or undefined
             assertParamExists('authorize', 'redirectUri', redirectUri)
             // verify required parameter 'clientId' is not null or undefined
@@ -2699,7 +2686,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrRefreshToken: async (getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getOrRefreshToken: async (getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/v1/oauth/access_token`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2744,11 +2731,11 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authorize(redirectUri: string, clientId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async authorize(redirectUri: string, clientId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.authorize(redirectUri, clientId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['AuthenticationApi.authorize']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AuthenticationApi.authorize']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Once you have the authorization code, you can exchange it for the `access_token` by doing a POST request with all required body parameters as JSON.  For security reasons access tokens (except \"test tokens\") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON). 
@@ -2757,11 +2744,11 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrRefreshToken200Response>> {
+        async getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrRefreshToken200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getOrRefreshToken(getOrRefreshTokenRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['AuthenticationApi.getOrRefreshToken']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AuthenticationApi.getOrRefreshToken']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -2813,7 +2800,7 @@ export class AuthenticationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    public authorize(redirectUri: string, clientId: string, options?: AxiosRequestConfig) {
+    public authorize(redirectUri: string, clientId: string, options?: RawAxiosRequestConfig) {
         return AuthenticationApiFp(this.configuration).authorize(redirectUri, clientId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -2825,7 +2812,7 @@ export class AuthenticationApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    public getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: AxiosRequestConfig) {
+    public getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: RawAxiosRequestConfig) {
         return AuthenticationApiFp(this.configuration).getOrRefreshToken(getOrRefreshTokenRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -2845,7 +2832,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        acceptInvitation: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        acceptInvitation: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('acceptInvitation', 'id', id)
             const localVarPath = `/rest/v1/collection/{id}/join`
@@ -2885,7 +2872,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        changeCollaboratorAccessLevel: async (userId: number, id: number, changeCollaboratorAccessLevelRequest?: ChangeCollaboratorAccessLevelRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        changeCollaboratorAccessLevel: async (userId: number, id: number, changeCollaboratorAccessLevelRequest?: ChangeCollaboratorAccessLevelRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('changeCollaboratorAccessLevel', 'userId', userId)
             // verify required parameter 'id' is not null or undefined
@@ -2929,7 +2916,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCollection: async (createCollection?: CreateCollection, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createCollection: async (createCollection?: CreateCollection, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collection`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2968,7 +2955,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCollaborator: async (userId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteCollaborator: async (userId: number, id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('deleteCollaborator', 'userId', userId)
             // verify required parameter 'id' is not null or undefined
@@ -3008,7 +2995,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        emptyTrash: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        emptyTrash: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collection/-99`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3042,7 +3029,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getChildCollections: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getChildCollections: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collections/childrens`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3077,7 +3064,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCollaborators: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCollaborators: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getCollaborators', 'id', id)
             const localVarPath = `/rest/v1/collection/{id}/sharing`
@@ -3115,7 +3102,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCollection: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCollection: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getCollection', 'id', id)
             const localVarPath = `/rest/v1/collection/{id}`
@@ -3152,7 +3139,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFeaturedCovers: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getFeaturedCovers: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collections/covers`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3186,7 +3173,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRootCollections: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRootCollections: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collections`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3220,7 +3207,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSystemCollectionStats: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSystemCollectionStats: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/user/stats`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3255,7 +3242,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mergeCollections: async (mergeCollectionsRequest?: MergeCollectionsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        mergeCollections: async (mergeCollectionsRequest?: MergeCollectionsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collections/merge`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3292,7 +3279,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeAllEmptyCollections: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeAllEmptyCollections: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collections/clean`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3327,7 +3314,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeCollection: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeCollection: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('removeCollection', 'id', id)
             const localVarPath = `/rest/v1/collection/{id}`
@@ -3365,7 +3352,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeCollections: async (removeCollectionsRequest?: RemoveCollectionsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeCollections: async (removeCollectionsRequest?: RemoveCollectionsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collections`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3403,7 +3390,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reorderAllCollections: async (reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        reorderAllCollections: async (reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collections`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3441,7 +3428,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchCovers: async (text: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        searchCovers: async (text: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'text' is not null or undefined
             assertParamExists('searchCovers', 'text', text)
             const localVarPath = `/rest/v1/collections/covers/{text}`
@@ -3480,7 +3467,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        shareCollection: async (id: number, shareCollectionRequest?: ShareCollectionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        shareCollection: async (id: number, shareCollectionRequest?: ShareCollectionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('shareCollection', 'id', id)
             const localVarPath = `/rest/v1/collection/{id}/sharing`
@@ -3521,7 +3508,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unshareOrLeaveCollection: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        unshareOrLeaveCollection: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('unshareOrLeaveCollection', 'id', id)
             const localVarPath = `/rest/v1/collection/{id}/sharing`
@@ -3560,7 +3547,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCollection: async (id: number, updateCollection?: UpdateCollection, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateCollection: async (id: number, updateCollection?: UpdateCollection, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateCollection', 'id', id)
             const localVarPath = `/rest/v1/collection/{id}`
@@ -3602,7 +3589,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadCollectionCover: async (id: number, cover?: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        uploadCollectionCover: async (id: number, cover?: File, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('uploadCollectionCover', 'id', id)
             const localVarPath = `/rest/v1/collection/{id}/cover`
@@ -3658,11 +3645,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async acceptInvitation(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AcceptInvitation200Response>> {
+        async acceptInvitation(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AcceptInvitation200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.acceptInvitation(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.acceptInvitation']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.acceptInvitation']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -3673,11 +3660,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async changeCollaboratorAccessLevel(userId: number, id: number, changeCollaboratorAccessLevelRequest?: ChangeCollaboratorAccessLevelRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async changeCollaboratorAccessLevel(userId: number, id: number, changeCollaboratorAccessLevelRequest?: ChangeCollaboratorAccessLevelRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.changeCollaboratorAccessLevel(userId, id, changeCollaboratorAccessLevelRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.changeCollaboratorAccessLevel']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.changeCollaboratorAccessLevel']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Create a new collection
@@ -3686,11 +3673,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createCollection(createCollection?: CreateCollection, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
+        async createCollection(createCollection?: CreateCollection, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createCollection(createCollection, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.createCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.createCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Remove an user from shared collection
@@ -3700,11 +3687,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteCollaborator(userId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async deleteCollaborator(userId: number, id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteCollaborator(userId, id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.deleteCollaborator']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.deleteCollaborator']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -3712,11 +3699,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async emptyTrash(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async emptyTrash(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.emptyTrash(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.emptyTrash']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.emptyTrash']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns JSON-encoded array containing all nested collections (that have positive `parent.$id`)
@@ -3724,11 +3711,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getChildCollections(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseMany>> {
+        async getChildCollections(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseMany>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getChildCollections(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.getChildCollections']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.getChildCollections']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -3737,11 +3724,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCollaborators(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async getCollaborators(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCollaborators(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.getCollaborators']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.getCollaborators']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -3750,11 +3737,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCollection(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
+        async getCollection(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCollection(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.getCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.getCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -3762,11 +3749,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFeaturedCovers(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CoverResponse>> {
+        async getFeaturedCovers(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CoverResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFeaturedCovers(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.getFeaturedCovers']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.getFeaturedCovers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Returns JSON-encoded array containing all root collections.
@@ -3774,11 +3761,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRootCollections(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseMany>> {
+        async getRootCollections(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseMany>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRootCollections(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.getRootCollections']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.getRootCollections']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -3786,11 +3773,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSystemCollectionStats(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatResponse>> {
+        async getSystemCollectionStats(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSystemCollectionStats(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.getSystemCollectionStats']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.getSystemCollectionStats']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Merge multiple collections
@@ -3799,11 +3786,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async mergeCollections(mergeCollectionsRequest?: MergeCollectionsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async mergeCollections(mergeCollectionsRequest?: MergeCollectionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.mergeCollections(mergeCollectionsRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.mergeCollections']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.mergeCollections']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -3811,11 +3798,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeAllEmptyCollections(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveAllEmptyCollections200Response>> {
+        async removeAllEmptyCollections(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveAllEmptyCollections200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeAllEmptyCollections(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.removeAllEmptyCollections']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.removeAllEmptyCollections']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Remove an existing collection and all its descendants.  Raindrops will be moved to \"Trash\" collection
@@ -3824,11 +3811,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeCollection(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async removeCollection(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeCollection(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.removeCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.removeCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Remove multiple collections at once.  Nested collections are ignored (include ID\'s in ids array to remove them)
@@ -3837,11 +3824,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeCollections(removeCollectionsRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.removeCollections']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.removeCollections']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Updates order of all collections
@@ -3850,11 +3837,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async reorderAllCollections(reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async reorderAllCollections(reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.reorderAllCollections(reorderAllCollectionsRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.reorderAllCollections']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.reorderAllCollections']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Search for specific cover (icon)
@@ -3863,11 +3850,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchCovers(text: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CoverResponse>> {
+        async searchCovers(text: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CoverResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.searchCovers(text, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.searchCovers']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.searchCovers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Share collection with another user(s). As result invitation(s) will be send to specified email(s) with link to join collection.
@@ -3877,11 +3864,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async shareCollection(id: number, shareCollectionRequest?: ShareCollectionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShareCollection200Response>> {
+        async shareCollection(id: number, shareCollectionRequest?: ShareCollectionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShareCollection200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.shareCollection(id, shareCollectionRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.shareCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.shareCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * There two possible results of calling this method, depends on who authenticated user is: - Owner: collection will be unshared and all collaborators will be removed - Member or viewer: authenticated user will be removed from collaborators list
@@ -3890,11 +3877,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async unshareOrLeaveCollection(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async unshareOrLeaveCollection(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.unshareOrLeaveCollection(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.unshareOrLeaveCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.unshareOrLeaveCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Update an existing collection
@@ -3904,11 +3891,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateCollection(id: number, updateCollection?: UpdateCollection, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
+        async updateCollection(id: number, updateCollection?: UpdateCollection, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateCollection(id, updateCollection, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.updateCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.updateCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * It\'s possible to upload cover from desktop. PNG, GIF and JPEG supported
@@ -3918,11 +3905,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async uploadCollectionCover(id: number, cover?: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
+        async uploadCollectionCover(id: number, cover?: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.uploadCollectionCover(id, cover, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.uploadCollectionCover']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.uploadCollectionCover']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -4162,7 +4149,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public acceptInvitation(id: number, options?: AxiosRequestConfig) {
+    public acceptInvitation(id: number, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).acceptInvitation(id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4176,7 +4163,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public changeCollaboratorAccessLevel(userId: number, id: number, changeCollaboratorAccessLevelRequest?: ChangeCollaboratorAccessLevelRequest, options?: AxiosRequestConfig) {
+    public changeCollaboratorAccessLevel(userId: number, id: number, changeCollaboratorAccessLevelRequest?: ChangeCollaboratorAccessLevelRequest, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).changeCollaboratorAccessLevel(userId, id, changeCollaboratorAccessLevelRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4188,7 +4175,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public createCollection(createCollection?: CreateCollection, options?: AxiosRequestConfig) {
+    public createCollection(createCollection?: CreateCollection, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).createCollection(createCollection, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4201,7 +4188,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public deleteCollaborator(userId: number, id: number, options?: AxiosRequestConfig) {
+    public deleteCollaborator(userId: number, id: number, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).deleteCollaborator(userId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4212,7 +4199,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public emptyTrash(options?: AxiosRequestConfig) {
+    public emptyTrash(options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).emptyTrash(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4223,7 +4210,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public getChildCollections(options?: AxiosRequestConfig) {
+    public getChildCollections(options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).getChildCollections(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4235,7 +4222,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public getCollaborators(id: number, options?: AxiosRequestConfig) {
+    public getCollaborators(id: number, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).getCollaborators(id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4247,7 +4234,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public getCollection(id: number, options?: AxiosRequestConfig) {
+    public getCollection(id: number, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).getCollection(id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4258,7 +4245,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public getFeaturedCovers(options?: AxiosRequestConfig) {
+    public getFeaturedCovers(options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).getFeaturedCovers(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4269,7 +4256,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public getRootCollections(options?: AxiosRequestConfig) {
+    public getRootCollections(options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).getRootCollections(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4280,7 +4267,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public getSystemCollectionStats(options?: AxiosRequestConfig) {
+    public getSystemCollectionStats(options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).getSystemCollectionStats(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4292,7 +4279,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public mergeCollections(mergeCollectionsRequest?: MergeCollectionsRequest, options?: AxiosRequestConfig) {
+    public mergeCollections(mergeCollectionsRequest?: MergeCollectionsRequest, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).mergeCollections(mergeCollectionsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4303,7 +4290,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public removeAllEmptyCollections(options?: AxiosRequestConfig) {
+    public removeAllEmptyCollections(options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).removeAllEmptyCollections(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4315,7 +4302,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public removeCollection(id: number, options?: AxiosRequestConfig) {
+    public removeCollection(id: number, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).removeCollection(id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4327,7 +4314,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: AxiosRequestConfig) {
+    public removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).removeCollections(removeCollectionsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4339,7 +4326,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public reorderAllCollections(reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options?: AxiosRequestConfig) {
+    public reorderAllCollections(reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).reorderAllCollections(reorderAllCollectionsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4351,7 +4338,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public searchCovers(text: string, options?: AxiosRequestConfig) {
+    public searchCovers(text: string, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).searchCovers(text, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4364,7 +4351,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public shareCollection(id: number, shareCollectionRequest?: ShareCollectionRequest, options?: AxiosRequestConfig) {
+    public shareCollection(id: number, shareCollectionRequest?: ShareCollectionRequest, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).shareCollection(id, shareCollectionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4376,7 +4363,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public unshareOrLeaveCollection(id: number, options?: AxiosRequestConfig) {
+    public unshareOrLeaveCollection(id: number, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).unshareOrLeaveCollection(id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4389,7 +4376,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public updateCollection(id: number, updateCollection?: UpdateCollection, options?: AxiosRequestConfig) {
+    public updateCollection(id: number, updateCollection?: UpdateCollection, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).updateCollection(id, updateCollection, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4402,7 +4389,7 @@ export class CollectionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public uploadCollectionCover(id: number, cover?: File, options?: AxiosRequestConfig) {
+    public uploadCollectionCover(id: number, cover?: File, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).uploadCollectionCover(id, cover, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -4424,7 +4411,7 @@ export const FilterApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFilters: async (collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getFilters: async (collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'collectionId' is not null or undefined
             assertParamExists('getFilters', 'collectionId', collectionId)
             const localVarPath = `/rest/v1/filters/{collectionId}`
@@ -4482,11 +4469,11 @@ export const FilterApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFilters(collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FilterResponse>> {
+        async getFilters(collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FilterResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFilters(collectionId, tagsSort, search, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['FilterApi.getFilters']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FilterApi.getFilters']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -4530,7 +4517,7 @@ export class FilterApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof FilterApi
      */
-    public getFilters(collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options?: AxiosRequestConfig) {
+    public getFilters(collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options?: RawAxiosRequestConfig) {
         return FilterApiFp(this.configuration).getFilters(collectionId, tagsSort, search, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -4539,7 +4526,7 @@ export class FilterApi extends BaseAPI {
  * @export
  */
 export const GetFiltersTagsSortEnum = {
-    Count: '-count',
+    MinusCount: '-count',
     Id: '_id'
 } as const;
 export type GetFiltersTagsSortEnum = typeof GetFiltersTagsSortEnum[keyof typeof GetFiltersTagsSortEnum];
@@ -4559,7 +4546,7 @@ export const HighlightApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllHighlights: async (page?: number, perpage?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAllHighlights: async (page?: number, perpage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/highlights`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4604,7 +4591,7 @@ export const HighlightApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getHighlightsInCollection: async (collectionId: number, page?: number, perpage?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getHighlightsInCollection: async (collectionId: number, page?: number, perpage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'collectionId' is not null or undefined
             assertParamExists('getHighlightsInCollection', 'collectionId', collectionId)
             const localVarPath = `/rest/v1/highlights/{collectionId}`
@@ -4650,7 +4637,7 @@ export const HighlightApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRaindrop: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRaindrop: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getRaindrop', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}`
@@ -4689,7 +4676,7 @@ export const HighlightApiAxiosParamCreator = function (configuration?: Configura
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRaindrop: async (id: number, createRaindrop?: CreateRaindrop, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateRaindrop: async (id: number, createRaindrop?: CreateRaindrop, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateRaindrop', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}`
@@ -4741,11 +4728,11 @@ export const HighlightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllHighlights(page?: number, perpage?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<HighlightResponse>> {
+        async getAllHighlights(page?: number, perpage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<HighlightResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllHighlights(page, perpage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['HighlightApi.getAllHighlights']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['HighlightApi.getAllHighlights']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -4756,11 +4743,11 @@ export const HighlightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getHighlightsInCollection(collectionId: number, page?: number, perpage?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<HighlightResponse>> {
+        async getHighlightsInCollection(collectionId: number, page?: number, perpage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<HighlightResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getHighlightsInCollection(collectionId, page, perpage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['HighlightApi.getHighlightsInCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['HighlightApi.getHighlightsInCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -4769,11 +4756,11 @@ export const HighlightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRaindrop(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async getRaindrop(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRaindrop(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['HighlightApi.getRaindrop']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['HighlightApi.getRaindrop']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -4783,11 +4770,11 @@ export const HighlightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateRaindrop(id: number, createRaindrop?: CreateRaindrop, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
+        async updateRaindrop(id: number, createRaindrop?: CreateRaindrop, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateRaindrop(id, createRaindrop, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['HighlightApi.updateRaindrop']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['HighlightApi.updateRaindrop']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -4862,7 +4849,7 @@ export class HighlightApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HighlightApi
      */
-    public getAllHighlights(page?: number, perpage?: number, options?: AxiosRequestConfig) {
+    public getAllHighlights(page?: number, perpage?: number, options?: RawAxiosRequestConfig) {
         return HighlightApiFp(this.configuration).getAllHighlights(page, perpage, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4876,7 +4863,7 @@ export class HighlightApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HighlightApi
      */
-    public getHighlightsInCollection(collectionId: number, page?: number, perpage?: number, options?: AxiosRequestConfig) {
+    public getHighlightsInCollection(collectionId: number, page?: number, perpage?: number, options?: RawAxiosRequestConfig) {
         return HighlightApiFp(this.configuration).getHighlightsInCollection(collectionId, page, perpage, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4888,7 +4875,7 @@ export class HighlightApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HighlightApi
      */
-    public getRaindrop(id: number, options?: AxiosRequestConfig) {
+    public getRaindrop(id: number, options?: RawAxiosRequestConfig) {
         return HighlightApiFp(this.configuration).getRaindrop(id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -4901,7 +4888,7 @@ export class HighlightApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof HighlightApi
      */
-    public updateRaindrop(id: number, createRaindrop?: CreateRaindrop, options?: AxiosRequestConfig) {
+    public updateRaindrop(id: number, createRaindrop?: CreateRaindrop, options?: RawAxiosRequestConfig) {
         return HighlightApiFp(this.configuration).updateRaindrop(id, createRaindrop, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -4921,7 +4908,7 @@ export const ImportApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        checkURLsExist: async (checkURLsExistRequest?: CheckURLsExistRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        checkURLsExist: async (checkURLsExistRequest?: CheckURLsExistRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/import/url/exists`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4959,7 +4946,7 @@ export const ImportApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        importHTMLBookmarkFile: async (_import?: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        importHTMLBookmarkFile: async (_import?: File, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/import/file`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5002,7 +4989,7 @@ export const ImportApiAxiosParamCreator = function (configuration?: Configuratio
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        parseURL: async (url?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        parseURL: async (url?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/import/url/parse`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5051,11 +5038,11 @@ export const ImportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async checkURLsExist(checkURLsExistRequest?: CheckURLsExistRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckURLsExist200Response>> {
+        async checkURLsExist(checkURLsExistRequest?: CheckURLsExistRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckURLsExist200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.checkURLsExist(checkURLsExistRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ImportApi.checkURLsExist']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ImportApi.checkURLsExist']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Convert HTML bookmark file to JSON.  Support Nestcape, Pocket and Instapaper file formats
@@ -5064,11 +5051,11 @@ export const ImportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async importHTMLBookmarkFile(_import?: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImportFileResponse>> {
+        async importHTMLBookmarkFile(_import?: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImportFileResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.importHTMLBookmarkFile(_import, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ImportApi.importHTMLBookmarkFile']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ImportApi.importHTMLBookmarkFile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Parse and extract useful info from any URL
@@ -5077,11 +5064,11 @@ export const ImportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async parseURL(url?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ParseURL200Response>> {
+        async parseURL(url?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ParseURL200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.parseURL(url, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ImportApi.parseURL']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ImportApi.parseURL']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -5141,7 +5128,7 @@ export class ImportApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ImportApi
      */
-    public checkURLsExist(checkURLsExistRequest?: CheckURLsExistRequest, options?: AxiosRequestConfig) {
+    public checkURLsExist(checkURLsExistRequest?: CheckURLsExistRequest, options?: RawAxiosRequestConfig) {
         return ImportApiFp(this.configuration).checkURLsExist(checkURLsExistRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -5153,7 +5140,7 @@ export class ImportApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ImportApi
      */
-    public importHTMLBookmarkFile(_import?: File, options?: AxiosRequestConfig) {
+    public importHTMLBookmarkFile(_import?: File, options?: RawAxiosRequestConfig) {
         return ImportApiFp(this.configuration).importHTMLBookmarkFile(_import, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -5165,7 +5152,7 @@ export class ImportApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof ImportApi
      */
-    public parseURL(url?: string, options?: AxiosRequestConfig) {
+    public parseURL(url?: string, options?: RawAxiosRequestConfig) {
         return ImportApiFp(this.configuration).parseURL(url, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -5185,7 +5172,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRaindrop: async (createRaindrop?: CreateRaindrop, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createRaindrop: async (createRaindrop?: CreateRaindrop, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/raindrop`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5223,7 +5210,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRaindrops: async (createRaindropsRequest?: CreateRaindropsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createRaindrops: async (createRaindropsRequest?: CreateRaindropsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/raindrops`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5261,7 +5248,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPermanentCopy: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPermanentCopy: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getPermanentCopy', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}/cache`
@@ -5299,7 +5286,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRaindrop: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRaindrop: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getRaindrop', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}`
@@ -5341,7 +5328,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRaindrops: async (collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRaindrops: async (collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'collectionId' is not null or undefined
             assertParamExists('getRaindrops', 'collectionId', collectionId)
             const localVarPath = `/rest/v1/raindrops/{collectionId}`
@@ -5395,7 +5382,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeRaindrop: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeRaindrop: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('removeRaindrop', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}`
@@ -5435,7 +5422,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeRaindrops: async (collectionId: number, search?: string, removeRaindropsRequest?: RemoveRaindropsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeRaindrops: async (collectionId: number, search?: string, removeRaindropsRequest?: RemoveRaindropsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'collectionId' is not null or undefined
             assertParamExists('removeRaindrops', 'collectionId', collectionId)
             const localVarPath = `/rest/v1/raindrops/{collectionId}`
@@ -5480,7 +5467,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        suggestForExistingBookmark: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        suggestForExistingBookmark: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('suggestForExistingBookmark', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}/suggest`
@@ -5518,7 +5505,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        suggestForNewBookmark: async (suggestForNewBookmarkRequest?: SuggestForNewBookmarkRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        suggestForNewBookmark: async (suggestForNewBookmarkRequest?: SuggestForNewBookmarkRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/raindrop/suggest`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5557,7 +5544,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRaindrop: async (id: number, createRaindrop?: CreateRaindrop, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateRaindrop: async (id: number, createRaindrop?: CreateRaindrop, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateRaindrop', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}`
@@ -5599,7 +5586,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRaindrops: async (collectionId: number, updateRaindropsRequest?: UpdateRaindropsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateRaindrops: async (collectionId: number, updateRaindropsRequest?: UpdateRaindropsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'collectionId' is not null or undefined
             assertParamExists('updateRaindrops', 'collectionId', collectionId)
             const localVarPath = `/rest/v1/raindrops/{collectionId}`
@@ -5641,7 +5628,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadFile: async (file?: File, collectionId?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        uploadFile: async (file?: File, collectionId?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/raindrop/file`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5689,7 +5676,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadRaindropCover: async (id: number, cover?: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        uploadRaindropCover: async (id: number, cover?: File, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('uploadRaindropCover', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}/cover`
@@ -5745,11 +5732,11 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createRaindrop(createRaindrop?: CreateRaindrop, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
+        async createRaindrop(createRaindrop?: CreateRaindrop, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createRaindrop(createRaindrop, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.createRaindrop']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.createRaindrop']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -5758,11 +5745,11 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createRaindrops(createRaindropsRequest?: CreateRaindropsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseMany>> {
+        async createRaindrops(createRaindropsRequest?: CreateRaindropsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseMany>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createRaindrops(createRaindropsRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.createRaindrops']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.createRaindrops']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Links permanently saved with all content (only in PRO plan). Using this method you can navigate to this copy.
@@ -5771,11 +5758,11 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPermanentCopy(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async getPermanentCopy(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPermanentCopy(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.getPermanentCopy']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.getPermanentCopy']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -5784,11 +5771,11 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRaindrop(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async getRaindrop(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRaindrop(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.getRaindrop']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.getRaindrop']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -5801,11 +5788,11 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseMany>> {
+        async getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseMany>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRaindrops(collectionId, sort, perpage, page, search, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.getRaindrops']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.getRaindrops']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * When you remove raindrop it will be moved to user Trash collection. But if you try to remove raindrop from Trash, it will be removed permanently.
@@ -5814,11 +5801,11 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeRaindrop(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async removeRaindrop(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeRaindrop(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.removeRaindrop']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.removeRaindrop']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Specify optional search and/or ids parameters to limit raindrops that will be moved to \"Trash\" When :collectionId is -99, raindrops will be permanently removed!
@@ -5829,11 +5816,11 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeRaindrops(collectionId: number, search?: string, removeRaindropsRequest?: RemoveRaindropsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveRaindrops200Response>> {
+        async removeRaindrops(collectionId: number, search?: string, removeRaindropsRequest?: RemoveRaindropsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveRaindrops200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeRaindrops(collectionId, search, removeRaindropsRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.removeRaindrops']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.removeRaindrops']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -5842,11 +5829,11 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async suggestForExistingBookmark(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SuggestResponse>> {
+        async suggestForExistingBookmark(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SuggestResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.suggestForExistingBookmark(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.suggestForExistingBookmark']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.suggestForExistingBookmark']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -5855,11 +5842,11 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async suggestForNewBookmark(suggestForNewBookmarkRequest?: SuggestForNewBookmarkRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SuggestResponse>> {
+        async suggestForNewBookmark(suggestForNewBookmarkRequest?: SuggestForNewBookmarkRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SuggestResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.suggestForNewBookmark(suggestForNewBookmarkRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.suggestForNewBookmark']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.suggestForNewBookmark']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -5869,11 +5856,11 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateRaindrop(id: number, createRaindrop?: CreateRaindrop, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
+        async updateRaindrop(id: number, createRaindrop?: CreateRaindrop, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateRaindrop(id, createRaindrop, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.updateRaindrop']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.updateRaindrop']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Specify optional search and/or ids parameters to limit raindrops that will be updated. Possible fields that could be updated are described in \"Body Parameters\"
@@ -5883,11 +5870,11 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateRaindrops(collectionId: number, updateRaindropsRequest?: UpdateRaindropsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async updateRaindrops(collectionId: number, updateRaindropsRequest?: UpdateRaindropsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateRaindrops(collectionId, updateRaindropsRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.updateRaindrops']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.updateRaindrops']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Make sure to send PUT request with [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST#example) body
@@ -5897,11 +5884,11 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async uploadFile(file?: File, collectionId?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
+        async uploadFile(file?: File, collectionId?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.uploadFile(file, collectionId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.uploadFile']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.uploadFile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * PNG, GIF or JPEG
@@ -5911,11 +5898,11 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async uploadRaindropCover(id: number, cover?: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
+        async uploadRaindropCover(id: number, cover?: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.uploadRaindropCover(id, cover, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.uploadRaindropCover']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.uploadRaindropCover']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -6085,7 +6072,7 @@ export class RaindropApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public createRaindrop(createRaindrop?: CreateRaindrop, options?: AxiosRequestConfig) {
+    public createRaindrop(createRaindrop?: CreateRaindrop, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).createRaindrop(createRaindrop, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6097,7 +6084,7 @@ export class RaindropApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public createRaindrops(createRaindropsRequest?: CreateRaindropsRequest, options?: AxiosRequestConfig) {
+    public createRaindrops(createRaindropsRequest?: CreateRaindropsRequest, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).createRaindrops(createRaindropsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6109,7 +6096,7 @@ export class RaindropApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public getPermanentCopy(id: number, options?: AxiosRequestConfig) {
+    public getPermanentCopy(id: number, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).getPermanentCopy(id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6121,7 +6108,7 @@ export class RaindropApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public getRaindrop(id: number, options?: AxiosRequestConfig) {
+    public getRaindrop(id: number, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).getRaindrop(id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6137,7 +6124,7 @@ export class RaindropApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: AxiosRequestConfig) {
+    public getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).getRaindrops(collectionId, sort, perpage, page, search, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6149,7 +6136,7 @@ export class RaindropApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public removeRaindrop(id: number, options?: AxiosRequestConfig) {
+    public removeRaindrop(id: number, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).removeRaindrop(id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6163,7 +6150,7 @@ export class RaindropApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public removeRaindrops(collectionId: number, search?: string, removeRaindropsRequest?: RemoveRaindropsRequest, options?: AxiosRequestConfig) {
+    public removeRaindrops(collectionId: number, search?: string, removeRaindropsRequest?: RemoveRaindropsRequest, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).removeRaindrops(collectionId, search, removeRaindropsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6175,7 +6162,7 @@ export class RaindropApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public suggestForExistingBookmark(id: number, options?: AxiosRequestConfig) {
+    public suggestForExistingBookmark(id: number, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).suggestForExistingBookmark(id, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6187,7 +6174,7 @@ export class RaindropApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public suggestForNewBookmark(suggestForNewBookmarkRequest?: SuggestForNewBookmarkRequest, options?: AxiosRequestConfig) {
+    public suggestForNewBookmark(suggestForNewBookmarkRequest?: SuggestForNewBookmarkRequest, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).suggestForNewBookmark(suggestForNewBookmarkRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6200,7 +6187,7 @@ export class RaindropApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public updateRaindrop(id: number, createRaindrop?: CreateRaindrop, options?: AxiosRequestConfig) {
+    public updateRaindrop(id: number, createRaindrop?: CreateRaindrop, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).updateRaindrop(id, createRaindrop, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6213,7 +6200,7 @@ export class RaindropApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public updateRaindrops(collectionId: number, updateRaindropsRequest?: UpdateRaindropsRequest, options?: AxiosRequestConfig) {
+    public updateRaindrops(collectionId: number, updateRaindropsRequest?: UpdateRaindropsRequest, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).updateRaindrops(collectionId, updateRaindropsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6226,7 +6213,7 @@ export class RaindropApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public uploadFile(file?: File, collectionId?: number, options?: AxiosRequestConfig) {
+    public uploadFile(file?: File, collectionId?: number, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).uploadFile(file, collectionId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6239,7 +6226,7 @@ export class RaindropApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public uploadRaindropCover(id: number, cover?: File, options?: AxiosRequestConfig) {
+    public uploadRaindropCover(id: number, cover?: File, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).uploadRaindropCover(id, cover, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -6259,7 +6246,7 @@ export const TagApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTagsInCollection: async (collectionId?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getTagsInCollection: async (collectionId?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/tags/{collectionId}`
                 .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -6296,7 +6283,7 @@ export const TagApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeTagsFromCollection: async (collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeTagsFromCollection: async (collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/tags/{collectionId}`
                 .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -6336,7 +6323,7 @@ export const TagApiAxiosParamCreator = function (configuration?: Configuration) 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        renameOrMergeTags: async (collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        renameOrMergeTags: async (collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/tags/{collectionId}`
                 .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -6385,11 +6372,11 @@ export const TagApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTagsInCollection(collectionId?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTagsInCollection200Response>> {
+        async getTagsInCollection(collectionId?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTagsInCollection200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTagsInCollection(collectionId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['TagApi.getTagsInCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TagApi.getTagsInCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -6399,11 +6386,11 @@ export const TagApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeTagsFromCollection(collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async removeTagsFromCollection(collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeTagsFromCollection(collectionId, removeTagsFromCollectionRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['TagApi.removeTagsFromCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TagApi.removeTagsFromCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -6413,11 +6400,11 @@ export const TagApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async renameOrMergeTags(collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async renameOrMergeTags(collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.renameOrMergeTags(collectionId, renameOrMergeTagsRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['TagApi.renameOrMergeTags']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TagApi.renameOrMergeTags']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -6479,7 +6466,7 @@ export class TagApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TagApi
      */
-    public getTagsInCollection(collectionId?: number, options?: AxiosRequestConfig) {
+    public getTagsInCollection(collectionId?: number, options?: RawAxiosRequestConfig) {
         return TagApiFp(this.configuration).getTagsInCollection(collectionId, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6492,7 +6479,7 @@ export class TagApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TagApi
      */
-    public removeTagsFromCollection(collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options?: AxiosRequestConfig) {
+    public removeTagsFromCollection(collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options?: RawAxiosRequestConfig) {
         return TagApiFp(this.configuration).removeTagsFromCollection(collectionId, removeTagsFromCollectionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6505,7 +6492,7 @@ export class TagApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof TagApi
      */
-    public renameOrMergeTags(collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options?: AxiosRequestConfig) {
+    public renameOrMergeTags(collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options?: RawAxiosRequestConfig) {
         return TagApiFp(this.configuration).renameOrMergeTags(collectionId, renameOrMergeTagsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -6525,7 +6512,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        connectSocialNetworkProvider: async (provider: ConnectSocialNetworkProviderProviderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        connectSocialNetworkProvider: async (provider: ConnectSocialNetworkProviderProviderEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'provider' is not null or undefined
             assertParamExists('connectSocialNetworkProvider', 'provider', provider)
             const localVarPath = `/rest/v1/user/connect/{provider}`
@@ -6563,7 +6550,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        disconnectSocialNetworkProvider: async (provider: DisconnectSocialNetworkProviderProviderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        disconnectSocialNetworkProvider: async (provider: DisconnectSocialNetworkProviderProviderEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'provider' is not null or undefined
             assertParamExists('disconnectSocialNetworkProvider', 'provider', provider)
             const localVarPath = `/rest/v1/user/connect/{provider}/revoke`
@@ -6600,7 +6587,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCurrentUser: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCurrentUser: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/user`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6635,7 +6622,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPublicUserByName: async (name: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPublicUserByName: async (name: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'name' is not null or undefined
             assertParamExists('getPublicUserByName', 'name', name)
             const localVarPath = `/rest/v1/user/{name}`
@@ -6672,7 +6659,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSystemCollectionStats: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSystemCollectionStats: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/user/stats`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6707,7 +6694,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCurrentUser: async (updateCurrentUserRequest?: UpdateCurrentUserRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateCurrentUser: async (updateCurrentUserRequest?: UpdateCurrentUserRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/user`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6755,11 +6742,11 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async connectSocialNetworkProvider(provider: ConnectSocialNetworkProviderProviderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async connectSocialNetworkProvider(provider: ConnectSocialNetworkProviderProviderEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.connectSocialNetworkProvider(provider, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['UserApi.connectSocialNetworkProvider']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.connectSocialNetworkProvider']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Disconnect social network account from available authentication options
@@ -6768,11 +6755,11 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async disconnectSocialNetworkProvider(provider: DisconnectSocialNetworkProviderProviderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async disconnectSocialNetworkProvider(provider: DisconnectSocialNetworkProviderProviderEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.disconnectSocialNetworkProvider(provider, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['UserApi.disconnectSocialNetworkProvider']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.disconnectSocialNetworkProvider']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get currently authenticated user details
@@ -6780,11 +6767,11 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCurrentUser(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+        async getCurrentUser(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCurrentUser(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['UserApi.getCurrentUser']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.getCurrentUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * Get\'s publicly available user details
@@ -6793,11 +6780,11 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPublicUserByName(name: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPublicUserByName200Response>> {
+        async getPublicUserByName(name: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPublicUserByName200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPublicUserByName(name, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['UserApi.getPublicUserByName']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.getPublicUserByName']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
@@ -6805,11 +6792,11 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSystemCollectionStats(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatResponse>> {
+        async getSystemCollectionStats(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSystemCollectionStats(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['UserApi.getSystemCollectionStats']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.getSystemCollectionStats']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * To change email, config, password, etc... you can do it from single endpoint
@@ -6818,11 +6805,11 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateCurrentUser(updateCurrentUserRequest?: UpdateCurrentUserRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+        async updateCurrentUser(updateCurrentUserRequest?: UpdateCurrentUserRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateCurrentUser(updateCurrentUserRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['UserApi.updateCurrentUser']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.updateCurrentUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -6910,7 +6897,7 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public connectSocialNetworkProvider(provider: ConnectSocialNetworkProviderProviderEnum, options?: AxiosRequestConfig) {
+    public connectSocialNetworkProvider(provider: ConnectSocialNetworkProviderProviderEnum, options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).connectSocialNetworkProvider(provider, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6922,7 +6909,7 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public disconnectSocialNetworkProvider(provider: DisconnectSocialNetworkProviderProviderEnum, options?: AxiosRequestConfig) {
+    public disconnectSocialNetworkProvider(provider: DisconnectSocialNetworkProviderProviderEnum, options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).disconnectSocialNetworkProvider(provider, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6933,7 +6920,7 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public getCurrentUser(options?: AxiosRequestConfig) {
+    public getCurrentUser(options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).getCurrentUser(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6945,7 +6932,7 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public getPublicUserByName(name: number, options?: AxiosRequestConfig) {
+    public getPublicUserByName(name: number, options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).getPublicUserByName(name, options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6956,7 +6943,7 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public getSystemCollectionStats(options?: AxiosRequestConfig) {
+    public getSystemCollectionStats(options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).getSystemCollectionStats(options).then((request) => request(this.axios, this.basePath));
     }
 
@@ -6968,7 +6955,7 @@ export class UserApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public updateCurrentUser(updateCurrentUserRequest?: UpdateCurrentUserRequest, options?: AxiosRequestConfig) {
+    public updateCurrentUser(updateCurrentUserRequest?: UpdateCurrentUserRequest, options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).updateCurrentUser(updateCurrentUserRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }

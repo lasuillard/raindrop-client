@@ -31,7 +31,7 @@
 		"access": "public"
 	},
 	"scripts": {
-		"generate": "openapi-generator-cli generate -i openapi.yaml -g typescript-axios -o ./src/generated/ --skip-validate-spec",
+		"generate": "openapi-generator-cli generate -i openapi.yaml -g typescript-axios -o ./src/generated/ --skip-validate-spec --additional-properties enumPropertyNamingReplaceSpecialChar=true",
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
