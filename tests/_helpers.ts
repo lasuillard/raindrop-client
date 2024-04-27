@@ -1,42 +1,44 @@
 import NodeHTTPAdapter from '@pollyjs/adapter-node-http';
 import { Polly } from '@pollyjs/core';
 import FSPersister from '@pollyjs/persister-fs';
+import type { Use } from '@vitest/runner';
 import { Configuration } from '^/src/generated';
 import axios, { AxiosInstance } from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import type { Task } from 'vitest';
 import { test as base } from 'vitest';
 import { Raindrop } from '~/client';
+import { generateTypeTest } from './_type_testing';
 
 Polly.register(NodeHTTPAdapter);
 Polly.register(FSPersister);
 
-// @ts-expect-error Don't waste time typing this
 // eslint-disable-next-line no-empty-pattern, jsdoc/require-jsdoc
-async function axiosInstance({}, use) {
+async function axiosInstance({}, use: Use<AxiosInstance>) {
 	const instance = axios.create();
 	await use(instance);
 }
 
-// @ts-expect-error Don't waste time typing this
 // eslint-disable-next-line jsdoc/require-jsdoc
-async function mockAxios({ axiosInstance }, use) {
+async function mockAxios(
+	{ axiosInstance }: { axiosInstance: AxiosInstance },
+	use: Use<MockAdapter>
+) {
 	const mockAxios = new MockAdapter(axiosInstance, { onNoMatch: 'throwException' });
 	await use(mockAxios);
 	mockAxios.resetHandlers();
 	mockAxios.resetHistory();
 }
 
-// @ts-expect-error Don't waste time typing this
 // eslint-disable-next-line jsdoc/require-jsdoc
-async function client({ axiosInstance }, use) {
+async function client({ axiosInstance }: { axiosInstance: AxiosInstance }, use: Use<Raindrop>) {
 	const accessToken = process.env.RAINDROP_API_TOKEN;
 	const client = new Raindrop(new Configuration({ accessToken }), axiosInstance);
 	await use(client);
 }
 
-// @ts-expect-error Don't waste time typing this
 // eslint-disable-next-line jsdoc/require-jsdoc
-async function polly({ task }, use) {
+async function polly({ task }: { task: Task }, use: Use<Polly>) {
 	const _polly = new Polly(task.id, {
 		adapters: ['node-http'],
 		persister: 'fs',
@@ -54,7 +56,7 @@ async function polly({ task }, use) {
 	});
 	_polly.server.any().on('beforePersist', (_, recording) => {
 		// @ts-expect-error Don't care
-		recording.request.headers = recording.request.headers.map((header) => {
+		recording.request.headers = recording.request.headers.map((header: Header) => {
 			if (header.name == 'authorization') {
 				header.value = '<REDACTED>';
 			}
@@ -69,7 +71,8 @@ export const it = base.extend({
 	axiosInstance,
 	mockAxios,
 	client,
-	polly: [polly, { auto: true }]
+	polly: [polly, { auto: true }],
+	generateTypeTest: [generateTypeTest, { auto: true }]
 });
 
 declare module 'vitest' {
@@ -78,5 +81,6 @@ declare module 'vitest' {
 		mockAxios: MockAdapter;
 		client: Raindrop;
 		polly: Polly;
+		// `generateTypeTest` excluded intentionally as it does not expose any interactive API
 	}
 }

@@ -36,6 +36,10 @@ export default defineConfig({
 			// Publish for * if inside container for forwarding
 			host: process.env.CONTAINER ? '0.0.0.0' : '127.0.0.1',
 			port: 51204
+		},
+		typecheck: {
+			// Run explicitly (`--typecheck`, `--typecheck.only`)
+			enabled: false
 		}
 	}
 });

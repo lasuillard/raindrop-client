@@ -1,4 +1,5 @@
 docs/
+tests/__type_testing__/
 
 # User hook scripts for VSC devcontainer lifecycle
 .devcontainer/initializeCommand/
