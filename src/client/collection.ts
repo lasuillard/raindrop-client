@@ -24,6 +24,7 @@ export class CollectionApi extends _CollectionApi {
 		const collectionNodes: TreeSource<Collection>[] = collections.items.map((item) => ({
 			data: item,
 			id: item._id.toString(),
+			//@ts-expect-error TODO: Reused schemas have mismatch
 			parent: item.parent.$id.toString(),
 
 			toNode() {

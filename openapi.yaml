@@ -1880,7 +1880,6 @@ components:
           created,
           expanded,
           lastUpdate,
-          parent,
           public,
           sort,
           title,
@@ -1906,13 +1905,10 @@ components:
             draggable:
               type: boolean
               description: Does it possible to change parent of this collection?
-        collaborators:
-          allOf:
-            - $ref: '#/components/schemas/UserRef'
-            - description: When this object is present, means that collections is shared. Content of this object is private and not very useful.
-        color:
-          type: string
-          description: Primary color of collection cover as HEX
+            for:
+              type: number
+            root:
+              type: boolean
         count:
           type: integer
           description: Count of raindrops in collection
@@ -1943,6 +1939,8 @@ components:
         title:
           type: string
           description: Name of the collection
+        description:
+          type: string
         user:
           allOf:
             - $ref: '#/components/schemas/UserRef'
@@ -1952,6 +1950,23 @@ components:
                   description: Owner ID
         view:
           $ref: '#/components/schemas/View'
+        creatorRef:
+          type: object
+          properties:
+            _id:
+              type: number
+            name:
+              type: string
+            email:
+              type: string
+        lastAction:
+          type: string
+          format: date-time
+        slug:
+          type: string
+        author:
+          type: boolean
+
     CollectionResponseOne:
       allOf:
         - $ref: '#/components/schemas/Response'
@@ -2317,10 +2332,18 @@ components:
             type: string
         raindrops_search_by_score:
           type: boolean
-        raindrops_search_by_incollection:
+        raindrops_search_incollection:
           type: boolean
         raindrops_sort:
           $ref: '#/components/schemas/SortBy'
+        default_collection_view:
+          type: string
+        nested_view_legacy:
+          type: boolean
+        add_default_collection:
+          type: number
+        acknowledge:
+          type: array
     User:
       type: object
       required: [_id, config, email, files, fullName, groups, password, pro, registered]
@@ -2373,6 +2396,25 @@ components:
         registered:
           type: string
           format: date-time
+        tfa:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+        name:
+          type: string
+        avatar:
+          type: string
+        lastAction:
+          type: string
+          format: date-time
+        lastVisit:
+          type: string
+          format: date-time
+        lastUpdate:
+          type: string
+          format: date-time
+
     Group:
       type: object
       required: [title, hidden, sort, collections]

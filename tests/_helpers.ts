@@ -8,7 +8,7 @@ import MockAdapter from 'axios-mock-adapter';
 import type { Task } from 'vitest';
 import { test as base } from 'vitest';
 import { Raindrop } from '~/client';
-import { generateTypeTest } from './_type_testing';
+import { generateTypeTest, type RegisterHook } from './_type_testing';
 
 Polly.register(NodeHTTPAdapter);
 Polly.register(FSPersister);
@@ -72,7 +72,7 @@ export const it = base.extend({
 	mockAxios,
 	client,
 	polly: [polly, { auto: true }],
-	generateTypeTest: [generateTypeTest, { auto: true }]
+	generateTypeTest
 });
 
 declare module 'vitest' {
@@ -81,6 +81,6 @@ declare module 'vitest' {
 		mockAxios: MockAdapter;
 		client: Raindrop;
 		polly: Polly;
-		// `generateTypeTest` excluded intentionally as it does not expose any interactive API
+		generateTypeTest: RegisterHook;
 	}
 }

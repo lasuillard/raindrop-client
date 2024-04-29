@@ -1,65 +1,46 @@
 import { it } from '^/tests/_helpers';
 
-it('getCurrentUser', async ({ client, expect }) => {
-	const response = await client.user.getCurrentUser();
+it('getRootCollections', async ({ client, expect, generateTypeTest }) => {
+	const response = await client.collection.getRootCollections();
+	generateTypeTest({
+		type: 'CollectionResponseMany'
+	});
 	expect(response.data).toMatchInlineSnapshot(`
 		{
-		  "result": true,
-		  "user": {
-		    "_id": 2067190,
-		    "avatar": "",
-		    "config": {
-		      "acknowledge": [],
-		      "add_default_collection": -1,
-		      "broken_level": "default",
-		      "default_collection_view": "list",
-		      "font_size": 0,
-		      "last_collection": 43325344,
-		      "nested_view_legacy": true,
-		      "raindrops_buttons": [
-		        "select",
-		        "preview",
-		        "edit",
-		        "remove",
-		      ],
-		      "raindrops_hide": [
-		        "list_excerpt",
-		        "simple_excerpt",
-		        "grid_excerpt",
-		        "masonry_excerpt",
-		      ],
-		      "raindrops_search_by_score": true,
-		      "raindrops_search_incollection": false,
-		      "raindrops_sort": "title",
-		    },
-		    "email": "miyil99106@iliken.com",
-		    "files": {
-		      "lastCheckPoint": "2024-04-21T06:46:01.479Z",
-		      "size": 100000000,
-		      "used": 73048,
-		    },
-		    "fullName": "miyil99106",
-		    "groups": [
-		      {
-		        "collections": [
-		          43450397,
-		        ],
-		        "hidden": false,
-		        "sort": -1,
-		        "title": "Collections",
+		  "items": [
+		    {
+		      "_id": 43450397,
+		      "access": {
+		        "draggable": true,
+		        "for": 2067190,
+		        "level": 4,
+		        "root": false,
 		      },
-		    ],
-		    "lastAction": "2024-04-21T08:38:11.397Z",
-		    "lastUpdate": "2024-04-24T11:21:42.865Z",
-		    "lastVisit": "2024-04-24T11:21:42.865Z",
-		    "name": "miyil99106",
-		    "password": true,
-		    "pro": false,
-		    "registered": "2024-04-21T06:46:01.480Z",
-		    "tfa": {
-		      "enabled": false,
+		      "author": true,
+		      "count": 1,
+		      "cover": [],
+		      "created": "2024-04-21T07:39:41.503Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "description": "",
+		      "expanded": true,
+		      "lastAction": "2024-04-21T07:39:57.839Z",
+		      "lastUpdate": "2024-04-21T07:39:57.839Z",
+		      "public": false,
+		      "slug": "testest",
+		      "sort": 0,
+		      "title": "testest",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		      "view": "list",
 		    },
-		  },
+		  ],
+		  "result": true,
 		}
 	`);
 });

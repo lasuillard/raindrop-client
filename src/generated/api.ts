@@ -147,18 +147,6 @@ export interface Collection {
      */
     'access': CollectionAccess;
     /**
-     * 
-     * @type {CollectionCollaborators}
-     * @memberof Collection
-     */
-    'collaborators': CollectionCollaborators;
-    /**
-     * Primary color of collection cover as HEX
-     * @type {string}
-     * @memberof Collection
-     */
-    'color': string;
-    /**
      * Count of raindrops in collection
      * @type {number}
      * @memberof Collection
@@ -193,7 +181,7 @@ export interface Collection {
      * @type {CollectionRef}
      * @memberof Collection
      */
-    'parent': CollectionRef;
+    'parent'?: CollectionRef;
     /**
      * Collection and raindrops that it contains will be accessible without authentication by public link
      * @type {boolean}
@@ -214,6 +202,12 @@ export interface Collection {
     'title': string;
     /**
      * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'description'?: string;
+    /**
+     * 
      * @type {CollectionUser}
      * @memberof Collection
      */
@@ -224,6 +218,30 @@ export interface Collection {
      * @memberof Collection
      */
     'view': View;
+    /**
+     * 
+     * @type {CollectionCreatorRef}
+     * @memberof Collection
+     */
+    'creatorRef'?: CollectionCreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'lastAction'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'slug'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Collection
+     */
+    'author'?: boolean;
 }
 
 
@@ -245,6 +263,18 @@ export interface CollectionAccess {
      * @memberof CollectionAccess
      */
     'draggable': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof CollectionAccess
+     */
+    'for'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CollectionAccess
+     */
+    'root'?: boolean;
 }
 
 export const CollectionAccessLevelEnum = {
@@ -259,21 +289,27 @@ export type CollectionAccessLevelEnum = typeof CollectionAccessLevelEnum[keyof t
 /**
  * 
  * @export
- * @interface CollectionCollaborators
+ * @interface CollectionCreatorRef
  */
-export interface CollectionCollaborators {
-    /**
-     * 
-     * @type {string}
-     * @memberof CollectionCollaborators
-     */
-    '$ref': string;
+export interface CollectionCreatorRef {
     /**
      * 
      * @type {number}
-     * @memberof CollectionCollaborators
+     * @memberof CollectionCreatorRef
      */
-    '$id': number;
+    '_id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CollectionCreatorRef
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CollectionCreatorRef
+     */
+    'email'?: string;
 }
 /**
  * 
@@ -2466,6 +2502,42 @@ export interface User {
      * @memberof User
      */
     'registered': string;
+    /**
+     * 
+     * @type {UserTfa}
+     * @memberof User
+     */
+    'tfa'?: UserTfa;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'avatar'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'lastAction'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'lastVisit'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'lastUpdate'?: string;
 }
 /**
  * 
@@ -2526,13 +2598,37 @@ export interface UserConfig {
      * @type {boolean}
      * @memberof UserConfig
      */
-    'raindrops_search_by_incollection'?: boolean;
+    'raindrops_search_incollection'?: boolean;
     /**
      * Change order of all collections.  Possible values:  \"title\" - sort alphabetically ascending  \"-title\" - sort alphabetically descending  \"-count\" - sort by raindrops count descending
      * @type {string}
      * @memberof UserConfig
      */
     'raindrops_sort': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserConfig
+     */
+    'default_collection_view'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserConfig
+     */
+    'nested_view_legacy'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof UserConfig
+     */
+    'add_default_collection'?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UserConfig
+     */
+    'acknowledge'?: Array<string>;
 }
 /**
  * 
@@ -2609,6 +2705,19 @@ export interface UserResponse {
      * @memberof UserResponse
      */
     'user': User;
+}
+/**
+ * 
+ * @export
+ * @interface UserTfa
+ */
+export interface UserTfa {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserTfa
+     */
+    'enabled'?: boolean;
 }
 /**
  * View style of collection, can be: - list (default) - simple - grid - masonry    Pinterest like grid

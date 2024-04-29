@@ -21,31 +21,38 @@ function addTest(item: CreateTest) {
 	filesToCreate = [...filesToCreate, item];
 }
 
+export interface RegisterHookArgs {
+	type: string;
+}
+
+export type RegisterHook = (args: RegisterHookArgs) => void;
+
 // eslint-disable-next-line jsdoc/require-jsdoc
 export async function generateTypeTest(
 	{ task, expect }: { task: Task; expect: ExpectStatic },
-	use: Use<void>
+	use: Use<RegisterHook>
 ) {
-	// Check test file generation registered only once
-	let ack = false;
+	const hookFn: RegisterHook = (args: RegisterHookArgs) => {
+		// Check test file generation registered only once
+		let ack = false;
 
-	// Add snapshot serializer as an workaround for hook to generate type tests
-	expect.addSnapshotSerializer({
-		serialize(val, config, indentation, depth, refs, printer) {
-			addTest({
-				testId: task.id,
-				type: 'UserResponse',
-				value: JSON.stringify(val)
-			});
-			ack = true;
-			return printer(val, config, indentation, depth, refs);
-		},
-		test() {
-			return !ack;
-		}
-	});
-
-	await use();
+		// Add snapshot serializer as an workaround for hook to generate type tests
+		expect.addSnapshotSerializer({
+			serialize(val, config, indentation, depth, refs, printer) {
+				addTest({
+					testId: task.id,
+					type: args.type,
+					value: JSON.stringify(val)
+				});
+				ack = true;
+				return printer(val, config, indentation, depth, refs);
+			},
+			test() {
+				return !ack;
+			}
+		});
+	};
+	await use(hookFn);
 }
 
 // eslint-disable-next-line jsdoc/require-jsdoc
@@ -61,7 +68,7 @@ it('${item.testId}', () => {
   )
 })
 `;
-	console.log(`Will generate file ${filepath} with content ${content}`);
+	console.debug(`Will generate file ${filepath} with content ${content}`);
 	fs.writeFileSync(filepath, content);
 }
 
