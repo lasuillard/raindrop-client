@@ -29,6 +29,7 @@ export async function generateTypeTest(
 	// Check test file generation registered only once
 	let ack = false;
 
+	// Add snapshot serializer as an workaround for hook to generate type tests
 	expect.addSnapshotSerializer({
 		serialize(val, config, indentation, depth, refs, printer) {
 			addTest({
