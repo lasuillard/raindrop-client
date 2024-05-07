@@ -44,3 +44,15 @@ it('getRootCollections', async ({ client, expect, generateTypeTest }) => {
 		}
 	`);
 });
+
+it('reorderAllCollections', async ({ client, expect, generateTypeTest }) => {
+	const response = await client.collection.reorderAllCollections();
+	generateTypeTest({
+		type: 'Response'
+	});
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "result": true,
+		}
+	`);
+});
