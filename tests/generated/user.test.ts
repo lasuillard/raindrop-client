@@ -68,3 +68,8 @@ it('getCurrentUser', async ({ client, expect, generateTypeTest }) => {
 		}
 	`);
 });
+
+it.todo('updateCurrentUser');
+it.todo('getPublicUserByName');
+it.todo('connectSocialNetworkProvider');
+it.todo('disconnectSocialNetworkProvider');
