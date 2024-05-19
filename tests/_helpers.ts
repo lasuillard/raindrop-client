@@ -15,7 +15,9 @@ Polly.register(FSPersister);
 
 // eslint-disable-next-line no-empty-pattern, jsdoc/require-jsdoc
 async function axiosInstance({}, use: Use<AxiosInstance>) {
-	const instance = axios.create();
+	const instance = axios.create({
+		validateStatus: () => true
+	});
 	await use(instance);
 }
 
