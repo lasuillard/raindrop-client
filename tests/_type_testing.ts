@@ -68,7 +68,7 @@ it('${item.testId}', () => {
   )
 })
 `;
-	console.debug(`Will generate file ${filepath} with content ${content}`);
+	console.debug(`Will generate file ${filepath} with content: \n\n ${content}`);
 	fs.writeFileSync(filepath, content);
 }
 
