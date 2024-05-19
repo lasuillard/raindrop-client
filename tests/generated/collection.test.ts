@@ -57,7 +57,35 @@ it('reorderAllCollections', async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it.todo('removeCollections');
+it('removeCollections', async ({ client, expect, generateTypeTest }) => {
+	const collection = await client.collection.createCollection({
+		view: 'list',
+		title: 'removeCollections',
+		sort: 0,
+		public: true,
+		parent: {
+			$ref: 'collections',
+			$id: 0,
+			oid: 0
+		},
+		cover: ['string']
+	});
+
+	const response = await client.collection.removeCollections({ ids: [collection.data.item!._id] });
+	generateTypeTest({
+		type: 'RemoveCollections200Response'
+	});
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "ids": [
+		    44291953,
+		  ],
+		  "modified": 1,
+		  "result": true,
+		}
+	`);
+});
+
 it.todo('getChildCollections');
 it.todo('getCollection');
 it.todo('updateCollection');

@@ -1724,6 +1724,31 @@ export interface RemoveAllEmptyCollections200Response {
 /**
  * 
  * @export
+ * @interface RemoveCollections200Response
+ */
+export interface RemoveCollections200Response {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RemoveCollections200Response
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof RemoveCollections200Response
+     */
+    'ids'?: Array<number>;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoveCollections200Response
+     */
+    'modified'?: number;
+}
+/**
+ * 
+ * @export
  * @interface RemoveCollectionsRequest
  */
 export interface RemoveCollectionsRequest {
@@ -3931,7 +3956,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveCollections200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeCollections(removeCollectionsRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.removeCollections']?.[localVarOperationServerIndex]?.url;
@@ -4172,7 +4197,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: any): AxiosPromise<void> {
+        removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: any): AxiosPromise<RemoveCollections200Response> {
             return localVarFp.removeCollections(removeCollectionsRequest, options).then((request) => request(axios, basePath));
         },
         /**

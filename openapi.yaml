@@ -228,6 +228,19 @@ paths:
       responses:
         200:
           description: Success
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: '#/components/schemas/Response'
+                  - type: object
+                    properties:
+                      ids:
+                        type: array
+                        items:
+                          type: integer
+                      modified:
+                        type: integer
   /rest/v1/collections/childrens:
     get:
       operationId: getChildCollections
