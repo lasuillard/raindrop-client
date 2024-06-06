@@ -10,8 +10,6 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"dbaeumer.vscode-eslint",
-				"esbenp.prettier-vscode",
 				"ldez.ignore-files",
 				"gruntfuggly.todo-tree",
 				"redhat.vscode-yaml",
@@ -19,7 +17,8 @@
 				"editorconfig.editorconfig",
 				"vitest.explorer",
 				"vivaxy.vscode-conventional-commits",
-				"42Crunch.vscode-openapi"
+				"42Crunch.vscode-openapi",
+				"biomejs.biome"
 			]
 		}
 	}

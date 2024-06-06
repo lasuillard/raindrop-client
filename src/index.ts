@@ -1,6 +1,6 @@
-import * as client from './client';
-import * as generated from './generated'; // For those who think this library lacks something
-import * as utils from './utils';
+import * as client from "./client";
+import * as generated from "./generated"; // For those who think this library lacks something
+import * as utils from "./utils";
 
 export { client, generated, utils };
 
@@ -11,6 +11,6 @@ export default client.Raindrop;
 if (import.meta.vitest) {
 	const { it } = import.meta.vitest;
 
-	it.skip('Nothing to test here');
+	it.skip("Nothing to test here");
 }
 /* c8 ignore stop */

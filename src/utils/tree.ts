@@ -85,8 +85,12 @@ export interface TreeSource<D, T = D> {
  * @param parentID ID of parent node.
  * @param source Full list of all source nodes.
  */
-function buildTree<_, T>(parent: TreeNode<T>, parentID: string | null, source: TreeSource<_, T>[]) {
-	const children = source.filter((src) => src.parent == parentID);
+function buildTree<_, T>(
+	parent: TreeNode<T>,
+	parentID: string | null,
+	source: TreeSource<_, T>[],
+) {
+	const children = source.filter((src) => src.parent === parentID);
 	for (const src of children) {
 		const srcNode = src.toNode();
 		buildTree(srcNode, src.id, source);
@@ -100,7 +104,10 @@ function buildTree<_, T>(parent: TreeNode<T>, parentID: string | null, source: T
  * @param source Array of sources.
  * @returns Root node of built tree.
  */
-export function makeTree<_, T>(data: T, source: TreeSource<_, T>[]): TreeNode<T> {
+export function makeTree<_, T>(
+	data: T,
+	source: TreeSource<_, T>[],
+): TreeNode<T> {
 	const root = new TreeNode<T>(data);
 	buildTree(root, null, source);
 	return root;
@@ -110,14 +117,14 @@ export function makeTree<_, T>(data: T, source: TreeSource<_, T>[]): TreeNode<T>
 if (import.meta.vitest) {
 	const { expect, it } = import.meta.vitest;
 
-	it('should have following default values', () => {
-		const node = new TreeNode('test');
-		expect(node.data).toEqual('test');
+	it("should have following default values", () => {
+		const node = new TreeNode("test");
+		expect(node.data).toEqual("test");
 		expect(node.parent).toBeNull();
 		expect(node.children).toEqual([]);
 	});
 
-	it('can be built from array of sources', () => {
+	it("can be built from array of sources", () => {
 		/**
 		 *   1
 		 *  / \
@@ -127,26 +134,26 @@ if (import.meta.vitest) {
 		 *      /
 		 *     6
 		 */
-		const data: Pick<TreeSource<string>, 'data' | 'id' | 'parent'>[] = [
-			{ data: '1', id: '1', parent: null },
-			{ data: '2', id: '2', parent: '1' },
-			{ data: '3', id: '3', parent: '1' },
-			{ data: '4', id: '4', parent: '3' },
-			{ data: '5', id: '5', parent: '3' },
-			{ data: '6', id: '6', parent: '5' }
+		const data: Pick<TreeSource<string>, "data" | "id" | "parent">[] = [
+			{ data: "1", id: "1", parent: null },
+			{ data: "2", id: "2", parent: "1" },
+			{ data: "3", id: "3", parent: "1" },
+			{ data: "4", id: "4", parent: "3" },
+			{ data: "5", id: "5", parent: "3" },
+			{ data: "6", id: "6", parent: "5" },
 		];
 		const source: TreeSource<string>[] = data.map((data) => ({
 			...data,
 			toNode() {
 				return new TreeNode(this.data);
-			}
+			},
 		}));
 		const tree = makeTree(null, source);
 		const visits: (string | null)[] = [];
 		tree.traverse((node) => {
 			visits.push(node.data);
 		});
-		expect(visits).toEqual([null, '1', '2', '3', '4', '5', '6']);
+		expect(visits).toEqual([null, "1", "2", "3", "4", "5", "6"]);
 	});
 }
 /* c8 ignore stop */

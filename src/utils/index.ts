@@ -1,4 +1,4 @@
-import * as tree from './tree';
+import * as tree from "./tree";
 
 export { tree };
 
@@ -6,6 +6,6 @@ export { tree };
 if (import.meta.vitest) {
 	const { it } = import.meta.vitest;
 
-	it.skip('Nothing to test here');
+	it.skip("Nothing to test here");
 }
 /* c8 ignore stop */
