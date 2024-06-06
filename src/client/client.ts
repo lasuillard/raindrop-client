@@ -1,8 +1,15 @@
-import axios, { AxiosInstance } from 'axios';
-import { Configuration, FilterApi, HighlightApi, ImportApi, TagApi, UserApi } from '~/generated';
-import { AuthenticationApi } from './auth';
-import { CollectionApi } from './collection';
-import { RaindropApi } from './raindrop';
+import axios, { type AxiosInstance } from "axios";
+import {
+	Configuration,
+	FilterApi,
+	HighlightApi,
+	ImportApi,
+	TagApi,
+	UserApi,
+} from "~/generated";
+import { AuthenticationApi } from "./auth";
+import { CollectionApi } from "./collection";
+import { RaindropApi } from "./raindrop";
 
 /**
  * Raindrop API set.
@@ -44,7 +51,7 @@ export class Raindrop {
 if (import.meta.vitest) {
 	const { expect, it } = import.meta.vitest;
 
-	it('should instantiate', () => {
+	it("should instantiate", () => {
 		const rd = new Raindrop();
 		expect(rd).toBeTruthy();
 	});

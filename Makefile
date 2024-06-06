@@ -58,13 +58,11 @@ generate:  ## Generate codes from schemas
 .PHONY: generate
 
 format:  ## Run autoformatters
-	yarn run prettier --list-different --write .
-	yarn run eslint --fix .
+	yarn run biome format --write .
 .PHONY: format
 
 lint: generate  ## Run all linters
-	yarn run prettier --check .
-	yarn run eslint .
+	yarn run biome lint .
 	yarn run tsc --noEmit
 .PHONY: lint
 
