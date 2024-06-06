@@ -1,9 +1,9 @@
-import { it } from '^/tests/_helpers';
+import { it } from "^/tests/_helpers";
 
-it('getRootCollections', async ({ client, expect, generateTypeTest }) => {
+it("getRootCollections", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.collection.getRootCollections();
 	generateTypeTest({
-		type: 'CollectionResponseMany'
+		type: "CollectionResponseMany",
 	});
 	expect(response.data).toMatchInlineSnapshot(`
 		{
@@ -45,10 +45,10 @@ it('getRootCollections', async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it('reorderAllCollections', async ({ client, expect, generateTypeTest }) => {
+it("reorderAllCollections", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.collection.reorderAllCollections();
 	generateTypeTest({
-		type: 'Response'
+		type: "Response",
 	});
 	expect(response.data).toMatchInlineSnapshot(`
 		{
@@ -57,23 +57,26 @@ it('reorderAllCollections', async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it('removeCollections', async ({ client, expect, generateTypeTest }) => {
+it("removeCollections", async ({ client, expect, generateTypeTest }) => {
 	const collection = await client.collection.createCollection({
-		view: 'list',
-		title: 'removeCollections',
+		view: "list",
+		title: "removeCollections",
 		sort: 0,
 		public: true,
 		parent: {
-			$ref: 'collections',
+			$ref: "collections",
 			$id: 0,
-			oid: 0
+			oid: 0,
 		},
-		cover: ['string']
+		cover: ["string"],
 	});
 
-	const response = await client.collection.removeCollections({ ids: [collection.data.item!._id] });
+	const response = await client.collection.removeCollections({
+		// biome-ignore lint/style/noNonNullAssertion: PASS
+		ids: [collection.data.item!._id],
+	});
 	generateTypeTest({
-		type: 'RemoveCollections200Response'
+		type: "RemoveCollections200Response",
 	});
 	expect(response.data).toMatchInlineSnapshot(`
 		{
@@ -86,21 +89,21 @@ it('removeCollections', async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it.todo('getChildCollections');
-it.todo('getCollection');
-it.todo('updateCollection');
-it.todo('removeCollection');
-it.todo('createCollection');
-it.todo('uploadCollectionCover');
-it.todo('mergeCollections');
-it.todo('removeAllEmptyCollections');
-it.todo('emptyTrash');
-it.todo('getSystemCollectionStats');
-it.todo('getCollaborators');
-it.todo('shareCollection');
-it.todo('unshareOrLeaveCollection');
-it.todo('changeCollaboratorAccessLevel');
-it.todo('deleteCollaborator');
-it.todo('acceptInvitation');
-it.todo('searchCovers');
-it.todo('getFeaturedCovers');
+it.todo("getChildCollections");
+it.todo("getCollection");
+it.todo("updateCollection");
+it.todo("removeCollection");
+it.todo("createCollection");
+it.todo("uploadCollectionCover");
+it.todo("mergeCollections");
+it.todo("removeAllEmptyCollections");
+it.todo("emptyTrash");
+it.todo("getSystemCollectionStats");
+it.todo("getCollaborators");
+it.todo("shareCollection");
+it.todo("unshareOrLeaveCollection");
+it.todo("changeCollaboratorAccessLevel");
+it.todo("deleteCollaborator");
+it.todo("acceptInvitation");
+it.todo("searchCovers");
+it.todo("getFeaturedCovers");

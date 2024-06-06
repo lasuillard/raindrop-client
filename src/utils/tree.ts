@@ -85,8 +85,12 @@ export interface TreeSource<D, T = D> {
  * @param parentID ID of parent node.
  * @param source Full list of all source nodes.
  */
-function buildTree<_, T>(parent: TreeNode<T>, parentID: string | null, source: TreeSource<_, T>[]) {
-	const children = source.filter((src) => src.parent == parentID);
+function buildTree<_, T>(
+	parent: TreeNode<T>,
+	parentID: string | null,
+	source: TreeSource<_, T>[],
+) {
+	const children = source.filter((src) => src.parent === parentID);
 	for (const src of children) {
 		const srcNode = src.toNode();
 		buildTree(srcNode, src.id, source);
@@ -100,7 +104,10 @@ function buildTree<_, T>(parent: TreeNode<T>, parentID: string | null, source: T
  * @param source Array of sources.
  * @returns Root node of built tree.
  */
-export function makeTree<_, T>(data: T, source: TreeSource<_, T>[]): TreeNode<T> {
+export function makeTree<_, T>(
+	data: T,
+	source: TreeSource<_, T>[],
+): TreeNode<T> {
 	const root = new TreeNode<T>(data);
 	buildTree(root, null, source);
 	return root;

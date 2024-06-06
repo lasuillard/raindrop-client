@@ -2,11 +2,7 @@
 	"name": "@lasuillard/raindrop-client",
 	"version": "0.4.2",
 	"description": "Axios client built with OpenAPI generator for Raindrop.io.",
-	"keywords": [
-		"raindrop.io",
-		"axios",
-		"openapi"
-	],
+	"keywords": ["raindrop.io", "axios", "openapi"],
 	"license": "MIT",
 	"repository": {
 		"type": "git",
@@ -24,9 +20,7 @@
 	"main": "./dist/index.cjs.js",
 	"module": "./dist/index.es.js",
 	"types": "./dist/index.d.ts",
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"publishConfig": {
 		"access": "public"
 	},
@@ -40,21 +34,16 @@
 		"make-docs": "yarn run typedoc --plugin typedoc-plugin-missing-exports src"
 	},
 	"devDependencies": {
+		"@biomejs/biome": "^1.8.0",
 		"@openapitools/openapi-generator-cli": "^2.13.1",
 		"@pollyjs/adapter-node-http": "^6.0.6",
 		"@pollyjs/core": "^6.0.6",
 		"@pollyjs/persister-fs": "^6.0.6",
 		"@types/node": "^20.12.2",
-		"@typescript-eslint/eslint-plugin": "^5.62.0",
-		"@typescript-eslint/parser": "^5.62.0",
 		"@vitest/coverage-v8": "^1.6.0",
 		"@vitest/ui": "^1.6.0",
 		"axios-mock-adapter": "^1.22.0",
 		"dotenv": "^16.4.5",
-		"eslint": "^8.57.0",
-		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-jsdoc": "^48.2.1",
-		"prettier": "^3.2.5",
 		"tslib": "^2.6.2",
 		"typedoc": "^0.25.12",
 		"typedoc-plugin-missing-exports": "^2.2.0",

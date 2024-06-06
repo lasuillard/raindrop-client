@@ -6,6 +6,12 @@ exclude: |
 default_stages: [commit]
 fail_fast: true
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+
   - repo: local
     hooks:
       - id: generate
@@ -15,28 +21,13 @@ repos:
         pass_filenames: false
         entry: make generate
 
-      - id: prettier
-        name: Format with Prettier
+      - id: biome
+        name: Fix with Biome
         language: system
         types_or: [javascript, ts, json, yaml]
-        entry: yarn run prettier
+        entry: yarn run biome check
         args: [--write]
 
-      - id: eslint
-        name: Lint with ESLint
-        language: system
-        types_or: [javascript, ts]
-        entry: yarn run eslint
-        args: [--fix]
-
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
-    hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-
-  - repo: local
-    hooks:
       - id: typescript
         name: Type check with TypeScript
         language: system

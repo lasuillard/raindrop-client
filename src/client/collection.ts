@@ -1,5 +1,5 @@
-import { Collection, CollectionApi as _CollectionApi } from '~/generated';
-import { TreeNode, TreeSource, makeTree } from '~/utils/tree';
+import { type Collection, CollectionApi as _CollectionApi } from "~/generated";
+import { TreeNode, type TreeSource, makeTree } from "~/utils/tree";
 
 export class CollectionApi extends _CollectionApi {
 	/**
@@ -9,7 +9,7 @@ export class CollectionApi extends _CollectionApi {
 	async getCollectionTree() {
 		const [{ data: groups }, { data: collections }] = await Promise.all([
 			this.getRootCollections(),
-			this.getChildCollections()
+			this.getChildCollections(),
 		]);
 
 		const groupNodes: TreeSource<Collection>[] = groups.items.map((item) => ({
@@ -19,23 +19,25 @@ export class CollectionApi extends _CollectionApi {
 
 			toNode() {
 				return new TreeNode(this.data);
-			}
+			},
 		}));
-		const collectionNodes: TreeSource<Collection>[] = collections.items.map((item) => ({
-			data: item,
-			id: item._id.toString(),
-			//@ts-expect-error TODO: Reused schemas have mismatch
-			parent: item.parent.$id.toString(),
+		const collectionNodes: TreeSource<Collection>[] = collections.items.map(
+			(item) => ({
+				data: item,
+				id: item._id.toString(),
+				//@ts-expect-error TODO: Reused schemas have mismatch
+				parent: item.parent.$id.toString(),
 
-			toNode() {
-				return new TreeNode(this.data);
-			}
-		}));
+				toNode() {
+					return new TreeNode(this.data);
+				},
+			}),
+		);
 		const source: TreeSource<Collection>[] = groupNodes.concat(collectionNodes);
 		source.sort(
 			(a, b) =>
-				(a.data?.title ?? '').localeCompare(b.data?.title ?? '') ||
-				(a.data?._id ?? 0) - (b.data?._id ?? 0)
+				(a.data?.title ?? "").localeCompare(b.data?.title ?? "") ||
+				(a.data?._id ?? 0) - (b.data?._id ?? 0),
 		);
 
 		const rootNode = makeTree(null, source);

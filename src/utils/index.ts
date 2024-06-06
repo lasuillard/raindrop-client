@@ -1,3 +1,3 @@
-import * as tree from './tree';
+import * as tree from "./tree";
 
 export { tree };

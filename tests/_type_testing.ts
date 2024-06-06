@@ -1,7 +1,7 @@
-import type { Use } from '@vitest/runner';
-import fs from 'fs';
-import path from 'path';
-import type { ExpectStatic, Task } from 'vitest';
+import fs from "node:fs";
+import path from "node:path";
+import type { Use } from "@vitest/runner";
+import type { ExpectStatic, Task } from "vitest";
 
 export interface CreateTest {
 	// Test identifier
@@ -16,7 +16,6 @@ export interface CreateTest {
 
 let filesToCreate: CreateTest[] = [];
 
-// eslint-disable-next-line jsdoc/require-jsdoc
 function addTest(item: CreateTest) {
 	filesToCreate = [...filesToCreate, item];
 }
@@ -27,10 +26,9 @@ export interface RegisterHookArgs {
 
 export type RegisterHook = (args: RegisterHookArgs) => void;
 
-// eslint-disable-next-line jsdoc/require-jsdoc
 export async function generateTypeTest(
 	{ task, expect }: { task: Task; expect: ExpectStatic },
-	use: Use<RegisterHook>
+	use: Use<RegisterHook>,
 ) {
 	const hookFn: RegisterHook = (args: RegisterHookArgs) => {
 		// Check test file generation registered only once
@@ -42,20 +40,19 @@ export async function generateTypeTest(
 				addTest({
 					testId: task.id,
 					type: args.type,
-					value: JSON.stringify(val)
+					value: JSON.stringify(val),
 				});
 				ack = true;
 				return printer(val, config, indentation, depth, refs);
 			},
 			test() {
 				return !ack;
-			}
+			},
 		});
 	};
 	await use(hookFn);
 }
 
-// eslint-disable-next-line jsdoc/require-jsdoc
 function generateTest(dir: string, item: CreateTest) {
 	const filepath = path.join(dir, `${item.testId}.test-d.ts`);
 	const content = `\
@@ -72,9 +69,8 @@ it('${item.testId}', () => {
 	fs.writeFileSync(filepath, content);
 }
 
-// eslint-disable-next-line jsdoc/require-jsdoc
 export function generateAllTests() {
-	const dir = path.join(__dirname, '__type_testing__');
+	const dir = path.join(__dirname, "__type_testing__");
 	if (!fs.existsSync(dir)) fs.mkdirSync(dir);
 
 	for (const spec of filesToCreate) {

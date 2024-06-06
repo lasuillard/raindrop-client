@@ -1,10 +1,10 @@
-import { it } from '^/tests/_helpers';
+import { it } from "^/tests/_helpers";
 
-it('getCurrentUser', async ({ client, expect, generateTypeTest }) => {
+it("getCurrentUser", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.user.getCurrentUser();
 
 	generateTypeTest({
-		type: 'UserResponse'
+		type: "UserResponse",
 	});
 	// TODO: No data for `$.user.config.acknowledge`
 	expect(response.data).toMatchInlineSnapshot(`
@@ -69,7 +69,7 @@ it('getCurrentUser', async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it.todo('updateCurrentUser');
-it.todo('getPublicUserByName');
-it.todo('connectSocialNetworkProvider');
-it.todo('disconnectSocialNetworkProvider');
+it.todo("updateCurrentUser");
+it.todo("getPublicUserByName");
+it.todo("connectSocialNetworkProvider");
+it.todo("disconnectSocialNetworkProvider");
