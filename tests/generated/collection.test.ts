@@ -9,7 +9,7 @@ it("getRootCollections", async ({ client, expect, generateTypeTest }) => {
 		{
 		  "items": [
 		    {
-		      "_id": 43450397,
+		      "_id": 44887441,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -17,9 +17,9 @@ it("getRootCollections", async ({ client, expect, generateTypeTest }) => {
 		        "root": false,
 		      },
 		      "author": true,
-		      "count": 1,
+		      "count": 0,
 		      "cover": [],
-		      "created": "2024-04-21T07:39:41.503Z",
+		      "created": "2024-06-07T13:21:31.633Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -27,12 +27,12 @@ it("getRootCollections", async ({ client, expect, generateTypeTest }) => {
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-04-21T07:39:57.839Z",
-		      "lastUpdate": "2024-04-21T07:39:57.839Z",
-		      "public": false,
-		      "slug": "testest",
+		      "lastAction": "2024-06-07T13:21:31.633Z",
+		      "lastUpdate": "2024-06-07T13:21:31.633Z",
+		      "public": true,
+		      "slug": "create-collection",
 		      "sort": 0,
-		      "title": "testest",
+		      "title": "createCollection",
 		      "user": {
 		        "$id": 2067190,
 		        "$ref": "users",
@@ -81,7 +81,7 @@ it("removeCollections", async ({ client, expect, generateTypeTest }) => {
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "ids": [
-		    44291953,
+		    44887480,
 		  ],
 		  "modified": 1,
 		  "result": true,

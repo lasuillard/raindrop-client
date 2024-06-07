@@ -16,6 +16,7 @@ it("getCurrentUser", async ({ client, expect, generateTypeTest }) => {
 		    "config": {
 		      "acknowledge": [],
 		      "add_default_collection": -1,
+		      "ai_suggestions": true,
 		      "broken_level": "default",
 		      "default_collection_view": "list",
 		      "font_size": 0,
@@ -46,17 +47,15 @@ it("getCurrentUser", async ({ client, expect, generateTypeTest }) => {
 		    "fullName": "miyil99106",
 		    "groups": [
 		      {
-		        "collections": [
-		          43450397,
-		        ],
+		        "collections": [],
 		        "hidden": false,
-		        "sort": -1,
+		        "sort": 0,
 		        "title": "Collections",
 		      },
 		    ],
-		    "lastAction": "2024-04-21T08:38:11.397Z",
-		    "lastUpdate": "2024-04-24T11:21:42.865Z",
-		    "lastVisit": "2024-04-24T11:21:42.865Z",
+		    "lastAction": "2024-06-07T13:21:32.200Z",
+		    "lastUpdate": "2024-06-07T13:24:21.074Z",
+		    "lastVisit": "2024-06-07T13:24:21.074Z",
 		    "name": "miyil99106",
 		    "password": true,
 		    "pro": false,

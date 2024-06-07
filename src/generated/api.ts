@@ -334,7 +334,7 @@ export interface CollectionRef {
      * @type {number}
      * @memberof CollectionRef
      */
-    'oid': number;
+    'oid'?: number;
 }
 
 export const CollectionRefRefEnum = {
@@ -2654,6 +2654,12 @@ export interface UserConfig {
      * @memberof UserConfig
      */
     'acknowledge'?: Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserConfig
+     */
+    'ai_suggestions'?: boolean;
 }
 /**
  * 

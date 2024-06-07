@@ -101,8 +101,8 @@ paths:
           application/json:
             schema:
               oneOf:
-                - $ref: '#/components/schemas/ObtainToken'
-                - $ref: '#/components/schemas/RefreshToken'
+                - $ref: "#/components/schemas/ObtainToken"
+                - $ref: "#/components/schemas/RefreshToken"
             examples:
               Obtain new token:
                 value:
@@ -125,8 +125,8 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/TokenResponse'
-                  - $ref: '#/components/schemas/TokenErrorResponse'
+                  - $ref: "#/components/schemas/TokenResponse"
+                  - $ref: "#/components/schemas/TokenErrorResponse"
         400:
           description: Occurs when code parameter is invalid
           content:
@@ -150,7 +150,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionResponseMany'
+                $ref: "#/components/schemas/CollectionResponseMany"
               example:
                 result: true
                 items:
@@ -160,13 +160,13 @@ paths:
                       draggable: true
                     collaborators:
                       $id: 5dc1759a0e123be5f2654b6f
-                    color: '#0c797d'
+                    color: "#0c797d"
                     count: 16
                     cover:
                       - https://up.raindrop.io/collection/thumbs/849/239/3/333ce18769311113836cf93a223a14a3.png
-                    created: '2019-10-09T11:49:53.518Z'
+                    created: "2019-10-09T11:49:53.518Z"
                     expanded: false
-                    lastUpdate: '2019-11-27T17:51:19.085Z'
+                    lastUpdate: "2019-11-27T17:51:19.085Z"
                     public: false
                     sort: 8492393
                     title: Development
@@ -187,7 +187,7 @@ paths:
                 - type: object
                   properties:
                     sort:
-                      $ref: '#/components/schemas/SortBy'
+                      $ref: "#/components/schemas/SortBy"
                 - type: object
                   properties:
                     expanded:
@@ -202,7 +202,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
+                $ref: "#/components/schemas/Response"
               example:
                 result: true
     delete:
@@ -224,7 +224,7 @@ paths:
                 ids:
                   type: array
                   items:
-                    $ref: '#/components/schemas/CollectionID'
+                    $ref: "#/components/schemas/CollectionID"
       responses:
         200:
           description: Success
@@ -232,7 +232,7 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/Response'
+                  - $ref: "#/components/schemas/Response"
                   - type: object
                     properties:
                       ids:
@@ -254,7 +254,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionResponseMany'
+                $ref: "#/components/schemas/CollectionResponseMany"
               example:
                 result: true
                 items:
@@ -264,13 +264,13 @@ paths:
                       draggable: true
                     collaborators:
                       $id: 5dc1759a0e123be5f2654b6f
-                    color: '#0c797d'
+                    color: "#0c797d"
                     count: 16
                     cover:
                       - https://up.raindrop.io/collection/thumbs/849/239/3/333ce18769311113836cf93a223a14a3.png
-                    created: '2019-10-09T11:49:53.518Z'
+                    created: "2019-10-09T11:49:53.518Z"
                     expanded: false
-                    lastUpdate: '2019-11-27T17:51:19.085Z'
+                    lastUpdate: "2019-11-27T17:51:19.085Z"
                     parent_id: 1111
                     public: false
                     sort: 8492393
@@ -285,7 +285,7 @@ paths:
         description: Collection ID
         required: true
         schema:
-          $ref: '#/components/schemas/CollectionID'
+          $ref: "#/components/schemas/CollectionID"
     get:
       operationId: getCollection
       tags:
@@ -297,7 +297,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionResponseOne'
+                $ref: "#/components/schemas/CollectionResponseOne"
               example:
                 result: true
                 item:
@@ -310,13 +310,13 @@ paths:
                   author: true
                   collaborators:
                     $id: 5dc1759a0e123be5f2654b6f
-                  color: '#0c797d'
+                  color: "#0c797d"
                   count: 16
                   cover:
                     - https://up.raindrop.io/collection/thumbs/849/239/3/333ce18769311113836cf93a223a14a3.png
-                  created: '2019-10-09T11:49:53.518Z'
+                  created: "2019-10-09T11:49:53.518Z"
                   expanded: false
-                  lastUpdate: '2019-11-27T17:51:19.085Z'
+                  lastUpdate: "2019-11-27T17:51:19.085Z"
                   public: false
                   sort: 8492393
                   title: Development
@@ -333,14 +333,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateCollection'
+              $ref: "#/components/schemas/UpdateCollection"
       responses:
         200:
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionResponseOne'
+                $ref: "#/components/schemas/CollectionResponseOne"
     delete:
       operationId: removeCollection
       tags:
@@ -356,7 +356,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
+                $ref: "#/components/schemas/Response"
   /rest/v1/collection:
     post:
       operationId: createCollection
@@ -368,25 +368,25 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateCollection'
+              $ref: "#/components/schemas/CreateCollection"
       responses:
         200:
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionResponseOne'
+                $ref: "#/components/schemas/CollectionResponseOne"
         400:
           description: "Incorrect 'view' field value"
           content:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/ErrorResponse'
+                  - $ref: "#/components/schemas/ErrorResponse"
                   - example:
                       result: false
                       error: view
-                      errorMessage: 'Collection validation failed: view: `bla` is not a valid enum value for path `view`.'
+                      errorMessage: "Collection validation failed: view: `bla` is not a valid enum value for path `view`."
   /rest/v1/collection/{id}/cover:
     put:
       operationId: uploadCollectionCover
@@ -400,7 +400,7 @@ paths:
           required: true
           description: Existing collection ID
           schema:
-            $ref: '#/components/schemas/CollectionID'
+            $ref: "#/components/schemas/CollectionID"
       requestBody:
         content:
           multipart/form-data:
@@ -416,7 +416,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CollectionResponseOne'
+                $ref: "#/components/schemas/CollectionResponseOne"
   /rest/v1/collections/merge:
     put:
       operationId: mergeCollections
@@ -431,11 +431,11 @@ paths:
               type: object
               properties:
                 to:
-                  $ref: '#/components/schemas/CollectionID'
+                  $ref: "#/components/schemas/CollectionID"
                 ids:
                   type: array
                   items:
-                    $ref: '#/components/schemas/CollectionID'
+                    $ref: "#/components/schemas/CollectionID"
       responses:
         200:
           description: Success
@@ -471,7 +471,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
+                $ref: "#/components/schemas/Response"
   /rest/v1/user/stats:
     get:
       operationId: getSystemCollectionStats
@@ -485,7 +485,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/StatResponse'
+                $ref: "#/components/schemas/StatResponse"
               example:
                 items:
                   - _id: 0
@@ -497,7 +497,7 @@ paths:
                 meta:
                   pro: true
                   _id: 32
-                  changedBookmarksDate: '2020-02-11T11:23:43.143Z'
+                  changedBookmarksDate: "2020-02-11T11:23:43.143Z"
                   duplicates:
                     count: 3
                   broken:
@@ -510,7 +510,7 @@ paths:
         description: Existing collection ID
         required: true
         schema:
-          $ref: '#/components/schemas/CollectionID'
+          $ref: "#/components/schemas/CollectionID"
     get:
       operationId: getCollaborators
       summary: Get collaborators list of collection
@@ -532,7 +532,7 @@ paths:
               type: object
               properties:
                 role:
-                  $ref: '#/components/schemas/Role'
+                  $ref: "#/components/schemas/Role"
                 emails:
                   type: array
                   description: |-
@@ -576,7 +576,7 @@ paths:
                 Email is empty:
                   value:
                     result: false
-                    errorMessage: 'no emails'
+                    errorMessage: "no emails"
                 Length of email is large than 10:
                   value:
                     result: false
@@ -616,7 +616,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
+                $ref: "#/components/schemas/Response"
   /rest/v1/collection/{id}/sharing/{userId}:
     parameters:
       - name: userId
@@ -630,7 +630,7 @@ paths:
         description: Existing collection ID
         required: true
         schema:
-          $ref: '#/components/schemas/CollectionID'
+          $ref: "#/components/schemas/CollectionID"
     put:
       operationId: changeCollaboratorAccessLevel
       tags:
@@ -643,7 +643,7 @@ paths:
               type: object
               properties:
                 role:
-                  $ref: '#/components/schemas/Role'
+                  $ref: "#/components/schemas/Role"
       responses:
         200:
           description: Success
@@ -659,7 +659,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
+                $ref: "#/components/schemas/Response"
   /rest/v1/collection/{id}/join:
     post:
       operationId: acceptInvitation
@@ -673,7 +673,7 @@ paths:
           description: Existing collection
           required: true
           schema:
-            $ref: '#/components/schemas/CollectionID'
+            $ref: "#/components/schemas/CollectionID"
       responses:
         200:
           description: Success
@@ -685,7 +685,7 @@ paths:
                   result:
                     type: boolean
                   role:
-                    $ref: '#/components/schemas/Role'
+                    $ref: "#/components/schemas/Role"
                 example:
                   result: true
                   role: member
@@ -694,7 +694,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
               examples:
                 Incorrect token:
                   value:
@@ -731,7 +731,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CoverResponse'
+                $ref: "#/components/schemas/CoverResponse"
               example:
                 items:
                   - title: Icons8
@@ -754,7 +754,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CoverResponse'
+                $ref: "#/components/schemas/CoverResponse"
               example:
                 items:
                   - title: Colors circle
@@ -773,14 +773,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateRaindrop'
+              $ref: "#/components/schemas/CreateRaindrop"
       responses:
         200:
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RaindropResponseOne'
+                $ref: "#/components/schemas/RaindropResponseOne"
   /rest/v1/raindrop/{id}:
     parameters:
       - name: id
@@ -808,14 +808,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateRaindrop'
+              $ref: "#/components/schemas/CreateRaindrop"
       responses:
         200:
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RaindropResponseOne'
+                $ref: "#/components/schemas/RaindropResponseOne"
     delete:
       operationId: removeRaindrop
       tags:
@@ -828,7 +828,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
+                $ref: "#/components/schemas/Response"
   /rest/v1/raindrop/file:
     put:
       operationId: uploadFile
@@ -855,13 +855,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RaindropResponseOne'
+                $ref: "#/components/schemas/RaindropResponseOne"
         400:
           description: Bad Request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
               examples:
                 File is not specified:
                   value:
@@ -908,13 +908,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RaindropResponseOne'
+                $ref: "#/components/schemas/RaindropResponseOne"
         400:
           description: Bad request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
               examples:
                 File is not specified:
                   value:
@@ -973,7 +973,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SuggestResponse'
+                $ref: "#/components/schemas/SuggestResponse"
               example:
                 result: true
                 item:
@@ -1008,7 +1008,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SuggestResponse'
+                $ref: "#/components/schemas/SuggestResponse"
               example:
                 result: true
                 item:
@@ -1060,7 +1060,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RaindropResponseMany'
+                $ref: "#/components/schemas/RaindropResponseMany"
     put:
       operationId: updateRaindrops
       tags:
@@ -1171,14 +1171,14 @@ paths:
                     Array of objects. Format of single object described in "Create single raindrop".
                     Maximum 100 objects in array!
                   items:
-                    $ref: '#/components/schemas/CreateRaindrop'
+                    $ref: "#/components/schemas/CreateRaindrop"
       responses:
         200:
           description: Success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/RaindropResponseMany'
+                $ref: "#/components/schemas/RaindropResponseMany"
   /rest/v1/highlights:
     get:
       operationId: getAllHighlights
@@ -1201,14 +1201,14 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HighlightResponse'
+                $ref: "#/components/schemas/HighlightResponse"
               example:
                 result: true
                 items:
                   - note: Trully native macOS app
                     color: red
                     text: Orion is the new WebKit-based browser for Mac
-                    created: '2022-03-21T14:41:34.059Z'
+                    created: "2022-03-21T14:41:34.059Z"
                     tags:
                       - tag1
                       - tag2
@@ -1216,10 +1216,10 @@ paths:
                     raindropRef: 123
                     link: https://apple.com
                     title: Orion Browser
-                  - note: ''
+                  - note: ""
                     color: green
                     text: Built on WebKit, Orion gives you a fast, smooth and lightweight browsing experience
-                    created: '2022-03-21T15:13:21.128Z'
+                    created: "2022-03-21T15:13:21.128Z"
                     tags:
                       - tag1
                       - tag2
@@ -1255,7 +1255,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HighlightResponse'
+                $ref: "#/components/schemas/HighlightResponse"
   /rest/v1/user:
     get:
       operationId: getCurrentUser
@@ -1269,18 +1269,18 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponse'
+                $ref: "#/components/schemas/UserResponse"
               example:
                 result: true
                 user:
                   _id: 32
                   config:
                     broken_level: strict
-                    font_color: ''
+                    font_color: ""
                     font_size: 0
                     lang: ru_RU
                     last_collection: 8492393
-                    raindrops_sort: '-lastUpdate'
+                    raindrops_sort: "-lastUpdate"
                     raindrops_view: list
                   dropbox:
                     enabled: true
@@ -1289,7 +1289,7 @@ paths:
                   files:
                     used: 6766094
                     size: 10000000000
-                    lastCheckPoint: '2020-01-26T23:53:19.676Z'
+                    lastCheckPoint: "2020-01-26T23:53:19.676Z"
                   fullName: Mussabekov Rustem
                   gdrive:
                     enabled: true
@@ -1303,8 +1303,8 @@ paths:
                         - 66
                   password: true
                   pro: true
-                  proExpire: '2028-09-27T22:00:00.000Z'
-                  registered: '2014-09-30T07:51:15.406Z'
+                  proExpire: "2028-09-27T22:00:00.000Z"
+                  registered: "2014-09-30T07:51:15.406Z"
         401:
           description: Unauthenticated
           content:
@@ -1327,9 +1327,9 @@ paths:
                 groups:
                   type: array
                   items:
-                    $ref: '#/components/schemas/Group'
+                    $ref: "#/components/schemas/Group"
                 config:
-                  $ref: '#/components/schemas/UserConfig'
+                  $ref: "#/components/schemas/UserConfig"
                 newpassword:
                   type: string
                 oldpassword:
@@ -1344,13 +1344,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponse'
+                $ref: "#/components/schemas/UserResponse"
         400:
           description: Bad request
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
               examples:
                 Email specified but empty:
                   value:
@@ -1361,7 +1361,7 @@ paths:
                   value:
                     result: false
                     error: 2
-                    errorMessage: 'User validation failed: fullName: is required'
+                    errorMessage: "User validation failed: fullName: is required"
                 newpassword specified, but oldpassword is empty:
                   value:
                     result: false
@@ -1371,7 +1371,7 @@ paths:
                   value:
                     result: false
                     error: config.raindrops_sort
-                    errorMessage: 'User validation failed: config.raindrops_sort: `1` is not a valid enum value for path `raindrops_sort`., config: Validation failed: raindrops_sort: `1` is not a valid enum value for path `raindrops_sort`.'
+                    errorMessage: "User validation failed: config.raindrops_sort: `1` is not a valid enum value for path `raindrops_sort`., config: Validation failed: raindrops_sort: `1` is not a valid enum value for path `raindrops_sort`."
   /rest/v1/user/{name}:
     get:
       operationId: getPublicUserByName
@@ -1393,12 +1393,12 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/Response'
+                  - $ref: "#/components/schemas/Response"
                   - properties:
                       _id:
                         type: integer
                       email_MD5:
-                        $ref: '#/components/schemas/MD5'
+                        $ref: "#/components/schemas/MD5"
                       fullName:
                         type: string
                       pro:
@@ -1413,13 +1413,13 @@ paths:
                   email_MD5: 13a0a20681d8781912e5314150694bf7
                   fullName: Mussabekov Rustem
                   pro: true
-                  registered: '2014-09-30T07:51:15.406Z'
+                  registered: "2014-09-30T07:51:15.406Z"
         404:
           description: Not found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: "#/components/schemas/ErrorResponse"
               example:
                 error: -1
                 errorMessage: not found
@@ -1485,7 +1485,7 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/Response'
+                  - $ref: "#/components/schemas/Response"
                   - properties:
                       items:
                         type: array
@@ -1531,7 +1531,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
+                $ref: "#/components/schemas/Response"
     delete:
       operationId: removeTagsFromCollection
       tags:
@@ -1561,7 +1561,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Response'
+                $ref: "#/components/schemas/Response"
   /rest/v1/filters/{collectionId}:
     get:
       operationId: getFilters
@@ -1577,7 +1577,7 @@ paths:
             type: integer
         - name: tagsSort
           in: query
-          description: 'Sort tags by: `-count` by count, default `_id` by name'
+          description: "Sort tags by: `-count` by count, default `_id` by name"
           schema:
             type: string
             enum: [-count, _id]
@@ -1592,7 +1592,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/FilterResponse'
+                $ref: "#/components/schemas/FilterResponse"
               example:
                 result: true
                 broken:
@@ -1639,8 +1639,8 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: '#/components/schemas/ParseUrlResponse'
-                  - $ref: '#/components/schemas/ParseUrlErrorResponse'
+                  - $ref: "#/components/schemas/ParseUrlResponse"
+                  - $ref: "#/components/schemas/ParseUrlErrorResponse"
               examples:
                 Success:
                   value:
@@ -1663,7 +1663,7 @@ paths:
                     errorMessage: invalid_url
                     item:
                       title: Fdfdfdf
-                      excerpt: ''
+                      excerpt: ""
                       media:
                         - link: <screenshot>
                       type: link
@@ -1678,7 +1678,7 @@ paths:
                     errorMessage: url_status_404
                     item:
                       title: Some
-                      excerpt: ''
+                      excerpt: ""
                       media:
                         - link: <screenshot>
                       type: link
@@ -1713,7 +1713,7 @@ paths:
             application/json:
               schema:
                 allOf:
-                  - $ref: '#/components/schemas/Response'
+                  - $ref: "#/components/schemas/Response"
                   - properties:
                       ids:
                         type: array
@@ -1756,7 +1756,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ImportFileResponse'
+                $ref: "#/components/schemas/ImportFileResponse"
               example:
                 result: true
                 items:
@@ -1767,17 +1767,17 @@ paths:
                         bookmarks:
                           - link: https://aaa.com/a
                             title: Name 1
-                            lastUpdate: '2016-09-13T11:17:09.000Z'
+                            lastUpdate: "2016-09-13T11:17:09.000Z"
                             tags:
                               - tag
-                            excerpt: ''
+                            excerpt: ""
                     bookmarks:
                       - link: https://bbb.com/b
                         title: Name 2
-                        lastUpdate: '2016-09-13T11:17:09.000Z'
+                        lastUpdate: "2016-09-13T11:17:09.000Z"
                         tags:
                           - tag
-                        excerpt: ''
+                        excerpt: ""
                   - title: Home
                     folders:
                       - title: Inspiration
@@ -1785,10 +1785,10 @@ paths:
                         bookmarks:
                           - link: https://ccc.com/c
                             title: Name 3
-                            lastUpdate: '2016-09-13T11:17:09.000Z'
+                            lastUpdate: "2016-09-13T11:17:09.000Z"
                             tags:
                               - tag
-                            excerpt: ''
+                            excerpt: ""
                     bookmarks: []
 components:
   securitySchemes:
@@ -1805,7 +1805,7 @@ components:
           type: boolean
     ErrorResponse:
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: "#/components/schemas/Response"
         - required: [error, errorMessage]
           properties:
             error:
@@ -1897,7 +1897,7 @@ components:
           sort,
           title,
           user,
-          view
+          view,
         ]
       properties:
         _id:
@@ -1943,12 +1943,12 @@ components:
           description: When collection is updated
           format: date-time
         parent:
-          $ref: '#/components/schemas/CollectionRef'
+          $ref: "#/components/schemas/CollectionRef"
         public:
           type: boolean
           description: Collection and raindrops that it contains will be accessible without authentication by public link
         sort:
-          $ref: '#/components/schemas/Sort'
+          $ref: "#/components/schemas/Sort"
         title:
           type: string
           description: Name of the collection
@@ -1956,13 +1956,13 @@ components:
           type: string
         user:
           allOf:
-            - $ref: '#/components/schemas/UserRef'
+            - $ref: "#/components/schemas/UserRef"
             - properties:
                 $id:
                   type: integer
                   description: Owner ID
         view:
-          $ref: '#/components/schemas/View'
+          $ref: "#/components/schemas/View"
         creatorRef:
           type: object
           properties:
@@ -1982,36 +1982,36 @@ components:
 
     CollectionResponseOne:
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: "#/components/schemas/Response"
         - required: [items]
           properties:
             item:
-              $ref: '#/components/schemas/Collection'
+              $ref: "#/components/schemas/Collection"
     CollectionResponseMany:
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: "#/components/schemas/Response"
         - required: [items]
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Collection'
+                $ref: "#/components/schemas/Collection"
     CreateCollection:
       type: object
       required: [view, title, sort, public, parent, cover]
       properties:
         view:
-          $ref: '#/components/schemas/View'
+          $ref: "#/components/schemas/View"
         title:
           type: string
-          description: 'Name of the collection'
+          description: "Name of the collection"
         sort:
-          $ref: '#/components/schemas/Sort'
+          $ref: "#/components/schemas/Sort"
         public:
           type: boolean
-          description: 'Collection and raindrops that it contains will be accessible without authentication?'
+          description: "Collection and raindrops that it contains will be accessible without authentication?"
         parent:
-          $ref: '#/components/schemas/CollectionRef'
+          $ref: "#/components/schemas/CollectionRef"
         cover:
           type: array
           items:
@@ -2019,17 +2019,17 @@ components:
             format: uri
     UpdateCollection:
       allOf:
-        - $ref: '#/components/schemas/CreateCollection'
+        - $ref: "#/components/schemas/CreateCollection"
         - type: object
           required: [expanded]
           properties:
             expanded:
               type: boolean
-              description: 'Whether the collection`s sub-collections are expanded'
+              description: "Whether the collection`s sub-collections are expanded"
     StatResponse:
       type: object
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: "#/components/schemas/Response"
         - required: [items, meta]
           properties:
             items:
@@ -2085,13 +2085,13 @@ components:
                 format: uri
     CoverResponse:
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: "#/components/schemas/Response"
         - required: [items]
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Cover'
+                $ref: "#/components/schemas/Cover"
     RaindropBase:
       type: object
       required:
@@ -2110,7 +2110,7 @@ components:
           note,
           title,
           link,
-          highlights
+          highlights,
         ]
       properties:
         created:
@@ -2156,7 +2156,7 @@ components:
         cover:
           type: string
         collection:
-          $ref: '#/components/schemas/CollectionRef'
+          $ref: "#/components/schemas/CollectionRef"
         type:
           type: string
         excerpt:
@@ -2170,10 +2170,10 @@ components:
         highlights:
           type: array
           items:
-            $ref: '#/components/schemas/Highlight'
+            $ref: "#/components/schemas/Highlight"
     Raindrop:
       allOf:
-        - $ref: '#/components/schemas/RaindropBase'
+        - $ref: "#/components/schemas/RaindropBase"
         - type: object
           required: [_id, domain, user, broken, cache, creatorRef]
           properties:
@@ -2186,9 +2186,9 @@ components:
                 Hostname of a link.
                 Files always have `raindrop.io` hostname
             creatorRef:
-              $ref: '#/components/schemas/CreatorRef'
+              $ref: "#/components/schemas/CreatorRef"
             user:
-              $ref: '#/components/schemas/UserRef'
+              $ref: "#/components/schemas/UserRef"
             broken:
               type: boolean
               description: Marked as broken (original link is not reachable anymore)
@@ -2200,7 +2200,15 @@ components:
                 status:
                   type: string
                   description: ready retry failed invalid-origin invalid-timeout or invalid-size
-                  enum: [ready, retry, failed, invalid-origin, invalid-timeout, invalid-size]
+                  enum:
+                    [
+                      ready,
+                      retry,
+                      failed,
+                      invalid-origin,
+                      invalid-timeout,
+                      invalid-size,
+                    ]
                 size:
                   type: integer
                   description: Full size in bytes
@@ -2226,29 +2234,29 @@ components:
                   description: Mime type
     RaindropResponseOne:
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: "#/components/schemas/Response"
         - required: [item, author]
           properties:
             item:
-              $ref: '#/components/schemas/Raindrop'
+              $ref: "#/components/schemas/Raindrop"
             author:
               type: boolean
     RaindropResponseMany:
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: "#/components/schemas/Response"
         - required: [items, count, collectionId]
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Raindrop'
+                $ref: "#/components/schemas/Raindrop"
             count:
               type: integer
             collectionId:
-              $ref: '#/components/schemas/CollectionID'
+              $ref: "#/components/schemas/CollectionID"
     CreateRaindrop:
       allOf:
-        - $ref: '#/components/schemas/RaindropBase'
+        - $ref: "#/components/schemas/RaindropBase"
         - properties:
             pleaseParse:
               type: object
@@ -2270,7 +2278,21 @@ components:
             Default yellow
 
             Can be blue, brown, cyan, gray, green, indigo, orange, pink, purple, red, teal, yellow
-          enum: [blue, brown, cyan, gray, green, indigo, orange, pink, purple, red, teal, yellow]
+          enum:
+            [
+              blue,
+              brown,
+              cyan,
+              gray,
+              green,
+              indigo,
+              orange,
+              pink,
+              purple,
+              red,
+              teal,
+              yellow,
+            ]
         note:
           type: string
           description: Optional note for highlight
@@ -2279,7 +2301,7 @@ components:
           description: Creation date of highlight
     HighlightItem:
       allOf:
-        - $ref: '#/components/schemas/Highlight'
+        - $ref: "#/components/schemas/Highlight"
         - required: [raindropRef, link, title, tags]
           properties:
             raindropRef:
@@ -2295,13 +2317,13 @@ components:
                 type: string
     HighlightResponse:
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: "#/components/schemas/Response"
         - required: [items]
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/HighlightItem'
+                $ref: "#/components/schemas/HighlightItem"
     Suggest:
       type: object
       required: [collections, tags]
@@ -2309,21 +2331,28 @@ components:
         collections:
           type: array
           items:
-            $ref: '#/components/schemas/CollectionRef'
+            $ref: "#/components/schemas/CollectionRef"
         tags:
           type: array
           items:
             type: string
     SuggestResponse:
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: "#/components/schemas/Response"
         - required: [item]
           properties:
             item:
-              $ref: '#/components/schemas/Suggest'
+              $ref: "#/components/schemas/Suggest"
     UserConfig:
       type: object
-      required: [broken_level, font_size, last_collection, raindrops_sort, raindrops_view]
+      required:
+        [
+          broken_level,
+          font_size,
+          last_collection,
+          raindrops_sort,
+          raindrops_view,
+        ]
       properties:
         broken_level:
           type: string
@@ -2348,7 +2377,7 @@ components:
         raindrops_search_incollection:
           type: boolean
         raindrops_sort:
-          $ref: '#/components/schemas/SortBy'
+          $ref: "#/components/schemas/SortBy"
         default_collection_view:
           type: string
         nested_view_legacy:
@@ -2357,14 +2386,17 @@ components:
           type: number
         acknowledge:
           type: array
+        ai_suggestions:
+          type: boolean
     User:
       type: object
-      required: [_id, config, email, files, fullName, groups, password, pro, registered]
+      required:
+        [_id, config, email, files, fullName, groups, password, pro, registered]
       properties:
         _id:
           type: integer
         config:
-          $ref: '#/components/schemas/UserConfig'
+          $ref: "#/components/schemas/UserConfig"
         dropbox:
           type: object
           required: [enabled]
@@ -2375,7 +2407,7 @@ components:
           type: string
           format: email
         email_MD5:
-          $ref: '#/components/schemas/MD5'
+          $ref: "#/components/schemas/MD5"
         files:
           type: object
           required: [used, size, lastCheckPoint]
@@ -2398,7 +2430,7 @@ components:
         groups:
           type: array
           items:
-            $ref: '#/components/schemas/Group'
+            $ref: "#/components/schemas/Group"
         password:
           type: boolean
         pro:
@@ -2444,11 +2476,11 @@ components:
             type: integer
     UserResponse:
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: "#/components/schemas/Response"
         - required: [user]
           properties:
             user:
-              $ref: '#/components/schemas/User'
+              $ref: "#/components/schemas/User"
     Filter:
       type: object
       required: [broken, duplicates, important, notag, tags, types]
@@ -2499,8 +2531,8 @@ components:
                 type: integer
     FilterResponse:
       allOf:
-        - $ref: '#/components/schemas/Response'
-        - $ref: '#/components/schemas/Filter'
+        - $ref: "#/components/schemas/Response"
+        - $ref: "#/components/schemas/Filter"
     UrlParse:
       type: object
       required: [title, excerpt, media, type, meta]
@@ -2538,18 +2570,18 @@ components:
                 type: string
     UrlParseResponse:
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: "#/components/schemas/Response"
         - required: [item]
           properties:
             item:
-              $ref: '#/components/schemas/UrlParse'
+              $ref: "#/components/schemas/UrlParse"
     UrlParseErrorResponse:
       allOf:
-        - $ref: '#/components/schemas/ErrorResponse'
+        - $ref: "#/components/schemas/ErrorResponse"
         - required: [item]
           properties:
             item:
-              $ref: '#/components/schemas/UrlParse'
+              $ref: "#/components/schemas/UrlParse"
     Bookmark:
       type: object
       required: [link, title, lastUpdate, tags, excerpt]
@@ -2577,20 +2609,20 @@ components:
         folders:
           type: array
           items:
-            $ref: '#/components/schemas/Folder'
+            $ref: "#/components/schemas/Folder"
         bookmarks:
           type: array
           items:
-            $ref: '#/components/schemas/Bookmark'
+            $ref: "#/components/schemas/Bookmark"
     ImportFileResponse:
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: "#/components/schemas/Response"
         - required: [items]
           properties:
             items:
               type: array
               items:
-                $ref: '#/components/schemas/Folder'
+                $ref: "#/components/schemas/Folder"
     CollectionID:
       type: integer
       description: |-
@@ -2612,7 +2644,7 @@ components:
       enum: [list, simple, grid, masonry]
     Sort:
       type: integer
-      description: 'The order of collection (descending). Defines the position of the collection among all the collections with the same `parent.$id`'
+      description: "The order of collection (descending). Defines the position of the collection among all the collections with the same `parent.$id`"
     SortBy:
       type: string
       description: |-
@@ -2630,7 +2662,7 @@ components:
       enum: [member, viewer]
     CollectionRef:
       type: object
-      required: [$ref, $id, oid]
+      required: [$ref, $id]
       properties:
         $ref:
           type: string
@@ -2665,16 +2697,16 @@ components:
 
     ParseUrlResponse:
       allOf:
-        - $ref: '#/components/schemas/Response'
+        - $ref: "#/components/schemas/Response"
         - required: [item]
           properties:
             item:
-              $ref: '#/components/schemas/UrlParse'
+              $ref: "#/components/schemas/UrlParse"
 
     ParseUrlErrorResponse:
       allOf:
-        - $ref: '#/components/schemas/ErrorResponse'
+        - $ref: "#/components/schemas/ErrorResponse"
         - required: [item]
           properties:
             item:
-              $ref: '#/components/schemas/UrlParse'
+              $ref: "#/components/schemas/UrlParse"
