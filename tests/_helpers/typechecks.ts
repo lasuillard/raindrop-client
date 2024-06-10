@@ -70,7 +70,7 @@ it('${item.testId}', () => {
 }
 
 export function generateAllTests() {
-	const dir = path.join(__dirname, "__type_testing__");
+	const dir = path.join(__dirname, "..", "__typechecks__");
 	if (!fs.existsSync(dir)) fs.mkdirSync(dir);
 
 	for (const spec of filesToCreate) {

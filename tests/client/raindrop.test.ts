@@ -1,4 +1,4 @@
-import { it } from "^/tests/_helpers";
+import { it } from "^/tests/_helpers/vitest";
 import raindropResponse from "^/tests/fixtures/raindrops.json";
 import { describe, expect } from "vitest";
 

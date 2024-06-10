@@ -79,7 +79,7 @@ docs:  ## Generate dev documents
 # Handy Scripts
 # =============================================================================
 clean:  ## Remove temporary files
-	rm -rf coverage/ junit.xml dist/ tests/__type_testing__
+	rm -rf coverage/ junit.xml dist/ tests/__typechecks__
 	find . -path '*/__snapshots__*' -delete
 	find . -path "*.log*" -delete
 .PHONY: clean

@@ -1,4 +1,4 @@
-import { it } from "^/tests/_helpers";
+import { it } from "^/tests/_helpers/vitest";
 
 it.todo("parseURL");
 it.todo("checkURLsExist");

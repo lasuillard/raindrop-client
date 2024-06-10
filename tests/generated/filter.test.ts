@@ -1,3 +1,3 @@
-import { it } from "^/tests/_helpers";
+import { it } from "^/tests/_helpers/vitest";
 
 it.todo("getFilters");

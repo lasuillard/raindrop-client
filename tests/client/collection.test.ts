@@ -1,4 +1,4 @@
-import { it } from "^/tests/_helpers";
+import { it } from "^/tests/_helpers/vitest";
 import collections from "^/tests/fixtures/collections-childrens.json";
 import groups from "^/tests/fixtures/collections.json";
 import { describe, expect } from "vitest";

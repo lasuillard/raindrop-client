@@ -1,4 +1,4 @@
-import { it } from "^/tests/_helpers";
+import { it } from "^/tests/_helpers/vitest";
 
 it("getRootCollections", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.collection.getRootCollections();
