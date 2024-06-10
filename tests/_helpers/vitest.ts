@@ -5,6 +5,7 @@ import { test as base } from "vitest";
 import type { Raindrop } from "~/client";
 import { axiosInstance, client, mockAxios } from "./axios";
 import { polly } from "./polly";
+import { resetData } from "./raindrop";
 import { type RegisterHook, generateTypeTest } from "./typechecks";
 
 export const it = base.extend({
@@ -13,6 +14,7 @@ export const it = base.extend({
 	client,
 	polly: [polly, { auto: true }],
 	generateTypeTest,
+	resetData,
 });
 
 declare module "vitest" {
@@ -22,5 +24,6 @@ declare module "vitest" {
 		client: Raindrop;
 		polly: Polly;
 		generateTypeTest: RegisterHook;
+		resetData: undefined;
 	}
 }
