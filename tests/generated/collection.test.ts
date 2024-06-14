@@ -89,12 +89,7 @@ it("removeCollections", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("getChildCollections", async ({
-	client,
-	expect,
-	generateTypeTest,
-	resetData: _,
-}) => {
+it("getChildCollections", async ({ client, expect, generateTypeTest }) => {
 	const parent = await client.collection.createCollection({
 		view: "list",
 		title: "createCollection",
