@@ -14,7 +14,7 @@ export const it = base.extend({
 	client,
 	polly: [polly, { auto: true }],
 	generateTypeTest,
-	resetData: [resetData, { auto: true }],
+	resetData,
 });
 
 declare module "vitest" {
