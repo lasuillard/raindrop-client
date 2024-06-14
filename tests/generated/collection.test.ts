@@ -2,9 +2,7 @@ import { it } from "^/tests/_helpers/vitest";
 
 it("getRootCollections", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.collection.getRootCollections();
-	generateTypeTest({
-		type: "CollectionResponseMany",
-	});
+	generateTypeTest({ type: "CollectionResponseMany" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "items": [
@@ -47,9 +45,7 @@ it("getRootCollections", async ({ client, expect, generateTypeTest }) => {
 
 it("reorderAllCollections", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.collection.reorderAllCollections();
-	generateTypeTest({
-		type: "Response",
-	});
+	generateTypeTest({ type: "Response" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "result": true,
@@ -75,9 +71,7 @@ it("removeCollections", async ({ client, expect, generateTypeTest }) => {
 		// biome-ignore lint/style/noNonNullAssertion: PASS
 		ids: [collection.data.item!._id],
 	});
-	generateTypeTest({
-		type: "RemoveCollections200Response",
-	});
+	generateTypeTest({ type: "RemoveCollections200Response" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "ids": [
@@ -117,9 +111,7 @@ it("getChildCollections", async ({ client, expect, generateTypeTest }) => {
 	});
 
 	const response = await client.collection.getChildCollections();
-	generateTypeTest({
-		type: "CollectionResponseMany",
-	});
+	generateTypeTest({ type: "CollectionResponseMany" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "items": [
