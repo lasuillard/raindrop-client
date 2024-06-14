@@ -156,7 +156,57 @@ it("getChildCollections", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it.todo("getCollection");
+it("getCollection", async ({ client, expect, generateTypeTest }) => {
+	const existing = await client.collection.createCollection({
+		view: "list",
+		title: "testCollection",
+		sort: 0,
+		public: true,
+		cover: [],
+	});
+	const response = await client.collection.getCollection(
+		// biome-ignore lint/style/noNonNullAssertion: PASS
+		existing.data.item!._id,
+	);
+	generateTypeTest({ type: "CollectionResponseOne" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "item": {
+		    "_id": 45134170,
+		    "access": {
+		      "draggable": true,
+		      "for": 2067190,
+		      "level": 4,
+		      "root": false,
+		    },
+		    "author": true,
+		    "count": 0,
+		    "cover": [],
+		    "created": "2024-06-14T14:34:58.438Z",
+		    "creatorRef": {
+		      "_id": 2067190,
+		      "email": "",
+		      "name": "miyil99106",
+		    },
+		    "description": "",
+		    "expanded": true,
+		    "lastAction": "2024-06-14T14:34:58.437Z",
+		    "lastUpdate": "2024-06-14T14:34:58.438Z",
+		    "public": true,
+		    "slug": "test-collection",
+		    "sort": 0,
+		    "title": "testCollection",
+		    "user": {
+		      "$id": 2067190,
+		      "$ref": "users",
+		    },
+		    "view": "list",
+		  },
+		  "result": true,
+		}
+	`);
+});
+
 it.todo("updateCollection");
 it.todo("removeCollection");
 it.todo("createCollection");

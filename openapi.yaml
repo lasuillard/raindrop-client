@@ -1998,7 +1998,7 @@ components:
                 $ref: "#/components/schemas/Collection"
     CreateCollection:
       type: object
-      required: [view, title, sort, public, parent, cover]
+      required: [view, title, sort, public, cover]
       properties:
         view:
           $ref: "#/components/schemas/View"

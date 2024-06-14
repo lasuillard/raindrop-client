@@ -492,7 +492,7 @@ export interface CreateCollection {
      * @type {CollectionRef}
      * @memberof CreateCollection
      */
-    'parent': CollectionRef;
+    'parent'?: CollectionRef;
     /**
      * 
      * @type {Array<string>}
@@ -2191,7 +2191,7 @@ export interface UpdateCollection {
      * @type {CollectionRef}
      * @memberof UpdateCollection
      */
-    'parent': CollectionRef;
+    'parent'?: CollectionRef;
     /**
      * 
      * @type {Array<string>}
