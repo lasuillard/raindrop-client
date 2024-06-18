@@ -1979,6 +1979,8 @@ components:
           type: string
         author:
           type: boolean
+        __v:
+          type: number
 
     CollectionResponseOne:
       allOf:

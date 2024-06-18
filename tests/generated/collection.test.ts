@@ -207,7 +207,68 @@ it("getCollection", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it.todo("updateCollection");
+it("updateCollection", async ({ client, expect, generateTypeTest }) => {
+	const existing = await client.collection.createCollection({
+		view: "list",
+		title: "testCollection",
+		sort: 0,
+		public: true,
+		cover: [],
+	});
+	const response = await client.collection.updateCollection(
+		// biome-ignore lint/style/noNonNullAssertion: PASS
+		existing.data.item!._id,
+		{
+			title: "updatedCollection",
+			cover: ["string"],
+			view: "list",
+			sort: 0,
+			public: true,
+			expanded: true,
+		},
+	);
+	generateTypeTest({ type: "CollectionResponseOne" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "item": {
+		    "__v": 1,
+		    "_id": 45246529,
+		    "access": {
+		      "draggable": true,
+		      "for": 2067190,
+		      "level": 4,
+		      "root": false,
+		    },
+		    "author": true,
+		    "count": 0,
+		    "cover": [
+		      "",
+		    ],
+		    "created": "2024-06-18T14:06:51.564Z",
+		    "creatorRef": {
+		      "_id": 2067190,
+		      "email": "",
+		      "name": "miyil99106",
+		    },
+		    "description": "",
+		    "expanded": true,
+		    "lastAction": "2024-06-18T14:06:51.563Z",
+		    "lastUpdate": "2024-06-18T14:06:52.034Z",
+		    "public": true,
+		    "slug": "updated-collection",
+		    "sort": 0,
+		    "title": "updatedCollection",
+		    "user": {
+		      "$id": 2067190,
+		      "$ref": "users",
+		    },
+		    "view": "list",
+		  },
+		  "result": true,
+		}
+	`);
+});
+
 it.todo("removeCollection");
 it.todo("createCollection");
 it.todo("uploadCollectionCover");

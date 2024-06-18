@@ -242,6 +242,12 @@ export interface Collection {
      * @memberof Collection
      */
     'author'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof Collection
+     */
+    '__v'?: number;
 }
 
 
