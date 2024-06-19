@@ -269,7 +269,26 @@ it("updateCollection", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it.todo("removeCollection");
+it("removeCollection", async ({ client, expect, generateTypeTest }) => {
+	const existing = await client.collection.createCollection({
+		view: "list",
+		title: "testCollection",
+		sort: 0,
+		public: true,
+		cover: [],
+	});
+	const response = await client.collection.removeCollection(
+		// biome-ignore lint/style/noNonNullAssertion: PASS
+		existing.data.item!._id,
+	);
+	generateTypeTest({ type: "Response" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "result": true,
+		}
+	`);
+});
+
 it.todo("createCollection");
 it.todo("uploadCollectionCover");
 it.todo("mergeCollections");
