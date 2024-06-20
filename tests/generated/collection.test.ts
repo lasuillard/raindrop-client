@@ -289,7 +289,50 @@ it("removeCollection", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it.todo("createCollection");
+it("createCollection", async ({ client, expect, generateTypeTest }) => {
+	const response = await client.collection.createCollection({
+		view: "list",
+		title: "createCollectionTest",
+		sort: 0,
+		public: true,
+		cover: [],
+	});
+	generateTypeTest({ type: "CollectionResponseOne" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "item": {
+		    "__v": 0,
+		    "_id": 45303655,
+		    "access": {
+		      "draggable": true,
+		      "for": 2067190,
+		      "level": 4,
+		      "root": false,
+		    },
+		    "author": true,
+		    "count": 0,
+		    "cover": [],
+		    "created": "2024-06-20T13:29:44.641Z",
+		    "creatorRef": 2067190,
+		    "description": "",
+		    "expanded": true,
+		    "lastAction": "2024-06-20T13:29:44.641Z",
+		    "lastUpdate": "2024-06-20T13:29:44.641Z",
+		    "public": true,
+		    "slug": "create-collection-test",
+		    "sort": 0,
+		    "title": "createCollectionTest",
+		    "user": {
+		      "$id": 2067190,
+		      "$ref": "users",
+		    },
+		    "view": "list",
+		  },
+		  "result": true,
+		}
+	`);
+});
+
 it.todo("uploadCollectionCover");
 it.todo("mergeCollections");
 it.todo("removeAllEmptyCollections");

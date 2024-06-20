@@ -293,27 +293,33 @@ export const CollectionAccessLevelEnum = {
 export type CollectionAccessLevelEnum = typeof CollectionAccessLevelEnum[keyof typeof CollectionAccessLevelEnum];
 
 /**
+ * @type CollectionCreatorRef
+ * @export
+ */
+export type CollectionCreatorRef = CollectionCreatorRefOneOf | number;
+
+/**
  * 
  * @export
- * @interface CollectionCreatorRef
+ * @interface CollectionCreatorRefOneOf
  */
-export interface CollectionCreatorRef {
+export interface CollectionCreatorRefOneOf {
     /**
      * 
      * @type {number}
-     * @memberof CollectionCreatorRef
+     * @memberof CollectionCreatorRefOneOf
      */
     '_id'?: number;
     /**
      * 
      * @type {string}
-     * @memberof CollectionCreatorRef
+     * @memberof CollectionCreatorRefOneOf
      */
     'name'?: string;
     /**
      * 
      * @type {string}
-     * @memberof CollectionCreatorRef
+     * @memberof CollectionCreatorRefOneOf
      */
     'email'?: string;
 }

@@ -1688,14 +1688,16 @@ components:
         view:
           $ref: "#/components/schemas/View"
         creatorRef:
-          type: object
-          properties:
-            _id:
-              type: number
-            name:
-              type: string
-            email:
-              type: string
+          oneOf:
+            - type: number
+            - type: object
+              properties:
+                _id:
+                  type: number
+                name:
+                  type: string
+                email:
+                  type: string
         lastAction:
           type: string
           format: date-time
