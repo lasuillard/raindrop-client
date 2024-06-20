@@ -151,28 +151,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CollectionResponseMany"
-              example:
-                result: true
-                items:
-                  - _id: 8492393
-                    access:
-                      level: 4
-                      draggable: true
-                    collaborators:
-                      $id: 5dc1759a0e123be5f2654b6f
-                    color: "#0c797d"
-                    count: 16
-                    cover:
-                      - https://up.raindrop.io/collection/thumbs/849/239/3/333ce18769311113836cf93a223a14a3.png
-                    created: "2019-10-09T11:49:53.518Z"
-                    expanded: false
-                    lastUpdate: "2019-11-27T17:51:19.085Z"
-                    public: false
-                    sort: 8492393
-                    title: Development
-                    user:
-                      $id: 32
-                    view: list
     put:
       operationId: reorderAllCollections
       tags:
@@ -203,8 +181,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Response"
-              example:
-                result: true
     delete:
       operationId: removeCollections
       tags:
@@ -255,29 +231,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CollectionResponseMany"
-              example:
-                result: true
-                items:
-                  - _id: 8492393
-                    access:
-                      level: 4
-                      draggable: true
-                    collaborators:
-                      $id: 5dc1759a0e123be5f2654b6f
-                    color: "#0c797d"
-                    count: 16
-                    cover:
-                      - https://up.raindrop.io/collection/thumbs/849/239/3/333ce18769311113836cf93a223a14a3.png
-                    created: "2019-10-09T11:49:53.518Z"
-                    expanded: false
-                    lastUpdate: "2019-11-27T17:51:19.085Z"
-                    parent_id: 1111
-                    public: false
-                    sort: 8492393
-                    title: Development
-                    user:
-                      $id: 32
-                    view: list
   /rest/v1/collection/{id}:
     parameters:
       - name: id
@@ -298,31 +251,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CollectionResponseOne"
-              example:
-                result: true
-                item:
-                  _id: 8492393
-                  access:
-                    for: 32
-                    level: 4
-                    root: true
-                    draggable: true
-                  author: true
-                  collaborators:
-                    $id: 5dc1759a0e123be5f2654b6f
-                  color: "#0c797d"
-                  count: 16
-                  cover:
-                    - https://up.raindrop.io/collection/thumbs/849/239/3/333ce18769311113836cf93a223a14a3.png
-                  created: "2019-10-09T11:49:53.518Z"
-                  expanded: false
-                  lastUpdate: "2019-11-27T17:51:19.085Z"
-                  public: false
-                  sort: 8492393
-                  title: Development
-                  user:
-                    $id: 32
-                  view: list
     put:
       operationId: updateCollection
       tags:
@@ -486,23 +414,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/StatResponse"
-              example:
-                items:
-                  - _id: 0
-                    count: 1570
-                  - _id: -1
-                    count: 34
-                  - _id: -99
-                    count: 543
-                meta:
-                  pro: true
-                  _id: 32
-                  changedBookmarksDate: "2020-02-11T11:23:43.143Z"
-                  duplicates:
-                    count: 3
-                  broken:
-                    count: 31
-                result: true
   /rest/v1/collection/{id}/sharing:
     parameters:
       - name: id
@@ -558,9 +469,6 @@ paths:
                     items:
                       type: string
                       format: email
-                    example:
-                      - some@user.com
-                      - other@user.com
         400:
           description: Bad request
           content:
@@ -686,9 +594,6 @@ paths:
                     type: boolean
                   role:
                     $ref: "#/components/schemas/Role"
-                example:
-                  result: true
-                  role: member
         403:
           description: Unauthorized
           content:
@@ -732,16 +637,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CoverResponse"
-              example:
-                items:
-                  - title: Icons8
-                    icons:
-                      - png: https://rd-icons-icons8.gumlet.com/color/5x/mystic-pokemon.png?fill-color=transparent
-                  - title: Iconfinder
-                    icons:
-                      - png: https://cdn4.iconfinder.com/data/icons/pokemon-go/512/Pokemon_Go-01-128.png
-                        svg: https://api.iconfinder.com/v2/icons/1320040/formats/svg/1760420/download
-                result: true
   /rest/v1/collections/covers:
     get:
       operationId: getFeaturedCovers
@@ -755,14 +650,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CoverResponse"
-              example:
-                items:
-                  - title: Colors circle
-                    icons:
-                      - png: https://up.raindrop.io/collection/templates/colors/ios1.png
-                  - title: Hockey
-                    icons:
-                      - png: https://up.raindrop.io/collection/templates/hockey-18/12i.png
   /rest/v1/raindrop:
     post:
       operationId: createRaindrop
@@ -974,21 +861,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SuggestResponse"
-              example:
-                result: true
-                item:
-                  collections:
-                    - $id: 568368
-                    - $id: 8519567
-                    - $id: 1385626
-                    - $id: 8379661
-                    - $id: 20865985
-                  tags:
-                    - fonts
-                    - free
-                    - engineering
-                    - icons
-                    - invalid_parser
   /rest/v1/raindrop/{id}/suggest:
     get:
       operationId: suggestForExistingBookmark
@@ -1009,21 +881,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SuggestResponse"
-              example:
-                result: true
-                item:
-                  collections:
-                    - $id: 568368
-                    - $id: 8519567
-                    - $id: 1385626
-                    - $id: 8379661
-                    - $id: 20865985
-                  tags:
-                    - fonts
-                    - free
-                    - engineering
-                    - icons
-                    - invalid_parser
   /rest/v1/raindrops/{collectionId}:
     parameters:
       - name: collectionId
@@ -1150,9 +1007,6 @@ paths:
                     type: boolean
                   modified:
                     type: integer
-                example:
-                  result: true
-                  modified: 330
   /rest/v1/raindrops:
     post:
       operationId: createRaindrops
@@ -1202,31 +1056,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HighlightResponse"
-              example:
-                result: true
-                items:
-                  - note: Trully native macOS app
-                    color: red
-                    text: Orion is the new WebKit-based browser for Mac
-                    created: "2022-03-21T14:41:34.059Z"
-                    tags:
-                      - tag1
-                      - tag2
-                    _id: 62388e9e48b63606f41e44a6
-                    raindropRef: 123
-                    link: https://apple.com
-                    title: Orion Browser
-                  - note: ""
-                    color: green
-                    text: Built on WebKit, Orion gives you a fast, smooth and lightweight browsing experience
-                    created: "2022-03-21T15:13:21.128Z"
-                    tags:
-                      - tag1
-                      - tag2
-                    _id: 62389611058af151c840f667
-                    raindropRef: 123
-                    link: https://apple.com
-                    title: Apple
   /rest/v1/highlights/{collectionId}:
     get:
       operationId: getHighlightsInCollection
@@ -1270,41 +1099,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserResponse"
-              example:
-                result: true
-                user:
-                  _id: 32
-                  config:
-                    broken_level: strict
-                    font_color: ""
-                    font_size: 0
-                    lang: ru_RU
-                    last_collection: 8492393
-                    raindrops_sort: "-lastUpdate"
-                    raindrops_view: list
-                  dropbox:
-                    enabled: true
-                  email: some@email.com
-                  email_MD5: 13a0a20681d8781912e5314150694bf7
-                  files:
-                    used: 6766094
-                    size: 10000000000
-                    lastCheckPoint: "2020-01-26T23:53:19.676Z"
-                  fullName: Mussabekov Rustem
-                  gdrive:
-                    enabled: true
-                  groups:
-                    - title: My Collections
-                      hidden: false
-                      sort: 0
-                      collections:
-                        - 8364483
-                        - 8364403
-                        - 66
-                  password: true
-                  pro: true
-                  proExpire: "2028-09-27T22:00:00.000Z"
-                  registered: "2014-09-30T07:51:15.406Z"
         401:
           description: Unauthenticated
           content:
@@ -1406,24 +1200,12 @@ paths:
                       registered:
                         type: string
                         format: date-time
-              example:
-                result: true
-                user:
-                  _id: 32
-                  email_MD5: 13a0a20681d8781912e5314150694bf7
-                  fullName: Mussabekov Rustem
-                  pro: true
-                  registered: "2014-09-30T07:51:15.406Z"
         404:
           description: Not found
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-              example:
-                error: -1
-                errorMessage: not found
-                result: false
   /rest/v1/user/connect/{provider}:
     get:
       operationId: connectSocialNetworkProvider
@@ -1593,31 +1375,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FilterResponse"
-              example:
-                result: true
-                broken:
-                  count: 31
-                duplicates:
-                  count: 7
-                important:
-                  count: 59
-                notag:
-                  count: 1366
-                tags:
-                  - _id: performanc
-                    count: 19
-                  - _id: guides
-                    count: 9
-                types:
-                  - _id: article
-                    count: 313
-                  - _id: image
-                    count: 143
-                  - _id: video
-                    count: 26
-                  - _id: document
-                    count: 7
-
   /rest/v1/import/url/parse:
     get:
       operationId: parseURL
@@ -1757,39 +1514,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ImportFileResponse"
-              example:
-                result: true
-                items:
-                  - title: Web
-                    folders:
-                      - title: Default
-                        folders: []
-                        bookmarks:
-                          - link: https://aaa.com/a
-                            title: Name 1
-                            lastUpdate: "2016-09-13T11:17:09.000Z"
-                            tags:
-                              - tag
-                            excerpt: ""
-                    bookmarks:
-                      - link: https://bbb.com/b
-                        title: Name 2
-                        lastUpdate: "2016-09-13T11:17:09.000Z"
-                        tags:
-                          - tag
-                        excerpt: ""
-                  - title: Home
-                    folders:
-                      - title: Inspiration
-                        folders: []
-                        bookmarks:
-                          - link: https://ccc.com/c
-                            title: Name 3
-                            lastUpdate: "2016-09-13T11:17:09.000Z"
-                            tags:
-                              - tag
-                            excerpt: ""
-                    bookmarks: []
 components:
   securitySchemes:
     # checkov:skip=CKV_OPENAPI_3:FIXME
