@@ -27,6 +27,7 @@ export default defineConfig({
 			// Run sequentially due to API testing getting messed up
 			concurrent: false,
 		},
+		testTimeout: 10000,
 		include: ["tests/**/*.{test,spec}.{js,ts}"],
 		exclude: ["**/__mocks__/*"],
 		coverage: {

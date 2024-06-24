@@ -9,9 +9,6 @@ import type { CreateCollectionResponse } from "~/generated";
 // TODO: Name file of recordings, typechecks to test name (they won't duplicate as OpenAPI operation ID should unique)
 // TODO: Address type errors
 
-// Global counter for unique collection name (if test create multiple collections)
-let _counter = 0;
-
 // Helper function to create collection
 async function createCollection(
 	task: Task,
@@ -20,7 +17,7 @@ async function createCollection(
 ): Promise<CreateCollectionResponse> {
 	const response = await client.collection.createCollection({
 		view: "list",
-		title: `${task.name}_${_counter++}`,
+		title: task.name,
 		sort: 0,
 		public: false,
 		parent: {
@@ -41,14 +38,12 @@ it("getRootCollections", async ({
 	generateTypeTest,
 	resetData: _,
 }) => {
-	await Promise.all([
-		createCollection(task, client),
-		createCollection(task, client, {
-			cover: [
-				"https://png.pngtree.com/png-vector/20221217/ourmid/pngtree-example-sample-grungy-stamp-vector-png-image_15560590.png",
-			],
-		}),
-	]);
+	await createCollection(task, client);
+	await createCollection(task, client, {
+		cover: [
+			"https://png.pngtree.com/png-vector/20221217/ourmid/pngtree-example-sample-grungy-stamp-vector-png-image_15560590.png",
+		],
+	});
 
 	const response = await client.collection.getRootCollections();
 
@@ -57,7 +52,7 @@ it("getRootCollections", async ({
 		{
 		  "items": [
 		    {
-		      "_id": 45402789,
+		      "_id": 45403665,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -67,7 +62,7 @@ it("getRootCollections", async ({
 		      "author": true,
 		      "count": 0,
 		      "cover": [],
-		      "created": "2024-06-24T13:47:14.393Z",
+		      "created": "2024-06-24T14:53:06.493Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -75,12 +70,12 @@ it("getRootCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-06-24T13:47:14.393Z",
-		      "lastUpdate": "2024-06-24T13:47:14.393Z",
+		      "lastAction": "2024-06-24T14:53:06.493Z",
+		      "lastUpdate": "2024-06-24T14:53:06.493Z",
 		      "public": false,
-		      "slug": "get-root-collections-0",
+		      "slug": "get-root-collections",
 		      "sort": 0,
-		      "title": "getRootCollections_0",
+		      "title": "getRootCollections",
 		      "user": {
 		        "$id": 2067190,
 		        "$ref": "users",
@@ -88,7 +83,7 @@ it("getRootCollections", async ({
 		      "view": "list",
 		    },
 		    {
-		      "_id": 45402790,
+		      "_id": 45403666,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -99,9 +94,9 @@ it("getRootCollections", async ({
 		      "color": "#da1f26",
 		      "count": 0,
 		      "cover": [
-		        "https://up.raindrop.io/collection/thumbs/454/027/90/e0baf93e1f297abd2c2baabee2ec3cc1.png",
+		        "https://up.raindrop.io/collection/thumbs/454/036/66/e0baf93e1f297abd2c2baabee2ec3cc1.png",
 		      ],
-		      "created": "2024-06-24T13:47:14.443Z",
+		      "created": "2024-06-24T14:53:06.952Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -109,12 +104,12 @@ it("getRootCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-06-24T13:47:14.443Z",
-		      "lastUpdate": "2024-06-24T13:47:14.443Z",
+		      "lastAction": "2024-06-24T14:53:06.952Z",
+		      "lastUpdate": "2024-06-24T14:53:06.952Z",
 		      "public": false,
-		      "slug": "get-root-collections-1",
+		      "slug": "get-root-collections",
 		      "sort": 0,
-		      "title": "getRootCollections_1",
+		      "title": "getRootCollections",
 		      "user": {
 		        "$id": 2067190,
 		        "$ref": "users",
@@ -160,7 +155,7 @@ it("removeCollections", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "ids": [
-		    45402791,
+		    45403629,
 		  ],
 		  "modified": 1,
 		  "result": true,
@@ -190,7 +185,7 @@ it("getChildCollections", async ({
 		{
 		  "items": [
 		    {
-		      "_id": 45402793,
+		      "_id": 45403631,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -200,7 +195,7 @@ it("getChildCollections", async ({
 		      "author": true,
 		      "count": 0,
 		      "cover": [],
-		      "created": "2024-06-24T13:47:19.304Z",
+		      "created": "2024-06-24T14:51:05.263Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -208,16 +203,16 @@ it("getChildCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-06-24T13:47:19.303Z",
-		      "lastUpdate": "2024-06-24T13:47:19.304Z",
+		      "lastAction": "2024-06-24T14:51:05.262Z",
+		      "lastUpdate": "2024-06-24T14:51:05.263Z",
 		      "parent": {
-		        "$id": 45402792,
+		        "$id": 45403630,
 		        "$ref": "collections",
 		      },
 		      "public": false,
-		      "slug": "get-child-collections-4",
+		      "slug": "get-child-collections",
 		      "sort": 0,
-		      "title": "getChildCollections_4",
+		      "title": "getChildCollections",
 		      "user": {
 		        "$id": 2067190,
 		        "$ref": "users",
@@ -245,7 +240,7 @@ it("getCollection", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
-		    "_id": 45403046,
+		    "_id": 45403632,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -255,7 +250,7 @@ it("getCollection", async ({
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-06-24T14:18:13.728Z",
+		    "created": "2024-06-24T14:51:07.076Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -263,12 +258,12 @@ it("getCollection", async ({
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-24T14:18:13.727Z",
-		    "lastUpdate": "2024-06-24T14:18:13.728Z",
+		    "lastAction": "2024-06-24T14:51:07.075Z",
+		    "lastUpdate": "2024-06-24T14:51:07.076Z",
 		    "public": false,
-		    "slug": "get-collection-5",
+		    "slug": "get-collection",
 		    "sort": 0,
-		    "title": "getCollection_5",
+		    "title": "getCollection",
 		    "user": {
 		      "$id": 2067190,
 		      "$ref": "users",
@@ -305,7 +300,7 @@ it("updateCollection", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
-		    "_id": 45403049,
+		    "_id": 45403634,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -315,7 +310,7 @@ it("updateCollection", async ({
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-06-24T14:18:14.563Z",
+		    "created": "2024-06-24T14:51:08.845Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -323,8 +318,8 @@ it("updateCollection", async ({
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-24T14:18:14.562Z",
-		    "lastUpdate": "2024-06-24T14:18:15.573Z",
+		    "lastAction": "2024-06-24T14:51:08.845Z",
+		    "lastUpdate": "2024-06-24T14:51:09.378Z",
 		    "public": true,
 		    "slug": "updated-collection",
 		    "sort": 0,
@@ -380,7 +375,7 @@ it("createCollection", async ({
 		{
 		  "item": {
 		    "__v": 0,
-		    "_id": 45402797,
+		    "_id": 45403636,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -390,12 +385,12 @@ it("createCollection", async ({
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-06-24T13:47:26.691Z",
+		    "created": "2024-06-24T14:51:12.312Z",
 		    "creatorRef": 2067190,
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-24T13:47:26.690Z",
-		    "lastUpdate": "2024-06-24T13:47:26.691Z",
+		    "lastAction": "2024-06-24T14:51:12.312Z",
+		    "lastUpdate": "2024-06-24T14:51:12.312Z",
 		    "public": true,
 		    "slug": "create-collection-test",
 		    "sort": 0,
@@ -470,19 +465,16 @@ it.skip("uploadCollectionCover", async ({
 	`);
 });
 
-// ! FIXME: Recoding keep changes
-it.skip("mergeCollections", async ({
+it("mergeCollections", async ({
 	task,
 	client,
 	expect,
 	generateTypeTest,
 	resetData: _,
 }) => {
-	const [one, two, three] = await Promise.all([
-		createCollection(task, client),
-		createCollection(task, client),
-		createCollection(task, client),
-	]);
+	const one = await createCollection(task, client);
+	const two = await createCollection(task, client);
+	const three = await createCollection(task, client);
 
 	generateTypeTest({ type: "MergeCollectionsResponse" });
 	const response = await client.collection.mergeCollections({
@@ -493,8 +485,8 @@ it.skip("mergeCollections", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "ids": [
-		    45403411,
-		    45403413,
+		    45403638,
+		    45403639,
 		  ],
 		  "modified": 2,
 		  "result": true,

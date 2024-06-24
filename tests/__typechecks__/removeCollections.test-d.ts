@@ -5,6 +5,6 @@ it("removeCollections", () => {
 	assertType<RemoveCollectionsResponse>({
 		result: true,
 		modified: 1,
-		ids: [45402791],
+		ids: [45403629],
 	});
 });

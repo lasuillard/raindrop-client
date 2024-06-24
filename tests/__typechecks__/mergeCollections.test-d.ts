@@ -5,6 +5,6 @@ it("mergeCollections", () => {
 	assertType<MergeCollectionsResponse>({
 		result: true,
 		modified: 2,
-		ids: [45403422, 45403424],
+		ids: [45403638, 45403639],
 	});
 });
