@@ -62,13 +62,6 @@ paths:
       operationId: authorize
       tags:
         - authentication
-      summary: Authorization request
-      description: |-
-        Direct the user to our authorization URL with specified request parameters.
-
-        - If the user is not logged in, they will be asked to log in
-
-        - The user will be asked if he would like to grant your application access to his Raindrop.io data
       # checkov:skip=CKV_OPENAPI_5:Auth endpoint open to unauthorized users
       security: []
       parameters:
@@ -84,17 +77,12 @@ paths:
             type: string
       responses:
         307:
-          description: Direct to Raindrop authorization page.
+          description: Redirect to Raindrop authorization page
   /v1/oauth/access_token:
     post:
       operationId: getOrRefreshToken
       tags:
         - authentication
-      summary: Obtain or refresh access token
-      description: |
-        Once you have the authorization code, you can exchange it for the `access_token` by doing a POST request with all required body parameters as JSON.
-
-        For security reasons access tokens (except "test tokens") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON).
       security: []
       requestBody:
         content:
@@ -127,16 +115,6 @@ paths:
                 oneOf:
                   - $ref: "#/components/schemas/TokenResponse"
                   - $ref: "#/components/schemas/TokenErrorResponse"
-        400:
-          description: Occurs when code parameter is invalid
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    enum: [bad_authorization_code]
   /rest/v1/collections:
     get:
       operationId: getRootCollections
@@ -242,11 +220,6 @@ paths:
       operationId: removeCollection
       tags:
         - collection
-      summary: Remove collection
-      description: |-
-        Remove an existing collection and all its descendants.
-
-        Raindrops will be moved to "Trash" collection
       responses:
         200:
           description: OK
@@ -259,43 +232,27 @@ paths:
       operationId: createCollection
       tags:
         - collection
-      summary: Create collection
-      description: Create a new collection
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreateCollection"
+              $ref: "#/components/schemas/CreateCollectionRequest"
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CollectionResponseOne"
-        400:
-          description: "Incorrect 'view' field value"
-          content:
-            application/json:
-              schema:
-                allOf:
-                  - $ref: "#/components/schemas/ErrorResponse"
-                  - example:
-                      result: false
-                      error: view
-                      errorMessage: "Collection validation failed: view: `bla` is not a valid enum value for path `view`."
+                $ref: "#/components/schemas/CreateCollectionResponse"
   /rest/v1/collection/{id}/cover:
     put:
       operationId: uploadCollectionCover
       tags:
         - collection
-      summary: Upload cover
-      description: It's possible to upload cover from desktop. PNG, GIF and JPEG supported
       parameters:
         - name: id
           in: path
           required: true
-          description: Existing collection ID
           schema:
             type: integer
       requestBody:
@@ -319,8 +276,6 @@ paths:
       operationId: mergeCollections
       tags:
         - collection
-      summary: Merge collections
-      description: Merge multiple collections
       requestBody:
         content:
           application/json:
@@ -341,7 +296,6 @@ paths:
       operationId: removeAllEmptyCollections
       tags:
         - collection
-      summary: Remove all empty collections
       responses:
         200:
           description: OK
@@ -361,7 +315,6 @@ paths:
       operationId: emptyTrash
       tags:
         - collection
-      summary: Empty Trash
       responses:
         200:
           description: OK
@@ -375,7 +328,6 @@ paths:
       tags:
         - collection
         - user
-      summary: Get system collections count
       responses:
         200:
           description: OK
@@ -387,13 +339,11 @@ paths:
     parameters:
       - name: id
         in: path
-        description: Existing collection ID
         required: true
         schema:
           $ref: "#/components/schemas/CollectionID"
     get:
       operationId: getCollaborators
-      summary: Get collaborators list of collection
       tags:
         - collection
       responses:
@@ -403,8 +353,6 @@ paths:
       operationId: shareCollection
       tags:
         - collection
-      summary: Share collection
-      description: Share collection with another user(s). As result invitation(s) will be send to specified email(s) with link to join collection.
       requestBody:
         content:
           application/json:
@@ -415,10 +363,6 @@ paths:
                   $ref: "#/components/schemas/Role"
                 emails:
                   type: array
-                  description: |-
-                    The user email(s) with whom to share the project.
-
-                    Maximum 10
                   items:
                     type: string
                     format: email
@@ -438,55 +382,10 @@ paths:
                     items:
                       type: string
                       format: email
-        400:
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  result:
-                    type: boolean
-                  errorMessage:
-                    type: string
-              examples:
-                Email is empty:
-                  value:
-                    result: false
-                    errorMessage: "no emails"
-                Length of email is large than 10:
-                  value:
-                    result: false
-                    errorMessage: you cant send more than 10 invites at once
-        403:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  result:
-                    type: boolean
-                  errorMessage:
-                    type: string
-              examples:
-                Too many (100+) pending invitations:
-                  value:
-                    result: false
-                    errorMessage: you have too many pending invitations, you will be banned if you continue send more
-                Not enough permission:
-                  value:
-                    result: false
-                    errorMessage: you dont have permissions to invite more people
     delete:
       operationId: unshareOrLeaveCollection
       tags:
         - collection
-      summary: Unshare or leave collection
-      description: |-
-        There two possible results of calling this method, depends on who authenticated user is:
-        - Owner: collection will be unshared and all collaborators will be removed
-        - Member or viewer: authenticated user will be removed from collaborators list
       responses:
         200:
           description: OK
@@ -498,13 +397,11 @@ paths:
     parameters:
       - name: userId
         in: path
-        description: User ID of collaborator
         required: true
         schema:
           type: integer
       - name: id
         in: path
-        description: Existing collection ID
         required: true
         schema:
           $ref: "#/components/schemas/CollectionID"
@@ -512,7 +409,6 @@ paths:
       operationId: changeCollaboratorAccessLevel
       tags:
         - collection
-      summary: Change access level of collaborator
       requestBody:
         content:
           application/json:
@@ -528,8 +424,6 @@ paths:
       operationId: deleteCollaborator
       tags:
         - collection
-      summary: Delete a collaborator
-      description: Remove an user from shared collection
       responses:
         200:
           description: OK
@@ -542,12 +436,9 @@ paths:
       operationId: acceptInvitation
       tags:
         - collection
-      summary: Accept an invitation
-      description: Accept an invitation to join a shared collection
       parameters:
         - name: id
           in: path
-          description: Existing collection
           required: true
           schema:
             $ref: "#/components/schemas/CollectionID"
@@ -563,40 +454,15 @@ paths:
                     type: boolean
                   role:
                     $ref: "#/components/schemas/Role"
-        403:
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-              examples:
-                Incorrect token:
-                  value:
-                    result: false
-                    error: CollaboratorsIncorrectToken
-                    errorMessage: Incorrect or expired token
-                Collection no more exists:
-                  value:
-                    result: false
-                    error: CollaboratorsNoCollection
-                    errorMessage: Shared collection not found or removed
-                Is collaborator already:
-                  value:
-                    result: false
-                    error: CollaboratorsAlready
-                    errorMessage: You already owner of this collection
   /rest/v1/collections/covers/{text}:
     get:
       operationId: searchCovers
       tags:
         - collection
-      summary: Search for cover
-      description: Search for specific cover (icon)
       parameters:
         - name: text
           in: path
           required: true
-          description: For example "pokemon"
           schema:
             type: string
       responses:
@@ -611,7 +477,6 @@ paths:
       operationId: getFeaturedCovers
       tags:
         - collection
-      summary: Featured covers
       responses:
         200:
           description: OK
@@ -624,7 +489,6 @@ paths:
       operationId: createRaindrop
       tags:
         - raindrop
-      summary: Create raindrop
       requestBody:
         content:
           application/json:
@@ -642,7 +506,6 @@ paths:
       - name: id
         in: path
         required: true
-        description: Existing raindrop ID
         schema:
           type: integer
     get:
@@ -650,7 +513,6 @@ paths:
       tags:
         - raindrop
         - highlight
-      summary: Get raindrop
       responses:
         200:
           description: OK
@@ -659,7 +521,6 @@ paths:
       tags:
         - raindrop
         - highlight
-      summary: Update raindrop
       requestBody:
         content:
           application/json:
@@ -676,8 +537,6 @@ paths:
       operationId: removeRaindrop
       tags:
         - raindrop
-      summary: Remove raindrop
-      description: When you remove raindrop it will be moved to user Trash collection. But if you try to remove raindrop from Trash, it will be removed permanently.
       responses:
         200:
           description: OK
@@ -690,8 +549,6 @@ paths:
       operationId: uploadFile
       tags:
         - raindrop
-      summary: Upload file
-      description: Make sure to send PUT request with [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST#example) body
       requestBody:
         content:
           multipart/form-data:
@@ -701,10 +558,8 @@ paths:
                 file:
                   type: string
                   format: binary
-                  description: File
                 collectionId:
                   type: integer
-                  description: Collection Id
       responses:
         200:
           description: OK
@@ -712,40 +567,15 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RaindropResponseOne"
-        400:
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-              examples:
-                File is not specified:
-                  value:
-                    result: false
-                    error: -1
-                    errorMessage: no file
-                Unsupported file format:
-                  value:
-                    result: false
-                    error: file_invalid
-                    errorMessage: File is invalid
-                File size is big:
-                  value:
-                    result: false
-                    error: file_size_limit
-                    errorMessage: File size limit
   /rest/v1/raindrop/{id}/cover:
     put:
       operationId: uploadRaindropCover
       tags:
         - raindrop
-      summary: Upload cover
-      description: PNG, GIF or JPEG
       parameters:
         - name: id
           in: path
           required: true
-          description: Existing raindrop ID
           schema:
             type: integer
       requestBody:
@@ -757,7 +587,6 @@ paths:
                 cover:
                   type: string
                   format: binary
-                  description: File
       responses:
         200:
           description: OK
@@ -765,56 +594,25 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RaindropResponseOne"
-        400:
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-              examples:
-                File is not specified:
-                  value:
-                    result: false
-                    error: -1
-                    errorMessage: no file
-                Unsupported file format:
-                  value:
-                    result: false
-                    error: file_invalid
-                    errorMessage: File is invalid
-                File size is big:
-                  value:
-                    result: false
-                    error: file_size_limit
-                    errorMessage: File size limit
   /rest/v1/raindrop/{id}/cache:
     get:
       operationId: getPermanentCopy
       tags:
         - raindrop
-      summary: Get permanent copy
-      description: Links permanently saved with all content (only in PRO plan). Using this method you can navigate to this copy.
       parameters:
         - name: id
           in: path
-          description: Existing raindrop ID
           required: true
           schema:
             type: integer
       responses:
         307:
           description: OK
-          headers:
-            Location:
-              schema:
-                type: string
-                example: https://s3.aws...
   /rest/v1/raindrop/suggest:
     post:
       operationId: suggestForNewBookmark
       tags:
         - raindrop
-      summary: Suggest collection and tags for new bookmark
       requestBody:
         content:
           application/json:
@@ -835,11 +633,9 @@ paths:
       operationId: suggestForExistingBookmark
       tags:
         - raindrop
-      summary: Suggest collection and tags for existing bookmark
       parameters:
         - name: id
           in: path
-          description: Bookmark id
           required: true
           schema:
             type: integer
@@ -853,7 +649,6 @@ paths:
   /rest/v1/raindrops/{collectionId}:
     parameters:
       - name: collectionId
-        description: Collection ID
         in: path
         required: true
         schema:
@@ -862,7 +657,6 @@ paths:
       operationId: getRaindrops
       tags:
         - raindrop
-      summary: Get raindrops
       parameters:
         - name: sort
           in: query
@@ -891,10 +685,6 @@ paths:
       operationId: updateRaindrops
       tags:
         - raindrop
-      summary: Update many raindrops
-      description: |-
-        Specify optional search and/or ids parameters to limit raindrops that will be updated.
-        Possible fields that could be updated are described in "Body Parameters"
       requestBody:
         content:
           application/json:
@@ -907,34 +697,19 @@ paths:
                     type: integer
                 important:
                   type: boolean
-                  description: |-
-                    TRUE - mark as "favorite"
-
-                    FALSE - unmark as "favorite"
                 tags:
                   type: array
-                  description: |-
-                    Will append specified tags to raindrops.
-                    Or will remove all tags from raindrops if [] (empty array) is specified
                   items:
                     type: string
                 media:
                   type: array
                   items:
                     type: string
-                    description: |-
-                      Will append specified media items to raindrops.
-                      Or will remove all media from raindrops if [] (empty array) is specified
                     format: uri
                 cover:
                   type: string
-                  description: |-
-                    Set URL for cover.
-                    Tip: specify <screenshot> to set screenshots for all raindrops
                 collection:
                   type: object
-                  description: |-
-                    Specify {"$id": collectionId} to move raindrops to other collection
                   properties:
                     $id:
                       type: integer
@@ -945,10 +720,6 @@ paths:
       operationId: removeRaindrops
       tags:
         - raindrop
-      summary: Remove many raindrops
-      description: |-
-        Specify optional search and/or ids parameters to limit raindrops that will be moved to "Trash"
-        When :collectionId is -99, raindrops will be permanently removed!
       parameters:
         - name: search
           in: query
@@ -981,7 +752,6 @@ paths:
       operationId: createRaindrops
       tags:
         - raindrop
-      summary: Create many raindrops
       requestBody:
         content:
           application/json:
@@ -990,9 +760,6 @@ paths:
               properties:
                 items:
                   type: array
-                  description: |-
-                    Array of objects. Format of single object described in "Create single raindrop".
-                    Maximum 100 objects in array!
                   items:
                     $ref: "#/components/schemas/CreateRaindrop"
       responses:
@@ -1007,7 +774,6 @@ paths:
       operationId: getAllHighlights
       tags:
         - highlight
-      summary: Get all highlights
       parameters:
         - name: page
           in: query
@@ -1015,7 +781,6 @@ paths:
             type: integer
         - name: perpage
           in: query
-          description: How many highlights per page. 50 max. Default 25
           schema:
             type: integer
       responses:
@@ -1030,10 +795,8 @@ paths:
       operationId: getHighlightsInCollection
       tags:
         - highlight
-      summary: Get all highlights in a collection
       parameters:
         - name: collectionId
-          description: Collection ID
           in: path
           required: true
           schema:
@@ -1044,7 +807,6 @@ paths:
             type: integer
         - name: perpage
           in: query
-          description: How many highlights per page. 50 max. Default 25
           schema:
             type: integer
       responses:
@@ -1059,8 +821,6 @@ paths:
       operationId: getCurrentUser
       tags:
         - user
-      summary: Get user
-      description: Get currently authenticated user details
       responses:
         200:
           description: OK
@@ -1068,19 +828,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserResponse"
-        401:
-          description: Unauthenticated
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: Unauthorized
     put:
       operationId: updateCurrentUser
       tags:
         - user
-      summary: Update user
-      description: To change email, config, password, etc... you can do it from single endpoint
       requestBody:
         content:
           application/json:
@@ -1108,44 +859,14 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserResponse"
-        400:
-          description: Bad request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
-              examples:
-                Email specified but empty:
-                  value:
-                    result: false
-                    error: 1
-                    errorMessage: email required
-                fullName specified but empty:
-                  value:
-                    result: false
-                    error: 2
-                    errorMessage: "User validation failed: fullName: is required"
-                newpassword specified, but oldpassword is empty:
-                  value:
-                    result: false
-                    error: 3
-                    errorMessage: oldpassword incorrect
-                incorrect config key value:
-                  value:
-                    result: false
-                    error: config.raindrops_sort
-                    errorMessage: "User validation failed: config.raindrops_sort: `1` is not a valid enum value for path `raindrops_sort`., config: Validation failed: raindrops_sort: `1` is not a valid enum value for path `raindrops_sort`."
   /rest/v1/user/{name}:
     get:
       operationId: getPublicUserByName
       tags:
         - user
-      summary: Get user by name
-      description: Get's publicly available user details
       parameters:
         - name: name
           in: path
-          description: Username
           required: true
           schema:
             type: integer
@@ -1169,47 +890,30 @@ paths:
                       registered:
                         type: string
                         format: date-time
-        404:
-          description: Not found
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponse"
   /rest/v1/user/connect/{provider}:
     get:
       operationId: connectSocialNetworkProvider
       tags:
         - user
-      summary: Connect social network acount
-      description: Connect social network account as sign in authentication option
       parameters:
         - name: provider
           in: path
           required: true
-          description: facebook google twitter vkontakte dropbox or gdrive
           schema:
             type: string
             enum: [facebook, google, twitter, vkontate, dropbox, gdrive]
       responses:
         307:
-          description: Temporary redirect
-          headers:
-            Location:
-              schema:
-                type: string
-                example: https://some.com/...
+          description: Redirect
   /rest/v1/user/connect/{provider}/revoke:
     get:
       operationId: disconnectSocialNetworkProvider
       tags:
         - user
-      summary: Disconnect social network account
-      description: Disconnect social network account from available authentication options
       parameters:
         - name: provider
           in: path
           required: true
-          description: facebook google twitter vkontakte dropbox or gdrive
           schema:
             type: string
             enum: [facebook, google, twitter, vkontate, dropbox, gdrive]
@@ -1221,12 +925,10 @@ paths:
       operationId: getTagsInCollection
       tags:
         - tag
-      summary: Get tags
       parameters:
         - name: collectionId
           in: path
           required: false
-          description: Optional collection ID, when not specified all tags from all collections will be retrieved
           schema:
             type: integer
       responses:
@@ -1251,12 +953,10 @@ paths:
       operationId: renameOrMergeTags
       tags:
         - tag
-      summary: Rename tag / Merge tags
       parameters:
         - name: collectionId
           in: path
           required: false
-          description: It's possible to restrict rename action to just one collection. It's optional
           schema:
             type: integer
       requestBody:
@@ -1267,13 +967,8 @@ paths:
               properties:
                 replace:
                   type: string
-                  description: New name
                 tags:
                   type: array
-                  description: |-
-                    Rename: Specify **array** with **only one** string (name of a tag)
-
-                    Merge: List of tags
                   items:
                     type: string
       responses:
@@ -1287,12 +982,10 @@ paths:
       operationId: removeTagsFromCollection
       tags:
         - tag
-      summary: Remove tags
       parameters:
         - name: collectionId
           in: path
           required: false
-          description: It's possible to restrict rename action to just one collection. It's optional
           schema:
             type: integer
       requestBody:
@@ -1303,7 +996,6 @@ paths:
               properties:
                 tags:
                   type: array
-                  description: List of tags
                   items:
                     type: string
       responses:
@@ -1318,23 +1010,19 @@ paths:
       operationId: getFilters
       tags:
         - filter
-      summary: Get filters
       parameters:
         - name: collectionId
-          description: Collection ID
           in: path
           required: true
           schema:
             type: integer
         - name: tagsSort
           in: query
-          description: "Sort tags by: `-count` by count, default `_id` by name"
           schema:
             type: string
             enum: [-count, _id]
         - name: search
           in: query
-          description: Check "raindrops" documentation for more details
           schema:
             type: string
       responses:
@@ -1349,12 +1037,9 @@ paths:
       operationId: parseURL
       tags:
         - import
-      summary: Parse URL
-      description: Parse and extract useful info from any URL
       parameters:
         - name: url
           in: query
-          description: URL
           schema:
             type: string
             format: uri
@@ -1367,59 +1052,11 @@ paths:
                 oneOf:
                   - $ref: "#/components/schemas/ParseUrlResponse"
                   - $ref: "#/components/schemas/ParseUrlErrorResponse"
-              examples:
-                Success:
-                  value:
-                    item:
-                      title: Яндекс
-                      excerpt: Найдётся всё
-                      media:
-                        - type: image
-                          link: http://yastatic.net/s3/home/logos/share/share-logo_ru.png
-                      type: link
-                      meta:
-                        possibleArticle: false
-                        canonical: https://ya.ru
-                        site: Яндекс
-                        tags: []
-                    result: true
-                Invalid URL:
-                  value:
-                    error: not_found
-                    errorMessage: invalid_url
-                    item:
-                      title: Fdfdfdf
-                      excerpt: ""
-                      media:
-                        - link: <screenshot>
-                      type: link
-                      parser: local
-                      meta:
-                        possibleArticle: false
-                        tags: []
-                    result: true
-                Not found:
-                  value:
-                    error: not_found
-                    errorMessage: url_status_404
-                    item:
-                      title: Some
-                      excerpt: ""
-                      media:
-                        - link: <screenshot>
-                      type: link
-                      parser: local
-                      meta:
-                        possibleArticle: false
-                        tags: []
-                    result: true
   /rest/v1/import/url/exists:
     post:
       operationId: checkURLsExist
       tags:
         - import
-      summary: Check URL(s) existence
-      description: Does specified URL's are already saved?
       requestBody:
         content:
           application/json:
@@ -1431,7 +1068,6 @@ paths:
                   items:
                     type: string
                     format: uri
-                    description: URL's
       responses:
         200:
           description: OK
@@ -1461,11 +1097,6 @@ paths:
       operationId: importHTMLBookmarkFile
       tags:
         - import
-      summary: Parse HTML import file
-      description: |-
-        Convert HTML bookmark file to JSON.
-
-        Support Nestcape, Pocket and Instapaper file formats
       requestBody:
         content:
           multipart/form-data:
@@ -1475,7 +1106,6 @@ paths:
                 import:
                   type: string
                   format: binary
-                  description: File
       responses:
         200:
           description: OK
@@ -1511,57 +1141,43 @@ components:
       properties:
         grant_type:
           type: string
-          description: Grant type
           enum: [authorization_code]
         code:
           type: string
-          description: Received authorization code
         client_id:
           type: string
-          description: Unique client ID of your Raindrop.io app
         client_secret:
           type: string
-          description: Client secret of your Raindrop.io app
         redirect_uri:
           type: string
-          description: Redirect URI registered at your Raindrop.io app
     RefreshToken:
       type: object
       required: [client_id, client_secret, grant_type, refresh_token]
       properties:
         client_id:
           type: string
-          description: Unique client ID of your Raindrop.io app
         client_secret:
           type: string
-          description: Client secret of your Raindrop.io app
         grant_type:
           type: string
-          description: Grant type
           enum: [refresh_token]
         refresh_token:
           type: string
-          description: Refresh token received when obtain access token
     TokenResponse:
       type: object
       required: [access_token, refresh_token, expires_in, token_type]
       properties:
         access_token:
           type: string
-          description: API access token
         refresh_token:
           type: string
-          description: Token used to refresh access token
         expires:
           type: integer
-          description: Remaining time until access token expires, in miliseconds
           deprecated: true
         expires_in:
           type: integer
-          description: Reamining time until access token expires, in seconds
         token_type:
           type: string
-          description: Type of token
           enum: [Bearer]
     TokenErrorResponse:
       type: object
@@ -1590,27 +1206,7 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/Collection"
-    CreateCollection:
-      type: object
-      required: [view, title, sort, public, cover]
-      properties:
-        view:
-          $ref: "#/components/schemas/View"
-        title:
-          type: string
-          description: "Name of the collection"
-        sort:
-          $ref: "#/components/schemas/Sort"
-        public:
-          type: boolean
-          description: "Collection and raindrops that it contains will be accessible without authentication?"
-        parent:
-          $ref: "#/components/schemas/CollectionRef"
-        cover:
-          type: array
-          items:
-            type: string
-            format: uri
+
     StatResponse:
       type: object
       allOf:
@@ -1706,13 +1302,8 @@ components:
           format: date-time
         sort:
           type: integer
-          description: |-
-            Specify sort order (ascending).
-
-            For example if you want to move raindrop to the first place set this field to 0
         important:
           type: boolean
-          description: Marked as "favorite"
         reminder:
           type: object
           required: [date]
@@ -1725,7 +1316,6 @@ components:
           type: array
           items:
             type: string
-          description: Tags list
         media:
           type: array
           items:
@@ -1764,27 +1354,20 @@ components:
           properties:
             _id:
               type: integer
-              description: Unique identifier
             domain:
               type: string
-              description: |-
-                Hostname of a link.
-                Files always have `raindrop.io` hostname
             creatorRef:
               $ref: "#/components/schemas/CreatorRef"
             user:
               $ref: "#/components/schemas/UserRef"
             broken:
               type: boolean
-              description: Marked as broken (original link is not reachable anymore)
             cache:
               type: object
-              description: Permanent copy (cached version) details
               required: [status, size, created]
               properties:
                 status:
                   type: string
-                  description: ready retry failed invalid-origin invalid-timeout or invalid-size
                   enum:
                     [
                       ready,
@@ -1796,27 +1379,19 @@ components:
                     ]
                 size:
                   type: integer
-                  description: Full size in bytes
                 created:
                   type: string
                   format: date-time
-                  description: Date when copy is successfully made
             file:
               type: object
-              description: |-
-                This raindrop uploaded from desktop
-                [Supported file formats](https://help.raindrop.io/article/48-uploading-files)
               required: [name, size, type]
               properties:
                 name:
                   type: string
-                  description: File name
                 size:
                   type: integer
-                  description: File size in bytes
                 type:
                   type: string
-                  description: Mime type
     RaindropResponseOne:
       allOf:
         - $ref: "#/components/schemas/Response"
@@ -1845,24 +1420,16 @@ components:
         - properties:
             pleaseParse:
               type: object
-              description: Specify empty object to automatically parse meta data (cover, description, html) in the background
     Highlight:
       type: object
       required: [_id, text, color, note, created]
       properties:
         _id:
           type: string
-          description: Unique id of highlight
         text:
           type: string
-          description: Text of highlight (required)
         color:
           type: string
-          description: |-
-            Color of highlight.
-            Default yellow
-
-            Can be blue, brown, cyan, gray, green, indigo, orange, pink, purple, red, teal, yellow
           enum:
             [
               blue,
@@ -1880,10 +1447,8 @@ components:
             ]
         note:
           type: string
-          description: Optional note for highlight
         created:
           type: string
-          description: Creation date of highlight
     HighlightItem:
       allOf:
         - $ref: "#/components/schemas/Highlight"
@@ -2210,38 +1775,13 @@ components:
                 $ref: "#/components/schemas/Folder"
     CollectionID:
       type: integer
-      description: |-
-        Collection ID. Reserved system collection IDs are:
-
-        - -99 for Trash
-        - -1 for Unsorted
-        - 0 for All
     View:
       type: string
-      description: |-
-        View style of collection, can be:
-        - list (default)
-        - simple
-        - grid
-        - masonry
-
-          Pinterest like grid
       enum: [list, simple, grid, masonry]
     Sort:
       type: integer
-      description: "The order of collection (descending). Defines the position of the collection among all the collections with the same `parent.$id`"
     SortBy:
       type: string
-      description: |-
-        Change order of all collections.
-
-        Possible values:
-
-        "title" - sort alphabetically ascending
-
-        "-title" - sort alphabetically descending
-
-        "-count" - sort by raindrops count descending
     Role:
       type: string
       enum: [member, viewer]
@@ -2458,20 +1998,36 @@ components:
 
     UpdateCollectionResponse:
       type: object
+      required: [result, item]
       properties:
         result:
           type: boolean
         item:
-          allOf:
-            - $ref: "#/components/schemas/Collection"
-            - type: object
-              required: [__v]
-              properties:
-                __v:
-                  type: integer
+          $ref: "#/components/schemas/Collection"
+
+    CreateCollectionRequest:
+      type: object
+      required: [view, title, sort, public, cover]
+      properties:
+        view:
+          type: string
+        title:
+          type: string
+        sort:
+          type: integer
+        public:
+          type: boolean
+        parent:
+          $ref: "#/components/schemas/CollectionRef"
+        cover:
+          type: array
+          items:
+            type: string
+            format: uri
 
     CreateCollectionResponse:
       type: object
+      required: [result, item]
       properties:
         result:
           type: boolean
@@ -2479,7 +2035,7 @@ components:
           allOf:
             - $ref: "#/components/schemas/Collection"
             - type: object
-              required: [__v]
+              required: [__v, creatorRef]
               properties:
                 __v:
                   type: integer
@@ -2488,14 +2044,15 @@ components:
 
     UploadCollectionCoverResponse:
       type: object
+      required: [result, item]
       properties:
         result:
           type: boolean
         item:
           allOf:
+            - $ref: "#/components/schemas/Collection"
             - type: object
               required: [__v]
               properties:
                 __v:
                   type: integer
-            - $ref: "#/components/schemas/Collection"

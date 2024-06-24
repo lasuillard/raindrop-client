@@ -404,72 +404,45 @@ export interface CoverResponse {
 /**
  * 
  * @export
- * @interface CreateCollection
+ * @interface CreateCollectionRequest
  */
-export interface CreateCollection {
+export interface CreateCollectionRequest {
     /**
      * 
-     * @type {View}
-     * @memberof CreateCollection
-     */
-    'view': View;
-    /**
-     * Name of the collection
      * @type {string}
-     * @memberof CreateCollection
+     * @memberof CreateCollectionRequest
+     */
+    'view': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionRequest
      */
     'title': string;
     /**
-     * The order of collection (descending). Defines the position of the collection among all the collections with the same `parent.$id`
+     * 
      * @type {number}
-     * @memberof CreateCollection
+     * @memberof CreateCollectionRequest
      */
     'sort': number;
     /**
-     * Collection and raindrops that it contains will be accessible without authentication?
+     * 
      * @type {boolean}
-     * @memberof CreateCollection
+     * @memberof CreateCollectionRequest
      */
     'public': boolean;
     /**
      * 
      * @type {CollectionRef}
-     * @memberof CreateCollection
+     * @memberof CreateCollectionRequest
      */
     'parent'?: CollectionRef;
     /**
      * 
      * @type {Array<string>}
-     * @memberof CreateCollection
+     * @memberof CreateCollectionRequest
      */
     'cover': Array<string>;
-}
-
-
-/**
- * 
- * @export
- * @interface CreateCollection400Response
- */
-export interface CreateCollection400Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreateCollection400Response
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateCollection400Response
-     */
-    'error': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateCollection400Response
-     */
-    'errorMessage': string;
 }
 /**
  * 
@@ -482,13 +455,13 @@ export interface CreateCollectionResponse {
      * @type {boolean}
      * @memberof CreateCollectionResponse
      */
-    'result'?: boolean;
+    'result': boolean;
     /**
      * 
      * @type {CreateCollectionResponseItem}
      * @memberof CreateCollectionResponse
      */
-    'item'?: CreateCollectionResponseItem;
+    'item': CreateCollectionResponseItem;
 }
 /**
  * 
@@ -630,13 +603,13 @@ export interface CreateRaindrop {
      */
     'lastUpdate': string;
     /**
-     * Specify sort order (ascending).  For example if you want to move raindrop to the first place set this field to 0
+     * 
      * @type {number}
      * @memberof CreateRaindrop
      */
     'sort'?: number;
     /**
-     * Marked as \"favorite\"
+     * 
      * @type {boolean}
      * @memberof CreateRaindrop
      */
@@ -648,7 +621,7 @@ export interface CreateRaindrop {
      */
     'reminder': RaindropBaseReminder;
     /**
-     * Tags list
+     * 
      * @type {Array<string>}
      * @memberof CreateRaindrop
      */
@@ -708,7 +681,7 @@ export interface CreateRaindrop {
      */
     'highlights': Array<Highlight>;
     /**
-     * Specify empty object to automatically parse meta data (cover, description, html) in the background
+     * 
      * @type {object}
      * @memberof CreateRaindrop
      */
@@ -721,7 +694,7 @@ export interface CreateRaindrop {
  */
 export interface CreateRaindropsRequest {
     /**
-     * Array of objects. Format of single object described in \"Create single raindrop\". Maximum 100 objects in array!
+     * 
      * @type {Array<CreateRaindrop>}
      * @memberof CreateRaindropsRequest
      */
@@ -1079,26 +1052,6 @@ export interface GetCollectionResponse {
 export type GetOrRefreshToken200Response = TokenErrorResponse | TokenResponse;
 
 /**
- * 
- * @export
- * @interface GetOrRefreshToken400Response
- */
-export interface GetOrRefreshToken400Response {
-    /**
-     * 
-     * @type {string}
-     * @memberof GetOrRefreshToken400Response
-     */
-    'error'?: GetOrRefreshToken400ResponseErrorEnum;
-}
-
-export const GetOrRefreshToken400ResponseErrorEnum = {
-    BadAuthorizationCode: 'bad_authorization_code'
-} as const;
-
-export type GetOrRefreshToken400ResponseErrorEnum = typeof GetOrRefreshToken400ResponseErrorEnum[keyof typeof GetOrRefreshToken400ResponseErrorEnum];
-
-/**
  * @type GetOrRefreshTokenRequest
  * @export
  */
@@ -1242,31 +1195,31 @@ export interface Group {
  */
 export interface Highlight {
     /**
-     * Unique id of highlight
+     * 
      * @type {string}
      * @memberof Highlight
      */
     '_id': string;
     /**
-     * Text of highlight (required)
+     * 
      * @type {string}
      * @memberof Highlight
      */
     'text': string;
     /**
-     * Color of highlight. Default yellow  Can be blue, brown, cyan, gray, green, indigo, orange, pink, purple, red, teal, yellow
+     * 
      * @type {string}
      * @memberof Highlight
      */
     'color': HighlightColorEnum;
     /**
-     * Optional note for highlight
+     * 
      * @type {string}
      * @memberof Highlight
      */
     'note': string;
     /**
-     * Creation date of highlight
+     * 
      * @type {string}
      * @memberof Highlight
      */
@@ -1297,31 +1250,31 @@ export type HighlightColorEnum = typeof HighlightColorEnum[keyof typeof Highligh
  */
 export interface HighlightItem {
     /**
-     * Unique id of highlight
+     * 
      * @type {string}
      * @memberof HighlightItem
      */
     '_id': string;
     /**
-     * Text of highlight (required)
+     * 
      * @type {string}
      * @memberof HighlightItem
      */
     'text': string;
     /**
-     * Color of highlight. Default yellow  Can be blue, brown, cyan, gray, green, indigo, orange, pink, purple, red, teal, yellow
+     * 
      * @type {string}
      * @memberof HighlightItem
      */
     'color': HighlightItemColorEnum;
     /**
-     * Optional note for highlight
+     * 
      * @type {string}
      * @memberof HighlightItem
      */
     'note': string;
     /**
-     * Creation date of highlight
+     * 
      * @type {string}
      * @memberof HighlightItem
      */
@@ -1414,7 +1367,7 @@ export interface ImportFileResponse {
  */
 export interface MergeCollectionsRequest {
     /**
-     * Collection ID. Reserved system collection IDs are:  - -99 for Trash - -1 for Unsorted - 0 for All
+     * 
      * @type {number}
      * @memberof MergeCollectionsRequest
      */
@@ -1433,31 +1386,31 @@ export interface MergeCollectionsRequest {
  */
 export interface ObtainToken {
     /**
-     * Grant type
+     * 
      * @type {string}
      * @memberof ObtainToken
      */
     'grant_type': ObtainTokenGrantTypeEnum;
     /**
-     * Received authorization code
+     * 
      * @type {string}
      * @memberof ObtainToken
      */
     'code': string;
     /**
-     * Unique client ID of your Raindrop.io app
+     * 
      * @type {string}
      * @memberof ObtainToken
      */
     'client_id': string;
     /**
-     * Client secret of your Raindrop.io app
+     * 
      * @type {string}
      * @memberof ObtainToken
      */
     'client_secret': string;
     /**
-     * Redirect URI registered at your Raindrop.io app
+     * 
      * @type {string}
      * @memberof ObtainToken
      */
@@ -1545,13 +1498,13 @@ export interface Raindrop {
      */
     'lastUpdate': string;
     /**
-     * Specify sort order (ascending).  For example if you want to move raindrop to the first place set this field to 0
+     * 
      * @type {number}
      * @memberof Raindrop
      */
     'sort'?: number;
     /**
-     * Marked as \"favorite\"
+     * 
      * @type {boolean}
      * @memberof Raindrop
      */
@@ -1563,7 +1516,7 @@ export interface Raindrop {
      */
     'reminder': RaindropBaseReminder;
     /**
-     * Tags list
+     * 
      * @type {Array<string>}
      * @memberof Raindrop
      */
@@ -1623,13 +1576,13 @@ export interface Raindrop {
      */
     'highlights': Array<Highlight>;
     /**
-     * Unique identifier
+     * 
      * @type {number}
      * @memberof Raindrop
      */
     '_id': number;
     /**
-     * Hostname of a link. Files always have `raindrop.io` hostname
+     * 
      * @type {string}
      * @memberof Raindrop
      */
@@ -1647,7 +1600,7 @@ export interface Raindrop {
      */
     'user': UserRef;
     /**
-     * Marked as broken (original link is not reachable anymore)
+     * 
      * @type {boolean}
      * @memberof Raindrop
      */
@@ -1666,25 +1619,25 @@ export interface Raindrop {
     'file'?: RaindropAllOfFile;
 }
 /**
- * Permanent copy (cached version) details
+ * 
  * @export
  * @interface RaindropAllOfCache
  */
 export interface RaindropAllOfCache {
     /**
-     * ready retry failed invalid-origin invalid-timeout or invalid-size
+     * 
      * @type {string}
      * @memberof RaindropAllOfCache
      */
     'status': RaindropAllOfCacheStatusEnum;
     /**
-     * Full size in bytes
+     * 
      * @type {number}
      * @memberof RaindropAllOfCache
      */
     'size': number;
     /**
-     * Date when copy is successfully made
+     * 
      * @type {string}
      * @memberof RaindropAllOfCache
      */
@@ -1703,25 +1656,25 @@ export const RaindropAllOfCacheStatusEnum = {
 export type RaindropAllOfCacheStatusEnum = typeof RaindropAllOfCacheStatusEnum[keyof typeof RaindropAllOfCacheStatusEnum];
 
 /**
- * This raindrop uploaded from desktop [Supported file formats](https://help.raindrop.io/article/48-uploading-files)
+ * 
  * @export
  * @interface RaindropAllOfFile
  */
 export interface RaindropAllOfFile {
     /**
-     * File name
+     * 
      * @type {string}
      * @memberof RaindropAllOfFile
      */
     'name': string;
     /**
-     * File size in bytes
+     * 
      * @type {number}
      * @memberof RaindropAllOfFile
      */
     'size': number;
     /**
-     * Mime type
+     * 
      * @type {string}
      * @memberof RaindropAllOfFile
      */
@@ -1746,13 +1699,13 @@ export interface RaindropBase {
      */
     'lastUpdate': string;
     /**
-     * Specify sort order (ascending).  For example if you want to move raindrop to the first place set this field to 0
+     * 
      * @type {number}
      * @memberof RaindropBase
      */
     'sort'?: number;
     /**
-     * Marked as \"favorite\"
+     * 
      * @type {boolean}
      * @memberof RaindropBase
      */
@@ -1764,7 +1717,7 @@ export interface RaindropBase {
      */
     'reminder': RaindropBaseReminder;
     /**
-     * Tags list
+     * 
      * @type {Array<string>}
      * @memberof RaindropBase
      */
@@ -1889,7 +1842,7 @@ export interface RaindropResponseMany {
      */
     'count': number;
     /**
-     * Collection ID. Reserved system collection IDs are:  - -99 for Trash - -1 for Unsorted - 0 for All
+     * 
      * @type {number}
      * @memberof RaindropResponseMany
      */
@@ -1927,25 +1880,25 @@ export interface RaindropResponseOne {
  */
 export interface RefreshToken {
     /**
-     * Unique client ID of your Raindrop.io app
+     * 
      * @type {string}
      * @memberof RefreshToken
      */
     'client_id': string;
     /**
-     * Client secret of your Raindrop.io app
+     * 
      * @type {string}
      * @memberof RefreshToken
      */
     'client_secret': string;
     /**
-     * Grant type
+     * 
      * @type {string}
      * @memberof RefreshToken
      */
     'grant_type': RefreshTokenGrantTypeEnum;
     /**
-     * Refresh token received when obtain access token
+     * 
      * @type {string}
      * @memberof RefreshToken
      */
@@ -2054,7 +2007,7 @@ export interface RemoveRaindropsRequest {
  */
 export interface RemoveTagsFromCollectionRequest {
     /**
-     * List of tags
+     * 
      * @type {Array<string>}
      * @memberof RemoveTagsFromCollectionRequest
      */
@@ -2067,13 +2020,13 @@ export interface RemoveTagsFromCollectionRequest {
  */
 export interface RenameOrMergeTagsRequest {
     /**
-     * New name
+     * 
      * @type {string}
      * @memberof RenameOrMergeTagsRequest
      */
     'replace'?: string;
     /**
-     * Rename: Specify **array** with **only one** string (name of a tag)  Merge: List of tags
+     * 
      * @type {Array<string>}
      * @memberof RenameOrMergeTagsRequest
      */
@@ -2147,25 +2100,6 @@ export interface ShareCollection200Response {
 /**
  * 
  * @export
- * @interface ShareCollection400Response
- */
-export interface ShareCollection400Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShareCollection400Response
-     */
-    'result'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ShareCollection400Response
-     */
-    'errorMessage'?: string;
-}
-/**
- * 
- * @export
  * @interface ShareCollectionRequest
  */
 export interface ShareCollectionRequest {
@@ -2176,7 +2110,7 @@ export interface ShareCollectionRequest {
      */
     'role'?: Role;
     /**
-     * The user email(s) with whom to share the project.  Maximum 10
+     * 
      * @type {Array<string>}
      * @memberof ShareCollectionRequest
      */
@@ -2374,32 +2308,32 @@ export interface TokenErrorResponse {
  */
 export interface TokenResponse {
     /**
-     * API access token
+     * 
      * @type {string}
      * @memberof TokenResponse
      */
     'access_token': string;
     /**
-     * Token used to refresh access token
+     * 
      * @type {string}
      * @memberof TokenResponse
      */
     'refresh_token': string;
     /**
-     * Remaining time until access token expires, in miliseconds
+     * 
      * @type {number}
      * @memberof TokenResponse
      * @deprecated
      */
     'expires'?: number;
     /**
-     * Reamining time until access token expires, in seconds
+     * 
      * @type {number}
      * @memberof TokenResponse
      */
     'expires_in': number;
     /**
-     * Type of token
+     * 
      * @type {string}
      * @memberof TokenResponse
      */
@@ -2472,134 +2406,13 @@ export interface UpdateCollectionResponse {
      * @type {boolean}
      * @memberof UpdateCollectionResponse
      */
-    'result'?: boolean;
+    'result': boolean;
     /**
      * 
-     * @type {UpdateCollectionResponseItem}
+     * @type {Collection}
      * @memberof UpdateCollectionResponse
      */
-    'item'?: UpdateCollectionResponseItem;
-}
-/**
- * 
- * @export
- * @interface UpdateCollectionResponseItem
- */
-export interface UpdateCollectionResponseItem {
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateCollectionResponseItem
-     */
-    '_id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'description': string;
-    /**
-     * 
-     * @type {UserRef}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'user': UserRef;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'public': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'view': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'count': number;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'cover': Array<string>;
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'sort': number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'expanded': boolean;
-    /**
-     * 
-     * @type {CreatorRef}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'creatorRef': CreatorRef;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'lastAction': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'created': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'lastUpdate': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'slug': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'color'?: string;
-    /**
-     * 
-     * @type {CollectionAccess}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'access': CollectionAccess;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UpdateCollectionResponseItem
-     */
-    'author': boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateCollectionResponseItem
-     */
-    '__v': number;
+    'item': Collection;
 }
 /**
  * 
@@ -2657,13 +2470,13 @@ export interface UpdateRaindropsRequest {
      */
     'ids'?: Array<number>;
     /**
-     * TRUE - mark as \"favorite\"  FALSE - unmark as \"favorite\"
+     * 
      * @type {boolean}
      * @memberof UpdateRaindropsRequest
      */
     'important'?: boolean;
     /**
-     * Will append specified tags to raindrops. Or will remove all tags from raindrops if [] (empty array) is specified
+     * 
      * @type {Array<string>}
      * @memberof UpdateRaindropsRequest
      */
@@ -2675,7 +2488,7 @@ export interface UpdateRaindropsRequest {
      */
     'media'?: Array<string>;
     /**
-     * Set URL for cover. Tip: specify <screenshot> to set screenshots for all raindrops
+     * 
      * @type {string}
      * @memberof UpdateRaindropsRequest
      */
@@ -2688,7 +2501,7 @@ export interface UpdateRaindropsRequest {
     'collection'?: UpdateRaindropsRequestCollection;
 }
 /**
- * Specify {\"$id\": collectionId} to move raindrops to other collection
+ * 
  * @export
  * @interface UpdateRaindropsRequestCollection
  */
@@ -2711,13 +2524,13 @@ export interface UploadCollectionCoverResponse {
      * @type {boolean}
      * @memberof UploadCollectionCoverResponse
      */
-    'result'?: boolean;
+    'result': boolean;
     /**
      * 
      * @type {UploadCollectionCoverResponseItem}
      * @memberof UploadCollectionCoverResponse
      */
-    'item'?: UploadCollectionCoverResponseItem;
+    'item': UploadCollectionCoverResponseItem;
 }
 /**
  * 
@@ -3159,7 +2972,7 @@ export interface UserConfig {
      */
     'raindrops_search_incollection'?: boolean;
     /**
-     * Change order of all collections.  Possible values:  \"title\" - sort alphabetically ascending  \"-title\" - sort alphabetically descending  \"-count\" - sort by raindrops count descending
+     * 
      * @type {string}
      * @memberof UserConfig
      */
@@ -3285,7 +3098,7 @@ export interface UserTfa {
     'enabled'?: boolean;
 }
 /**
- * View style of collection, can be: - list (default) - simple - grid - masonry    Pinterest like grid
+ * 
  * @export
  * @enum {string}
  */
@@ -3308,8 +3121,7 @@ export type View = typeof View[keyof typeof View];
 export const AuthenticationApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Direct the user to our authorization URL with specified request parameters.  - If the user is not logged in, they will be asked to log in  - The user will be asked if he would like to grant your application access to his Raindrop.io data
-         * @summary Authorization request
+         * 
          * @param {string} redirectUri 
          * @param {string} clientId 
          * @param {*} [options] Override http request option.
@@ -3352,8 +3164,7 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             };
         },
         /**
-         * Once you have the authorization code, you can exchange it for the `access_token` by doing a POST request with all required body parameters as JSON.  For security reasons access tokens (except \"test tokens\") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON). 
-         * @summary Obtain or refresh access token
+         * 
          * @param {GetOrRefreshTokenRequest} [getOrRefreshTokenRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3396,8 +3207,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AuthenticationApiAxiosParamCreator(configuration)
     return {
         /**
-         * Direct the user to our authorization URL with specified request parameters.  - If the user is not logged in, they will be asked to log in  - The user will be asked if he would like to grant your application access to his Raindrop.io data
-         * @summary Authorization request
+         * 
          * @param {string} redirectUri 
          * @param {string} clientId 
          * @param {*} [options] Override http request option.
@@ -3410,8 +3220,7 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Once you have the authorization code, you can exchange it for the `access_token` by doing a POST request with all required body parameters as JSON.  For security reasons access tokens (except \"test tokens\") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON). 
-         * @summary Obtain or refresh access token
+         * 
          * @param {GetOrRefreshTokenRequest} [getOrRefreshTokenRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3433,8 +3242,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
     const localVarFp = AuthenticationApiFp(configuration)
     return {
         /**
-         * Direct the user to our authorization URL with specified request parameters.  - If the user is not logged in, they will be asked to log in  - The user will be asked if he would like to grant your application access to his Raindrop.io data
-         * @summary Authorization request
+         * 
          * @param {string} redirectUri 
          * @param {string} clientId 
          * @param {*} [options] Override http request option.
@@ -3444,8 +3252,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
             return localVarFp.authorize(redirectUri, clientId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Once you have the authorization code, you can exchange it for the `access_token` by doing a POST request with all required body parameters as JSON.  For security reasons access tokens (except \"test tokens\") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON). 
-         * @summary Obtain or refresh access token
+         * 
          * @param {GetOrRefreshTokenRequest} [getOrRefreshTokenRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3464,8 +3271,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
  */
 export class AuthenticationApi extends BaseAPI {
     /**
-     * Direct the user to our authorization URL with specified request parameters.  - If the user is not logged in, they will be asked to log in  - The user will be asked if he would like to grant your application access to his Raindrop.io data
-     * @summary Authorization request
+     * 
      * @param {string} redirectUri 
      * @param {string} clientId 
      * @param {*} [options] Override http request option.
@@ -3477,8 +3283,7 @@ export class AuthenticationApi extends BaseAPI {
     }
 
     /**
-     * Once you have the authorization code, you can exchange it for the `access_token` by doing a POST request with all required body parameters as JSON.  For security reasons access tokens (except \"test tokens\") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON). 
-     * @summary Obtain or refresh access token
+     * 
      * @param {GetOrRefreshTokenRequest} [getOrRefreshTokenRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -3498,9 +3303,8 @@ export class AuthenticationApi extends BaseAPI {
 export const CollectionApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Accept an invitation to join a shared collection
-         * @summary Accept an invitation
-         * @param {number} id Existing collection
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3537,9 +3341,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Change access level of collaborator
-         * @param {number} userId User ID of collaborator
-         * @param {number} id Existing collection ID
+         * @param {number} userId 
+         * @param {number} id 
          * @param {ChangeCollaboratorAccessLevelRequest} [changeCollaboratorAccessLevelRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3582,13 +3385,12 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Create a new collection
-         * @summary Create collection
-         * @param {CreateCollection} [createCollection] 
+         * 
+         * @param {CreateCollectionRequest} [createCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCollection: async (createCollection?: CreateCollection, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createCollection: async (createCollectionRequest?: CreateCollectionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collection`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3612,7 +3414,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createCollection, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createCollectionRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3620,10 +3422,9 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Remove an user from shared collection
-         * @summary Delete a collaborator
-         * @param {number} userId User ID of collaborator
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} userId 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3663,7 +3464,6 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Empty Trash
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3730,8 +3530,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Get collaborators list of collection
-         * @param {number} id Existing collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3805,7 +3604,6 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Featured covers
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3872,7 +3670,6 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Get system collections count
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3905,8 +3702,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Merge multiple collections
-         * @summary Merge collections
+         * 
          * @param {MergeCollectionsRequest} [mergeCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3944,7 +3740,6 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Remove all empty collections
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3977,8 +3772,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Remove an existing collection and all its descendants.  Raindrops will be moved to \"Trash\" collection
-         * @summary Remove collection
+         * 
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4089,9 +3883,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Search for specific cover (icon)
-         * @summary Search for cover
-         * @param {string} text For example \&quot;pokemon\&quot;
+         * 
+         * @param {string} text 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4127,9 +3920,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Share collection with another user(s). As result invitation(s) will be send to specified email(s) with link to join collection.
-         * @summary Share collection
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {ShareCollectionRequest} [shareCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4169,9 +3961,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * There two possible results of calling this method, depends on who authenticated user is: - Owner: collection will be unshared and all collaborators will be removed - Member or viewer: authenticated user will be removed from collaborators list
-         * @summary Unshare or leave collection
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4248,9 +4039,8 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * It\'s possible to upload cover from desktop. PNG, GIF and JPEG supported
-         * @summary Upload cover
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {File} [cover] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4305,9 +4095,8 @@ export const CollectionApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = CollectionApiAxiosParamCreator(configuration)
     return {
         /**
-         * Accept an invitation to join a shared collection
-         * @summary Accept an invitation
-         * @param {number} id Existing collection
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4319,9 +4108,8 @@ export const CollectionApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Change access level of collaborator
-         * @param {number} userId User ID of collaborator
-         * @param {number} id Existing collection ID
+         * @param {number} userId 
+         * @param {number} id 
          * @param {ChangeCollaboratorAccessLevelRequest} [changeCollaboratorAccessLevelRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4333,23 +4121,21 @@ export const CollectionApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Create a new collection
-         * @summary Create collection
-         * @param {CreateCollection} [createCollection] 
+         * 
+         * @param {CreateCollectionRequest} [createCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createCollection(createCollection?: CreateCollection, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createCollection(createCollection, options);
+        async createCollection(createCollectionRequest?: CreateCollectionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateCollectionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createCollection(createCollectionRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.createCollection']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Remove an user from shared collection
-         * @summary Delete a collaborator
-         * @param {number} userId User ID of collaborator
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} userId 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4361,7 +4147,6 @@ export const CollectionApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Empty Trash
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4384,8 +4169,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Get collaborators list of collection
-         * @param {number} id Existing collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4409,7 +4193,6 @@ export const CollectionApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Featured covers
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4432,7 +4215,6 @@ export const CollectionApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Get system collections count
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4443,8 +4225,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Merge multiple collections
-         * @summary Merge collections
+         * 
          * @param {MergeCollectionsRequest} [mergeCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4457,7 +4238,6 @@ export const CollectionApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Remove all empty collections
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4468,8 +4248,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Remove an existing collection and all its descendants.  Raindrops will be moved to \"Trash\" collection
-         * @summary Remove collection
+         * 
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4505,9 +4284,8 @@ export const CollectionApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Search for specific cover (icon)
-         * @summary Search for cover
-         * @param {string} text For example \&quot;pokemon\&quot;
+         * 
+         * @param {string} text 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4518,9 +4296,8 @@ export const CollectionApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Share collection with another user(s). As result invitation(s) will be send to specified email(s) with link to join collection.
-         * @summary Share collection
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {ShareCollectionRequest} [shareCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4532,9 +4309,8 @@ export const CollectionApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * There two possible results of calling this method, depends on who authenticated user is: - Owner: collection will be unshared and all collaborators will be removed - Member or viewer: authenticated user will be removed from collaborators list
-         * @summary Unshare or leave collection
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4558,9 +4334,8 @@ export const CollectionApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * It\'s possible to upload cover from desktop. PNG, GIF and JPEG supported
-         * @summary Upload cover
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {File} [cover] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4582,9 +4357,8 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
     const localVarFp = CollectionApiFp(configuration)
     return {
         /**
-         * Accept an invitation to join a shared collection
-         * @summary Accept an invitation
-         * @param {number} id Existing collection
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4593,9 +4367,8 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary Change access level of collaborator
-         * @param {number} userId User ID of collaborator
-         * @param {number} id Existing collection ID
+         * @param {number} userId 
+         * @param {number} id 
          * @param {ChangeCollaboratorAccessLevelRequest} [changeCollaboratorAccessLevelRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4604,20 +4377,18 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.changeCollaboratorAccessLevel(userId, id, changeCollaboratorAccessLevelRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Create a new collection
-         * @summary Create collection
-         * @param {CreateCollection} [createCollection] 
+         * 
+         * @param {CreateCollectionRequest} [createCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCollection(createCollection?: CreateCollection, options?: any): AxiosPromise<CollectionResponseOne> {
-            return localVarFp.createCollection(createCollection, options).then((request) => request(axios, basePath));
+        createCollection(createCollectionRequest?: CreateCollectionRequest, options?: any): AxiosPromise<CreateCollectionResponse> {
+            return localVarFp.createCollection(createCollectionRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Remove an user from shared collection
-         * @summary Delete a collaborator
-         * @param {number} userId User ID of collaborator
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} userId 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4626,7 +4397,6 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary Empty Trash
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4643,8 +4413,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary Get collaborators list of collection
-         * @param {number} id Existing collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4662,7 +4431,6 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary Featured covers
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4679,7 +4447,6 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary Get system collections count
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4687,8 +4454,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.getSystemCollectionStats(options).then((request) => request(axios, basePath));
         },
         /**
-         * Merge multiple collections
-         * @summary Merge collections
+         * 
          * @param {MergeCollectionsRequest} [mergeCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4698,7 +4464,6 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary Remove all empty collections
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4706,8 +4471,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.removeAllEmptyCollections(options).then((request) => request(axios, basePath));
         },
         /**
-         * Remove an existing collection and all its descendants.  Raindrops will be moved to \"Trash\" collection
-         * @summary Remove collection
+         * 
          * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4734,9 +4498,8 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.reorderAllCollections(reorderAllCollectionsRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Search for specific cover (icon)
-         * @summary Search for cover
-         * @param {string} text For example \&quot;pokemon\&quot;
+         * 
+         * @param {string} text 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4744,9 +4507,8 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.searchCovers(text, options).then((request) => request(axios, basePath));
         },
         /**
-         * Share collection with another user(s). As result invitation(s) will be send to specified email(s) with link to join collection.
-         * @summary Share collection
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {ShareCollectionRequest} [shareCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4755,9 +4517,8 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.shareCollection(id, shareCollectionRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * There two possible results of calling this method, depends on who authenticated user is: - Owner: collection will be unshared and all collaborators will be removed - Member or viewer: authenticated user will be removed from collaborators list
-         * @summary Unshare or leave collection
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4775,9 +4536,8 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.updateCollection(id, updateCollectionRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * It\'s possible to upload cover from desktop. PNG, GIF and JPEG supported
-         * @summary Upload cover
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {File} [cover] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -4796,9 +4556,8 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
  */
 export class CollectionApi extends BaseAPI {
     /**
-     * Accept an invitation to join a shared collection
-     * @summary Accept an invitation
-     * @param {number} id Existing collection
+     * 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
@@ -4809,9 +4568,8 @@ export class CollectionApi extends BaseAPI {
 
     /**
      * 
-     * @summary Change access level of collaborator
-     * @param {number} userId User ID of collaborator
-     * @param {number} id Existing collection ID
+     * @param {number} userId 
+     * @param {number} id 
      * @param {ChangeCollaboratorAccessLevelRequest} [changeCollaboratorAccessLevelRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4822,22 +4580,20 @@ export class CollectionApi extends BaseAPI {
     }
 
     /**
-     * Create a new collection
-     * @summary Create collection
-     * @param {CreateCollection} [createCollection] 
+     * 
+     * @param {CreateCollectionRequest} [createCollectionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public createCollection(createCollection?: CreateCollection, options?: RawAxiosRequestConfig) {
-        return CollectionApiFp(this.configuration).createCollection(createCollection, options).then((request) => request(this.axios, this.basePath));
+    public createCollection(createCollectionRequest?: CreateCollectionRequest, options?: RawAxiosRequestConfig) {
+        return CollectionApiFp(this.configuration).createCollection(createCollectionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Remove an user from shared collection
-     * @summary Delete a collaborator
-     * @param {number} userId User ID of collaborator
-     * @param {number} id Existing collection ID
+     * 
+     * @param {number} userId 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
@@ -4848,7 +4604,6 @@ export class CollectionApi extends BaseAPI {
 
     /**
      * 
-     * @summary Empty Trash
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
@@ -4869,8 +4624,7 @@ export class CollectionApi extends BaseAPI {
 
     /**
      * 
-     * @summary Get collaborators list of collection
-     * @param {number} id Existing collection ID
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
@@ -4892,7 +4646,6 @@ export class CollectionApi extends BaseAPI {
 
     /**
      * 
-     * @summary Featured covers
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
@@ -4913,7 +4666,6 @@ export class CollectionApi extends BaseAPI {
 
     /**
      * 
-     * @summary Get system collections count
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
@@ -4923,8 +4675,7 @@ export class CollectionApi extends BaseAPI {
     }
 
     /**
-     * Merge multiple collections
-     * @summary Merge collections
+     * 
      * @param {MergeCollectionsRequest} [mergeCollectionsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4936,7 +4687,6 @@ export class CollectionApi extends BaseAPI {
 
     /**
      * 
-     * @summary Remove all empty collections
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
@@ -4946,8 +4696,7 @@ export class CollectionApi extends BaseAPI {
     }
 
     /**
-     * Remove an existing collection and all its descendants.  Raindrops will be moved to \"Trash\" collection
-     * @summary Remove collection
+     * 
      * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4980,9 +4729,8 @@ export class CollectionApi extends BaseAPI {
     }
 
     /**
-     * Search for specific cover (icon)
-     * @summary Search for cover
-     * @param {string} text For example \&quot;pokemon\&quot;
+     * 
+     * @param {string} text 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
@@ -4992,9 +4740,8 @@ export class CollectionApi extends BaseAPI {
     }
 
     /**
-     * Share collection with another user(s). As result invitation(s) will be send to specified email(s) with link to join collection.
-     * @summary Share collection
-     * @param {number} id Existing collection ID
+     * 
+     * @param {number} id 
      * @param {ShareCollectionRequest} [shareCollectionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5005,9 +4752,8 @@ export class CollectionApi extends BaseAPI {
     }
 
     /**
-     * There two possible results of calling this method, depends on who authenticated user is: - Owner: collection will be unshared and all collaborators will be removed - Member or viewer: authenticated user will be removed from collaborators list
-     * @summary Unshare or leave collection
-     * @param {number} id Existing collection ID
+     * 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
@@ -5029,9 +4775,8 @@ export class CollectionApi extends BaseAPI {
     }
 
     /**
-     * It\'s possible to upload cover from desktop. PNG, GIF and JPEG supported
-     * @summary Upload cover
-     * @param {number} id Existing collection ID
+     * 
+     * @param {number} id 
      * @param {File} [cover] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5052,10 +4797,9 @@ export const FilterApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * 
-         * @summary Get filters
-         * @param {number} collectionId Collection ID
-         * @param {GetFiltersTagsSortEnum} [tagsSort] Sort tags by: &#x60;-count&#x60; by count, default &#x60;_id&#x60; by name
-         * @param {string} [search] Check \&quot;raindrops\&quot; documentation for more details
+         * @param {number} collectionId 
+         * @param {GetFiltersTagsSortEnum} [tagsSort] 
+         * @param {string} [search] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5110,10 +4854,9 @@ export const FilterApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Get filters
-         * @param {number} collectionId Collection ID
-         * @param {GetFiltersTagsSortEnum} [tagsSort] Sort tags by: &#x60;-count&#x60; by count, default &#x60;_id&#x60; by name
-         * @param {string} [search] Check \&quot;raindrops\&quot; documentation for more details
+         * @param {number} collectionId 
+         * @param {GetFiltersTagsSortEnum} [tagsSort] 
+         * @param {string} [search] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5135,10 +4878,9 @@ export const FilterApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * 
-         * @summary Get filters
-         * @param {number} collectionId Collection ID
-         * @param {GetFiltersTagsSortEnum} [tagsSort] Sort tags by: &#x60;-count&#x60; by count, default &#x60;_id&#x60; by name
-         * @param {string} [search] Check \&quot;raindrops\&quot; documentation for more details
+         * @param {number} collectionId 
+         * @param {GetFiltersTagsSortEnum} [tagsSort] 
+         * @param {string} [search] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5157,10 +4899,9 @@ export const FilterApiFactory = function (configuration?: Configuration, basePat
 export class FilterApi extends BaseAPI {
     /**
      * 
-     * @summary Get filters
-     * @param {number} collectionId Collection ID
-     * @param {GetFiltersTagsSortEnum} [tagsSort] Sort tags by: &#x60;-count&#x60; by count, default &#x60;_id&#x60; by name
-     * @param {string} [search] Check \&quot;raindrops\&quot; documentation for more details
+     * @param {number} collectionId 
+     * @param {GetFiltersTagsSortEnum} [tagsSort] 
+     * @param {string} [search] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FilterApi
@@ -5188,9 +4929,8 @@ export const HighlightApiAxiosParamCreator = function (configuration?: Configura
     return {
         /**
          * 
-         * @summary Get all highlights
          * @param {number} [page] 
-         * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+         * @param {number} [perpage] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5232,10 +4972,9 @@ export const HighlightApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary Get all highlights in a collection
-         * @param {number} collectionId Collection ID
+         * @param {number} collectionId 
          * @param {number} [page] 
-         * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+         * @param {number} [perpage] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5280,8 +5019,7 @@ export const HighlightApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary Get raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5318,8 +5056,7 @@ export const HighlightApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary Update raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {CreateRaindrop} [createRaindrop] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5370,9 +5107,8 @@ export const HighlightApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Get all highlights
          * @param {number} [page] 
-         * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+         * @param {number} [perpage] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5384,10 +5120,9 @@ export const HighlightApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Get all highlights in a collection
-         * @param {number} collectionId Collection ID
+         * @param {number} collectionId 
          * @param {number} [page] 
-         * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+         * @param {number} [perpage] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5399,8 +5134,7 @@ export const HighlightApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Get raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5412,8 +5146,7 @@ export const HighlightApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Update raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {CreateRaindrop} [createRaindrop] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5436,9 +5169,8 @@ export const HighlightApiFactory = function (configuration?: Configuration, base
     return {
         /**
          * 
-         * @summary Get all highlights
          * @param {number} [page] 
-         * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+         * @param {number} [perpage] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5447,10 +5179,9 @@ export const HighlightApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @summary Get all highlights in a collection
-         * @param {number} collectionId Collection ID
+         * @param {number} collectionId 
          * @param {number} [page] 
-         * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+         * @param {number} [perpage] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5459,8 +5190,7 @@ export const HighlightApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @summary Get raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5469,8 +5199,7 @@ export const HighlightApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @summary Update raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {CreateRaindrop} [createRaindrop] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5490,9 +5219,8 @@ export const HighlightApiFactory = function (configuration?: Configuration, base
 export class HighlightApi extends BaseAPI {
     /**
      * 
-     * @summary Get all highlights
      * @param {number} [page] 
-     * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+     * @param {number} [perpage] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HighlightApi
@@ -5503,10 +5231,9 @@ export class HighlightApi extends BaseAPI {
 
     /**
      * 
-     * @summary Get all highlights in a collection
-     * @param {number} collectionId Collection ID
+     * @param {number} collectionId 
      * @param {number} [page] 
-     * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+     * @param {number} [perpage] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HighlightApi
@@ -5517,8 +5244,7 @@ export class HighlightApi extends BaseAPI {
 
     /**
      * 
-     * @summary Get raindrop
-     * @param {number} id Existing raindrop ID
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HighlightApi
@@ -5529,8 +5255,7 @@ export class HighlightApi extends BaseAPI {
 
     /**
      * 
-     * @summary Update raindrop
-     * @param {number} id Existing raindrop ID
+     * @param {number} id 
      * @param {CreateRaindrop} [createRaindrop] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5550,8 +5275,7 @@ export class HighlightApi extends BaseAPI {
 export const ImportApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Does specified URL\'s are already saved?
-         * @summary Check URL(s) existence
+         * 
          * @param {CheckURLsExistRequest} [checkURLsExistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5588,9 +5312,8 @@ export const ImportApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Convert HTML bookmark file to JSON.  Support Nestcape, Pocket and Instapaper file formats
-         * @summary Parse HTML import file
-         * @param {File} [_import] File
+         * 
+         * @param {File} [_import] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5631,9 +5354,8 @@ export const ImportApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Parse and extract useful info from any URL
-         * @summary Parse URL
-         * @param {string} [url] URL
+         * 
+         * @param {string} [url] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5680,8 +5402,7 @@ export const ImportApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ImportApiAxiosParamCreator(configuration)
     return {
         /**
-         * Does specified URL\'s are already saved?
-         * @summary Check URL(s) existence
+         * 
          * @param {CheckURLsExistRequest} [checkURLsExistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5693,9 +5414,8 @@ export const ImportApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Convert HTML bookmark file to JSON.  Support Nestcape, Pocket and Instapaper file formats
-         * @summary Parse HTML import file
-         * @param {File} [_import] File
+         * 
+         * @param {File} [_import] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5706,9 +5426,8 @@ export const ImportApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Parse and extract useful info from any URL
-         * @summary Parse URL
-         * @param {string} [url] URL
+         * 
+         * @param {string} [url] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5729,8 +5448,7 @@ export const ImportApiFactory = function (configuration?: Configuration, basePat
     const localVarFp = ImportApiFp(configuration)
     return {
         /**
-         * Does specified URL\'s are already saved?
-         * @summary Check URL(s) existence
+         * 
          * @param {CheckURLsExistRequest} [checkURLsExistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5739,9 +5457,8 @@ export const ImportApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.checkURLsExist(checkURLsExistRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Convert HTML bookmark file to JSON.  Support Nestcape, Pocket and Instapaper file formats
-         * @summary Parse HTML import file
-         * @param {File} [_import] File
+         * 
+         * @param {File} [_import] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5749,9 +5466,8 @@ export const ImportApiFactory = function (configuration?: Configuration, basePat
             return localVarFp.importHTMLBookmarkFile(_import, options).then((request) => request(axios, basePath));
         },
         /**
-         * Parse and extract useful info from any URL
-         * @summary Parse URL
-         * @param {string} [url] URL
+         * 
+         * @param {string} [url] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5769,8 +5485,7 @@ export const ImportApiFactory = function (configuration?: Configuration, basePat
  */
 export class ImportApi extends BaseAPI {
     /**
-     * Does specified URL\'s are already saved?
-     * @summary Check URL(s) existence
+     * 
      * @param {CheckURLsExistRequest} [checkURLsExistRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -5781,9 +5496,8 @@ export class ImportApi extends BaseAPI {
     }
 
     /**
-     * Convert HTML bookmark file to JSON.  Support Nestcape, Pocket and Instapaper file formats
-     * @summary Parse HTML import file
-     * @param {File} [_import] File
+     * 
+     * @param {File} [_import] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ImportApi
@@ -5793,9 +5507,8 @@ export class ImportApi extends BaseAPI {
     }
 
     /**
-     * Parse and extract useful info from any URL
-     * @summary Parse URL
-     * @param {string} [url] URL
+     * 
+     * @param {string} [url] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ImportApi
@@ -5815,7 +5528,6 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
     return {
         /**
          * 
-         * @summary Create raindrop
          * @param {CreateRaindrop} [createRaindrop] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5853,7 +5565,6 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Create many raindrops
          * @param {CreateRaindropsRequest} [createRaindropsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -5890,9 +5601,8 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * Links permanently saved with all content (only in PRO plan). Using this method you can navigate to this copy.
-         * @summary Get permanent copy
-         * @param {number} id Existing raindrop ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5929,8 +5639,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Get raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5967,8 +5676,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Get raindrops
-         * @param {number} collectionId Collection ID
+         * @param {number} collectionId 
          * @param {string} [sort] 
          * @param {number} [perpage] 
          * @param {number} [page] 
@@ -6024,9 +5732,8 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * When you remove raindrop it will be moved to user Trash collection. But if you try to remove raindrop from Trash, it will be removed permanently.
-         * @summary Remove raindrop
-         * @param {number} id Existing raindrop ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6062,9 +5769,8 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * Specify optional search and/or ids parameters to limit raindrops that will be moved to \"Trash\" When :collectionId is -99, raindrops will be permanently removed!
-         * @summary Remove many raindrops
-         * @param {number} collectionId Collection ID
+         * 
+         * @param {number} collectionId 
          * @param {string} [search] 
          * @param {RemoveRaindropsRequest} [removeRaindropsRequest] 
          * @param {*} [options] Override http request option.
@@ -6110,8 +5816,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Suggest collection and tags for existing bookmark
-         * @param {number} id Bookmark id
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6148,7 +5853,6 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Suggest collection and tags for new bookmark
          * @param {SuggestForNewBookmarkRequest} [suggestForNewBookmarkRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6186,8 +5890,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Update raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {CreateRaindrop} [createRaindrop] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6227,9 +5930,8 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * Specify optional search and/or ids parameters to limit raindrops that will be updated. Possible fields that could be updated are described in \"Body Parameters\"
-         * @summary Update many raindrops
-         * @param {number} collectionId Collection ID
+         * 
+         * @param {number} collectionId 
          * @param {UpdateRaindropsRequest} [updateRaindropsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6269,10 +5971,9 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * Make sure to send PUT request with [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST#example) body
-         * @summary Upload file
-         * @param {File} [file] File
-         * @param {number} [collectionId] Collection Id
+         * 
+         * @param {File} [file] 
+         * @param {number} [collectionId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6317,10 +6018,9 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * PNG, GIF or JPEG
-         * @summary Upload cover
-         * @param {number} id Existing raindrop ID
-         * @param {File} [cover] File
+         * 
+         * @param {number} id 
+         * @param {File} [cover] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6375,7 +6075,6 @@ export const RaindropApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Create raindrop
          * @param {CreateRaindrop} [createRaindrop] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6388,7 +6087,6 @@ export const RaindropApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Create many raindrops
          * @param {CreateRaindropsRequest} [createRaindropsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6400,9 +6098,8 @@ export const RaindropApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Links permanently saved with all content (only in PRO plan). Using this method you can navigate to this copy.
-         * @summary Get permanent copy
-         * @param {number} id Existing raindrop ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6414,8 +6111,7 @@ export const RaindropApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Get raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6427,8 +6123,7 @@ export const RaindropApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Get raindrops
-         * @param {number} collectionId Collection ID
+         * @param {number} collectionId 
          * @param {string} [sort] 
          * @param {number} [perpage] 
          * @param {number} [page] 
@@ -6443,9 +6138,8 @@ export const RaindropApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * When you remove raindrop it will be moved to user Trash collection. But if you try to remove raindrop from Trash, it will be removed permanently.
-         * @summary Remove raindrop
-         * @param {number} id Existing raindrop ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6456,9 +6150,8 @@ export const RaindropApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Specify optional search and/or ids parameters to limit raindrops that will be moved to \"Trash\" When :collectionId is -99, raindrops will be permanently removed!
-         * @summary Remove many raindrops
-         * @param {number} collectionId Collection ID
+         * 
+         * @param {number} collectionId 
          * @param {string} [search] 
          * @param {RemoveRaindropsRequest} [removeRaindropsRequest] 
          * @param {*} [options] Override http request option.
@@ -6472,8 +6165,7 @@ export const RaindropApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Suggest collection and tags for existing bookmark
-         * @param {number} id Bookmark id
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6485,7 +6177,6 @@ export const RaindropApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Suggest collection and tags for new bookmark
          * @param {SuggestForNewBookmarkRequest} [suggestForNewBookmarkRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6498,8 +6189,7 @@ export const RaindropApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Update raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {CreateRaindrop} [createRaindrop] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6511,9 +6201,8 @@ export const RaindropApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Specify optional search and/or ids parameters to limit raindrops that will be updated. Possible fields that could be updated are described in \"Body Parameters\"
-         * @summary Update many raindrops
-         * @param {number} collectionId Collection ID
+         * 
+         * @param {number} collectionId 
          * @param {UpdateRaindropsRequest} [updateRaindropsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6525,10 +6214,9 @@ export const RaindropApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Make sure to send PUT request with [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST#example) body
-         * @summary Upload file
-         * @param {File} [file] File
-         * @param {number} [collectionId] Collection Id
+         * 
+         * @param {File} [file] 
+         * @param {number} [collectionId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6539,10 +6227,9 @@ export const RaindropApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * PNG, GIF or JPEG
-         * @summary Upload cover
-         * @param {number} id Existing raindrop ID
-         * @param {File} [cover] File
+         * 
+         * @param {number} id 
+         * @param {File} [cover] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6564,7 +6251,6 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
     return {
         /**
          * 
-         * @summary Create raindrop
          * @param {CreateRaindrop} [createRaindrop] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6574,7 +6260,6 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @summary Create many raindrops
          * @param {CreateRaindropsRequest} [createRaindropsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6583,9 +6268,8 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.createRaindrops(createRaindropsRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Links permanently saved with all content (only in PRO plan). Using this method you can navigate to this copy.
-         * @summary Get permanent copy
-         * @param {number} id Existing raindrop ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6594,8 +6278,7 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @summary Get raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6604,8 +6287,7 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @summary Get raindrops
-         * @param {number} collectionId Collection ID
+         * @param {number} collectionId 
          * @param {string} [sort] 
          * @param {number} [perpage] 
          * @param {number} [page] 
@@ -6617,9 +6299,8 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.getRaindrops(collectionId, sort, perpage, page, search, options).then((request) => request(axios, basePath));
         },
         /**
-         * When you remove raindrop it will be moved to user Trash collection. But if you try to remove raindrop from Trash, it will be removed permanently.
-         * @summary Remove raindrop
-         * @param {number} id Existing raindrop ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6627,9 +6308,8 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.removeRaindrop(id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Specify optional search and/or ids parameters to limit raindrops that will be moved to \"Trash\" When :collectionId is -99, raindrops will be permanently removed!
-         * @summary Remove many raindrops
-         * @param {number} collectionId Collection ID
+         * 
+         * @param {number} collectionId 
          * @param {string} [search] 
          * @param {RemoveRaindropsRequest} [removeRaindropsRequest] 
          * @param {*} [options] Override http request option.
@@ -6640,8 +6320,7 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @summary Suggest collection and tags for existing bookmark
-         * @param {number} id Bookmark id
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6650,7 +6329,6 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @summary Suggest collection and tags for new bookmark
          * @param {SuggestForNewBookmarkRequest} [suggestForNewBookmarkRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6660,8 +6338,7 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @summary Update raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {CreateRaindrop} [createRaindrop] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6670,9 +6347,8 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.updateRaindrop(id, createRaindrop, options).then((request) => request(axios, basePath));
         },
         /**
-         * Specify optional search and/or ids parameters to limit raindrops that will be updated. Possible fields that could be updated are described in \"Body Parameters\"
-         * @summary Update many raindrops
-         * @param {number} collectionId Collection ID
+         * 
+         * @param {number} collectionId 
          * @param {UpdateRaindropsRequest} [updateRaindropsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6681,10 +6357,9 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.updateRaindrops(collectionId, updateRaindropsRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Make sure to send PUT request with [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST#example) body
-         * @summary Upload file
-         * @param {File} [file] File
-         * @param {number} [collectionId] Collection Id
+         * 
+         * @param {File} [file] 
+         * @param {number} [collectionId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6692,10 +6367,9 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.uploadFile(file, collectionId, options).then((request) => request(axios, basePath));
         },
         /**
-         * PNG, GIF or JPEG
-         * @summary Upload cover
-         * @param {number} id Existing raindrop ID
-         * @param {File} [cover] File
+         * 
+         * @param {number} id 
+         * @param {File} [cover] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6714,7 +6388,6 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
 export class RaindropApi extends BaseAPI {
     /**
      * 
-     * @summary Create raindrop
      * @param {CreateRaindrop} [createRaindrop] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6726,7 +6399,6 @@ export class RaindropApi extends BaseAPI {
 
     /**
      * 
-     * @summary Create many raindrops
      * @param {CreateRaindropsRequest} [createRaindropsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6737,9 +6409,8 @@ export class RaindropApi extends BaseAPI {
     }
 
     /**
-     * Links permanently saved with all content (only in PRO plan). Using this method you can navigate to this copy.
-     * @summary Get permanent copy
-     * @param {number} id Existing raindrop ID
+     * 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
@@ -6750,8 +6421,7 @@ export class RaindropApi extends BaseAPI {
 
     /**
      * 
-     * @summary Get raindrop
-     * @param {number} id Existing raindrop ID
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
@@ -6762,8 +6432,7 @@ export class RaindropApi extends BaseAPI {
 
     /**
      * 
-     * @summary Get raindrops
-     * @param {number} collectionId Collection ID
+     * @param {number} collectionId 
      * @param {string} [sort] 
      * @param {number} [perpage] 
      * @param {number} [page] 
@@ -6777,9 +6446,8 @@ export class RaindropApi extends BaseAPI {
     }
 
     /**
-     * When you remove raindrop it will be moved to user Trash collection. But if you try to remove raindrop from Trash, it will be removed permanently.
-     * @summary Remove raindrop
-     * @param {number} id Existing raindrop ID
+     * 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
@@ -6789,9 +6457,8 @@ export class RaindropApi extends BaseAPI {
     }
 
     /**
-     * Specify optional search and/or ids parameters to limit raindrops that will be moved to \"Trash\" When :collectionId is -99, raindrops will be permanently removed!
-     * @summary Remove many raindrops
-     * @param {number} collectionId Collection ID
+     * 
+     * @param {number} collectionId 
      * @param {string} [search] 
      * @param {RemoveRaindropsRequest} [removeRaindropsRequest] 
      * @param {*} [options] Override http request option.
@@ -6804,8 +6471,7 @@ export class RaindropApi extends BaseAPI {
 
     /**
      * 
-     * @summary Suggest collection and tags for existing bookmark
-     * @param {number} id Bookmark id
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
@@ -6816,7 +6482,6 @@ export class RaindropApi extends BaseAPI {
 
     /**
      * 
-     * @summary Suggest collection and tags for new bookmark
      * @param {SuggestForNewBookmarkRequest} [suggestForNewBookmarkRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6828,8 +6493,7 @@ export class RaindropApi extends BaseAPI {
 
     /**
      * 
-     * @summary Update raindrop
-     * @param {number} id Existing raindrop ID
+     * @param {number} id 
      * @param {CreateRaindrop} [createRaindrop] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6840,9 +6504,8 @@ export class RaindropApi extends BaseAPI {
     }
 
     /**
-     * Specify optional search and/or ids parameters to limit raindrops that will be updated. Possible fields that could be updated are described in \"Body Parameters\"
-     * @summary Update many raindrops
-     * @param {number} collectionId Collection ID
+     * 
+     * @param {number} collectionId 
      * @param {UpdateRaindropsRequest} [updateRaindropsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -6853,10 +6516,9 @@ export class RaindropApi extends BaseAPI {
     }
 
     /**
-     * Make sure to send PUT request with [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST#example) body
-     * @summary Upload file
-     * @param {File} [file] File
-     * @param {number} [collectionId] Collection Id
+     * 
+     * @param {File} [file] 
+     * @param {number} [collectionId] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
@@ -6866,10 +6528,9 @@ export class RaindropApi extends BaseAPI {
     }
 
     /**
-     * PNG, GIF or JPEG
-     * @summary Upload cover
-     * @param {number} id Existing raindrop ID
-     * @param {File} [cover] File
+     * 
+     * @param {number} id 
+     * @param {File} [cover] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
@@ -6889,8 +6550,7 @@ export const TagApiAxiosParamCreator = function (configuration?: Configuration) 
     return {
         /**
          * 
-         * @summary Get tags
-         * @param {number} [collectionId] Optional collection ID, when not specified all tags from all collections will be retrieved
+         * @param {number} [collectionId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6925,8 +6585,7 @@ export const TagApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
-         * @summary Remove tags
-         * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+         * @param {number} [collectionId] 
          * @param {RemoveTagsFromCollectionRequest} [removeTagsFromCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6965,8 +6624,7 @@ export const TagApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
-         * @summary Rename tag / Merge tags
-         * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+         * @param {number} [collectionId] 
          * @param {RenameOrMergeTagsRequest} [renameOrMergeTagsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7015,8 +6673,7 @@ export const TagApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Get tags
-         * @param {number} [collectionId] Optional collection ID, when not specified all tags from all collections will be retrieved
+         * @param {number} [collectionId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7028,8 +6685,7 @@ export const TagApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Remove tags
-         * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+         * @param {number} [collectionId] 
          * @param {RemoveTagsFromCollectionRequest} [removeTagsFromCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7042,8 +6698,7 @@ export const TagApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Rename tag / Merge tags
-         * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+         * @param {number} [collectionId] 
          * @param {RenameOrMergeTagsRequest} [renameOrMergeTagsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7066,8 +6721,7 @@ export const TagApiFactory = function (configuration?: Configuration, basePath?:
     return {
         /**
          * 
-         * @summary Get tags
-         * @param {number} [collectionId] Optional collection ID, when not specified all tags from all collections will be retrieved
+         * @param {number} [collectionId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7076,8 +6730,7 @@ export const TagApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * 
-         * @summary Remove tags
-         * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+         * @param {number} [collectionId] 
          * @param {RemoveTagsFromCollectionRequest} [removeTagsFromCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7087,8 +6740,7 @@ export const TagApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * 
-         * @summary Rename tag / Merge tags
-         * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+         * @param {number} [collectionId] 
          * @param {RenameOrMergeTagsRequest} [renameOrMergeTagsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7108,8 +6760,7 @@ export const TagApiFactory = function (configuration?: Configuration, basePath?:
 export class TagApi extends BaseAPI {
     /**
      * 
-     * @summary Get tags
-     * @param {number} [collectionId] Optional collection ID, when not specified all tags from all collections will be retrieved
+     * @param {number} [collectionId] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TagApi
@@ -7120,8 +6771,7 @@ export class TagApi extends BaseAPI {
 
     /**
      * 
-     * @summary Remove tags
-     * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+     * @param {number} [collectionId] 
      * @param {RemoveTagsFromCollectionRequest} [removeTagsFromCollectionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -7133,8 +6783,7 @@ export class TagApi extends BaseAPI {
 
     /**
      * 
-     * @summary Rename tag / Merge tags
-     * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+     * @param {number} [collectionId] 
      * @param {RenameOrMergeTagsRequest} [renameOrMergeTagsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -7154,9 +6803,8 @@ export class TagApi extends BaseAPI {
 export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Connect social network account as sign in authentication option
-         * @summary Connect social network acount
-         * @param {ConnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+         * 
+         * @param {ConnectSocialNetworkProviderProviderEnum} provider 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7192,9 +6840,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Disconnect social network account from available authentication options
-         * @summary Disconnect social network account
-         * @param {DisconnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+         * 
+         * @param {DisconnectSocialNetworkProviderProviderEnum} provider 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7230,8 +6877,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Get currently authenticated user details
-         * @summary Get user
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7264,9 +6910,8 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Get\'s publicly available user details
-         * @summary Get user by name
-         * @param {number} name Username
+         * 
+         * @param {number} name 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7303,7 +6948,6 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary Get system collections count
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7336,8 +6980,7 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * To change email, config, password, etc... you can do it from single endpoint
-         * @summary Update user
+         * 
          * @param {UpdateCurrentUserRequest} [updateCurrentUserRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7384,9 +7027,8 @@ export const UserApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
     return {
         /**
-         * Connect social network account as sign in authentication option
-         * @summary Connect social network acount
-         * @param {ConnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+         * 
+         * @param {ConnectSocialNetworkProviderProviderEnum} provider 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7397,9 +7039,8 @@ export const UserApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Disconnect social network account from available authentication options
-         * @summary Disconnect social network account
-         * @param {DisconnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+         * 
+         * @param {DisconnectSocialNetworkProviderProviderEnum} provider 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7410,8 +7051,7 @@ export const UserApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Get currently authenticated user details
-         * @summary Get user
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7422,9 +7062,8 @@ export const UserApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Get\'s publicly available user details
-         * @summary Get user by name
-         * @param {number} name Username
+         * 
+         * @param {number} name 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7436,7 +7075,6 @@ export const UserApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Get system collections count
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7447,8 +7085,7 @@ export const UserApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * To change email, config, password, etc... you can do it from single endpoint
-         * @summary Update user
+         * 
          * @param {UpdateCurrentUserRequest} [updateCurrentUserRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7470,9 +7107,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = UserApiFp(configuration)
     return {
         /**
-         * Connect social network account as sign in authentication option
-         * @summary Connect social network acount
-         * @param {ConnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+         * 
+         * @param {ConnectSocialNetworkProviderProviderEnum} provider 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7480,9 +7116,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.connectSocialNetworkProvider(provider, options).then((request) => request(axios, basePath));
         },
         /**
-         * Disconnect social network account from available authentication options
-         * @summary Disconnect social network account
-         * @param {DisconnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+         * 
+         * @param {DisconnectSocialNetworkProviderProviderEnum} provider 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7490,8 +7125,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.disconnectSocialNetworkProvider(provider, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get currently authenticated user details
-         * @summary Get user
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7499,9 +7133,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.getCurrentUser(options).then((request) => request(axios, basePath));
         },
         /**
-         * Get\'s publicly available user details
-         * @summary Get user by name
-         * @param {number} name Username
+         * 
+         * @param {number} name 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7510,7 +7143,6 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
-         * @summary Get system collections count
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -7518,8 +7150,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.getSystemCollectionStats(options).then((request) => request(axios, basePath));
         },
         /**
-         * To change email, config, password, etc... you can do it from single endpoint
-         * @summary Update user
+         * 
          * @param {UpdateCurrentUserRequest} [updateCurrentUserRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -7538,9 +7169,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
  */
 export class UserApi extends BaseAPI {
     /**
-     * Connect social network account as sign in authentication option
-     * @summary Connect social network acount
-     * @param {ConnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+     * 
+     * @param {ConnectSocialNetworkProviderProviderEnum} provider 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
@@ -7550,9 +7180,8 @@ export class UserApi extends BaseAPI {
     }
 
     /**
-     * Disconnect social network account from available authentication options
-     * @summary Disconnect social network account
-     * @param {DisconnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+     * 
+     * @param {DisconnectSocialNetworkProviderProviderEnum} provider 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
@@ -7562,8 +7191,7 @@ export class UserApi extends BaseAPI {
     }
 
     /**
-     * Get currently authenticated user details
-     * @summary Get user
+     * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
@@ -7573,9 +7201,8 @@ export class UserApi extends BaseAPI {
     }
 
     /**
-     * Get\'s publicly available user details
-     * @summary Get user by name
-     * @param {number} name Username
+     * 
+     * @param {number} name 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
@@ -7586,7 +7213,6 @@ export class UserApi extends BaseAPI {
 
     /**
      * 
-     * @summary Get system collections count
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
@@ -7596,8 +7222,7 @@ export class UserApi extends BaseAPI {
     }
 
     /**
-     * To change email, config, password, etc... you can do it from single endpoint
-     * @summary Update user
+     * 
      * @param {UpdateCurrentUserRequest} [updateCurrentUserRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}

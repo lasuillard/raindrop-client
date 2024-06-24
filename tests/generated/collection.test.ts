@@ -3,7 +3,7 @@ import path from "node:path";
 import { it } from "^/tests/_helpers/vitest";
 import type { Task } from "vitest";
 import type { Raindrop } from "~/client";
-import type { CollectionResponseOne } from "~/generated";
+import type { CreateCollectionResponse } from "~/generated";
 
 // TODO: Refactor repeated test codes (e.g. test data creation); name from test ID
 // TODO: Name file of recordings, typechecks to test name (they won't duplicate as OpenAPI operation ID should unique)
@@ -17,7 +17,7 @@ async function createCollection(
 	task: Task,
 	client: Raindrop,
 	args?: object,
-): Promise<CollectionResponseOne> {
+): Promise<CreateCollectionResponse> {
 	const response = await client.collection.createCollection({
 		view: "list",
 		title: `${task.name}_${_counter++}`,
@@ -153,9 +153,9 @@ it("removeCollections", async ({
 	const collection = await createCollection(task, client);
 
 	const response = await client.collection.removeCollections({
-		// biome-ignore lint/style/noNonNullAssertion: PASS
-		ids: [collection.item!._id],
+		ids: [collection.item._id],
 	});
+
 	generateTypeTest({ type: "RemoveCollectionsResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
@@ -178,13 +178,13 @@ it("getChildCollections", async ({
 	await createCollection(task, client, {
 		parent: {
 			$ref: "collections",
-			// biome-ignore lint/style/noNonNullAssertion: PASS
-			$id: parent.item!._id,
+			$id: parent.item._id,
 			oid: 0,
 		},
 	});
 
 	const response = await client.collection.getChildCollections();
+
 	generateTypeTest({ type: "GetChildCollectionsResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
@@ -231,27 +231,21 @@ it("getChildCollections", async ({
 });
 
 it("getCollection", async ({
+	task,
 	client,
 	expect,
 	generateTypeTest,
 	resetData: _,
 }) => {
-	const existing = await client.collection.createCollection({
-		view: "list",
-		title: "testCollection",
-		sort: 0,
-		public: true,
-		cover: [],
-	});
-	const response = await client.collection.getCollection(
-		// biome-ignore lint/style/noNonNullAssertion: PASS
-		existing.data.item!._id,
-	);
+	const collection = await createCollection(task, client);
+
+	const response = await client.collection.getCollection(collection.item._id);
+
 	generateTypeTest({ type: "GetCollectionResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
-		    "_id": 45402794,
+		    "_id": 45403046,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -261,7 +255,7 @@ it("getCollection", async ({
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-06-24T13:47:21.119Z",
+		    "created": "2024-06-24T14:18:13.728Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -269,12 +263,12 @@ it("getCollection", async ({
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-24T13:47:21.118Z",
-		    "lastUpdate": "2024-06-24T13:47:21.119Z",
-		    "public": true,
-		    "slug": "test-collection",
+		    "lastAction": "2024-06-24T14:18:13.727Z",
+		    "lastUpdate": "2024-06-24T14:18:13.728Z",
+		    "public": false,
+		    "slug": "get-collection-5",
 		    "sort": 0,
-		    "title": "testCollection",
+		    "title": "getCollection_5",
 		    "user": {
 		      "$id": 2067190,
 		      "$ref": "users",
@@ -287,36 +281,31 @@ it("getCollection", async ({
 });
 
 it("updateCollection", async ({
+	task,
 	client,
 	expect,
 	generateTypeTest,
 	resetData: _,
 }) => {
-	const existing = await client.collection.createCollection({
-		view: "list",
-		title: "testCollection",
-		sort: 0,
-		public: true,
-		cover: [],
-	});
+	const collection = await createCollection(task, client);
+
 	const response = await client.collection.updateCollection(
-		// biome-ignore lint/style/noNonNullAssertion: PASS
-		existing.data.item!._id,
+		collection.item._id,
 		{
 			title: "updatedCollection",
-			cover: ["string"],
+			cover: [],
 			view: "list",
 			sort: 0,
 			public: true,
 			expanded: true,
 		},
 	);
+
 	generateTypeTest({ type: "UpdateCollectionResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
-		    "__v": 1,
-		    "_id": 45402795,
+		    "_id": 45403049,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -325,10 +314,8 @@ it("updateCollection", async ({
 		    },
 		    "author": true,
 		    "count": 0,
-		    "cover": [
-		      "",
-		    ],
-		    "created": "2024-06-24T13:47:22.893Z",
+		    "cover": [],
+		    "created": "2024-06-24T14:18:14.563Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -336,8 +323,8 @@ it("updateCollection", async ({
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-24T13:47:22.893Z",
-		    "lastUpdate": "2024-06-24T13:47:23.376Z",
+		    "lastAction": "2024-06-24T14:18:14.562Z",
+		    "lastUpdate": "2024-06-24T14:18:15.573Z",
 		    "public": true,
 		    "slug": "updated-collection",
 		    "sort": 0,
@@ -354,22 +341,18 @@ it("updateCollection", async ({
 });
 
 it("removeCollection", async ({
+	task,
 	client,
 	expect,
 	generateTypeTest,
 	resetData: _,
 }) => {
-	const existing = await client.collection.createCollection({
-		view: "list",
-		title: "testCollection",
-		sort: 0,
-		public: true,
-		cover: [],
-	});
+	const collection = await createCollection(task, client);
+
 	const response = await client.collection.removeCollection(
-		// biome-ignore lint/style/noNonNullAssertion: PASS
-		existing.data.item!._id,
+		collection.item._id,
 	);
+
 	generateTypeTest({ type: "SimpleResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
@@ -391,6 +374,7 @@ it("createCollection", async ({
 		public: true,
 		cover: [],
 	});
+
 	generateTypeTest({ type: "CreateCollectionResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
@@ -429,21 +413,17 @@ it("createCollection", async ({
 
 // ! FIXME: Polly.js record hash for file upload keep changing
 it.skip("uploadCollectionCover", async ({
+	task,
 	client,
 	expect,
 	generateTypeTest,
+	resetData: _,
 }) => {
-	const existing = await client.collection.createCollection({
-		view: "list",
-		title: "test_uploadCollectionCover",
-		sort: 0,
-		public: false,
-		cover: [],
-	});
+	const collection = await createCollection(task, client);
 	const cover = await fs.openAsBlob(path.join(__dirname, "./cover.png"));
+
 	const response = await client.collection.uploadCollectionCover(
-		// biome-ignore lint/style/noNonNullAssertion: PASS
-		existing.data.item!._id,
+		collection.item._id,
 		// @ts-expect-error File is not Blob
 		cover,
 	);

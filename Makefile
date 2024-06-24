@@ -68,7 +68,6 @@ lint: generate  ## Run all linters
 
 test: generate  ## Run tests
 	yarn run test
-	yarn run test:type
 .PHONY: test
 
 docs:  ## Generate dev documents

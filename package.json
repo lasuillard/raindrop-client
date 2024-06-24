@@ -29,8 +29,8 @@
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
-		"test": "vitest --coverage --run",
-		"test:watch": "vitest --silent --coverage --watch --ui",
+		"test": "yarn test:unit && yarn test:type",
+		"test:unit": "vitest --coverage --run",
 		"test:type": "vitest --typecheck.only --run",
 		"make-docs": "yarn run typedoc --plugin typedoc-plugin-missing-exports src"
 	},
