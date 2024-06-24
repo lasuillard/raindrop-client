@@ -115,6 +115,7 @@ paths:
                 oneOf:
                   - $ref: "#/components/schemas/TokenResponse"
                   - $ref: "#/components/schemas/TokenErrorResponse"
+
   /rest/v1/collections:
     get:
       operationId: getRootCollections
@@ -170,6 +171,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RemoveCollectionsResponse"
+
   /rest/v1/collections/childrens:
     get:
       operationId: getChildCollections
@@ -182,6 +184,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GetChildCollectionsResponse"
+
   /rest/v1/collection/{id}:
     parameters:
       - name: id
@@ -227,6 +230,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Response"
+
   /rest/v1/collection:
     post:
       operationId: createCollection
@@ -244,6 +248,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CreateCollectionResponse"
+
   /rest/v1/collection/{id}/cover:
     put:
       operationId: uploadCollectionCover
@@ -271,6 +276,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UploadCollectionCoverResponse"
+
   /rest/v1/collections/merge:
     put:
       operationId: mergeCollections
@@ -283,14 +289,19 @@ paths:
               type: object
               properties:
                 to:
-                  $ref: "#/components/schemas/CollectionID"
+                  type: integer
                 ids:
                   type: array
                   items:
-                    $ref: "#/components/schemas/CollectionID"
+                    type: integer
       responses:
         200:
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MergeCollectionsResponse"
+
   /rest/v1/collections/clean:
     put:
       operationId: removeAllEmptyCollections
@@ -310,6 +321,7 @@ paths:
                   count:
                     type: integer
                     example: 3
+
   /rest/v1/collection/-99:
     delete:
       operationId: emptyTrash
@@ -322,6 +334,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Response"
+
   /rest/v1/user/stats:
     get:
       operationId: getSystemCollectionStats
@@ -335,6 +348,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/StatResponse"
+
   /rest/v1/collection/{id}/sharing:
     parameters:
       - name: id
@@ -393,6 +407,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Response"
+
   /rest/v1/collection/{id}/sharing/{userId}:
     parameters:
       - name: userId
@@ -431,6 +446,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Response"
+
   /rest/v1/collection/{id}/join:
     post:
       operationId: acceptInvitation
@@ -454,6 +470,7 @@ paths:
                     type: boolean
                   role:
                     $ref: "#/components/schemas/Role"
+
   /rest/v1/collections/covers/{text}:
     get:
       operationId: searchCovers
@@ -472,6 +489,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CoverResponse"
+
   /rest/v1/collections/covers:
     get:
       operationId: getFeaturedCovers
@@ -484,6 +502,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CoverResponse"
+
   /rest/v1/raindrop:
     post:
       operationId: createRaindrop
@@ -501,6 +520,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RaindropResponseOne"
+
   /rest/v1/raindrop/{id}:
     parameters:
       - name: id
@@ -544,6 +564,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Response"
+
   /rest/v1/raindrop/file:
     put:
       operationId: uploadFile
@@ -567,6 +588,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RaindropResponseOne"
+
   /rest/v1/raindrop/{id}/cover:
     put:
       operationId: uploadRaindropCover
@@ -594,6 +616,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RaindropResponseOne"
+
   /rest/v1/raindrop/{id}/cache:
     get:
       operationId: getPermanentCopy
@@ -608,6 +631,7 @@ paths:
       responses:
         307:
           description: OK
+
   /rest/v1/raindrop/suggest:
     post:
       operationId: suggestForNewBookmark
@@ -628,6 +652,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SuggestResponse"
+
   /rest/v1/raindrop/{id}/suggest:
     get:
       operationId: suggestForExistingBookmark
@@ -646,6 +671,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SuggestResponse"
+
   /rest/v1/raindrops/{collectionId}:
     parameters:
       - name: collectionId
@@ -747,6 +773,7 @@ paths:
                     type: boolean
                   modified:
                     type: integer
+
   /rest/v1/raindrops:
     post:
       operationId: createRaindrops
@@ -769,6 +796,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/RaindropResponseMany"
+
   /rest/v1/highlights:
     get:
       operationId: getAllHighlights
@@ -790,6 +818,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HighlightResponse"
+
   /rest/v1/highlights/{collectionId}:
     get:
       operationId: getHighlightsInCollection
@@ -816,6 +845,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HighlightResponse"
+
   /rest/v1/user:
     get:
       operationId: getCurrentUser
@@ -859,6 +889,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/UserResponse"
+
   /rest/v1/user/{name}:
     get:
       operationId: getPublicUserByName
@@ -890,6 +921,7 @@ paths:
                       registered:
                         type: string
                         format: date-time
+
   /rest/v1/user/connect/{provider}:
     get:
       operationId: connectSocialNetworkProvider
@@ -905,6 +937,7 @@ paths:
       responses:
         307:
           description: Redirect
+
   /rest/v1/user/connect/{provider}/revoke:
     get:
       operationId: disconnectSocialNetworkProvider
@@ -920,6 +953,7 @@ paths:
       responses:
         200:
           description: OK
+
   /rest/v1/tags/{collectionId}:
     get:
       operationId: getTagsInCollection
@@ -1005,6 +1039,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Response"
+
   /rest/v1/filters/{collectionId}:
     get:
       operationId: getFilters
@@ -1032,6 +1067,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/FilterResponse"
+
   /rest/v1/import/url/parse:
     get:
       operationId: parseURL
@@ -1052,6 +1088,7 @@ paths:
                 oneOf:
                   - $ref: "#/components/schemas/ParseUrlResponse"
                   - $ref: "#/components/schemas/ParseUrlErrorResponse"
+
   /rest/v1/import/url/exists:
     post:
       operationId: checkURLsExist
@@ -1092,6 +1129,7 @@ paths:
                   value:
                     result: false
                     ids: []
+
   /rest/v1/import/file:
     post:
       operationId: importHTMLBookmarkFile
@@ -2056,3 +2094,16 @@ components:
               properties:
                 __v:
                   type: integer
+
+    MergeCollectionsResponse:
+      type: object
+      required: [result, modified, ids]
+      properties:
+        result:
+          type: boolean
+        modified:
+          type: integer
+        ids:
+          type: array
+          items:
+            type: integer

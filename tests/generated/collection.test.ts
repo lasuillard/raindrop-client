@@ -470,7 +470,38 @@ it.skip("uploadCollectionCover", async ({
 	`);
 });
 
-it.todo("mergeCollections");
+// ! FIXME: Recoding keep changes
+it.skip("mergeCollections", async ({
+	task,
+	client,
+	expect,
+	generateTypeTest,
+	resetData: _,
+}) => {
+	const [one, two, three] = await Promise.all([
+		createCollection(task, client),
+		createCollection(task, client),
+		createCollection(task, client),
+	]);
+
+	generateTypeTest({ type: "MergeCollectionsResponse" });
+	const response = await client.collection.mergeCollections({
+		ids: [one.item._id, two.item._id],
+		to: three.item._id,
+	});
+
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "ids": [
+		    45403411,
+		    45403413,
+		  ],
+		  "modified": 2,
+		  "result": true,
+		}
+	`);
+});
+
 it.todo("removeAllEmptyCollections");
 it.todo("emptyTrash");
 it.todo("getSystemCollectionStats");

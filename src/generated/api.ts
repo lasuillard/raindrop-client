@@ -1382,6 +1382,31 @@ export interface MergeCollectionsRequest {
 /**
  * 
  * @export
+ * @interface MergeCollectionsResponse
+ */
+export interface MergeCollectionsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof MergeCollectionsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof MergeCollectionsResponse
+     */
+    'modified': number;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof MergeCollectionsResponse
+     */
+    'ids': Array<number>;
+}
+/**
+ * 
+ * @export
  * @interface ObtainToken
  */
 export interface ObtainToken {
@@ -4230,7 +4255,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async mergeCollections(mergeCollectionsRequest?: MergeCollectionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async mergeCollections(mergeCollectionsRequest?: MergeCollectionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MergeCollectionsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.mergeCollections(mergeCollectionsRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.mergeCollections']?.[localVarOperationServerIndex]?.url;
@@ -4459,7 +4484,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mergeCollections(mergeCollectionsRequest?: MergeCollectionsRequest, options?: any): AxiosPromise<void> {
+        mergeCollections(mergeCollectionsRequest?: MergeCollectionsRequest, options?: any): AxiosPromise<MergeCollectionsResponse> {
             return localVarFp.mergeCollections(mergeCollectionsRequest, options).then((request) => request(axios, basePath));
         },
         /**

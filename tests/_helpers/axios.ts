@@ -10,7 +10,7 @@ export async function axiosInstance({}, use: Use<AxiosInstance>) {
 	const instance = axios.create({
 		validateStatus: () => true,
 	});
-	const rateLimited = rateLimit(instance, { maxRPS: 3 });
+	const rateLimited = rateLimit(instance, { maxRPS: 5 });
 	await use(rateLimited);
 }
 
