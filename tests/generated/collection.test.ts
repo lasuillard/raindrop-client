@@ -1,4 +1,10 @@
+import fs from "node:fs";
+import path from "node:path";
 import { it } from "^/tests/_helpers/vitest";
+
+// TODO: Refactor repeated test codes (e.g. test data creation); name from test ID
+// TODO: Name file of recordings, typechecks to test name (they won't duplicate as OpenAPI operation ID should unique)
+// TODO: Address type errors
 
 it("getRootCollections", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.collection.getRootCollections();
@@ -333,7 +339,69 @@ it("createCollection", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it.todo("uploadCollectionCover");
+// ! FIXME: Polly.js record hash for file upload keep changing
+it.skip("uploadCollectionCover", async ({
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const existing = await client.collection.createCollection({
+		view: "list",
+		title: "test_uploadCollectionCover",
+		sort: 0,
+		public: false,
+		cover: [],
+	});
+	const cover = await fs.openAsBlob(path.join(__dirname, "./cover.png"));
+	const response = await client.collection.uploadCollectionCover(
+		// biome-ignore lint/style/noNonNullAssertion: PASS
+		existing.data.item!._id,
+		// @ts-expect-error File is not Blob
+		cover,
+	);
+	generateTypeTest({ type: "UploadCollectionCoverResponse" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "item": {
+		    "__v": 1,
+		    "_id": 45400966,
+		    "access": {
+		      "draggable": true,
+		      "for": 2067190,
+		      "level": 4,
+		      "root": false,
+		    },
+		    "author": true,
+		    "color": "#cc0404",
+		    "count": 0,
+		    "cover": [
+		      "https://up.raindrop.io/collection/thumbs/454/009/66/1719229529995.png",
+		    ],
+		    "created": "2024-06-24T11:45:04.466Z",
+		    "creatorRef": {
+		      "_id": 2067190,
+		      "email": "",
+		      "name": "miyil99106",
+		    },
+		    "description": "",
+		    "expanded": true,
+		    "lastAction": "2024-06-24T11:45:04.465Z",
+		    "lastUpdate": "2024-06-24T11:45:30.121Z",
+		    "public": false,
+		    "slug": "test-upload-collection-cover",
+		    "sort": 0,
+		    "title": "test_uploadCollectionCover",
+		    "user": {
+		      "$id": 2067190,
+		      "$ref": "users",
+		    },
+		    "view": "list",
+		  },
+		  "result": true,
+		}
+	`);
+});
+
 it.todo("mergeCollections");
 it.todo("removeAllEmptyCollections");
 it.todo("emptyTrash");

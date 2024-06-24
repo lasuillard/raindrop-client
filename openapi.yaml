@@ -328,7 +328,7 @@ paths:
           required: true
           description: Existing collection ID
           schema:
-            $ref: "#/components/schemas/CollectionID"
+            type: integer
       requestBody:
         content:
           multipart/form-data:
@@ -344,7 +344,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CollectionResponseOne"
+                $ref: "#/components/schemas/UploadCollectionCoverResponse"
   /rest/v1/collections/merge:
     put:
       operationId: mergeCollections
@@ -2438,3 +2438,87 @@ components:
           properties:
             item:
               $ref: "#/components/schemas/UrlParse"
+
+    # TODO: Re-declare schema per API responses rather than making it reusable
+    # TODO: GetRootCollectionsResponse
+    # TODO: GetRootCollectionsResponse
+    # TODO: ReorderAllCollectionsResponse
+    # TODO: RemoveCollectionsResponse
+    # TODO: GetChildCollectionsResponse
+    # TODO: GetCollectionResponse
+    # TODO: UpdateCollectionResponse
+    # TODO: RemoveCollectionResponse
+    # TODO: CreateCollectionResponse
+
+    UploadCollectionCoverResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+        item:
+          type: object
+          properties:
+            __v:
+              type: integer
+            _id:
+              type: integer
+            access:
+              type: object
+              properties:
+                draggable:
+                  type: boolean
+                for:
+                  type: integer
+                level:
+                  type: integer
+                root:
+                  type: boolean
+            author:
+              type: boolean
+            color:
+              type: string
+            count:
+              type: integer
+            cover:
+              type: array
+              items:
+                type: string
+            created:
+              type: string
+              format: date-time
+            creatorRef:
+              type: object
+              properties:
+                _id:
+                  type: integer
+                email:
+                  type: string
+                name:
+                  type: string
+            description:
+              type: string
+            expanded:
+              type: boolean
+            lastAction:
+              type: string
+              format: date-time
+            lastUpdate:
+              type: string
+              format: date-time
+            public:
+              type: boolean
+            slug:
+              type: string
+            sort:
+              type: integer
+            title:
+              type: string
+            user:
+              type: object
+              properties:
+                $id:
+                  type: integer
+                $ref:
+                  type: string
+            view:
+              type: string

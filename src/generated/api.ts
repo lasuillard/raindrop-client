@@ -2321,6 +2321,221 @@ export interface UpdateRaindropsRequestCollection {
 /**
  * 
  * @export
+ * @interface UploadCollectionCoverResponse
+ */
+export interface UploadCollectionCoverResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadCollectionCoverResponse
+     */
+    'result'?: boolean;
+    /**
+     * 
+     * @type {UploadCollectionCoverResponseItem}
+     * @memberof UploadCollectionCoverResponse
+     */
+    'item'?: UploadCollectionCoverResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface UploadCollectionCoverResponseItem
+ */
+export interface UploadCollectionCoverResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    '__v'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    '_id'?: number;
+    /**
+     * 
+     * @type {UploadCollectionCoverResponseItemAccess}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'access'?: UploadCollectionCoverResponseItemAccess;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'author'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'color'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'count'?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'cover'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'created'?: string;
+    /**
+     * 
+     * @type {UploadCollectionCoverResponseItemCreatorRef}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'creatorRef'?: UploadCollectionCoverResponseItemCreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'expanded'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'lastAction'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'lastUpdate'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'public'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'slug'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'sort'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {UploadCollectionCoverResponseItemUser}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'user'?: UploadCollectionCoverResponseItemUser;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'view'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UploadCollectionCoverResponseItemAccess
+ */
+export interface UploadCollectionCoverResponseItemAccess {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadCollectionCoverResponseItemAccess
+     */
+    'draggable'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadCollectionCoverResponseItemAccess
+     */
+    'for'?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadCollectionCoverResponseItemAccess
+     */
+    'level'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadCollectionCoverResponseItemAccess
+     */
+    'root'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface UploadCollectionCoverResponseItemCreatorRef
+ */
+export interface UploadCollectionCoverResponseItemCreatorRef {
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadCollectionCoverResponseItemCreatorRef
+     */
+    '_id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItemCreatorRef
+     */
+    'email'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItemCreatorRef
+     */
+    'name'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UploadCollectionCoverResponseItemUser
+ */
+export interface UploadCollectionCoverResponseItemUser {
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadCollectionCoverResponseItemUser
+     */
+    '$id'?: number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItemUser
+     */
+    '$ref'?: string;
+}
+/**
+ * 
+ * @export
  * @interface UrlParse
  */
 export interface UrlParse {
@@ -4055,7 +4270,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async uploadCollectionCover(id: number, cover?: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
+        async uploadCollectionCover(id: number, cover?: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadCollectionCoverResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.uploadCollectionCover(id, cover, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.uploadCollectionCover']?.[localVarOperationServerIndex]?.url;
@@ -4278,7 +4493,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadCollectionCover(id: number, cover?: File, options?: any): AxiosPromise<CollectionResponseOne> {
+        uploadCollectionCover(id: number, cover?: File, options?: any): AxiosPromise<UploadCollectionCoverResponse> {
             return localVarFp.uploadCollectionCover(id, cover, options).then((request) => request(axios, basePath));
         },
     };
