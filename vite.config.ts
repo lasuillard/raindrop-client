@@ -23,6 +23,10 @@ export default defineConfig({
 		target: "ESNext",
 	},
 	test: {
+		sequence: {
+			// Run sequentially due to API testing getting messed up
+			concurrent: false,
+		},
 		include: ["tests/**/*.{test,spec}.{js,ts}"],
 		exclude: ["**/__mocks__/*"],
 		coverage: {

@@ -8,7 +8,7 @@ Polly.register(NodeHTTPAdapter);
 Polly.register(FSPersister);
 
 export async function polly({ task }: { task: Task }, use: Use<Polly>) {
-	const _polly = new Polly(task.id, {
+	const _polly = new Polly(task.name, {
 		adapters: ["node-http"],
 		persister: "fs",
 		persisterOptions: {

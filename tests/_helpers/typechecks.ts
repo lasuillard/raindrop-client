@@ -38,7 +38,7 @@ export async function generateTypeTest(
 		expect.addSnapshotSerializer({
 			serialize(val, config, indentation, depth, refs, printer) {
 				addTest({
-					testId: task.id,
+					testId: task.name,
 					type: args.type,
 					value: JSON.stringify(val),
 				});
@@ -53,6 +53,8 @@ export async function generateTypeTest(
 	await use(hookFn);
 }
 
+// TODO: Run formatter on generated codes
+// TODO: Checkout generated typechecks to VCS
 function generateTest(dir: string, item: CreateTest) {
 	const filepath = path.join(dir, `${item.testId}.test-d.ts`);
 	const content = `\

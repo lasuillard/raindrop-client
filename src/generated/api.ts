@@ -135,67 +135,13 @@ export interface CheckURLsExistRequest {
  */
 export interface Collection {
     /**
-     * The id of the collection.
+     * 
      * @type {number}
      * @memberof Collection
      */
     '_id': number;
     /**
      * 
-     * @type {CollectionAccess}
-     * @memberof Collection
-     */
-    'access': CollectionAccess;
-    /**
-     * Count of raindrops in collection
-     * @type {number}
-     * @memberof Collection
-     */
-    'count': number;
-    /**
-     * Collection cover URL. This array always have one item due to legacy reasons
-     * @type {Array<string>}
-     * @memberof Collection
-     */
-    'cover': Array<string>;
-    /**
-     * When collection is created
-     * @type {string}
-     * @memberof Collection
-     */
-    'created': string;
-    /**
-     * Whether the collection’s sub-collections are expanded
-     * @type {boolean}
-     * @memberof Collection
-     */
-    'expanded': boolean;
-    /**
-     * When collection is updated
-     * @type {string}
-     * @memberof Collection
-     */
-    'lastUpdate': string;
-    /**
-     * 
-     * @type {CollectionRef}
-     * @memberof Collection
-     */
-    'parent'?: CollectionRef;
-    /**
-     * Collection and raindrops that it contains will be accessible without authentication by public link
-     * @type {boolean}
-     * @memberof Collection
-     */
-    'public': boolean;
-    /**
-     * The order of collection (descending). Defines the position of the collection among all the collections with the same `parent.$id`
-     * @type {number}
-     * @memberof Collection
-     */
-    'sort': number;
-    /**
-     * Name of the collection
      * @type {string}
      * @memberof Collection
      */
@@ -205,52 +151,98 @@ export interface Collection {
      * @type {string}
      * @memberof Collection
      */
-    'description'?: string;
+    'description': string;
     /**
      * 
-     * @type {CollectionUser}
+     * @type {UserRef}
      * @memberof Collection
      */
-    'user': CollectionUser;
-    /**
-     * 
-     * @type {View}
-     * @memberof Collection
-     */
-    'view': View;
-    /**
-     * 
-     * @type {CollectionCreatorRef}
-     * @memberof Collection
-     */
-    'creatorRef'?: CollectionCreatorRef;
-    /**
-     * 
-     * @type {string}
-     * @memberof Collection
-     */
-    'lastAction'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Collection
-     */
-    'slug'?: string;
+    'user': UserRef;
     /**
      * 
      * @type {boolean}
      * @memberof Collection
      */
-    'author'?: boolean;
+    'public': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'view': string;
     /**
      * 
      * @type {number}
      * @memberof Collection
      */
-    '__v'?: number;
+    'count': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Collection
+     */
+    'cover': Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof Collection
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Collection
+     */
+    'expanded': boolean;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof Collection
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'lastAction': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'color'?: string;
+    /**
+     * 
+     * @type {CollectionAccess}
+     * @memberof Collection
+     */
+    'access': CollectionAccess;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Collection
+     */
+    'author': boolean;
 }
-
-
 /**
  * 
  * @export
@@ -258,13 +250,7 @@ export interface Collection {
  */
 export interface CollectionAccess {
     /**
-     * 1. read only access (equal to public=true) 2. collaborator with read only access 3. collaborator with write only access 4. owner
-     * @type {number}
-     * @memberof CollectionAccess
-     */
-    'level': CollectionAccessLevelEnum;
-    /**
-     * Does it possible to change parent of this collection?
+     * 
      * @type {boolean}
      * @memberof CollectionAccess
      */
@@ -274,54 +260,19 @@ export interface CollectionAccess {
      * @type {number}
      * @memberof CollectionAccess
      */
-    'for'?: number;
+    'for': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CollectionAccess
+     */
+    'level': number;
     /**
      * 
      * @type {boolean}
      * @memberof CollectionAccess
      */
-    'root'?: boolean;
-}
-
-export const CollectionAccessLevelEnum = {
-    NUMBER_1: 1,
-    NUMBER_2: 2,
-    NUMBER_3: 3,
-    NUMBER_4: 4
-} as const;
-
-export type CollectionAccessLevelEnum = typeof CollectionAccessLevelEnum[keyof typeof CollectionAccessLevelEnum];
-
-/**
- * @type CollectionCreatorRef
- * @export
- */
-export type CollectionCreatorRef = CollectionCreatorRefOneOf | number;
-
-/**
- * 
- * @export
- * @interface CollectionCreatorRefOneOf
- */
-export interface CollectionCreatorRefOneOf {
-    /**
-     * 
-     * @type {number}
-     * @memberof CollectionCreatorRefOneOf
-     */
-    '_id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CollectionCreatorRefOneOf
-     */
-    'name'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CollectionCreatorRefOneOf
-     */
-    'email'?: string;
+    'root': boolean;
 }
 /**
  * 
@@ -336,7 +287,7 @@ export interface CollectionRef {
      */
     '$ref': CollectionRefRefEnum;
     /**
-     * The id of the parent collection. Not specified for root collections
+     * 
      * @type {number}
      * @memberof CollectionRef
      */
@@ -392,25 +343,6 @@ export interface CollectionResponseOne {
      * @memberof CollectionResponseOne
      */
     'item'?: Collection;
-}
-/**
- * 
- * @export
- * @interface CollectionUser
- */
-export interface CollectionUser {
-    /**
-     * 
-     * @type {string}
-     * @memberof CollectionUser
-     */
-    '$ref': string;
-    /**
-     * Owner ID
-     * @type {number}
-     * @memberof CollectionUser
-     */
-    '$id': number;
 }
 /**
  * 
@@ -538,6 +470,146 @@ export interface CreateCollection400Response {
      * @memberof CreateCollection400Response
      */
     'errorMessage': string;
+}
+/**
+ * 
+ * @export
+ * @interface CreateCollectionResponse
+ */
+export interface CreateCollectionResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateCollectionResponse
+     */
+    'result'?: boolean;
+    /**
+     * 
+     * @type {CreateCollectionResponseItem}
+     * @memberof CreateCollectionResponse
+     */
+    'item'?: CreateCollectionResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface CreateCollectionResponseItem
+ */
+export interface CreateCollectionResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateCollectionResponseItem
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'description': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof CreateCollectionResponseItem
+     */
+    'user': UserRef;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateCollectionResponseItem
+     */
+    'public': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'view': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateCollectionResponseItem
+     */
+    'count': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateCollectionResponseItem
+     */
+    'cover': Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateCollectionResponseItem
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateCollectionResponseItem
+     */
+    'expanded': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateCollectionResponseItem
+     */
+    'creatorRef': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'lastAction': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'color'?: string;
+    /**
+     * 
+     * @type {CollectionAccess}
+     * @memberof CreateCollectionResponseItem
+     */
+    'access': CollectionAccess;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateCollectionResponseItem
+     */
+    'author': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateCollectionResponseItem
+     */
+    '__v': number;
 }
 /**
  * 
@@ -672,19 +744,13 @@ export interface CreatorRef {
      * @type {string}
      * @memberof CreatorRef
      */
-    'avatar': string;
+    'email': string;
     /**
      * 
      * @type {string}
      * @memberof CreatorRef
      */
     'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreatorRef
-     */
-    'email': string;
 }
 /**
  * 
@@ -848,6 +914,165 @@ export interface Folder {
     'bookmarks': Array<Bookmark>;
 }
 /**
+ * 
+ * @export
+ * @interface GetChildCollectionsResponse
+ */
+export interface GetChildCollectionsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetChildCollectionsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<GetChildCollectionsResponseItemsInner>}
+     * @memberof GetChildCollectionsResponse
+     */
+    'items': Array<GetChildCollectionsResponseItemsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface GetChildCollectionsResponseItemsInner
+ */
+export interface GetChildCollectionsResponseItemsInner {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'description': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'user': UserRef;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'public': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'view': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'count': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'cover': Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'expanded': boolean;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'lastAction': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'color'?: string;
+    /**
+     * 
+     * @type {CollectionAccess}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'access': CollectionAccess;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'author': boolean;
+    /**
+     * 
+     * @type {CollectionRef}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'parent': CollectionRef;
+}
+/**
+ * 
+ * @export
+ * @interface GetCollectionResponse
+ */
+export interface GetCollectionResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetCollectionResponse
+     */
+    'result'?: boolean;
+    /**
+     * 
+     * @type {Collection}
+     * @memberof GetCollectionResponse
+     */
+    'item'?: Collection;
+}
+/**
  * @type GetOrRefreshToken200Response
  * @export
  */
@@ -921,6 +1146,25 @@ export interface GetPublicUserByName200Response {
      * @memberof GetPublicUserByName200Response
      */
     'registered'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface GetRootCollectionsResponse
+ */
+export interface GetRootCollectionsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetRootCollectionsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<Collection>}
+     * @memberof GetRootCollectionsResponse
+     */
+    'items': Array<Collection>;
 }
 /**
  * 
@@ -1736,31 +1980,6 @@ export interface RemoveAllEmptyCollections200Response {
 /**
  * 
  * @export
- * @interface RemoveCollections200Response
- */
-export interface RemoveCollections200Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RemoveCollections200Response
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof RemoveCollections200Response
-     */
-    'ids'?: Array<number>;
-    /**
-     * 
-     * @type {number}
-     * @memberof RemoveCollections200Response
-     */
-    'modified'?: number;
-}
-/**
- * 
- * @export
  * @interface RemoveCollectionsRequest
  */
 export interface RemoveCollectionsRequest {
@@ -1770,6 +1989,31 @@ export interface RemoveCollectionsRequest {
      * @memberof RemoveCollectionsRequest
      */
     'ids'?: Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface RemoveCollectionsResponse
+ */
+export interface RemoveCollectionsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RemoveCollectionsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoveCollectionsResponse
+     */
+    'modified': number;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof RemoveCollectionsResponse
+     */
+    'ids': Array<number>;
 }
 /**
  * 
@@ -1836,34 +2080,21 @@ export interface RenameOrMergeTagsRequest {
     'tags'?: Array<string>;
 }
 /**
- * @type ReorderAllCollectionsRequest
- * @export
- */
-export type ReorderAllCollectionsRequest = ReorderAllCollectionsRequestOneOf | ReorderAllCollectionsRequestOneOf1;
-
-/**
  * 
  * @export
- * @interface ReorderAllCollectionsRequestOneOf
+ * @interface ReorderAllCollectionsRequest
  */
-export interface ReorderAllCollectionsRequestOneOf {
+export interface ReorderAllCollectionsRequest {
     /**
-     * Change order of all collections.  Possible values:  \"title\" - sort alphabetically ascending  \"-title\" - sort alphabetically descending  \"-count\" - sort by raindrops count descending
+     * 
      * @type {string}
-     * @memberof ReorderAllCollectionsRequestOneOf
+     * @memberof ReorderAllCollectionsRequest
      */
     'sort'?: string;
-}
-/**
- * 
- * @export
- * @interface ReorderAllCollectionsRequestOneOf1
- */
-export interface ReorderAllCollectionsRequestOneOf1 {
     /**
-     * TRUE = expand all  FALSE = collapse all
+     * 
      * @type {boolean}
-     * @memberof ReorderAllCollectionsRequestOneOf1
+     * @memberof ReorderAllCollectionsRequest
      */
     'expanded'?: boolean;
 }
@@ -1953,6 +2184,19 @@ export interface ShareCollectionRequest {
 }
 
 
+/**
+ * 
+ * @export
+ * @interface SimpleResponse
+ */
+export interface SimpleResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SimpleResponse
+     */
+    'result': boolean;
+}
 /**
  * 
  * @export
@@ -2171,54 +2415,192 @@ export type TokenResponseTokenTypeEnum = typeof TokenResponseTokenTypeEnum[keyof
 /**
  * 
  * @export
- * @interface UpdateCollection
+ * @interface UpdateCollectionRequest
  */
-export interface UpdateCollection {
+export interface UpdateCollectionRequest {
     /**
      * 
-     * @type {View}
-     * @memberof UpdateCollection
-     */
-    'view': View;
-    /**
-     * Name of the collection
      * @type {string}
-     * @memberof UpdateCollection
+     * @memberof UpdateCollectionRequest
      */
-    'title': string;
+    'view'?: string;
     /**
-     * The order of collection (descending). Defines the position of the collection among all the collections with the same `parent.$id`
-     * @type {number}
-     * @memberof UpdateCollection
+     * 
+     * @type {string}
+     * @memberof UpdateCollectionRequest
      */
-    'sort': number;
+    'title'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateCollectionRequest
+     */
+    'sort'?: number;
     /**
      * Collection and raindrops that it contains will be accessible without authentication?
      * @type {boolean}
-     * @memberof UpdateCollection
+     * @memberof UpdateCollectionRequest
      */
-    'public': boolean;
+    'public'?: boolean;
     /**
      * 
      * @type {CollectionRef}
-     * @memberof UpdateCollection
+     * @memberof UpdateCollectionRequest
      */
     'parent'?: CollectionRef;
     /**
      * 
      * @type {Array<string>}
-     * @memberof UpdateCollection
+     * @memberof UpdateCollectionRequest
+     */
+    'cover'?: Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateCollectionRequest
+     */
+    'expanded'?: boolean;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateCollectionResponse
+ */
+export interface UpdateCollectionResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateCollectionResponse
+     */
+    'result'?: boolean;
+    /**
+     * 
+     * @type {UpdateCollectionResponseItem}
+     * @memberof UpdateCollectionResponse
+     */
+    'item'?: UpdateCollectionResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateCollectionResponseItem
+ */
+export interface UpdateCollectionResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateCollectionResponseItem
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'description': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'user': UserRef;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'public': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'view': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'count': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UpdateCollectionResponseItem
      */
     'cover': Array<string>;
     /**
-     * Whether the collection`s sub-collections are expanded
+     * 
+     * @type {number}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'sort': number;
+    /**
+     * 
      * @type {boolean}
-     * @memberof UpdateCollection
+     * @memberof UpdateCollectionResponseItem
      */
     'expanded': boolean;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'lastAction': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'color'?: string;
+    /**
+     * 
+     * @type {CollectionAccess}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'access': CollectionAccess;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateCollectionResponseItem
+     */
+    'author': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateCollectionResponseItem
+     */
+    '__v': number;
 }
-
-
 /**
  * 
  * @export
@@ -2348,25 +2730,91 @@ export interface UploadCollectionCoverResponseItem {
      * @type {number}
      * @memberof UploadCollectionCoverResponseItem
      */
-    '__v'?: number;
+    '_id': number;
     /**
      * 
-     * @type {number}
+     * @type {string}
      * @memberof UploadCollectionCoverResponseItem
      */
-    '_id'?: number;
+    'title': string;
     /**
      * 
-     * @type {UploadCollectionCoverResponseItemAccess}
+     * @type {string}
      * @memberof UploadCollectionCoverResponseItem
      */
-    'access'?: UploadCollectionCoverResponseItemAccess;
+    'description': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'user': UserRef;
     /**
      * 
      * @type {boolean}
      * @memberof UploadCollectionCoverResponseItem
      */
-    'author'?: boolean;
+    'public': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'view': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'count': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'cover': Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'expanded': boolean;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'lastAction': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'slug': string;
     /**
      * 
      * @type {string}
@@ -2375,163 +2823,22 @@ export interface UploadCollectionCoverResponseItem {
     'color'?: string;
     /**
      * 
-     * @type {number}
+     * @type {CollectionAccess}
      * @memberof UploadCollectionCoverResponseItem
      */
-    'count'?: number;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof UploadCollectionCoverResponseItem
-     */
-    'cover'?: Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadCollectionCoverResponseItem
-     */
-    'created'?: string;
-    /**
-     * 
-     * @type {UploadCollectionCoverResponseItemCreatorRef}
-     * @memberof UploadCollectionCoverResponseItem
-     */
-    'creatorRef'?: UploadCollectionCoverResponseItemCreatorRef;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadCollectionCoverResponseItem
-     */
-    'description'?: string;
+    'access': CollectionAccess;
     /**
      * 
      * @type {boolean}
      * @memberof UploadCollectionCoverResponseItem
      */
-    'expanded'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadCollectionCoverResponseItem
-     */
-    'lastAction'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadCollectionCoverResponseItem
-     */
-    'lastUpdate'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UploadCollectionCoverResponseItem
-     */
-    'public'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadCollectionCoverResponseItem
-     */
-    'slug'?: string;
+    'author': boolean;
     /**
      * 
      * @type {number}
      * @memberof UploadCollectionCoverResponseItem
      */
-    'sort'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadCollectionCoverResponseItem
-     */
-    'title'?: string;
-    /**
-     * 
-     * @type {UploadCollectionCoverResponseItemUser}
-     * @memberof UploadCollectionCoverResponseItem
-     */
-    'user'?: UploadCollectionCoverResponseItemUser;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadCollectionCoverResponseItem
-     */
-    'view'?: string;
-}
-/**
- * 
- * @export
- * @interface UploadCollectionCoverResponseItemAccess
- */
-export interface UploadCollectionCoverResponseItemAccess {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UploadCollectionCoverResponseItemAccess
-     */
-    'draggable'?: boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof UploadCollectionCoverResponseItemAccess
-     */
-    'for'?: number;
-    /**
-     * 
-     * @type {number}
-     * @memberof UploadCollectionCoverResponseItemAccess
-     */
-    'level'?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UploadCollectionCoverResponseItemAccess
-     */
-    'root'?: boolean;
-}
-/**
- * 
- * @export
- * @interface UploadCollectionCoverResponseItemCreatorRef
- */
-export interface UploadCollectionCoverResponseItemCreatorRef {
-    /**
-     * 
-     * @type {number}
-     * @memberof UploadCollectionCoverResponseItemCreatorRef
-     */
-    '_id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadCollectionCoverResponseItemCreatorRef
-     */
-    'email'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadCollectionCoverResponseItemCreatorRef
-     */
-    'name'?: string;
-}
-/**
- * 
- * @export
- * @interface UploadCollectionCoverResponseItemUser
- */
-export interface UploadCollectionCoverResponseItemUser {
-    /**
-     * 
-     * @type {number}
-     * @memberof UploadCollectionCoverResponseItemUser
-     */
-    '$id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UploadCollectionCoverResponseItemUser
-     */
-    '$ref'?: string;
+    '__v': number;
 }
 /**
  * 
@@ -2934,16 +3241,16 @@ export interface UserFiles {
 export interface UserRef {
     /**
      * 
-     * @type {string}
-     * @memberof UserRef
-     */
-    '$ref': string;
-    /**
-     * 
      * @type {number}
      * @memberof UserRef
      */
     '$id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserRef
+     */
+    '$ref': string;
 }
 /**
  * 
@@ -3389,8 +3696,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Returns JSON-encoded array containing all nested collections (that have positive `parent.$id`)
-         * @summary Get child collections
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3462,8 +3768,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Get collection
-         * @param {number} id Collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3533,8 +3838,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Returns JSON-encoded array containing all root collections.
-         * @summary Get root collections
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3675,7 +3979,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         /**
          * Remove an existing collection and all its descendants.  Raindrops will be moved to \"Trash\" collection
          * @summary Remove collection
-         * @param {number} id Collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3711,8 +4015,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Remove multiple collections at once.  Nested collections are ignored (include ID\'s in ids array to remove them)
-         * @summary Remove multiple collections
+         * 
          * @param {RemoveCollectionsRequest} [removeCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3749,8 +4052,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Updates order of all collections
-         * @summary Reorder all collections
+         * 
          * @param {ReorderAllCollectionsRequest} [reorderAllCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3905,14 +4207,13 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Update an existing collection
-         * @summary Update collection
-         * @param {number} id Collection ID
-         * @param {UpdateCollection} [updateCollection] 
+         * 
+         * @param {number} id 
+         * @param {UpdateCollectionRequest} [updateCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCollection: async (id: number, updateCollection?: UpdateCollection, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateCollection: async (id: number, updateCollectionRequest?: UpdateCollectionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateCollection', 'id', id)
             const localVarPath = `/rest/v1/collection/{id}`
@@ -3939,7 +4240,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(updateCollection, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(updateCollectionRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4071,12 +4372,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Returns JSON-encoded array containing all nested collections (that have positive `parent.$id`)
-         * @summary Get child collections
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getChildCollections(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseMany>> {
+        async getChildCollections(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetChildCollectionsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getChildCollections(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.getChildCollections']?.[localVarOperationServerIndex]?.url;
@@ -4097,12 +4397,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
         },
         /**
          * 
-         * @summary Get collection
-         * @param {number} id Collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCollection(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
+        async getCollection(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCollectionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCollection(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.getCollection']?.[localVarOperationServerIndex]?.url;
@@ -4121,12 +4420,11 @@ export const CollectionApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Returns JSON-encoded array containing all root collections.
-         * @summary Get root collections
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRootCollections(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseMany>> {
+        async getRootCollections(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetRootCollectionsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRootCollections(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.getRootCollections']?.[localVarOperationServerIndex]?.url;
@@ -4172,7 +4470,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
         /**
          * Remove an existing collection and all its descendants.  Raindrops will be moved to \"Trash\" collection
          * @summary Remove collection
-         * @param {number} id Collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4183,26 +4481,24 @@ export const CollectionApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Remove multiple collections at once.  Nested collections are ignored (include ID\'s in ids array to remove them)
-         * @summary Remove multiple collections
+         * 
          * @param {RemoveCollectionsRequest} [removeCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveCollections200Response>> {
+        async removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveCollectionsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeCollections(removeCollectionsRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.removeCollections']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Updates order of all collections
-         * @summary Reorder all collections
+         * 
          * @param {ReorderAllCollectionsRequest} [reorderAllCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async reorderAllCollections(reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async reorderAllCollections(reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimpleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.reorderAllCollections(reorderAllCollectionsRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.reorderAllCollections']?.[localVarOperationServerIndex]?.url;
@@ -4249,15 +4545,14 @@ export const CollectionApiFp = function(configuration?: Configuration) {
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Update an existing collection
-         * @summary Update collection
-         * @param {number} id Collection ID
-         * @param {UpdateCollection} [updateCollection] 
+         * 
+         * @param {number} id 
+         * @param {UpdateCollectionRequest} [updateCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateCollection(id: number, updateCollection?: UpdateCollection, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateCollection(id, updateCollection, options);
+        async updateCollection(id: number, updateCollectionRequest?: UpdateCollectionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCollectionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateCollection(id, updateCollectionRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.updateCollection']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -4339,12 +4634,11 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.emptyTrash(options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns JSON-encoded array containing all nested collections (that have positive `parent.$id`)
-         * @summary Get child collections
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getChildCollections(options?: any): AxiosPromise<CollectionResponseMany> {
+        getChildCollections(options?: any): AxiosPromise<GetChildCollectionsResponse> {
             return localVarFp.getChildCollections(options).then((request) => request(axios, basePath));
         },
         /**
@@ -4359,12 +4653,11 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary Get collection
-         * @param {number} id Collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCollection(id: number, options?: any): AxiosPromise<CollectionResponseOne> {
+        getCollection(id: number, options?: any): AxiosPromise<GetCollectionResponse> {
             return localVarFp.getCollection(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4377,12 +4670,11 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.getFeaturedCovers(options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns JSON-encoded array containing all root collections.
-         * @summary Get root collections
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRootCollections(options?: any): AxiosPromise<CollectionResponseMany> {
+        getRootCollections(options?: any): AxiosPromise<GetRootCollectionsResponse> {
             return localVarFp.getRootCollections(options).then((request) => request(axios, basePath));
         },
         /**
@@ -4416,7 +4708,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
         /**
          * Remove an existing collection and all its descendants.  Raindrops will be moved to \"Trash\" collection
          * @summary Remove collection
-         * @param {number} id Collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4424,23 +4716,21 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.removeCollection(id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Remove multiple collections at once.  Nested collections are ignored (include ID\'s in ids array to remove them)
-         * @summary Remove multiple collections
+         * 
          * @param {RemoveCollectionsRequest} [removeCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: any): AxiosPromise<RemoveCollections200Response> {
+        removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: any): AxiosPromise<RemoveCollectionsResponse> {
             return localVarFp.removeCollections(removeCollectionsRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Updates order of all collections
-         * @summary Reorder all collections
+         * 
          * @param {ReorderAllCollectionsRequest} [reorderAllCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reorderAllCollections(reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options?: any): AxiosPromise<Response> {
+        reorderAllCollections(reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options?: any): AxiosPromise<SimpleResponse> {
             return localVarFp.reorderAllCollections(reorderAllCollectionsRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -4475,15 +4765,14 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.unshareOrLeaveCollection(id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Update an existing collection
-         * @summary Update collection
-         * @param {number} id Collection ID
-         * @param {UpdateCollection} [updateCollection] 
+         * 
+         * @param {number} id 
+         * @param {UpdateCollectionRequest} [updateCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCollection(id: number, updateCollection?: UpdateCollection, options?: any): AxiosPromise<CollectionResponseOne> {
-            return localVarFp.updateCollection(id, updateCollection, options).then((request) => request(axios, basePath));
+        updateCollection(id: number, updateCollectionRequest?: UpdateCollectionRequest, options?: any): AxiosPromise<UpdateCollectionResponse> {
+            return localVarFp.updateCollection(id, updateCollectionRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * It\'s possible to upload cover from desktop. PNG, GIF and JPEG supported
@@ -4569,8 +4858,7 @@ export class CollectionApi extends BaseAPI {
     }
 
     /**
-     * Returns JSON-encoded array containing all nested collections (that have positive `parent.$id`)
-     * @summary Get child collections
+     * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
@@ -4593,8 +4881,7 @@ export class CollectionApi extends BaseAPI {
 
     /**
      * 
-     * @summary Get collection
-     * @param {number} id Collection ID
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
@@ -4615,8 +4902,7 @@ export class CollectionApi extends BaseAPI {
     }
 
     /**
-     * Returns JSON-encoded array containing all root collections.
-     * @summary Get root collections
+     * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
@@ -4662,7 +4948,7 @@ export class CollectionApi extends BaseAPI {
     /**
      * Remove an existing collection and all its descendants.  Raindrops will be moved to \"Trash\" collection
      * @summary Remove collection
-     * @param {number} id Collection ID
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
@@ -4672,8 +4958,7 @@ export class CollectionApi extends BaseAPI {
     }
 
     /**
-     * Remove multiple collections at once.  Nested collections are ignored (include ID\'s in ids array to remove them)
-     * @summary Remove multiple collections
+     * 
      * @param {RemoveCollectionsRequest} [removeCollectionsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4684,8 +4969,7 @@ export class CollectionApi extends BaseAPI {
     }
 
     /**
-     * Updates order of all collections
-     * @summary Reorder all collections
+     * 
      * @param {ReorderAllCollectionsRequest} [reorderAllCollectionsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -4733,16 +5017,15 @@ export class CollectionApi extends BaseAPI {
     }
 
     /**
-     * Update an existing collection
-     * @summary Update collection
-     * @param {number} id Collection ID
-     * @param {UpdateCollection} [updateCollection] 
+     * 
+     * @param {number} id 
+     * @param {UpdateCollectionRequest} [updateCollectionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public updateCollection(id: number, updateCollection?: UpdateCollection, options?: RawAxiosRequestConfig) {
-        return CollectionApiFp(this.configuration).updateCollection(id, updateCollection, options).then((request) => request(this.axios, this.basePath));
+    public updateCollection(id: number, updateCollectionRequest?: UpdateCollectionRequest, options?: RawAxiosRequestConfig) {
+        return CollectionApiFp(this.configuration).updateCollection(id, updateCollectionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

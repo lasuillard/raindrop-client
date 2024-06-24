@@ -120,7 +120,7 @@ paths:
                   refresh_token: c8080368-fad2-4a9f-b2c9-73d3z850111b
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -142,54 +142,38 @@ paths:
       operationId: getRootCollections
       tags:
         - collection
-      summary: Get root collections
-      description: Returns JSON-encoded array containing all root collections.
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CollectionResponseMany"
+                $ref: "#/components/schemas/GetRootCollectionsResponse"
     put:
       operationId: reorderAllCollections
       tags:
         - collection
-      summary: Reorder all collections
-      description: Updates order of all collections
       requestBody:
         content:
           application/json:
             schema:
-              oneOf:
-                - type: object
-                  properties:
-                    sort:
-                      $ref: "#/components/schemas/SortBy"
-                - type: object
-                  properties:
-                    expanded:
-                      type: boolean
-                      description: |-
-                        TRUE = expand all
-
-                        FALSE = collapse all
+              type: object
+              properties:
+                sort:
+                  type: string
+                expanded:
+                  type: boolean
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Response"
+                $ref: "#/components/schemas/SimpleResponse"
     delete:
       operationId: removeCollections
       tags:
         - collection
-      summary: Remove multiple collections
-      description: |-
-        Remove multiple collections at once.
-
-        Nested collections are ignored (include ID's in ids array to remove them)
       requestBody:
         content:
           application/json:
@@ -200,42 +184,30 @@ paths:
                 ids:
                   type: array
                   items:
-                    $ref: "#/components/schemas/CollectionID"
+                    type: number
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: "#/components/schemas/Response"
-                  - type: object
-                    properties:
-                      ids:
-                        type: array
-                        items:
-                          type: integer
-                      modified:
-                        type: integer
+                $ref: "#/components/schemas/RemoveCollectionsResponse"
   /rest/v1/collections/childrens:
     get:
       operationId: getChildCollections
       tags:
         - collection
-      summary: Get child collections
-      description: Returns JSON-encoded array containing all nested collections (that have positive `parent.$id`)
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CollectionResponseMany"
+                $ref: "#/components/schemas/GetChildCollectionsResponse"
   /rest/v1/collection/{id}:
     parameters:
       - name: id
         in: path
-        description: Collection ID
         required: true
         schema:
           $ref: "#/components/schemas/CollectionID"
@@ -243,32 +215,29 @@ paths:
       operationId: getCollection
       tags:
         - collection
-      summary: Get collection
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CollectionResponseOne"
+                $ref: "#/components/schemas/GetCollectionResponse"
     put:
       operationId: updateCollection
       tags:
         - collection
-      summary: Update collection
-      description: Update an existing collection
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/UpdateCollection"
+              $ref: "#/components/schemas/UpdateCollectionRequest"
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CollectionResponseOne"
+                $ref: "#/components/schemas/UpdateCollectionResponse"
     delete:
       operationId: removeCollection
       tags:
@@ -280,7 +249,7 @@ paths:
         Raindrops will be moved to "Trash" collection
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -299,7 +268,7 @@ paths:
               $ref: "#/components/schemas/CreateCollection"
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -340,7 +309,7 @@ paths:
                   format: binary
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -366,7 +335,7 @@ paths:
                     $ref: "#/components/schemas/CollectionID"
       responses:
         200:
-          description: Success
+          description: OK
   /rest/v1/collections/clean:
     put:
       operationId: removeAllEmptyCollections
@@ -375,7 +344,7 @@ paths:
       summary: Remove all empty collections
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -395,7 +364,7 @@ paths:
       summary: Empty Trash
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -409,7 +378,7 @@ paths:
       summary: Get system collections count
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -429,7 +398,7 @@ paths:
         - collection
       responses:
         200:
-          description: Success
+          description: OK
     post:
       operationId: shareCollection
       tags:
@@ -455,7 +424,7 @@ paths:
                     format: email
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -520,7 +489,7 @@ paths:
         - Member or viewer: authenticated user will be removed from collaborators list
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -554,7 +523,7 @@ paths:
                   $ref: "#/components/schemas/Role"
       responses:
         200:
-          description: Success
+          description: OK
     delete:
       operationId: deleteCollaborator
       tags:
@@ -563,7 +532,7 @@ paths:
       description: Remove an user from shared collection
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -584,7 +553,7 @@ paths:
             $ref: "#/components/schemas/CollectionID"
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -632,7 +601,7 @@ paths:
             type: string
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -645,7 +614,7 @@ paths:
       summary: Featured covers
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -663,7 +632,7 @@ paths:
               $ref: "#/components/schemas/CreateRaindrop"
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -684,7 +653,7 @@ paths:
       summary: Get raindrop
       responses:
         200:
-          description: Success
+          description: OK
     put:
       operationId: updateRaindrop
       tags:
@@ -698,7 +667,7 @@ paths:
               $ref: "#/components/schemas/CreateRaindrop"
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -711,7 +680,7 @@ paths:
       description: When you remove raindrop it will be moved to user Trash collection. But if you try to remove raindrop from Trash, it will be removed permanently.
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -738,7 +707,7 @@ paths:
                   description: Collection Id
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -791,7 +760,7 @@ paths:
                   description: File
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -834,7 +803,7 @@ paths:
             type: integer
       responses:
         307:
-          description: Success
+          description: OK
           headers:
             Location:
               schema:
@@ -856,7 +825,7 @@ paths:
                   type: string
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -876,7 +845,7 @@ paths:
             type: integer
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -913,7 +882,7 @@ paths:
             type: string
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -971,7 +940,7 @@ paths:
                       type: integer
       responses:
         200:
-          description: Success
+          description: OK
     delete:
       operationId: removeRaindrops
       tags:
@@ -997,7 +966,7 @@ paths:
                     type: integer
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1028,7 +997,7 @@ paths:
                     $ref: "#/components/schemas/CreateRaindrop"
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1080,7 +1049,7 @@ paths:
             type: integer
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1094,7 +1063,7 @@ paths:
       description: Get currently authenticated user details
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1134,7 +1103,7 @@ paths:
                   type: string
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1182,7 +1151,7 @@ paths:
             type: integer
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1246,7 +1215,7 @@ paths:
             enum: [facebook, google, twitter, vkontate, dropbox, gdrive]
       responses:
         200:
-          description: Success
+          description: OK
   /rest/v1/tags/{collectionId}:
     get:
       operationId: getTagsInCollection
@@ -1262,7 +1231,7 @@ paths:
             type: integer
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1309,7 +1278,7 @@ paths:
                     type: string
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1339,7 +1308,7 @@ paths:
                     type: string
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1370,7 +1339,7 @@ paths:
             type: string
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1391,7 +1360,7 @@ paths:
             format: uri
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1465,7 +1434,7 @@ paths:
                     description: URL's
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1509,7 +1478,7 @@ paths:
                   description: File
       responses:
         200:
-          description: Success
+          description: OK
           content:
             application/json:
               schema:
@@ -1604,109 +1573,6 @@ components:
           type: integer
         errorMessage:
           type: string
-    Collection:
-      type: object
-      required:
-        [
-          _id,
-          access,
-          collaborators,
-          color,
-          count,
-          cover,
-          created,
-          expanded,
-          lastUpdate,
-          public,
-          sort,
-          title,
-          user,
-          view,
-        ]
-      properties:
-        _id:
-          type: integer
-          description: The id of the collection.
-        access:
-          type: object
-          required: [level, draggable]
-          properties:
-            level:
-              type: integer
-              enum: [1, 2, 3, 4]
-              description: |-
-                1. read only access (equal to public=true)
-                2. collaborator with read only access
-                3. collaborator with write only access
-                4. owner
-            draggable:
-              type: boolean
-              description: Does it possible to change parent of this collection?
-            for:
-              type: number
-            root:
-              type: boolean
-        count:
-          type: integer
-          description: Count of raindrops in collection
-        cover:
-          type: array
-          description: Collection cover URL. This array always have one item due to legacy reasons
-          items:
-            type: string
-            format: uri
-        created:
-          type: string
-          description: When collection is created
-          format: date-time
-        expanded:
-          type: boolean
-          description: Whether the collection’s sub-collections are expanded
-        lastUpdate:
-          type: string
-          description: When collection is updated
-          format: date-time
-        parent:
-          $ref: "#/components/schemas/CollectionRef"
-        public:
-          type: boolean
-          description: Collection and raindrops that it contains will be accessible without authentication by public link
-        sort:
-          $ref: "#/components/schemas/Sort"
-        title:
-          type: string
-          description: Name of the collection
-        description:
-          type: string
-        user:
-          allOf:
-            - $ref: "#/components/schemas/UserRef"
-            - properties:
-                $id:
-                  type: integer
-                  description: Owner ID
-        view:
-          $ref: "#/components/schemas/View"
-        creatorRef:
-          oneOf:
-            - type: number
-            - type: object
-              properties:
-                _id:
-                  type: number
-                name:
-                  type: string
-                email:
-                  type: string
-        lastAction:
-          type: string
-          format: date-time
-        slug:
-          type: string
-        author:
-          type: boolean
-        __v:
-          type: number
 
     CollectionResponseOne:
       allOf:
@@ -1745,15 +1611,6 @@ components:
           items:
             type: string
             format: uri
-    UpdateCollection:
-      allOf:
-        - $ref: "#/components/schemas/CreateCollection"
-        - type: object
-          required: [expanded]
-          properties:
-            expanded:
-              type: boolean
-              description: "Whether the collection`s sub-collections are expanded"
     StatResponse:
       type: object
       allOf:
@@ -2388,38 +2245,7 @@ components:
     Role:
       type: string
       enum: [member, viewer]
-    CollectionRef:
-      type: object
-      required: [$ref, $id]
-      properties:
-        $ref:
-          type: string
-          enum: [collections]
-        $id:
-          type: integer
-          description: The id of the parent collection. Not specified for root collections
-        oid:
-          type: integer
-    UserRef:
-      type: object
-      required: [$ref, $id]
-      properties:
-        $ref:
-          type: string
-        $id:
-          type: integer
-    CreatorRef:
-      type: object
-      required: [_id, avatar, name, email]
-      properties:
-        _id:
-          type: integer
-        avatar:
-          type: string
-        name:
-          type: string
-        email:
-          type: string
+
     MD5:
       type: string
 
@@ -2440,15 +2266,225 @@ components:
               $ref: "#/components/schemas/UrlParse"
 
     # TODO: Re-declare schema per API responses rather than making it reusable
-    # TODO: GetRootCollectionsResponse
-    # TODO: GetRootCollectionsResponse
-    # TODO: ReorderAllCollectionsResponse
-    # TODO: RemoveCollectionsResponse
-    # TODO: GetChildCollectionsResponse
-    # TODO: GetCollectionResponse
-    # TODO: UpdateCollectionResponse
-    # TODO: RemoveCollectionResponse
-    # TODO: CreateCollectionResponse
+    UserRef:
+      type: object
+      required: [$id, $ref]
+      properties:
+        $id:
+          type: integer
+        $ref:
+          type: string
+
+    CreatorRef:
+      type: object
+      required: [_id, email, name]
+      properties:
+        _id:
+          type: integer
+        email:
+          type: string
+        name:
+          type: string
+
+    CollectionRef:
+      type: object
+      required: [$ref, $id]
+      properties:
+        $ref:
+          type: string
+          enum: [collections]
+        $id:
+          type: integer
+        oid:
+          type: integer
+
+    CollectionAccess:
+      type: object
+      required: [draggable, for, level, root]
+      properties:
+        draggable:
+          type: boolean
+        for:
+          type: integer
+        level:
+          type: integer
+        root:
+          type: boolean
+
+    Collection:
+      type: object
+      required: [
+          _id,
+          title,
+          description,
+          user,
+          parent,
+          public,
+          view,
+          count,
+          cover,
+          sort,
+          expanded,
+          creatorRef,
+          lastAction,
+          created,
+          lastUpdate,
+          slug,
+          # If cover image exists
+          # color,
+          access,
+          author,
+        ]
+      properties:
+        _id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        user:
+          $ref: "#/components/schemas/UserRef"
+        public:
+          type: boolean
+        view:
+          type: string
+        count:
+          type: integer
+        cover:
+          type: array
+          items:
+            type: string
+        sort:
+          type: integer
+        expanded:
+          type: boolean
+        creatorRef:
+          $ref: "#/components/schemas/CreatorRef"
+        lastAction:
+          type: string
+          format: date-time
+        created:
+          type: string
+          format: date-time
+        lastUpdate:
+          type: string
+          format: date-time
+        slug:
+          type: string
+        color:
+          type: string
+        access:
+          $ref: "#/components/schemas/CollectionAccess"
+        author:
+          type: boolean
+
+    SimpleResponse:
+      type: object
+      required: [result]
+      properties:
+        result:
+          type: boolean
+
+    GetRootCollectionsResponse:
+      type: object
+      required: [result, items]
+      properties:
+        result:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/Collection"
+
+    RemoveCollectionsResponse:
+      type: object
+      required: [result, modified, ids]
+      properties:
+        result:
+          type: boolean
+        modified:
+          type: integer
+        ids:
+          type: array
+          items:
+            type: integer
+
+    GetChildCollectionsResponse:
+      type: object
+      required: [result, items]
+      properties:
+        result:
+          type: boolean
+        items:
+          type: array
+          items:
+            allOf:
+              - $ref: "#/components/schemas/Collection"
+              - type: object
+                required: [parent]
+                properties:
+                  parent:
+                    $ref: "#/components/schemas/CollectionRef"
+
+    GetCollectionResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+        item:
+          $ref: "#/components/schemas/Collection"
+
+    UpdateCollectionRequest:
+      type: object
+      properties:
+        view:
+          type: string
+        title:
+          type: string
+        sort:
+          type: integer
+        public:
+          type: boolean
+          description: "Collection and raindrops that it contains will be accessible without authentication?"
+        parent:
+          $ref: "#/components/schemas/CollectionRef"
+        cover:
+          type: array
+          items:
+            type: string
+            format: uri
+        expanded:
+          type: boolean
+
+    UpdateCollectionResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+        item:
+          allOf:
+            - $ref: "#/components/schemas/Collection"
+            - type: object
+              required: [__v]
+              properties:
+                __v:
+                  type: integer
+
+    CreateCollectionResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+        item:
+          allOf:
+            - $ref: "#/components/schemas/Collection"
+            - type: object
+              required: [__v]
+              properties:
+                __v:
+                  type: integer
+                creatorRef:
+                  type: integer
 
     UploadCollectionCoverResponse:
       type: object
@@ -2456,69 +2492,10 @@ components:
         result:
           type: boolean
         item:
-          type: object
-          properties:
-            __v:
-              type: integer
-            _id:
-              type: integer
-            access:
-              type: object
+          allOf:
+            - type: object
+              required: [__v]
               properties:
-                draggable:
-                  type: boolean
-                for:
+                __v:
                   type: integer
-                level:
-                  type: integer
-                root:
-                  type: boolean
-            author:
-              type: boolean
-            color:
-              type: string
-            count:
-              type: integer
-            cover:
-              type: array
-              items:
-                type: string
-            created:
-              type: string
-              format: date-time
-            creatorRef:
-              type: object
-              properties:
-                _id:
-                  type: integer
-                email:
-                  type: string
-                name:
-                  type: string
-            description:
-              type: string
-            expanded:
-              type: boolean
-            lastAction:
-              type: string
-              format: date-time
-            lastUpdate:
-              type: string
-              format: date-time
-            public:
-              type: boolean
-            slug:
-              type: string
-            sort:
-              type: integer
-            title:
-              type: string
-            user:
-              type: object
-              properties:
-                $id:
-                  type: integer
-                $ref:
-                  type: string
-            view:
-              type: string
+            - $ref: "#/components/schemas/Collection"

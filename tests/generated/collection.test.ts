@@ -1,19 +1,63 @@
 import fs from "node:fs";
 import path from "node:path";
 import { it } from "^/tests/_helpers/vitest";
+import type { Task } from "vitest";
+import type { Raindrop } from "~/client";
+import type { CollectionResponseOne } from "~/generated";
 
 // TODO: Refactor repeated test codes (e.g. test data creation); name from test ID
 // TODO: Name file of recordings, typechecks to test name (they won't duplicate as OpenAPI operation ID should unique)
 // TODO: Address type errors
 
-it("getRootCollections", async ({ client, expect, generateTypeTest }) => {
+// Global counter for unique collection name (if test create multiple collections)
+let _counter = 0;
+
+// Helper function to create collection
+async function createCollection(
+	task: Task,
+	client: Raindrop,
+	args?: object,
+): Promise<CollectionResponseOne> {
+	const response = await client.collection.createCollection({
+		view: "list",
+		title: `${task.name}_${_counter++}`,
+		sort: 0,
+		public: false,
+		parent: {
+			$ref: "collections",
+			$id: 0,
+			oid: 0,
+		},
+		cover: [],
+		...(args || {}),
+	});
+	return response.data;
+}
+
+it("getRootCollections", async ({
+	task,
+	client,
+	expect,
+	generateTypeTest,
+	resetData: _,
+}) => {
+	await Promise.all([
+		createCollection(task, client),
+		createCollection(task, client, {
+			cover: [
+				"https://png.pngtree.com/png-vector/20221217/ourmid/pngtree-example-sample-grungy-stamp-vector-png-image_15560590.png",
+			],
+		}),
+	]);
+
 	const response = await client.collection.getRootCollections();
-	generateTypeTest({ type: "CollectionResponseMany" });
+
+	generateTypeTest({ type: "GetRootCollectionsResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "items": [
 		    {
-		      "_id": 44887441,
+		      "_id": 45402789,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -23,7 +67,7 @@ it("getRootCollections", async ({ client, expect, generateTypeTest }) => {
 		      "author": true,
 		      "count": 0,
 		      "cover": [],
-		      "created": "2024-06-07T13:21:31.633Z",
+		      "created": "2024-06-24T13:47:14.393Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -31,12 +75,46 @@ it("getRootCollections", async ({ client, expect, generateTypeTest }) => {
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-06-07T13:21:31.633Z",
-		      "lastUpdate": "2024-06-07T13:21:31.633Z",
-		      "public": true,
-		      "slug": "create-collection",
+		      "lastAction": "2024-06-24T13:47:14.393Z",
+		      "lastUpdate": "2024-06-24T13:47:14.393Z",
+		      "public": false,
+		      "slug": "get-root-collections-0",
 		      "sort": 0,
-		      "title": "createCollection",
+		      "title": "getRootCollections_0",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		      "view": "list",
+		    },
+		    {
+		      "_id": 45402790,
+		      "access": {
+		        "draggable": true,
+		        "for": 2067190,
+		        "level": 4,
+		        "root": false,
+		      },
+		      "author": true,
+		      "color": "#da1f26",
+		      "count": 0,
+		      "cover": [
+		        "https://up.raindrop.io/collection/thumbs/454/027/90/e0baf93e1f297abd2c2baabee2ec3cc1.png",
+		      ],
+		      "created": "2024-06-24T13:47:14.443Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "description": "",
+		      "expanded": true,
+		      "lastAction": "2024-06-24T13:47:14.443Z",
+		      "lastUpdate": "2024-06-24T13:47:14.443Z",
+		      "public": false,
+		      "slug": "get-root-collections-1",
+		      "sort": 0,
+		      "title": "getRootCollections_1",
 		      "user": {
 		        "$id": 2067190,
 		        "$ref": "users",
@@ -49,9 +127,15 @@ it("getRootCollections", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("reorderAllCollections", async ({ client, expect, generateTypeTest }) => {
+it("reorderAllCollections", async ({
+	client,
+	expect,
+	generateTypeTest,
+	resetData: _,
+}) => {
 	const response = await client.collection.reorderAllCollections();
-	generateTypeTest({ type: "Response" });
+
+	generateTypeTest({ type: "SimpleResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "result": true,
@@ -59,29 +143,24 @@ it("reorderAllCollections", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("removeCollections", async ({ client, expect, generateTypeTest }) => {
-	const collection = await client.collection.createCollection({
-		view: "list",
-		title: "removeCollections",
-		sort: 0,
-		public: true,
-		parent: {
-			$ref: "collections",
-			$id: 0,
-			oid: 0,
-		},
-		cover: ["string"],
-	});
+it("removeCollections", async ({
+	task,
+	client,
+	expect,
+	generateTypeTest,
+	resetData: _,
+}) => {
+	const collection = await createCollection(task, client);
 
 	const response = await client.collection.removeCollections({
 		// biome-ignore lint/style/noNonNullAssertion: PASS
-		ids: [collection.data.item!._id],
+		ids: [collection.item!._id],
 	});
-	generateTypeTest({ type: "RemoveCollections200Response" });
+	generateTypeTest({ type: "RemoveCollectionsResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "ids": [
-		    44887480,
+		    45402791,
 		  ],
 		  "modified": 1,
 		  "result": true,
@@ -89,40 +168,29 @@ it("removeCollections", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("getChildCollections", async ({ client, expect, generateTypeTest }) => {
-	const parent = await client.collection.createCollection({
-		view: "list",
-		title: "createCollection",
-		sort: 0,
-		public: true,
-		parent: {
-			$ref: "collections",
-			$id: 0,
-			oid: 0,
-		},
-		cover: [],
-	});
-	await client.collection.createCollection({
-		view: "list",
-		title: "nestedCollection",
-		sort: 0,
-		public: true,
+it("getChildCollections", async ({
+	task,
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const parent = await createCollection(task, client);
+	await createCollection(task, client, {
 		parent: {
 			$ref: "collections",
 			// biome-ignore lint/style/noNonNullAssertion: PASS
-			$id: parent.data.item!._id,
+			$id: parent.item!._id,
 			oid: 0,
 		},
-		cover: [],
 	});
 
 	const response = await client.collection.getChildCollections();
-	generateTypeTest({ type: "CollectionResponseMany" });
+	generateTypeTest({ type: "GetChildCollectionsResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "items": [
 		    {
-		      "_id": 44998269,
+		      "_id": 45402793,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -132,7 +200,7 @@ it("getChildCollections", async ({ client, expect, generateTypeTest }) => {
 		      "author": true,
 		      "count": 0,
 		      "cover": [],
-		      "created": "2024-06-10T12:28:58.050Z",
+		      "created": "2024-06-24T13:47:19.304Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -140,16 +208,16 @@ it("getChildCollections", async ({ client, expect, generateTypeTest }) => {
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-06-10T12:28:58.050Z",
-		      "lastUpdate": "2024-06-10T12:28:58.050Z",
+		      "lastAction": "2024-06-24T13:47:19.303Z",
+		      "lastUpdate": "2024-06-24T13:47:19.304Z",
 		      "parent": {
-		        "$id": 44998268,
+		        "$id": 45402792,
 		        "$ref": "collections",
 		      },
-		      "public": true,
-		      "slug": "nested-collection",
+		      "public": false,
+		      "slug": "get-child-collections-4",
 		      "sort": 0,
-		      "title": "nestedCollection",
+		      "title": "getChildCollections_4",
 		      "user": {
 		        "$id": 2067190,
 		        "$ref": "users",
@@ -162,7 +230,12 @@ it("getChildCollections", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("getCollection", async ({ client, expect, generateTypeTest }) => {
+it("getCollection", async ({
+	client,
+	expect,
+	generateTypeTest,
+	resetData: _,
+}) => {
 	const existing = await client.collection.createCollection({
 		view: "list",
 		title: "testCollection",
@@ -174,11 +247,11 @@ it("getCollection", async ({ client, expect, generateTypeTest }) => {
 		// biome-ignore lint/style/noNonNullAssertion: PASS
 		existing.data.item!._id,
 	);
-	generateTypeTest({ type: "CollectionResponseOne" });
+	generateTypeTest({ type: "GetCollectionResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
-		    "_id": 45134170,
+		    "_id": 45402794,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -188,7 +261,7 @@ it("getCollection", async ({ client, expect, generateTypeTest }) => {
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-06-14T14:34:58.438Z",
+		    "created": "2024-06-24T13:47:21.119Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -196,8 +269,8 @@ it("getCollection", async ({ client, expect, generateTypeTest }) => {
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-14T14:34:58.437Z",
-		    "lastUpdate": "2024-06-14T14:34:58.438Z",
+		    "lastAction": "2024-06-24T13:47:21.118Z",
+		    "lastUpdate": "2024-06-24T13:47:21.119Z",
 		    "public": true,
 		    "slug": "test-collection",
 		    "sort": 0,
@@ -213,7 +286,12 @@ it("getCollection", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("updateCollection", async ({ client, expect, generateTypeTest }) => {
+it("updateCollection", async ({
+	client,
+	expect,
+	generateTypeTest,
+	resetData: _,
+}) => {
 	const existing = await client.collection.createCollection({
 		view: "list",
 		title: "testCollection",
@@ -233,12 +311,12 @@ it("updateCollection", async ({ client, expect, generateTypeTest }) => {
 			expanded: true,
 		},
 	);
-	generateTypeTest({ type: "CollectionResponseOne" });
+	generateTypeTest({ type: "UpdateCollectionResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
 		    "__v": 1,
-		    "_id": 45246529,
+		    "_id": 45402795,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -250,7 +328,7 @@ it("updateCollection", async ({ client, expect, generateTypeTest }) => {
 		    "cover": [
 		      "",
 		    ],
-		    "created": "2024-06-18T14:06:51.564Z",
+		    "created": "2024-06-24T13:47:22.893Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -258,8 +336,8 @@ it("updateCollection", async ({ client, expect, generateTypeTest }) => {
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-18T14:06:51.563Z",
-		    "lastUpdate": "2024-06-18T14:06:52.034Z",
+		    "lastAction": "2024-06-24T13:47:22.893Z",
+		    "lastUpdate": "2024-06-24T13:47:23.376Z",
 		    "public": true,
 		    "slug": "updated-collection",
 		    "sort": 0,
@@ -275,7 +353,12 @@ it("updateCollection", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("removeCollection", async ({ client, expect, generateTypeTest }) => {
+it("removeCollection", async ({
+	client,
+	expect,
+	generateTypeTest,
+	resetData: _,
+}) => {
 	const existing = await client.collection.createCollection({
 		view: "list",
 		title: "testCollection",
@@ -287,7 +370,7 @@ it("removeCollection", async ({ client, expect, generateTypeTest }) => {
 		// biome-ignore lint/style/noNonNullAssertion: PASS
 		existing.data.item!._id,
 	);
-	generateTypeTest({ type: "Response" });
+	generateTypeTest({ type: "SimpleResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "result": true,
@@ -295,7 +378,12 @@ it("removeCollection", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("createCollection", async ({ client, expect, generateTypeTest }) => {
+it("createCollection", async ({
+	client,
+	expect,
+	generateTypeTest,
+	resetData: _,
+}) => {
 	const response = await client.collection.createCollection({
 		view: "list",
 		title: "createCollectionTest",
@@ -303,12 +391,12 @@ it("createCollection", async ({ client, expect, generateTypeTest }) => {
 		public: true,
 		cover: [],
 	});
-	generateTypeTest({ type: "CollectionResponseOne" });
+	generateTypeTest({ type: "CreateCollectionResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
 		    "__v": 0,
-		    "_id": 45303655,
+		    "_id": 45402797,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -318,12 +406,12 @@ it("createCollection", async ({ client, expect, generateTypeTest }) => {
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-06-20T13:29:44.641Z",
+		    "created": "2024-06-24T13:47:26.691Z",
 		    "creatorRef": 2067190,
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-20T13:29:44.641Z",
-		    "lastUpdate": "2024-06-20T13:29:44.641Z",
+		    "lastAction": "2024-06-24T13:47:26.690Z",
+		    "lastUpdate": "2024-06-24T13:47:26.691Z",
 		    "public": true,
 		    "slug": "create-collection-test",
 		    "sort": 0,

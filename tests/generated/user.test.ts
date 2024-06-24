@@ -14,7 +14,9 @@ it("getCurrentUser", async ({ client, expect, generateTypeTest }) => {
 		    "_id": 2067190,
 		    "avatar": "",
 		    "config": {
-		      "acknowledge": [],
+		      "acknowledge": [
+		        "onboard_upgrade",
+		      ],
 		      "add_default_collection": -1,
 		      "ai_suggestions": true,
 		      "broken_level": "default",
@@ -53,9 +55,9 @@ it("getCurrentUser", async ({ client, expect, generateTypeTest }) => {
 		        "title": "Collections",
 		      },
 		    ],
-		    "lastAction": "2024-06-07T13:21:32.200Z",
-		    "lastUpdate": "2024-06-07T13:24:21.074Z",
-		    "lastVisit": "2024-06-07T13:24:21.074Z",
+		    "lastAction": "2024-06-24T13:34:48.320Z",
+		    "lastUpdate": "2024-06-24T13:34:48.320Z",
+		    "lastVisit": "2024-06-24T11:44:19.210Z",
 		    "name": "miyil99106",
 		    "password": true,
 		    "pro": false,
