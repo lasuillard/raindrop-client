@@ -1,3 +1,4 @@
+import { exec } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import type { Use } from "@vitest/runner";
@@ -53,9 +54,7 @@ export async function generateTypeTest(
 	await use(hookFn);
 }
 
-// TODO: Run formatter on generated codes
-// TODO: Checkout generated typechecks to VCS
-function generateTest(dir: string, item: CreateTest) {
+function generateTest(dir: string, item: CreateTest): string {
 	const filepath = path.join(dir, `${item.testId}.test-d.ts`);
 	const content = `\
 import { assertType, it } from 'vitest';
@@ -69,6 +68,8 @@ it('${item.testId}', () => {
 `;
 	console.debug(`Will generate file ${filepath} with content: \n\n ${content}`);
 	fs.writeFileSync(filepath, content);
+
+	return filepath;
 }
 
 export function generateAllTests() {
@@ -76,6 +77,14 @@ export function generateAllTests() {
 	if (!fs.existsSync(dir)) fs.mkdirSync(dir);
 
 	for (const spec of filesToCreate) {
-		generateTest(dir, spec);
+		const filepath = generateTest(dir, spec);
+		exec(`yarn run biome check --write ${filepath}`, (err, stdout, stderr) => {
+			if (err) {
+				console.error(stderr);
+				process.exit(1);
+			}
+
+			console.log(stdout);
+		});
 	}
 }
