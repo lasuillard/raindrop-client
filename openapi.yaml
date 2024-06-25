@@ -2197,3 +2197,36 @@ components:
                     png:
                       type: string
                       format: uri
+
+    GetFiltersResponse:
+      type: object
+      required: [collectionId, created, result, tags, types]
+      properties:
+        result:
+          type: boolean
+        collectionId:
+          type: integer
+        created:
+          type: array
+        tags:
+          type: array
+        types:
+          type: array
+
+    GetAllHighlightsResponse:
+      type: object
+      required: [result, items]
+      properties:
+        result:
+          type: boolean
+        items:
+          type: array
+
+    getHighlightsInCollectionResponse:
+      type: object
+      required: [result, items]
+      properties:
+        result:
+          type: boolean
+        items:
+          type: array

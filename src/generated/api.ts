@@ -889,6 +889,25 @@ export interface Folder {
 /**
  * 
  * @export
+ * @interface GetAllHighlightsResponse
+ */
+export interface GetAllHighlightsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetAllHighlightsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GetAllHighlightsResponse
+     */
+    'items': Array<string>;
+}
+/**
+ * 
+ * @export
  * @interface GetChildCollectionsResponse
  */
 export interface GetChildCollectionsResponse {
@@ -1094,6 +1113,62 @@ export interface GetFeaturedCoversResponseItemsInner {
      * @memberof GetFeaturedCoversResponseItemsInner
      */
     'icons': Array<SearchCoversResponseItemsInnerIconsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface GetFiltersResponse
+ */
+export interface GetFiltersResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetFiltersResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetFiltersResponse
+     */
+    'collectionId': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GetFiltersResponse
+     */
+    'created': Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GetFiltersResponse
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GetFiltersResponse
+     */
+    'types': Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface GetHighlightsInCollectionResponse
+ */
+export interface GetHighlightsInCollectionResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetHighlightsInCollectionResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GetHighlightsInCollectionResponse
+     */
+    'items': Array<string>;
 }
 /**
  * @type GetOrRefreshToken200Response
