@@ -313,14 +313,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  result:
-                    type: boolean
-                    example: true
-                  count:
-                    type: integer
-                    example: 3
+                $ref: "#/components/schemas/RemoveAllEmptyCollectionsResponse"
 
   /rest/v1/collection/-99:
     delete:
@@ -333,7 +326,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Response"
+                $ref: "#/components/schemas/SimpleResponse"
 
   /rest/v1/user/stats:
     get:
@@ -347,7 +340,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/StatResponse"
+                $ref: "#/components/schemas/GetSystemCollectionStatsResponse"
 
   /rest/v1/collection/{id}/sharing:
     parameters:
@@ -501,7 +494,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CoverResponse"
+                $ref: "#/components/schemas/GetFeaturedCoversResponse"
 
   /rest/v1/raindrop:
     post:
@@ -2107,3 +2100,77 @@ components:
           type: array
           items:
             type: integer
+
+    RemoveAllEmptyCollectionsResponse:
+      type: object
+      required: [result, count]
+      properties:
+        result:
+          type: boolean
+        count:
+          type: integer
+
+    GetSystemCollectionStatsResponse:
+      type: object
+      required: [result, items, meta]
+      properties:
+        result:
+          type: boolean
+        items:
+          type: array
+          items:
+            type: object
+            required: [count, _id]
+            properties:
+              count:
+                type: integer
+              _id:
+                type: integer
+        meta:
+          type: object
+          required: [pro, _id, changedBookmarksDate]
+          properties:
+            _id:
+              type: integer
+            pro:
+              type: boolean
+            changedBookmarksDate:
+              type: string
+              format: date-time
+
+    # GetCollaboratorsResponse
+    # ShareCollectionResponse
+    # UnshareOrLeaveCollectionResponse
+    # ChangeCollaboratorAccessLevelResponse
+    # DeleteCollaboratorResponse
+    # AcceptInvitationResponse
+    # SearchCoversResponse
+
+    GetFeaturedCoversResponse:
+      type: object
+      required: [result, items]
+      properties:
+        result:
+          type: boolean
+        items:
+          type: array
+          items:
+            type: object
+            required: [title, icons]
+            properties:
+              title:
+                type: string
+              link:
+                type: string
+                format: uri
+              sort:
+                type: integer
+              icons:
+                type: array
+                items:
+                  type: object
+                  required: [png]
+                  properties:
+                    png:
+                      type: string
+                      format: uri

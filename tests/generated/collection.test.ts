@@ -431,12 +431,12 @@ it("mergeCollections", async ({ task, client, expect, generateTypeTest }) => {
 	const two = await createCollection(task, client);
 	const three = await createCollection(task, client);
 
-	generateTypeTest({ type: "MergeCollectionsResponse" });
 	const response = await client.collection.mergeCollections({
 		ids: [one.item._id, two.item._id],
 		to: three.item._id,
 	});
 
+	generateTypeTest({ type: "MergeCollectionsResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "ids": [
@@ -449,9 +449,63 @@ it("mergeCollections", async ({ task, client, expect, generateTypeTest }) => {
 	`);
 });
 
-it.todo("removeAllEmptyCollections");
-it.todo("emptyTrash");
-it.todo("getSystemCollectionStats");
+it("removeAllEmptyCollections", async ({
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const response = await client.collection.removeAllEmptyCollections();
+
+	generateTypeTest({ type: "RemoveAllEmptyCollectionsResponse" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "count": 8,
+		  "result": true,
+		}
+	`);
+});
+
+it("emptyTrash", async ({ client, expect, generateTypeTest }) => {
+	const response = await client.collection.emptyTrash();
+
+	generateTypeTest({ type: "SimpleResponse" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "result": true,
+		}
+	`);
+});
+
+it("getSystemCollectionStats", async ({ client, expect, generateTypeTest }) => {
+	const response = await client.collection.getSystemCollectionStats();
+
+	generateTypeTest({ type: "GetSystemCollectionStatsResponse" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "items": [
+		    {
+		      "_id": 0,
+		      "count": 0,
+		    },
+		    {
+		      "_id": -1,
+		      "count": 0,
+		    },
+		    {
+		      "_id": -99,
+		      "count": 0,
+		    },
+		  ],
+		  "meta": {
+		    "_id": 2067190,
+		    "changedBookmarksDate": "2024-06-25T12:10:22.598Z",
+		    "pro": false,
+		  },
+		  "result": true,
+		}
+	`);
+});
+
 it.todo("getCollaborators");
 it.todo("shareCollection");
 it.todo("unshareOrLeaveCollection");
@@ -459,4 +513,10 @@ it.todo("changeCollaboratorAccessLevel");
 it.todo("deleteCollaborator");
 it.todo("acceptInvitation");
 it.todo("searchCovers");
-it.todo("getFeaturedCovers");
+
+it("getFeaturedCovers", async ({ client, expect, generateTypeTest }) => {
+	const response = await client.collection.getFeaturedCovers();
+
+	generateTypeTest({ type: "GetFeaturedCoversResponse" });
+	expect(response.data).toMatchSnapshot(); // Response is too large
+});

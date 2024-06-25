@@ -1046,6 +1046,69 @@ export interface GetCollectionResponse {
     'item'?: Collection;
 }
 /**
+ * 
+ * @export
+ * @interface GetFeaturedCoversResponse
+ */
+export interface GetFeaturedCoversResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetFeaturedCoversResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<GetFeaturedCoversResponseItemsInner>}
+     * @memberof GetFeaturedCoversResponse
+     */
+    'items': Array<GetFeaturedCoversResponseItemsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface GetFeaturedCoversResponseItemsInner
+ */
+export interface GetFeaturedCoversResponseItemsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof GetFeaturedCoversResponseItemsInner
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetFeaturedCoversResponseItemsInner
+     */
+    'link'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetFeaturedCoversResponseItemsInner
+     */
+    'sort'?: number;
+    /**
+     * 
+     * @type {Array<GetFeaturedCoversResponseItemsInnerIconsInner>}
+     * @memberof GetFeaturedCoversResponseItemsInner
+     */
+    'icons': Array<GetFeaturedCoversResponseItemsInnerIconsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface GetFeaturedCoversResponseItemsInnerIconsInner
+ */
+export interface GetFeaturedCoversResponseItemsInnerIconsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof GetFeaturedCoversResponseItemsInnerIconsInner
+     */
+    'png': string;
+}
+/**
  * @type GetOrRefreshToken200Response
  * @export
  */
@@ -1118,6 +1181,75 @@ export interface GetRootCollectionsResponse {
      * @memberof GetRootCollectionsResponse
      */
     'items': Array<Collection>;
+}
+/**
+ * 
+ * @export
+ * @interface GetSystemCollectionStatsResponse
+ */
+export interface GetSystemCollectionStatsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetSystemCollectionStatsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<GetSystemCollectionStatsResponseItemsInner>}
+     * @memberof GetSystemCollectionStatsResponse
+     */
+    'items': Array<GetSystemCollectionStatsResponseItemsInner>;
+    /**
+     * 
+     * @type {GetSystemCollectionStatsResponseMeta}
+     * @memberof GetSystemCollectionStatsResponse
+     */
+    'meta': GetSystemCollectionStatsResponseMeta;
+}
+/**
+ * 
+ * @export
+ * @interface GetSystemCollectionStatsResponseItemsInner
+ */
+export interface GetSystemCollectionStatsResponseItemsInner {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetSystemCollectionStatsResponseItemsInner
+     */
+    'count': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetSystemCollectionStatsResponseItemsInner
+     */
+    '_id': number;
+}
+/**
+ * 
+ * @export
+ * @interface GetSystemCollectionStatsResponseMeta
+ */
+export interface GetSystemCollectionStatsResponseMeta {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetSystemCollectionStatsResponseMeta
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetSystemCollectionStatsResponseMeta
+     */
+    'pro': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetSystemCollectionStatsResponseMeta
+     */
+    'changedBookmarksDate': string;
 }
 /**
  * 
@@ -1939,21 +2071,21 @@ export type RefreshTokenGrantTypeEnum = typeof RefreshTokenGrantTypeEnum[keyof t
 /**
  * 
  * @export
- * @interface RemoveAllEmptyCollections200Response
+ * @interface RemoveAllEmptyCollectionsResponse
  */
-export interface RemoveAllEmptyCollections200Response {
+export interface RemoveAllEmptyCollectionsResponse {
     /**
      * 
      * @type {boolean}
-     * @memberof RemoveAllEmptyCollections200Response
+     * @memberof RemoveAllEmptyCollectionsResponse
      */
-    'result'?: boolean;
+    'result': boolean;
     /**
      * 
      * @type {number}
-     * @memberof RemoveAllEmptyCollections200Response
+     * @memberof RemoveAllEmptyCollectionsResponse
      */
-    'count'?: number;
+    'count': number;
 }
 /**
  * 
@@ -4175,7 +4307,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async emptyTrash(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async emptyTrash(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimpleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.emptyTrash(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.emptyTrash']?.[localVarOperationServerIndex]?.url;
@@ -4221,7 +4353,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFeaturedCovers(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CoverResponse>> {
+        async getFeaturedCovers(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetFeaturedCoversResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFeaturedCovers(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.getFeaturedCovers']?.[localVarOperationServerIndex]?.url;
@@ -4243,7 +4375,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSystemCollectionStats(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatResponse>> {
+        async getSystemCollectionStats(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetSystemCollectionStatsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSystemCollectionStats(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.getSystemCollectionStats']?.[localVarOperationServerIndex]?.url;
@@ -4266,7 +4398,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeAllEmptyCollections(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveAllEmptyCollections200Response>> {
+        async removeAllEmptyCollections(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveAllEmptyCollectionsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeAllEmptyCollections(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.removeAllEmptyCollections']?.[localVarOperationServerIndex]?.url;
@@ -4425,7 +4557,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        emptyTrash(options?: any): AxiosPromise<Response> {
+        emptyTrash(options?: any): AxiosPromise<SimpleResponse> {
             return localVarFp.emptyTrash(options).then((request) => request(axios, basePath));
         },
         /**
@@ -4459,7 +4591,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFeaturedCovers(options?: any): AxiosPromise<CoverResponse> {
+        getFeaturedCovers(options?: any): AxiosPromise<GetFeaturedCoversResponse> {
             return localVarFp.getFeaturedCovers(options).then((request) => request(axios, basePath));
         },
         /**
@@ -4475,7 +4607,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSystemCollectionStats(options?: any): AxiosPromise<StatResponse> {
+        getSystemCollectionStats(options?: any): AxiosPromise<GetSystemCollectionStatsResponse> {
             return localVarFp.getSystemCollectionStats(options).then((request) => request(axios, basePath));
         },
         /**
@@ -4492,7 +4624,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeAllEmptyCollections(options?: any): AxiosPromise<RemoveAllEmptyCollections200Response> {
+        removeAllEmptyCollections(options?: any): AxiosPromise<RemoveAllEmptyCollectionsResponse> {
             return localVarFp.removeAllEmptyCollections(options).then((request) => request(axios, basePath));
         },
         /**
@@ -7103,7 +7235,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSystemCollectionStats(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatResponse>> {
+        async getSystemCollectionStats(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetSystemCollectionStatsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getSystemCollectionStats(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.getSystemCollectionStats']?.[localVarOperationServerIndex]?.url;
@@ -7171,7 +7303,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSystemCollectionStats(options?: any): AxiosPromise<StatResponse> {
+        getSystemCollectionStats(options?: any): AxiosPromise<GetSystemCollectionStatsResponse> {
             return localVarFp.getSystemCollectionStats(options).then((request) => request(axios, basePath));
         },
         /**
