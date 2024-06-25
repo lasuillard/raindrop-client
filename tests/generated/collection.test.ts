@@ -512,7 +512,36 @@ it.todo("unshareOrLeaveCollection");
 it.todo("changeCollaboratorAccessLevel");
 it.todo("deleteCollaborator");
 it.todo("acceptInvitation");
-it.todo("searchCovers");
+
+it("searchCovers", async ({ client, expect, generateTypeTest }) => {
+	const response = await client.collection.searchCovers("strawberry");
+
+	generateTypeTest({ type: "SearchCoversResponse" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "items": [
+		    {
+		      "icons": [
+		        {
+		          "png": "https://icon-finder.fly.dev/pack/fxemoji-emojis/400795-256.png",
+		        },
+		        {
+		          "png": "https://icon-finder.fly.dev/pack/twemoji-emojis/407533-256.png",
+		        },
+		        {
+		          "png": "https://icon-finder.fly.dev/pack/fruits-and-vegetables-tiny/474529-256.png",
+		        },
+		        {
+		          "png": "https://icon-finder.fly.dev/pack/icons8-color/18041-256.png",
+		        },
+		      ],
+		      "title": "Icons",
+		    },
+		  ],
+		  "result": true,
+		}
+	`);
+});
 
 it("getFeaturedCovers", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.collection.getFeaturedCovers();

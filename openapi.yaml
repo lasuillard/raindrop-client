@@ -2144,7 +2144,30 @@ components:
     # ChangeCollaboratorAccessLevelResponse
     # DeleteCollaboratorResponse
     # AcceptInvitationResponse
-    # SearchCoversResponse
+
+    SearchCoversResponse:
+      type: object
+      required: [result, items]
+      properties:
+        result:
+          type: boolean
+        items:
+          type: array
+          items:
+            type: object
+            required: [title, icons]
+            properties:
+              title:
+                type: string
+              icons:
+                type: array
+                items:
+                  type: object
+                  required: [png]
+                  properties:
+                    png:
+                      type: string
+                      format: uri
 
     GetFeaturedCoversResponse:
       type: object

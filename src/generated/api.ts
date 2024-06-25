@@ -1090,23 +1090,10 @@ export interface GetFeaturedCoversResponseItemsInner {
     'sort'?: number;
     /**
      * 
-     * @type {Array<GetFeaturedCoversResponseItemsInnerIconsInner>}
+     * @type {Array<SearchCoversResponseItemsInnerIconsInner>}
      * @memberof GetFeaturedCoversResponseItemsInner
      */
-    'icons': Array<GetFeaturedCoversResponseItemsInnerIconsInner>;
-}
-/**
- * 
- * @export
- * @interface GetFeaturedCoversResponseItemsInnerIconsInner
- */
-export interface GetFeaturedCoversResponseItemsInnerIconsInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof GetFeaturedCoversResponseItemsInnerIconsInner
-     */
-    'png': string;
+    'icons': Array<SearchCoversResponseItemsInnerIconsInner>;
 }
 /**
  * @type GetOrRefreshToken200Response
@@ -2235,6 +2222,57 @@ export const Role = {
 export type Role = typeof Role[keyof typeof Role];
 
 
+/**
+ * 
+ * @export
+ * @interface SearchCoversResponse
+ */
+export interface SearchCoversResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SearchCoversResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<SearchCoversResponseItemsInner>}
+     * @memberof SearchCoversResponse
+     */
+    'items': Array<SearchCoversResponseItemsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface SearchCoversResponseItemsInner
+ */
+export interface SearchCoversResponseItemsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchCoversResponseItemsInner
+     */
+    'title': string;
+    /**
+     * 
+     * @type {Array<SearchCoversResponseItemsInnerIconsInner>}
+     * @memberof SearchCoversResponseItemsInner
+     */
+    'icons': Array<SearchCoversResponseItemsInnerIconsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface SearchCoversResponseItemsInnerIconsInner
+ */
+export interface SearchCoversResponseItemsInnerIconsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchCoversResponseItemsInnerIconsInner
+     */
+    'png': string;
+}
 /**
  * 
  * @export
