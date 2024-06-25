@@ -1,6 +1,9 @@
 import type { Task } from "vitest";
 import type { Raindrop } from "~/client";
-import type { CreateCollectionResponse } from "~/generated";
+import type {
+	CreateCollectionResponse,
+	CreateRaindrop200Response,
+} from "~/generated";
 
 // Helper function to create collection
 export async function createCollection(
@@ -19,6 +22,20 @@ export async function createCollection(
 			oid: 0,
 		},
 		cover: [],
+		...(args || {}),
+	});
+	return response.data;
+}
+
+// Helper function to create raindrop
+export async function createRaindrop(
+	task: Task,
+	client: Raindrop,
+	args?: object,
+): Promise<CreateRaindrop200Response> {
+	const response = await client.raindrop.createRaindrop({
+		title: task.name,
+		link: "https://raindrop.io",
 		...(args || {}),
 	});
 	return response.data;

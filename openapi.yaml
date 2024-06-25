@@ -502,17 +502,10 @@ paths:
       tags:
         - raindrop
       requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CreateRaindrop"
+        $ref: "#/components/requestBodies/CreateRaindropRequestBody"
       responses:
         200:
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/RaindropResponseOne"
+          $ref: "#/components/responses/CreateRaindropResponse"
 
   /rest/v1/raindrop/{id}:
     parameters:
@@ -2230,3 +2223,124 @@ components:
           type: boolean
         items:
           type: array
+
+  requestBodies:
+    CreateRaindropRequestBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [link]
+            properties:
+              pleaseParse:
+                type: object
+              created:
+                type: string
+              lastUpdate:
+                type: string
+              order:
+                type: number
+              important:
+                type: boolean
+              tags:
+                type: array
+              media:
+                type: array
+              cover:
+                type: string
+              collection:
+                type: object
+              type:
+                type: string
+              excerpt:
+                type: string
+              title:
+                type: string
+              link:
+                type: string
+              highlights:
+                type: array
+              reminder:
+                type: object
+
+  responses:
+    CreateRaindropResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            required: [result, item]
+            properties:
+              result:
+                type: boolean
+              item:
+                type: object
+                required:
+                  [
+                    __v,
+                    _id,
+                    collection,
+                    collectionId,
+                    cover,
+                    created,
+                    creatorRef,
+                    domain,
+                    excerpt,
+                    lastUpdate,
+                    link,
+                    media,
+                    note,
+                    removed,
+                    sort,
+                    tags,
+                    title,
+                    type,
+                    user,
+                  ]
+                properties:
+                  __v:
+                    type: integer
+                  _id:
+                    type: integer
+                  collection:
+                    $ref: "#/components/schemas/CollectionRef"
+                  collectionId:
+                    type: integer
+                  cover:
+                    type: string
+                  created:
+                    type: string
+                    format: date-time
+                  creatorRef:
+                    type: integer
+                  domain:
+                    type: string
+                  excerpt:
+                    type: string
+                  lastUpdate:
+                    type: string
+                    format: date-time
+                  link:
+                    type: string
+                    format: uri
+                  media:
+                    type: array
+                    items:
+                      type: string
+                  note:
+                    type: string
+                  removed:
+                    type: boolean
+                  sort:
+                    type: integer
+                  tags:
+                    type: array
+                    items:
+                      type: string
+                  title:
+                    type: string
+                  type:
+                    type: string
+                  user:
+                    $ref: "#/components/schemas/UserRef"

@@ -690,6 +690,243 @@ export interface CreateRaindrop {
 /**
  * 
  * @export
+ * @interface CreateRaindrop200Response
+ */
+export interface CreateRaindrop200Response {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateRaindrop200Response
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {CreateRaindrop200ResponseItem}
+     * @memberof CreateRaindrop200Response
+     */
+    'item': CreateRaindrop200ResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface CreateRaindrop200ResponseItem
+ */
+export interface CreateRaindrop200ResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    '__v': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {CollectionRef}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'collection': CollectionRef;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'collectionId': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'cover': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'creatorRef': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'excerpt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'link': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'media': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'note': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'removed': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'type': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof CreateRaindrop200ResponseItem
+     */
+    'user': UserRef;
+}
+/**
+ * 
+ * @export
+ * @interface CreateRaindropRequest
+ */
+export interface CreateRaindropRequest {
+    /**
+     * 
+     * @type {object}
+     * @memberof CreateRaindropRequest
+     */
+    'pleaseParse'?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequest
+     */
+    'created'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequest
+     */
+    'lastUpdate'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindropRequest
+     */
+    'order'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateRaindropRequest
+     */
+    'important'?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateRaindropRequest
+     */
+    'tags'?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateRaindropRequest
+     */
+    'media'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequest
+     */
+    'cover'?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof CreateRaindropRequest
+     */
+    'collection'?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequest
+     */
+    'type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequest
+     */
+    'excerpt'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequest
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequest
+     */
+    'link': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateRaindropRequest
+     */
+    'highlights'?: Array<string>;
+    /**
+     * 
+     * @type {object}
+     * @memberof CreateRaindropRequest
+     */
+    'reminder'?: object;
+}
+/**
+ * 
+ * @export
  * @interface CreateRaindropsRequest
  */
 export interface CreateRaindropsRequest {
@@ -5798,11 +6035,11 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
     return {
         /**
          * 
-         * @param {CreateRaindrop} [createRaindrop] 
+         * @param {CreateRaindropRequest} [createRaindropRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRaindrop: async (createRaindrop?: CreateRaindrop, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createRaindrop: async (createRaindropRequest?: CreateRaindropRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/raindrop`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5826,7 +6063,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createRaindrop, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createRaindropRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -6345,12 +6582,12 @@ export const RaindropApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @param {CreateRaindrop} [createRaindrop] 
+         * @param {CreateRaindropRequest} [createRaindropRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createRaindrop(createRaindrop?: CreateRaindrop, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createRaindrop(createRaindrop, options);
+        async createRaindrop(createRaindropRequest?: CreateRaindropRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateRaindrop200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createRaindrop(createRaindropRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['RaindropApi.createRaindrop']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
@@ -6521,12 +6758,12 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
     return {
         /**
          * 
-         * @param {CreateRaindrop} [createRaindrop] 
+         * @param {CreateRaindropRequest} [createRaindropRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRaindrop(createRaindrop?: CreateRaindrop, options?: any): AxiosPromise<RaindropResponseOne> {
-            return localVarFp.createRaindrop(createRaindrop, options).then((request) => request(axios, basePath));
+        createRaindrop(createRaindropRequest?: CreateRaindropRequest, options?: any): AxiosPromise<CreateRaindrop200Response> {
+            return localVarFp.createRaindrop(createRaindropRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -6658,13 +6895,13 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
 export class RaindropApi extends BaseAPI {
     /**
      * 
-     * @param {CreateRaindrop} [createRaindrop] 
+     * @param {CreateRaindropRequest} [createRaindropRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public createRaindrop(createRaindrop?: CreateRaindrop, options?: RawAxiosRequestConfig) {
-        return RaindropApiFp(this.configuration).createRaindrop(createRaindrop, options).then((request) => request(this.axios, this.basePath));
+    public createRaindrop(createRaindropRequest?: CreateRaindropRequest, options?: RawAxiosRequestConfig) {
+        return RaindropApiFp(this.configuration).createRaindrop(createRaindropRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
