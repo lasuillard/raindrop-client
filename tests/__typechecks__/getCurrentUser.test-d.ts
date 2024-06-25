@@ -20,10 +20,10 @@ it("getCurrentUser", () => {
 			groups: [
 				{ title: "Collections", hidden: false, sort: 0, collections: [] },
 			],
-			lastAction: "2024-06-24T14:50:37.212Z",
+			lastAction: "2024-06-25T12:01:48.974Z",
 			lastVisit: "2024-06-24T11:44:19.210Z",
 			registered: "2024-04-21T06:46:01.480Z",
-			lastUpdate: "2024-06-24T14:50:37.212Z",
+			lastUpdate: "2024-06-25T12:01:48.974Z",
 			config: {
 				default_collection_view: "list",
 				raindrops_hide: [

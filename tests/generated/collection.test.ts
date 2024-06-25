@@ -5,10 +5,6 @@ import type { Task } from "vitest";
 import type { Raindrop } from "~/client";
 import type { CreateCollectionResponse } from "~/generated";
 
-// TODO: Refactor repeated test codes (e.g. test data creation); name from test ID
-// TODO: Name file of recordings, typechecks to test name (they won't duplicate as OpenAPI operation ID should unique)
-// TODO: Address type errors
-
 // Helper function to create collection
 async function createCollection(
 	task: Task,
@@ -52,7 +48,7 @@ it("getRootCollections", async ({
 		{
 		  "items": [
 		    {
-		      "_id": 45403665,
+		      "_id": 45429359,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -62,7 +58,7 @@ it("getRootCollections", async ({
 		      "author": true,
 		      "count": 0,
 		      "cover": [],
-		      "created": "2024-06-24T14:53:06.493Z",
+		      "created": "2024-06-25T12:01:49.350Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -70,8 +66,8 @@ it("getRootCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-06-24T14:53:06.493Z",
-		      "lastUpdate": "2024-06-24T14:53:06.493Z",
+		      "lastAction": "2024-06-25T12:01:49.349Z",
+		      "lastUpdate": "2024-06-25T12:01:49.350Z",
 		      "public": false,
 		      "slug": "get-root-collections",
 		      "sort": 0,
@@ -83,7 +79,7 @@ it("getRootCollections", async ({
 		      "view": "list",
 		    },
 		    {
-		      "_id": 45403666,
+		      "_id": 45429361,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -94,9 +90,9 @@ it("getRootCollections", async ({
 		      "color": "#da1f26",
 		      "count": 0,
 		      "cover": [
-		        "https://up.raindrop.io/collection/thumbs/454/036/66/e0baf93e1f297abd2c2baabee2ec3cc1.png",
+		        "https://up.raindrop.io/collection/thumbs/454/293/61/e0baf93e1f297abd2c2baabee2ec3cc1.png",
 		      ],
-		      "created": "2024-06-24T14:53:06.952Z",
+		      "created": "2024-06-25T12:01:49.799Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -104,8 +100,8 @@ it("getRootCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-06-24T14:53:06.952Z",
-		      "lastUpdate": "2024-06-24T14:53:06.952Z",
+		      "lastAction": "2024-06-25T12:01:49.798Z",
+		      "lastUpdate": "2024-06-25T12:01:49.799Z",
 		      "public": false,
 		      "slug": "get-root-collections",
 		      "sort": 0,
@@ -122,12 +118,7 @@ it("getRootCollections", async ({
 	`);
 });
 
-it("reorderAllCollections", async ({
-	client,
-	expect,
-	generateTypeTest,
-	resetData: _,
-}) => {
+it("reorderAllCollections", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.collection.reorderAllCollections();
 
 	generateTypeTest({ type: "SimpleResponse" });
@@ -138,13 +129,7 @@ it("reorderAllCollections", async ({
 	`);
 });
 
-it("removeCollections", async ({
-	task,
-	client,
-	expect,
-	generateTypeTest,
-	resetData: _,
-}) => {
+it("removeCollections", async ({ task, client, expect, generateTypeTest }) => {
 	const collection = await createCollection(task, client);
 
 	const response = await client.collection.removeCollections({
@@ -155,7 +140,7 @@ it("removeCollections", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "ids": [
-		    45403629,
+		    45429364,
 		  ],
 		  "modified": 1,
 		  "result": true,
@@ -185,7 +170,7 @@ it("getChildCollections", async ({
 		{
 		  "items": [
 		    {
-		      "_id": 45403631,
+		      "_id": 45429367,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -195,7 +180,7 @@ it("getChildCollections", async ({
 		      "author": true,
 		      "count": 0,
 		      "cover": [],
-		      "created": "2024-06-24T14:51:05.263Z",
+		      "created": "2024-06-25T12:01:53.038Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -203,10 +188,10 @@ it("getChildCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-06-24T14:51:05.262Z",
-		      "lastUpdate": "2024-06-24T14:51:05.263Z",
+		      "lastAction": "2024-06-25T12:01:53.037Z",
+		      "lastUpdate": "2024-06-25T12:01:53.038Z",
 		      "parent": {
-		        "$id": 45403630,
+		        "$id": 45429366,
 		        "$ref": "collections",
 		      },
 		      "public": false,
@@ -225,13 +210,7 @@ it("getChildCollections", async ({
 	`);
 });
 
-it("getCollection", async ({
-	task,
-	client,
-	expect,
-	generateTypeTest,
-	resetData: _,
-}) => {
+it("getCollection", async ({ task, client, expect, generateTypeTest }) => {
 	const collection = await createCollection(task, client);
 
 	const response = await client.collection.getCollection(collection.item._id);
@@ -240,7 +219,7 @@ it("getCollection", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
-		    "_id": 45403632,
+		    "_id": 45429369,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -250,7 +229,7 @@ it("getCollection", async ({
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-06-24T14:51:07.076Z",
+		    "created": "2024-06-25T12:01:53.968Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -258,8 +237,8 @@ it("getCollection", async ({
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-24T14:51:07.075Z",
-		    "lastUpdate": "2024-06-24T14:51:07.076Z",
+		    "lastAction": "2024-06-25T12:01:53.968Z",
+		    "lastUpdate": "2024-06-25T12:01:53.968Z",
 		    "public": false,
 		    "slug": "get-collection",
 		    "sort": 0,
@@ -275,13 +254,7 @@ it("getCollection", async ({
 	`);
 });
 
-it("updateCollection", async ({
-	task,
-	client,
-	expect,
-	generateTypeTest,
-	resetData: _,
-}) => {
+it("updateCollection", async ({ task, client, expect, generateTypeTest }) => {
 	const collection = await createCollection(task, client);
 
 	const response = await client.collection.updateCollection(
@@ -300,7 +273,7 @@ it("updateCollection", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
-		    "_id": 45403634,
+		    "_id": 45429372,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -310,7 +283,7 @@ it("updateCollection", async ({
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-06-24T14:51:08.845Z",
+		    "created": "2024-06-25T12:01:54.924Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -318,8 +291,8 @@ it("updateCollection", async ({
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-24T14:51:08.845Z",
-		    "lastUpdate": "2024-06-24T14:51:09.378Z",
+		    "lastAction": "2024-06-25T12:01:54.924Z",
+		    "lastUpdate": "2024-06-25T12:01:55.443Z",
 		    "public": true,
 		    "slug": "updated-collection",
 		    "sort": 0,
@@ -335,13 +308,7 @@ it("updateCollection", async ({
 	`);
 });
 
-it("removeCollection", async ({
-	task,
-	client,
-	expect,
-	generateTypeTest,
-	resetData: _,
-}) => {
+it("removeCollection", async ({ task, client, expect, generateTypeTest }) => {
 	const collection = await createCollection(task, client);
 
 	const response = await client.collection.removeCollection(
@@ -356,12 +323,7 @@ it("removeCollection", async ({
 	`);
 });
 
-it("createCollection", async ({
-	client,
-	expect,
-	generateTypeTest,
-	resetData: _,
-}) => {
+it("createCollection", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.collection.createCollection({
 		view: "list",
 		title: "createCollectionTest",
@@ -375,7 +337,7 @@ it("createCollection", async ({
 		{
 		  "item": {
 		    "__v": 0,
-		    "_id": 45403636,
+		    "_id": 45429375,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -385,12 +347,12 @@ it("createCollection", async ({
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-06-24T14:51:12.312Z",
+		    "created": "2024-06-25T12:01:56.802Z",
 		    "creatorRef": 2067190,
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-24T14:51:12.312Z",
-		    "lastUpdate": "2024-06-24T14:51:12.312Z",
+		    "lastAction": "2024-06-25T12:01:56.802Z",
+		    "lastUpdate": "2024-06-25T12:01:56.802Z",
 		    "public": true,
 		    "slug": "create-collection-test",
 		    "sort": 0,
@@ -412,7 +374,6 @@ it.skip("uploadCollectionCover", async ({
 	client,
 	expect,
 	generateTypeTest,
-	resetData: _,
 }) => {
 	const collection = await createCollection(task, client);
 	const cover = await fs.openAsBlob(path.join(__dirname, "./cover.png"));
@@ -465,13 +426,7 @@ it.skip("uploadCollectionCover", async ({
 	`);
 });
 
-it("mergeCollections", async ({
-	task,
-	client,
-	expect,
-	generateTypeTest,
-	resetData: _,
-}) => {
+it("mergeCollections", async ({ task, client, expect, generateTypeTest }) => {
 	const one = await createCollection(task, client);
 	const two = await createCollection(task, client);
 	const three = await createCollection(task, client);
@@ -485,8 +440,8 @@ it("mergeCollections", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "ids": [
-		    45403638,
-		    45403639,
+		    45429376,
+		    45429378,
 		  ],
 		  "modified": 2,
 		  "result": true,
