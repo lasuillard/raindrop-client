@@ -1357,6 +1357,8 @@ export interface GetFeaturedCoversResponseItemsInner {
  * @interface GetFiltersResponse
  */
 export interface GetFiltersResponse {
+    [key: string]: FilterTagsInner | any;
+
     /**
      * 
      * @type {boolean}
@@ -1371,22 +1373,22 @@ export interface GetFiltersResponse {
     'collectionId': number;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<FilterTagsInner>}
      * @memberof GetFiltersResponse
      */
-    'created': Array<string>;
+    'created': Array<FilterTagsInner>;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<FilterTagsInner>}
      * @memberof GetFiltersResponse
      */
-    'tags': Array<string>;
+    'tags': Array<FilterTagsInner>;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<FilterTagsInner>}
      * @memberof GetFiltersResponse
      */
-    'types': Array<string>;
+    'types': Array<FilterTagsInner>;
 }
 /**
  * 

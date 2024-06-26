@@ -2194,6 +2194,15 @@ components:
     GetFiltersResponse:
       type: object
       required: [collectionId, created, result, tags, types]
+      additionalProperties:
+        type: object
+        required: [_id, count]
+        properties:
+          _id:
+            type: string
+          count:
+            type: integer
+
       properties:
         result:
           type: boolean
@@ -2201,10 +2210,34 @@ components:
           type: integer
         created:
           type: array
+          items:
+            type: object
+            required: [_id, count]
+            properties:
+              _id:
+                type: string
+              count:
+                type: integer
         tags:
           type: array
+          items:
+            type: object
+            required: [_id, count]
+            properties:
+              _id:
+                type: string
+              count:
+                type: integer
         types:
           type: array
+          items:
+            type: object
+            required: [_id, count]
+            properties:
+              _id:
+                type: string
+              count:
+                type: integer
 
     GetAllHighlightsResponse:
       type: object

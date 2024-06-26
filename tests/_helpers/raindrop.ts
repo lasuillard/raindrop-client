@@ -7,9 +7,13 @@ export async function resetData(
 ) {
 	console.debug("Resetting data");
 
+	// Remove all collections
 	const { data } = await client.collection.getRootCollections();
 	const collectionIds = data.items.map((item) => item._id);
 	await client.collection.removeCollections({ ids: collectionIds });
+
+	// Remove unsorted raindrops
+	await client.raindrop.removeRaindrops(0);
 
 	await use();
 }

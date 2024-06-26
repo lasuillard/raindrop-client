@@ -1,15 +1,17 @@
 import type { Task } from "vitest";
 import type { Raindrop } from "~/client";
 import type {
+	CreateCollectionRequest,
 	CreateCollectionResponse,
 	CreateRaindrop200Response,
+	CreateRaindropRequest,
 } from "~/generated";
 
 // Helper function to create collection
 export async function createCollection(
 	task: Task,
 	client: Raindrop,
-	args?: object,
+	args?: Partial<CreateCollectionRequest>,
 ): Promise<CreateCollectionResponse> {
 	const response = await client.collection.createCollection({
 		view: "list",
@@ -31,7 +33,7 @@ export async function createCollection(
 export async function createRaindrop(
 	task: Task,
 	client: Raindrop,
-	args?: object,
+	args?: Partial<CreateRaindropRequest>,
 ): Promise<CreateRaindrop200Response> {
 	const response = await client.raindrop.createRaindrop({
 		title: task.name,
