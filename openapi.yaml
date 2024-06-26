@@ -502,10 +502,17 @@ paths:
       tags:
         - raindrop
       requestBody:
-        $ref: "#/components/requestBodies/CreateRaindropRequestBody"
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateRaindropRequest"
       responses:
         200:
-          $ref: "#/components/responses/CreateRaindropResponse"
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateRaindropResponse"
 
   /rest/v1/raindrop/{id}:
     parameters:
@@ -2247,8 +2254,32 @@ components:
           type: boolean
         items:
           type: array
+          items:
+            type: object
+            required: [link, title, tags, _id, text, note, created, raindropRef]
+            properties:
+              link:
+                type: string
+                format: uri
+              title:
+                type: string
+              tags:
+                type: array
+                items:
+                  type: string
+              _id:
+                type: string
+              text:
+                type: string
+              note:
+                type: string
+              created:
+                type: string
+                format: date-time
+              raindropRef:
+                type: integer
 
-    getHighlightsInCollectionResponse:
+    GetHighlightsInCollectionResponse:
       type: object
       required: [result, items]
       properties:
@@ -2256,124 +2287,151 @@ components:
           type: boolean
         items:
           type: array
-
-  requestBodies:
-    CreateRaindropRequestBody:
-      content:
-        application/json:
-          schema:
+          items:
             type: object
-            required: [link]
+            required: [link, title, tags, _id, text, note, created, raindropRef]
             properties:
-              pleaseParse:
-                type: object
-              created:
-                type: string
-              lastUpdate:
-                type: string
-              order:
-                type: number
-              important:
-                type: boolean
-              tags:
-                type: array
-              media:
-                type: array
-              cover:
-                type: string
-              collection:
-                type: object
-              type:
-                type: string
-              excerpt:
-                type: string
-              title:
-                type: string
               link:
                 type: string
-              highlights:
+                format: uri
+              title:
+                type: string
+              tags:
                 type: array
-              reminder:
-                type: object
+                items:
+                  type: string
+              _id:
+                type: string
+              text:
+                type: string
+              note:
+                type: string
+              created:
+                type: string
+                format: date-time
+              raindropRef:
+                type: integer
 
-  responses:
-    CreateRaindropResponse:
-      description: OK
-      content:
-        application/json:
-          schema:
+    CreateRaindropRequest:
+      type: object
+      required: [link]
+      properties:
+        pleaseParse:
+          type: object
+        created:
+          type: string
+        lastUpdate:
+          type: string
+        order:
+          type: number
+        important:
+          type: boolean
+        tags:
+          type: array
+        media:
+          type: array
+        cover:
+          type: string
+        collection:
+          type: object
+          required: [$id]
+          properties:
+            $id:
+              type: integer
+        type:
+          type: string
+        excerpt:
+          type: string
+        title:
+          type: string
+        link:
+          type: string
+        highlights:
+          type: array
+          items:
             type: object
-            required: [result, item]
+            required: [text, note]
             properties:
-              result:
-                type: boolean
-              item:
-                type: object
-                required:
-                  [
-                    __v,
-                    _id,
-                    collection,
-                    collectionId,
-                    cover,
-                    created,
-                    creatorRef,
-                    domain,
-                    excerpt,
-                    lastUpdate,
-                    link,
-                    media,
-                    note,
-                    removed,
-                    sort,
-                    tags,
-                    title,
-                    type,
-                    user,
-                  ]
-                properties:
-                  __v:
-                    type: integer
-                  _id:
-                    type: integer
-                  collection:
-                    $ref: "#/components/schemas/CollectionRef"
-                  collectionId:
-                    type: integer
-                  cover:
-                    type: string
-                  created:
-                    type: string
-                    format: date-time
-                  creatorRef:
-                    type: integer
-                  domain:
-                    type: string
-                  excerpt:
-                    type: string
-                  lastUpdate:
-                    type: string
-                    format: date-time
-                  link:
-                    type: string
-                    format: uri
-                  media:
-                    type: array
-                    items:
-                      type: string
-                  note:
-                    type: string
-                  removed:
-                    type: boolean
-                  sort:
-                    type: integer
-                  tags:
-                    type: array
-                    items:
-                      type: string
-                  title:
-                    type: string
-                  type:
-                    type: string
-                  user:
-                    $ref: "#/components/schemas/UserRef"
+              text:
+                type: string
+              note:
+                type: string
+        reminder:
+          type: object
+
+    CreateRaindropResponse:
+      type: object
+      required: [result, item]
+      properties:
+        result:
+          type: boolean
+        item:
+          type: object
+          required:
+            [
+              __v,
+              _id,
+              collection,
+              collectionId,
+              cover,
+              created,
+              creatorRef,
+              domain,
+              excerpt,
+              lastUpdate,
+              link,
+              media,
+              note,
+              removed,
+              sort,
+              tags,
+              title,
+              type,
+              user,
+            ]
+          properties:
+            __v:
+              type: integer
+            _id:
+              type: integer
+            collection:
+              $ref: "#/components/schemas/CollectionRef"
+            collectionId:
+              type: integer
+            cover:
+              type: string
+            created:
+              type: string
+              format: date-time
+            creatorRef:
+              type: integer
+            domain:
+              type: string
+            excerpt:
+              type: string
+            lastUpdate:
+              type: string
+              format: date-time
+            link:
+              type: string
+              format: uri
+            media:
+              type: array
+              items:
+                type: string
+            note:
+              type: string
+            removed:
+              type: boolean
+            sort:
+              type: integer
+            tags:
+              type: array
+              items:
+                type: string
+            title:
+              type: string
+            type:
+              type: string
+            user:
+              $ref: "#/components/schemas/UserRef"

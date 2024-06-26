@@ -1,8 +1,8 @@
 import { assertType, it } from "vitest";
-import type { CreateRaindrop200Response } from "~/generated/api";
+import type { CreateRaindropResponse } from "~/generated/api";
 
 it("createRaindrop", () => {
-	assertType<CreateRaindrop200Response>({
+	assertType<CreateRaindropResponse>({
 		result: true,
 		item: {
 			link: "https://raindrop.io",

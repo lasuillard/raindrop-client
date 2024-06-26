@@ -690,146 +690,6 @@ export interface CreateRaindrop {
 /**
  * 
  * @export
- * @interface CreateRaindrop200Response
- */
-export interface CreateRaindrop200Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreateRaindrop200Response
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {CreateRaindrop200ResponseItem}
-     * @memberof CreateRaindrop200Response
-     */
-    'item': CreateRaindrop200ResponseItem;
-}
-/**
- * 
- * @export
- * @interface CreateRaindrop200ResponseItem
- */
-export interface CreateRaindrop200ResponseItem {
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    '__v': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    '_id': number;
-    /**
-     * 
-     * @type {CollectionRef}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'collection': CollectionRef;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'collectionId': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'cover': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'created': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'creatorRef': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'domain': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'excerpt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'lastUpdate': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'link': string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'media': Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'note': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'removed': boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'sort': number;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'tags': Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'type': string;
-    /**
-     * 
-     * @type {UserRef}
-     * @memberof CreateRaindrop200ResponseItem
-     */
-    'user': UserRef;
-}
-/**
- * 
- * @export
  * @interface CreateRaindropRequest
  */
 export interface CreateRaindropRequest {
@@ -883,10 +743,10 @@ export interface CreateRaindropRequest {
     'cover'?: string;
     /**
      * 
-     * @type {object}
+     * @type {CreateRaindropRequestCollection}
      * @memberof CreateRaindropRequest
      */
-    'collection'?: object;
+    'collection'?: CreateRaindropRequestCollection;
     /**
      * 
      * @type {string}
@@ -913,16 +773,188 @@ export interface CreateRaindropRequest {
     'link': string;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<CreateRaindropRequestHighlightsInner>}
      * @memberof CreateRaindropRequest
      */
-    'highlights'?: Array<string>;
+    'highlights'?: Array<CreateRaindropRequestHighlightsInner>;
     /**
      * 
      * @type {object}
      * @memberof CreateRaindropRequest
      */
     'reminder'?: object;
+}
+/**
+ * 
+ * @export
+ * @interface CreateRaindropRequestCollection
+ */
+export interface CreateRaindropRequestCollection {
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindropRequestCollection
+     */
+    '$id': number;
+}
+/**
+ * 
+ * @export
+ * @interface CreateRaindropRequestHighlightsInner
+ */
+export interface CreateRaindropRequestHighlightsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequestHighlightsInner
+     */
+    'text': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequestHighlightsInner
+     */
+    'note': string;
+}
+/**
+ * 
+ * @export
+ * @interface CreateRaindropResponse
+ */
+export interface CreateRaindropResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateRaindropResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {CreateRaindropResponseItem}
+     * @memberof CreateRaindropResponse
+     */
+    'item': CreateRaindropResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface CreateRaindropResponseItem
+ */
+export interface CreateRaindropResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindropResponseItem
+     */
+    '__v': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindropResponseItem
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {CollectionRef}
+     * @memberof CreateRaindropResponseItem
+     */
+    'collection': CollectionRef;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindropResponseItem
+     */
+    'collectionId': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'cover': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindropResponseItem
+     */
+    'creatorRef': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'excerpt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'link': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateRaindropResponseItem
+     */
+    'media': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'note': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateRaindropResponseItem
+     */
+    'removed': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindropResponseItem
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateRaindropResponseItem
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'type': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof CreateRaindropResponseItem
+     */
+    'user': UserRef;
 }
 /**
  * 
@@ -1137,10 +1169,65 @@ export interface GetAllHighlightsResponse {
     'result': boolean;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<GetAllHighlightsResponseItemsInner>}
      * @memberof GetAllHighlightsResponse
      */
-    'items': Array<string>;
+    'items': Array<GetAllHighlightsResponseItemsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface GetAllHighlightsResponseItemsInner
+ */
+export interface GetAllHighlightsResponseItemsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    'link': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    'title': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    '_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    'text': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    'note': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    'created': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    'raindropRef': number;
 }
 /**
  * 
@@ -1404,10 +1491,10 @@ export interface GetHighlightsInCollectionResponse {
     'result': boolean;
     /**
      * 
-     * @type {Array<string>}
+     * @type {Array<GetAllHighlightsResponseItemsInner>}
      * @memberof GetHighlightsInCollectionResponse
      */
-    'items': Array<string>;
+    'items': Array<GetAllHighlightsResponseItemsInner>;
 }
 /**
  * @type GetOrRefreshToken200Response
@@ -6588,7 +6675,7 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createRaindrop(createRaindropRequest?: CreateRaindropRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateRaindrop200Response>> {
+        async createRaindrop(createRaindropRequest?: CreateRaindropRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateRaindropResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.createRaindrop(createRaindropRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['RaindropApi.createRaindrop']?.[localVarOperationServerIndex]?.url;
@@ -6764,7 +6851,7 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRaindrop(createRaindropRequest?: CreateRaindropRequest, options?: any): AxiosPromise<CreateRaindrop200Response> {
+        createRaindrop(createRaindropRequest?: CreateRaindropRequest, options?: any): AxiosPromise<CreateRaindropResponse> {
             return localVarFp.createRaindrop(createRaindropRequest, options).then((request) => request(axios, basePath));
         },
         /**

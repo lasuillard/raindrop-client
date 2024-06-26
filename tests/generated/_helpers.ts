@@ -3,8 +3,8 @@ import type { Raindrop } from "~/client";
 import type {
 	CreateCollectionRequest,
 	CreateCollectionResponse,
-	CreateRaindrop200Response,
 	CreateRaindropRequest,
+	CreateRaindropResponse,
 } from "~/generated";
 
 // Helper function to create collection
@@ -34,7 +34,7 @@ export async function createRaindrop(
 	task: Task,
 	client: Raindrop,
 	args?: Partial<CreateRaindropRequest>,
-): Promise<CreateRaindrop200Response> {
+): Promise<CreateRaindropResponse> {
 	const response = await client.raindrop.createRaindrop({
 		title: task.name,
 		link: "https://raindrop.io",

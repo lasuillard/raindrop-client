@@ -7,7 +7,7 @@ it("createRaindrop", async ({ client, expect, generateTypeTest }) => {
 		tags: ["raindrop"],
 	});
 
-	generateTypeTest({ type: "CreateRaindrop200Response" });
+	generateTypeTest({ type: "CreateRaindropResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
