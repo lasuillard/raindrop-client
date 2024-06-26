@@ -2435,3 +2435,20 @@ components:
               type: string
             user:
               $ref: "#/components/schemas/UserRef"
+
+    GetTagsInCollectionResponse:
+      type: object
+      required: [result, items]
+      properties:
+        result:
+          type: boolean
+        items:
+          type: array
+          items:
+            type: object
+            required: [_id, count]
+            properties:
+              _id:
+                type: string
+              count:
+                type: integer

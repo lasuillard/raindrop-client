@@ -1680,6 +1680,25 @@ export interface GetTagsInCollection200ResponseAllOfItemsInner {
 /**
  * 
  * @export
+ * @interface GetTagsInCollectionResponse
+ */
+export interface GetTagsInCollectionResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetTagsInCollectionResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<FilterTagsInner>}
+     * @memberof GetTagsInCollectionResponse
+     */
+    'items': Array<FilterTagsInner>;
+}
+/**
+ * 
+ * @export
  * @interface Group
  */
 export interface Group {
