@@ -1,4 +1,4 @@
 import { it } from "^/tests/_helpers/vitest";
 
-it.todo("authorize");
-it.todo("getOrRefreshToken");
+it.skip("authorize");
+it.skip("getOrRefreshToken");

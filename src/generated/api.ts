@@ -2696,25 +2696,6 @@ export interface SearchCoversResponseItemsInnerIconsInner {
 /**
  * 
  * @export
- * @interface ShareCollection200Response
- */
-export interface ShareCollection200Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShareCollection200Response
-     */
-    'result'?: boolean;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof ShareCollection200Response
-     */
-    'emails'?: Array<string>;
-}
-/**
- * 
- * @export
  * @interface ShareCollectionRequest
  */
 export interface ShareCollectionRequest {
@@ -2723,16 +2704,35 @@ export interface ShareCollectionRequest {
      * @type {Role}
      * @memberof ShareCollectionRequest
      */
-    'role'?: Role;
+    'role': Role;
     /**
      * 
      * @type {Array<string>}
      * @memberof ShareCollectionRequest
      */
-    'emails'?: Array<string>;
+    'emails': Array<string>;
 }
 
 
+/**
+ * 
+ * @export
+ * @interface ShareCollectionResponse
+ */
+export interface ShareCollectionResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShareCollectionResponse
+     */
+    'result'?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ShareCollectionResponse
+     */
+    'emails'?: Array<string>;
+}
 /**
  * 
  * @export
@@ -4917,7 +4917,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async shareCollection(id: number, shareCollectionRequest?: ShareCollectionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShareCollection200Response>> {
+        async shareCollection(id: number, shareCollectionRequest?: ShareCollectionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShareCollectionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.shareCollection(id, shareCollectionRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.shareCollection']?.[localVarOperationServerIndex]?.url;
@@ -5128,7 +5128,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        shareCollection(id: number, shareCollectionRequest?: ShareCollectionRequest, options?: any): AxiosPromise<ShareCollection200Response> {
+        shareCollection(id: number, shareCollectionRequest?: ShareCollectionRequest, options?: any): AxiosPromise<ShareCollectionResponse> {
             return localVarFp.shareCollection(id, shareCollectionRequest, options).then((request) => request(axios, basePath));
         },
         /**

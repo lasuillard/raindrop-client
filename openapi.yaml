@@ -365,6 +365,7 @@ paths:
           application/json:
             schema:
               type: object
+              required: [emails, role]
               properties:
                 role:
                   $ref: "#/components/schemas/Role"
@@ -379,16 +380,8 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  result:
-                    type: boolean
-                    example: true
-                  emails:
-                    type: array
-                    items:
-                      type: string
-                      format: email
+                $ref: "#/components/schemas/ShareCollectionResponse"
+
     delete:
       operationId: unshareOrLeaveCollection
       tags:
@@ -2139,7 +2132,18 @@ components:
               format: date-time
 
     # GetCollaboratorsResponse
-    # ShareCollectionResponse
+    ShareCollectionResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+          example: true
+        emails:
+          type: array
+          items:
+            type: string
+            format: email
+
     # UnshareOrLeaveCollectionResponse
     # ChangeCollaboratorAccessLevelResponse
     # DeleteCollaboratorResponse

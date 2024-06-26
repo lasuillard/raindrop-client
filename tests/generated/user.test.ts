@@ -4,7 +4,6 @@ it("getCurrentUser", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.user.getCurrentUser();
 
 	generateTypeTest({ type: "UserResponse" });
-	// TODO: No data for `$.user.config.acknowledge`
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "result": true,
@@ -70,5 +69,6 @@ it("getCurrentUser", async ({ client, expect, generateTypeTest }) => {
 
 it.todo("updateCurrentUser");
 it.todo("getPublicUserByName");
-it.todo("connectSocialNetworkProvider");
-it.todo("disconnectSocialNetworkProvider");
+
+it.skip("connectSocialNetworkProvider");
+it.skip("disconnectSocialNetworkProvider");

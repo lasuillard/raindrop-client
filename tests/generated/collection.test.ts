@@ -482,12 +482,34 @@ it("getSystemCollectionStats", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it.todo("getCollaborators");
-it.todo("shareCollection");
-it.todo("unshareOrLeaveCollection");
-it.todo("changeCollaboratorAccessLevel");
-it.todo("deleteCollaborator");
-it.todo("acceptInvitation");
+it.skip("getCollaborators");
+
+it("shareCollection", async ({ task, client, expect, generateTypeTest }) => {
+	const collection = await createCollection(task, client);
+
+	const response = await client.collection.shareCollection(
+		collection.item._id,
+		{
+			emails: ["example@example.com"],
+			role: "viewer",
+		},
+	);
+
+	generateTypeTest({ type: "ShareCollectionResponse" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "emails": [
+		    "example@example.com",
+		  ],
+		  "result": true,
+		}
+	`);
+});
+
+it.skip("unshareOrLeaveCollection");
+it.skip("changeCollaboratorAccessLevel");
+it.skip("deleteCollaborator");
+it.skip("acceptInvitation");
 
 it("searchCovers", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.collection.searchCovers("strawberry");
