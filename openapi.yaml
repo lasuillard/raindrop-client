@@ -1075,9 +1075,7 @@ paths:
           content:
             application/json:
               schema:
-                oneOf:
-                  - $ref: "#/components/schemas/ParseUrlResponse"
-                  - $ref: "#/components/schemas/ParseUrlErrorResponse"
+                $ref: "#/components/schemas/ParseURLResponse"
 
   /rest/v1/import/url/exists:
     post:
@@ -1101,24 +1099,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: "#/components/schemas/Response"
-                  - properties:
-                      ids:
-                        type: array
-                        items:
-                          type: integer
-              examples:
-                Found:
-                  value:
-                    result: true
-                    ids:
-                      - 3322
-                      - 12323
-                Not found:
-                  value:
-                    result: false
-                    ids: []
+                $ref: "#/components/schemas/CheckURLsExistResponse"
 
   /rest/v1/import/file:
     post:
@@ -1140,7 +1121,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ImportFileResponse"
+                $ref: "#/components/schemas/ImportHTMLBookmarkFileResponse"
 components:
   securitySchemes:
     # checkov:skip=CKV_OPENAPI_3:FIXME
@@ -2319,6 +2300,150 @@ components:
                 format: date-time
               raindropRef:
                 type: integer
+
+    ParseURLResponse:
+      type: object
+      required: [result, item]
+      properties:
+        result:
+          type: boolean
+        item:
+          type: object
+          required: [title, excerpt, cover, media, type, meta]
+          properties:
+            title:
+              type: string
+            excerpt:
+              type: string
+            cover:
+              type: string
+            media:
+              type: array
+              items:
+                type: object
+                required: [link]
+                properties:
+                  link:
+                    type: string
+            type:
+              type: string
+            meta:
+              type: object
+              required: [tags]
+              properties:
+                tags:
+                  type: array
+                  items:
+                    type: string
+
+    CheckURLsExistResponse:
+      type: object
+      required: [result, ids, duplicates, id]
+      properties:
+        result:
+          type: boolean
+        ids:
+          type: array
+          items:
+            type: integer
+        duplicates:
+          type: array
+          items:
+            type: object
+            required: [_id, link]
+            properties:
+              _id:
+                type: integer
+              link:
+                type: string
+        id:
+          type: integer
+
+    ImportHTMLBookmarkFileResponse:
+      type: object
+      required: [result, items, count]
+      properties:
+        result:
+          type: boolean
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/ImportHTMLBookmarkFileResponseItemFolder"
+        count:
+          type: object
+          required: [bookmarks, folders, tags, highlights]
+          properties:
+            bookmarks:
+              type: integer
+            folders:
+              type: integer
+            tags:
+              type: integer
+            highlights:
+              type: integer
+
+    ImportHTMLBookmarkFileResponseItemFolder:
+      type: object
+      required: [title, folders, bookmarks]
+      properties:
+        title:
+          type: string
+        folders:
+          type: array
+          items:
+            $ref: "#/components/schemas/ImportHTMLBookmarkFileResponseItemFolder"
+        bookmarks:
+          type: array
+          items:
+            $ref: "#/components/schemas/ImportHTMLBookmarkFileResponseItemBookmark"
+
+    ImportHTMLBookmarkFileResponseItemBookmark:
+      type: object
+      required:
+        [
+          link,
+          title,
+          excerpt,
+          created,
+          lastUpdate,
+          tags,
+          note,
+          cover,
+          media,
+          important,
+        ]
+      properties:
+        link:
+          type: string
+          format: uri
+        title:
+          type: string
+        excerpt:
+          type: string
+        created:
+          type: string
+          format: date-time
+        lastUpdate:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            type: string
+        note:
+          type: string
+        cover:
+          type: string
+        media:
+          type: array
+          items:
+            type: object
+            required: [link]
+            properties:
+              link:
+                type: string
+        important:
+          type: boolean
 
     CreateRaindropRequest:
       type: object

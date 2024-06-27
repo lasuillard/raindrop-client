@@ -99,25 +99,6 @@ export interface ChangeCollaboratorAccessLevelRequest {
 /**
  * 
  * @export
- * @interface CheckURLsExist200Response
- */
-export interface CheckURLsExist200Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CheckURLsExist200Response
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof CheckURLsExist200Response
-     */
-    'ids'?: Array<number>;
-}
-/**
- * 
- * @export
  * @interface CheckURLsExistRequest
  */
 export interface CheckURLsExistRequest {
@@ -127,6 +108,56 @@ export interface CheckURLsExistRequest {
      * @memberof CheckURLsExistRequest
      */
     'urls'?: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface CheckURLsExistResponse
+ */
+export interface CheckURLsExistResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CheckURLsExistResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof CheckURLsExistResponse
+     */
+    'ids': Array<number>;
+    /**
+     * 
+     * @type {Array<CheckURLsExistResponseDuplicatesInner>}
+     * @memberof CheckURLsExistResponse
+     */
+    'duplicates': Array<CheckURLsExistResponseDuplicatesInner>;
+    /**
+     * 
+     * @type {number}
+     * @memberof CheckURLsExistResponse
+     */
+    'id': number;
+}
+/**
+ * 
+ * @export
+ * @interface CheckURLsExistResponseDuplicatesInner
+ */
+export interface CheckURLsExistResponseDuplicatesInner {
+    /**
+     * 
+     * @type {number}
+     * @memberof CheckURLsExistResponseDuplicatesInner
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CheckURLsExistResponseDuplicatesInner
+     */
+    'link': string;
 }
 /**
  * 
@@ -731,10 +762,10 @@ export interface CreateRaindropRequest {
     'tags'?: Array<string>;
     /**
      * 
-     * @type {Array<CreateRaindropRequestMediaInner>}
+     * @type {Array<ParseURLResponseItemMediaInner>}
      * @memberof CreateRaindropRequest
      */
-    'media'?: Array<CreateRaindropRequestMediaInner>;
+    'media'?: Array<ParseURLResponseItemMediaInner>;
     /**
      * 
      * @type {string}
@@ -815,19 +846,6 @@ export interface CreateRaindropRequestHighlightsInner {
      * @memberof CreateRaindropRequestHighlightsInner
      */
     'note': string;
-}
-/**
- * 
- * @export
- * @interface CreateRaindropRequestMediaInner
- */
-export interface CreateRaindropRequestMediaInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindropRequestMediaInner
-     */
-    'link': string;
 }
 /**
  * 
@@ -2154,6 +2172,154 @@ export interface ImportFileResponse {
 /**
  * 
  * @export
+ * @interface ImportHTMLBookmarkFileResponse
+ */
+export interface ImportHTMLBookmarkFileResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ImportHTMLBookmarkFileResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<ImportHTMLBookmarkFileResponseItemFolder>}
+     * @memberof ImportHTMLBookmarkFileResponse
+     */
+    'items': Array<ImportHTMLBookmarkFileResponseItemFolder>;
+    /**
+     * 
+     * @type {ImportHTMLBookmarkFileResponseCount}
+     * @memberof ImportHTMLBookmarkFileResponse
+     */
+    'count': ImportHTMLBookmarkFileResponseCount;
+}
+/**
+ * 
+ * @export
+ * @interface ImportHTMLBookmarkFileResponseCount
+ */
+export interface ImportHTMLBookmarkFileResponseCount {
+    /**
+     * 
+     * @type {number}
+     * @memberof ImportHTMLBookmarkFileResponseCount
+     */
+    'bookmarks': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ImportHTMLBookmarkFileResponseCount
+     */
+    'folders': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ImportHTMLBookmarkFileResponseCount
+     */
+    'tags': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ImportHTMLBookmarkFileResponseCount
+     */
+    'highlights': number;
+}
+/**
+ * 
+ * @export
+ * @interface ImportHTMLBookmarkFileResponseItemBookmark
+ */
+export interface ImportHTMLBookmarkFileResponseItemBookmark {
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'link': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'excerpt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'note': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'cover': string;
+    /**
+     * 
+     * @type {Array<ParseURLResponseItemMediaInner>}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'media': Array<ParseURLResponseItemMediaInner>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'important': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface ImportHTMLBookmarkFileResponseItemFolder
+ */
+export interface ImportHTMLBookmarkFileResponseItemFolder {
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemFolder
+     */
+    'title': string;
+    /**
+     * 
+     * @type {Array<ImportHTMLBookmarkFileResponseItemFolder>}
+     * @memberof ImportHTMLBookmarkFileResponseItemFolder
+     */
+    'folders': Array<ImportHTMLBookmarkFileResponseItemFolder>;
+    /**
+     * 
+     * @type {Array<ImportHTMLBookmarkFileResponseItemBookmark>}
+     * @memberof ImportHTMLBookmarkFileResponseItemFolder
+     */
+    'bookmarks': Array<ImportHTMLBookmarkFileResponseItemBookmark>;
+}
+/**
+ * 
+ * @export
  * @interface MergeCollectionsRequest
  */
 export interface MergeCollectionsRequest {
@@ -2240,11 +2406,93 @@ export const ObtainTokenGrantTypeEnum = {
 export type ObtainTokenGrantTypeEnum = typeof ObtainTokenGrantTypeEnum[keyof typeof ObtainTokenGrantTypeEnum];
 
 /**
- * @type ParseURL200Response
+ * 
  * @export
+ * @interface ParseURLResponse
  */
-export type ParseURL200Response = ParseUrlErrorResponse | ParseUrlResponse;
-
+export interface ParseURLResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ParseURLResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {ParseURLResponseItem}
+     * @memberof ParseURLResponse
+     */
+    'item': ParseURLResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface ParseURLResponseItem
+ */
+export interface ParseURLResponseItem {
+    /**
+     * 
+     * @type {string}
+     * @memberof ParseURLResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ParseURLResponseItem
+     */
+    'excerpt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ParseURLResponseItem
+     */
+    'cover': string;
+    /**
+     * 
+     * @type {Array<ParseURLResponseItemMediaInner>}
+     * @memberof ParseURLResponseItem
+     */
+    'media': Array<ParseURLResponseItemMediaInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ParseURLResponseItem
+     */
+    'type': string;
+    /**
+     * 
+     * @type {ParseURLResponseItemMeta}
+     * @memberof ParseURLResponseItem
+     */
+    'meta': ParseURLResponseItemMeta;
+}
+/**
+ * 
+ * @export
+ * @interface ParseURLResponseItemMediaInner
+ */
+export interface ParseURLResponseItemMediaInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof ParseURLResponseItemMediaInner
+     */
+    'link': string;
+}
+/**
+ * 
+ * @export
+ * @interface ParseURLResponseItemMeta
+ */
+export interface ParseURLResponseItemMeta {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ParseURLResponseItemMeta
+     */
+    'tags': Array<string>;
+}
 /**
  * 
  * @export
@@ -6274,7 +6522,7 @@ export const ImportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async checkURLsExist(checkURLsExistRequest?: CheckURLsExistRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckURLsExist200Response>> {
+        async checkURLsExist(checkURLsExistRequest?: CheckURLsExistRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckURLsExistResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.checkURLsExist(checkURLsExistRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ImportApi.checkURLsExist']?.[localVarOperationServerIndex]?.url;
@@ -6286,7 +6534,7 @@ export const ImportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async importHTMLBookmarkFile(_import?: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImportFileResponse>> {
+        async importHTMLBookmarkFile(_import?: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImportHTMLBookmarkFileResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.importHTMLBookmarkFile(_import, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ImportApi.importHTMLBookmarkFile']?.[localVarOperationServerIndex]?.url;
@@ -6298,7 +6546,7 @@ export const ImportApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async parseURL(url?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ParseURL200Response>> {
+        async parseURL(url?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ParseURLResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.parseURL(url, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['ImportApi.parseURL']?.[localVarOperationServerIndex]?.url;
@@ -6320,7 +6568,7 @@ export const ImportApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        checkURLsExist(checkURLsExistRequest?: CheckURLsExistRequest, options?: any): AxiosPromise<CheckURLsExist200Response> {
+        checkURLsExist(checkURLsExistRequest?: CheckURLsExistRequest, options?: any): AxiosPromise<CheckURLsExistResponse> {
             return localVarFp.checkURLsExist(checkURLsExistRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -6329,7 +6577,7 @@ export const ImportApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        importHTMLBookmarkFile(_import?: File, options?: any): AxiosPromise<ImportFileResponse> {
+        importHTMLBookmarkFile(_import?: File, options?: any): AxiosPromise<ImportHTMLBookmarkFileResponse> {
             return localVarFp.importHTMLBookmarkFile(_import, options).then((request) => request(axios, basePath));
         },
         /**
@@ -6338,7 +6586,7 @@ export const ImportApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        parseURL(url?: string, options?: any): AxiosPromise<ParseURL200Response> {
+        parseURL(url?: string, options?: any): AxiosPromise<ParseURLResponse> {
             return localVarFp.parseURL(url, options).then((request) => request(axios, basePath));
         },
     };
