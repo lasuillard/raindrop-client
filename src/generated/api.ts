@@ -1929,6 +1929,37 @@ export interface GetRaindropResponseItemHighlightsInner {
 /**
  * 
  * @export
+ * @interface GetRaindropsResponse
+ */
+export interface GetRaindropsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetRaindropsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetRaindropsResponse
+     */
+    'collectionId': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetRaindropsResponse
+     */
+    'count': number;
+    /**
+     * 
+     * @type {Array<GetRaindropResponseItem>}
+     * @memberof GetRaindropsResponse
+     */
+    'items': Array<GetRaindropResponseItem>;
+}
+/**
+ * 
+ * @export
  * @interface GetRootCollectionsResponse
  */
 export interface GetRootCollectionsResponse {

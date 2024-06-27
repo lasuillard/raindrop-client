@@ -1,5 +1,5 @@
 import { it } from "^/tests/_helpers/vitest";
-import { createRaindrop } from "./_helpers";
+import { createCollection, createRaindrop } from "./_helpers";
 
 it("createRaindrop", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.raindrop.createRaindrop({
@@ -132,13 +132,146 @@ it("getRaindrop", async ({ task, client, expect, generateTypeTest }) => {
 });
 
 it.todo("updateRaindrop");
+
 it.todo("removeRaindrop");
+
 it.todo("uploadFile");
+
 it.todo("uploadRaindropCover");
+
 it.todo("getPermanentCopy");
+
 it.todo("suggestForNewBookmark");
+
 it.todo("suggestForExistingBookmark");
-it.todo("getRaindrops");
+
+it("getRaindrops", async ({ task, client, expect, generateTypeTest }) => {
+	const collection = await createCollection(task, client);
+	await createRaindrop(task, client, {
+		collection: { $id: collection.item._id },
+	});
+	await createRaindrop(task, client, {
+		collection: { $id: collection.item._id },
+	});
+	await createRaindrop(task, client, {
+		collection: { $id: collection.item._id },
+	});
+
+	const response = await client.raindrop.getRaindrops(collection.item._id);
+
+	generateTypeTest({ type: "GetRaindropsResponse" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "collectionId": 45478258,
+		  "count": 3,
+		  "items": [
+		    {
+		      "_id": 807636969,
+		      "collection": {
+		        "$id": 45478258,
+		        "$ref": "collections",
+		        "oid": 45478258,
+		      },
+		      "collectionId": 45478258,
+		      "cover": "",
+		      "created": "2024-06-27T12:54:06.484Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "avatar": "",
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "domain": "raindrop.io",
+		      "excerpt": "",
+		      "highlights": [],
+		      "lastUpdate": "2024-06-27T12:54:06.484Z",
+		      "link": "https://raindrop.io",
+		      "media": [],
+		      "note": "",
+		      "removed": false,
+		      "sort": 807636969,
+		      "tags": [],
+		      "title": "getRaindrops",
+		      "type": "link",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		    },
+		    {
+		      "_id": 807636965,
+		      "collection": {
+		        "$id": 45478258,
+		        "$ref": "collections",
+		        "oid": 45478258,
+		      },
+		      "collectionId": 45478258,
+		      "cover": "",
+		      "created": "2024-06-27T12:54:06.122Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "avatar": "",
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "domain": "raindrop.io",
+		      "excerpt": "",
+		      "highlights": [],
+		      "lastUpdate": "2024-06-27T12:54:06.122Z",
+		      "link": "https://raindrop.io",
+		      "media": [],
+		      "note": "",
+		      "removed": false,
+		      "sort": 807636965,
+		      "tags": [],
+		      "title": "getRaindrops",
+		      "type": "link",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		    },
+		    {
+		      "_id": 807636958,
+		      "collection": {
+		        "$id": 45478258,
+		        "$ref": "collections",
+		        "oid": 45478258,
+		      },
+		      "collectionId": 45478258,
+		      "cover": "",
+		      "created": "2024-06-27T12:54:05.747Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "avatar": "",
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "domain": "raindrop.io",
+		      "excerpt": "",
+		      "highlights": [],
+		      "lastUpdate": "2024-06-27T12:54:05.747Z",
+		      "link": "https://raindrop.io",
+		      "media": [],
+		      "note": "",
+		      "removed": false,
+		      "sort": 807636958,
+		      "tags": [],
+		      "title": "getRaindrops",
+		      "type": "link",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		    },
+		  ],
+		  "result": true,
+		}
+	`);
+});
+
 it.todo("updateRaindrops");
+
 it.todo("removeRaindrops");
+
 it.todo("createRaindrops");
