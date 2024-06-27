@@ -7,7 +7,7 @@ it("getCurrentUser", () => {
 		user: {
 			tfa: { enabled: false },
 			files: {
-				used: 73048,
+				used: 0,
 				size: 100000000,
 				lastCheckPoint: "2024-04-21T06:46:01.479Z",
 			},
@@ -18,12 +18,12 @@ it("getCurrentUser", () => {
 			avatar: "",
 			pro: false,
 			groups: [
-				{ title: "Collections", hidden: false, sort: 0, collections: [] },
+				{ title: "raindrop-client", hidden: false, sort: 0, collections: [] },
 			],
-			lastAction: "2024-06-25T12:01:48.974Z",
-			lastVisit: "2024-06-24T11:44:19.210Z",
+			lastAction: "2024-06-27T12:19:57.372Z",
+			lastVisit: "2024-06-26T11:07:37.787Z",
 			registered: "2024-04-21T06:46:01.480Z",
-			lastUpdate: "2024-06-25T12:01:48.974Z",
+			lastUpdate: "2024-06-27T12:19:57.372Z",
 			config: {
 				default_collection_view: "list",
 				raindrops_hide: [
@@ -40,9 +40,10 @@ it("getCurrentUser", () => {
 				nested_view_legacy: true,
 				add_default_collection: -1,
 				acknowledge: ["onboard_upgrade"],
-				last_collection: 43325344,
+				last_collection: 45430305,
 				raindrops_sort: "title",
 				ai_suggestions: true,
+				filters_hide: false,
 			},
 			password: true,
 		},

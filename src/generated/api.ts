@@ -1604,6 +1604,111 @@ export interface GetPublicUserByName200Response {
 /**
  * 
  * @export
+ * @interface GetPublicUserByNameResponse
+ */
+export interface GetPublicUserByNameResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetPublicUserByNameResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {GetPublicUserByNameResponseUser}
+     * @memberof GetPublicUserByNameResponse
+     */
+    'user': GetPublicUserByNameResponseUser;
+}
+/**
+ * 
+ * @export
+ * @interface GetPublicUserByNameResponseUser
+ */
+export interface GetPublicUserByNameResponseUser {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'fullName': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'avatar': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'pro': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'lastAction': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'registered': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {GetPublicUserByNameResponseUserConfig}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'config': GetPublicUserByNameResponseUserConfig;
+}
+/**
+ * 
+ * @export
+ * @interface GetPublicUserByNameResponseUserConfig
+ */
+export interface GetPublicUserByNameResponseUserConfig {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GetPublicUserByNameResponseUserConfig
+     */
+    'raindrops_hide': Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetPublicUserByNameResponseUserConfig
+     */
+    'nested_view_legacy': boolean;
+}
+/**
+ * 
+ * @export
  * @interface GetRaindropResponse
  */
 export interface GetRaindropResponse {
@@ -3537,10 +3642,10 @@ export interface UpdateCollectionResponse {
 export interface UpdateCurrentUserRequest {
     /**
      * 
-     * @type {Array<Group>}
+     * @type {Array<UpdateCurrentUserRequestGroupsInner>}
      * @memberof UpdateCurrentUserRequest
      */
-    'groups'?: Array<Group>;
+    'groups'?: Array<UpdateCurrentUserRequestGroupsInner>;
     /**
      * 
      * @type {UserConfig}
@@ -3571,6 +3676,189 @@ export interface UpdateCurrentUserRequest {
      * @memberof UpdateCurrentUserRequest
      */
     'email'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateCurrentUserRequestGroupsInner
+ */
+export interface UpdateCurrentUserRequestGroupsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserRequestGroupsInner
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateCurrentUserRequestGroupsInner
+     */
+    'hidden'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateCurrentUserRequestGroupsInner
+     */
+    'sort'?: number;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof UpdateCurrentUserRequestGroupsInner
+     */
+    'collections'?: Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateCurrentUserResponse
+ */
+export interface UpdateCurrentUserResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateCurrentUserResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {UpdateCurrentUserResponseUser}
+     * @memberof UpdateCurrentUserResponse
+     */
+    'user': UpdateCurrentUserResponseUser;
+    /**
+     * 
+     * @type {UpdateCurrentUserResponseUser}
+     * @memberof UpdateCurrentUserResponse
+     */
+    'item': UpdateCurrentUserResponseUser;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateCurrentUserResponseUser
+ */
+export interface UpdateCurrentUserResponseUser {
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {UserConfig}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'config': UserConfig;
+    /**
+     * 
+     * @type {UserDropbox}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'dropbox'?: UserDropbox;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'email_MD5'?: string;
+    /**
+     * 
+     * @type {UserFiles}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'files': UserFiles;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'fullName': string;
+    /**
+     * 
+     * @type {UserDropbox}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'gdrive'?: UserDropbox;
+    /**
+     * 
+     * @type {Array<Group>}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'groups': Array<Group>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'password': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'pro': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'proExpire'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'registered': string;
+    /**
+     * 
+     * @type {UserTfa}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'tfa'?: UserTfa;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'avatar'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'lastAction'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'lastVisit'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'lastUpdate'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    '__v': number;
 }
 /**
  * 
@@ -4122,6 +4410,12 @@ export interface UserConfig {
      * @memberof UserConfig
      */
     'ai_suggestions'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserConfig
+     */
+    'filters_hide'?: boolean;
 }
 /**
  * 

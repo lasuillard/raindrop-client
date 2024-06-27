@@ -856,22 +856,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                groups:
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/Group"
-                config:
-                  $ref: "#/components/schemas/UserConfig"
-                newpassword:
-                  type: string
-                oldpassword:
-                  type: string
-                fullName:
-                  type: string
-                email:
-                  type: string
+              $ref: "#/components/schemas/UpdateCurrentUserRequest"
       responses:
         200:
           description: OK
@@ -1546,6 +1531,8 @@ components:
         acknowledge:
           type: array
         ai_suggestions:
+          type: boolean
+        filters_hide:
           type: boolean
     User:
       type: object
@@ -2720,3 +2707,107 @@ components:
                 type: string
               count:
                 type: integer
+
+    UpdateCurrentUserRequest:
+      type: object
+      properties:
+        groups:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              hidden:
+                type: boolean
+              sort:
+                type: integer
+              collections:
+                type: array
+                items:
+                  type: integer
+        config:
+          $ref: "#/components/schemas/UserConfig"
+        newpassword:
+          type: string
+        oldpassword:
+          type: string
+        fullName:
+          type: string
+        email:
+          type: string
+
+    UpdateCurrentUserResponse:
+      type: object
+      required: [result, user, item]
+      properties:
+        result:
+          type: boolean
+        user:
+          allOf:
+            - $ref: "#/components/schemas/User"
+            - required: [__v]
+              properties:
+                __v:
+                  type: integer
+        item:
+          allOf:
+            - $ref: "#/components/schemas/User"
+            - required: [__v]
+              properties:
+                __v:
+                  type: integer
+
+    GetPublicUserByNameResponse:
+      type: object
+      required: [result, user]
+      properties:
+        result:
+          type: boolean
+        user:
+          type: object
+          required:
+            [
+              _id,
+              fullName,
+              name,
+              email,
+              avatar,
+              pro,
+              lastAction,
+              registered,
+              lastUpdate,
+              config,
+            ]
+          properties:
+            _id:
+              type: integer
+            fullName:
+              type: string
+            name:
+              type: string
+            email:
+              type: string
+            avatar:
+              type: string
+            pro:
+              type: boolean
+            lastAction:
+              type: string
+              format: date-time
+            registered:
+              type: string
+              format: date-time
+            lastUpdate:
+              type: string
+              format: date-time
+            config:
+              type: object
+              required: [raindrops_hide, nested_view_legacy]
+              properties:
+                raindrops_hide:
+                  type: array
+                  items:
+                    type: string
+                nested_view_legacy:
+                  type: boolean
