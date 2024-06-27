@@ -3,12 +3,13 @@ import { Polly } from "@pollyjs/core";
 import FSPersister from "@pollyjs/persister-fs";
 import type { Use } from "@vitest/runner";
 import type { Task } from "vitest";
+import { taskId } from "./common";
 
 Polly.register(NodeHTTPAdapter);
 Polly.register(FSPersister);
 
 export async function polly({ task }: { task: Task }, use: Use<Polly>) {
-	const _polly = new Polly(task.name, {
+	const _polly = new Polly(taskId(task), {
 		adapters: ["node-http"],
 		persister: "fs",
 		persisterOptions: {

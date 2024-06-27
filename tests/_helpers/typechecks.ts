@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { Use } from "@vitest/runner";
 import type { ExpectStatic, Task } from "vitest";
+import { taskId } from "./common";
 
 export interface CreateTest {
 	// Test identifier
@@ -39,7 +40,7 @@ export async function generateTypeTest(
 		expect.addSnapshotSerializer({
 			serialize(val, config, indentation, depth, refs, printer) {
 				addTest({
-					testId: task.name,
+					testId: taskId(task),
 					type: args.type,
 					value: JSON.stringify(val),
 				});
