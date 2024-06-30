@@ -22,26 +22,29 @@ export default defineConfig({
 		},
 		target: "ESNext",
 	},
-	define: {
-		"import.meta.vitest": "undefined",
-	},
 	test: {
-		include: [
-			"tests/**/*.{test,spec}.{js,ts}",
-			"src/**/*.{js,ts}", // In-source testing
-		],
-		exclude: ["**/__mocks__/*", "src/generated/**/*"],
+		sequence: {
+			// Run sequentially due to API testing getting messed up
+			concurrent: false,
+		},
+		testTimeout: 10000,
+		include: ["tests/**/*.{test,spec}.{js,ts}"],
+		exclude: ["**/__mocks__/*"],
 		coverage: {
 			all: true,
 			include: ["src/**"],
 			exclude: ["src/**/__mocks__/*", "src/**/*.d.ts"],
 			reporter: ["text", "clover", "html"],
 		},
-		setupFiles: ["tests/setup.ts"],
+		setupFiles: ["dotenv/config", "tests/setup.ts"],
 		api: {
 			// Publish for * if inside container for forwarding
 			host: process.env.CONTAINER ? "0.0.0.0" : "127.0.0.1",
 			port: 51204,
+		},
+		typecheck: {
+			// Run explicitly (`--typecheck`, `--typecheck.only`)
+			enabled: false,
 		},
 	},
 });

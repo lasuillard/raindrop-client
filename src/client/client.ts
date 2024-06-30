@@ -46,14 +46,3 @@ export class Raindrop {
 		this.user = new UserApi(configuration, undefined, this.client);
 	}
 }
-
-/* c8 ignore start */
-if (import.meta.vitest) {
-	const { expect, it } = import.meta.vitest;
-
-	it("should instantiate", () => {
-		const rd = new Raindrop();
-		expect(rd).toBeTruthy();
-	});
-}
-/* c8 ignore stop */

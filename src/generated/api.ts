@@ -14,7 +14,7 @@
 
 
 import type { Configuration } from './configuration';
-import type { AxiosPromise, AxiosInstance, AxiosRequestConfig } from 'axios';
+import type { AxiosPromise, AxiosInstance, RawAxiosRequestConfig } from 'axios';
 import globalAxios from 'axios';
 // Some imports not used depending on template conditions
 // @ts-ignore
@@ -99,25 +99,6 @@ export interface ChangeCollaboratorAccessLevelRequest {
 /**
  * 
  * @export
- * @interface CheckURLsExist200Response
- */
-export interface CheckURLsExist200Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CheckURLsExist200Response
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {Array<number>}
-     * @memberof CheckURLsExist200Response
-     */
-    'ids'?: Array<number>;
-}
-/**
- * 
- * @export
  * @interface CheckURLsExistRequest
  */
 export interface CheckURLsExistRequest {
@@ -131,15 +112,155 @@ export interface CheckURLsExistRequest {
 /**
  * 
  * @export
+ * @interface CheckURLsExistResponse
+ */
+export interface CheckURLsExistResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CheckURLsExistResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof CheckURLsExistResponse
+     */
+    'ids': Array<number>;
+    /**
+     * 
+     * @type {Array<CheckURLsExistResponseDuplicatesInner>}
+     * @memberof CheckURLsExistResponse
+     */
+    'duplicates': Array<CheckURLsExistResponseDuplicatesInner>;
+    /**
+     * 
+     * @type {number}
+     * @memberof CheckURLsExistResponse
+     */
+    'id': number;
+}
+/**
+ * 
+ * @export
+ * @interface CheckURLsExistResponseDuplicatesInner
+ */
+export interface CheckURLsExistResponseDuplicatesInner {
+    /**
+     * 
+     * @type {number}
+     * @memberof CheckURLsExistResponseDuplicatesInner
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CheckURLsExistResponseDuplicatesInner
+     */
+    'link': string;
+}
+/**
+ * 
+ * @export
  * @interface Collection
  */
 export interface Collection {
     /**
-     * The id of the collection.
+     * 
      * @type {number}
      * @memberof Collection
      */
     '_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'description': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof Collection
+     */
+    'user': UserRef;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Collection
+     */
+    'public': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'view': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof Collection
+     */
+    'count': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof Collection
+     */
+    'cover': Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof Collection
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof Collection
+     */
+    'expanded': boolean;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof Collection
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'lastAction': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Collection
+     */
+    'color'?: string;
     /**
      * 
      * @type {CollectionAccess}
@@ -148,85 +269,11 @@ export interface Collection {
     'access': CollectionAccess;
     /**
      * 
-     * @type {CollectionCollaborators}
-     * @memberof Collection
-     */
-    'collaborators': CollectionCollaborators;
-    /**
-     * Primary color of collection cover as HEX
-     * @type {string}
-     * @memberof Collection
-     */
-    'color': string;
-    /**
-     * Count of raindrops in collection
-     * @type {number}
-     * @memberof Collection
-     */
-    'count': number;
-    /**
-     * Collection cover URL. This array always have one item due to legacy reasons
-     * @type {Array<string>}
-     * @memberof Collection
-     */
-    'cover': Array<string>;
-    /**
-     * When collection is created
-     * @type {string}
-     * @memberof Collection
-     */
-    'created': string;
-    /**
-     * Whether the collection’s sub-collections are expanded
      * @type {boolean}
      * @memberof Collection
      */
-    'expanded': boolean;
-    /**
-     * When collection is updated
-     * @type {string}
-     * @memberof Collection
-     */
-    'lastUpdate': string;
-    /**
-     * 
-     * @type {CollectionRef}
-     * @memberof Collection
-     */
-    'parent': CollectionRef;
-    /**
-     * Collection and raindrops that it contains will be accessible without authentication by public link
-     * @type {boolean}
-     * @memberof Collection
-     */
-    'public': boolean;
-    /**
-     * The order of collection (descending). Defines the position of the collection among all the collections with the same `parent.$id`
-     * @type {number}
-     * @memberof Collection
-     */
-    'sort': number;
-    /**
-     * Name of the collection
-     * @type {string}
-     * @memberof Collection
-     */
-    'title': string;
-    /**
-     * 
-     * @type {CollectionUser}
-     * @memberof Collection
-     */
-    'user': CollectionUser;
-    /**
-     * 
-     * @type {View}
-     * @memberof Collection
-     */
-    'view': View;
+    'author': boolean;
 }
-
-
 /**
  * 
  * @export
@@ -234,46 +281,29 @@ export interface Collection {
  */
 export interface CollectionAccess {
     /**
-     * 1. read only access (equal to public=true) 2. collaborator with read only access 3. collaborator with write only access 4. owner
-     * @type {number}
-     * @memberof CollectionAccess
-     */
-    'level': CollectionAccessLevelEnum;
-    /**
-     * Does it possible to change parent of this collection?
+     * 
      * @type {boolean}
      * @memberof CollectionAccess
      */
     'draggable': boolean;
-}
-
-export const CollectionAccessLevelEnum = {
-    NUMBER_1: 1,
-    NUMBER_2: 2,
-    NUMBER_3: 3,
-    NUMBER_4: 4
-} as const;
-
-export type CollectionAccessLevelEnum = typeof CollectionAccessLevelEnum[keyof typeof CollectionAccessLevelEnum];
-
-/**
- * 
- * @export
- * @interface CollectionCollaborators
- */
-export interface CollectionCollaborators {
-    /**
-     * 
-     * @type {string}
-     * @memberof CollectionCollaborators
-     */
-    '$ref': string;
     /**
      * 
      * @type {number}
-     * @memberof CollectionCollaborators
+     * @memberof CollectionAccess
      */
-    '$id': number;
+    'for': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CollectionAccess
+     */
+    'level': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CollectionAccess
+     */
+    'root': boolean;
 }
 /**
  * 
@@ -288,7 +318,7 @@ export interface CollectionRef {
      */
     '$ref': CollectionRefRefEnum;
     /**
-     * The id of the parent collection. Not specified for root collections
+     * 
      * @type {number}
      * @memberof CollectionRef
      */
@@ -298,7 +328,7 @@ export interface CollectionRef {
      * @type {number}
      * @memberof CollectionRef
      */
-    'oid': number;
+    'oid'?: number;
 }
 
 export const CollectionRefRefEnum = {
@@ -344,25 +374,6 @@ export interface CollectionResponseOne {
      * @memberof CollectionResponseOne
      */
     'item'?: Collection;
-}
-/**
- * 
- * @export
- * @interface CollectionUser
- */
-export interface CollectionUser {
-    /**
-     * 
-     * @type {string}
-     * @memberof CollectionUser
-     */
-    '$ref': string;
-    /**
-     * Owner ID
-     * @type {number}
-     * @memberof CollectionUser
-     */
-    '$id': number;
 }
 /**
  * 
@@ -424,72 +435,185 @@ export interface CoverResponse {
 /**
  * 
  * @export
- * @interface CreateCollection
+ * @interface CreateCollectionRequest
  */
-export interface CreateCollection {
+export interface CreateCollectionRequest {
     /**
      * 
-     * @type {View}
-     * @memberof CreateCollection
-     */
-    'view': View;
-    /**
-     * Name of the collection
      * @type {string}
-     * @memberof CreateCollection
+     * @memberof CreateCollectionRequest
+     */
+    'view': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionRequest
      */
     'title': string;
     /**
-     * The order of collection (descending). Defines the position of the collection among all the collections with the same `parent.$id`
+     * 
      * @type {number}
-     * @memberof CreateCollection
+     * @memberof CreateCollectionRequest
      */
     'sort': number;
     /**
-     * Collection and raindrops that it contains will be accessible without authentication?
+     * 
      * @type {boolean}
-     * @memberof CreateCollection
+     * @memberof CreateCollectionRequest
      */
     'public': boolean;
     /**
      * 
      * @type {CollectionRef}
-     * @memberof CreateCollection
+     * @memberof CreateCollectionRequest
      */
-    'parent': CollectionRef;
+    'parent'?: CollectionRef;
     /**
      * 
      * @type {Array<string>}
-     * @memberof CreateCollection
+     * @memberof CreateCollectionRequest
      */
     'cover': Array<string>;
 }
-
-
 /**
  * 
  * @export
- * @interface CreateCollection400Response
+ * @interface CreateCollectionResponse
  */
-export interface CreateCollection400Response {
+export interface CreateCollectionResponse {
     /**
      * 
      * @type {boolean}
-     * @memberof CreateCollection400Response
+     * @memberof CreateCollectionResponse
      */
     'result': boolean;
     /**
      * 
-     * @type {string}
-     * @memberof CreateCollection400Response
+     * @type {CreateCollectionResponseItem}
+     * @memberof CreateCollectionResponse
      */
-    'error': string;
+    'item': CreateCollectionResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface CreateCollectionResponseItem
+ */
+export interface CreateCollectionResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateCollectionResponseItem
+     */
+    '_id': number;
     /**
      * 
      * @type {string}
-     * @memberof CreateCollection400Response
+     * @memberof CreateCollectionResponseItem
      */
-    'errorMessage': string;
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'description': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof CreateCollectionResponseItem
+     */
+    'user': UserRef;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateCollectionResponseItem
+     */
+    'public': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'view': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateCollectionResponseItem
+     */
+    'count': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateCollectionResponseItem
+     */
+    'cover': Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateCollectionResponseItem
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateCollectionResponseItem
+     */
+    'expanded': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateCollectionResponseItem
+     */
+    'creatorRef': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'lastAction': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateCollectionResponseItem
+     */
+    'color'?: string;
+    /**
+     * 
+     * @type {CollectionAccess}
+     * @memberof CreateCollectionResponseItem
+     */
+    'access': CollectionAccess;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateCollectionResponseItem
+     */
+    'author': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateCollectionResponseItem
+     */
+    '__v': number;
 }
 /**
  * 
@@ -510,13 +634,13 @@ export interface CreateRaindrop {
      */
     'lastUpdate': string;
     /**
-     * Specify sort order (ascending).  For example if you want to move raindrop to the first place set this field to 0
+     * 
      * @type {number}
      * @memberof CreateRaindrop
      */
     'sort'?: number;
     /**
-     * Marked as \"favorite\"
+     * 
      * @type {boolean}
      * @memberof CreateRaindrop
      */
@@ -528,7 +652,7 @@ export interface CreateRaindrop {
      */
     'reminder': RaindropBaseReminder;
     /**
-     * Tags list
+     * 
      * @type {Array<string>}
      * @memberof CreateRaindrop
      */
@@ -588,7 +712,7 @@ export interface CreateRaindrop {
      */
     'highlights': Array<Highlight>;
     /**
-     * Specify empty object to automatically parse meta data (cover, description, html) in the background
+     * 
      * @type {object}
      * @memberof CreateRaindrop
      */
@@ -597,46 +721,346 @@ export interface CreateRaindrop {
 /**
  * 
  * @export
- * @interface CreateRaindropsRequest
+ * @interface CreateRaindropRequest
  */
-export interface CreateRaindropsRequest {
+export interface CreateRaindropRequest {
     /**
-     * Array of objects. Format of single object described in \"Create single raindrop\". Maximum 100 objects in array!
-     * @type {Array<CreateRaindrop>}
-     * @memberof CreateRaindropsRequest
+     * 
+     * @type {object}
+     * @memberof CreateRaindropRequest
      */
-    'items'?: Array<CreateRaindrop>;
+    'pleaseParse'?: object;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequest
+     */
+    'created'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequest
+     */
+    'lastUpdate'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindropRequest
+     */
+    'order'?: number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateRaindropRequest
+     */
+    'important'?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateRaindropRequest
+     */
+    'tags'?: Array<string>;
+    /**
+     * 
+     * @type {Array<ParseURLResponseItemMediaInner>}
+     * @memberof CreateRaindropRequest
+     */
+    'media'?: Array<ParseURLResponseItemMediaInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequest
+     */
+    'cover'?: string;
+    /**
+     * 
+     * @type {CreateRaindropRequestCollection}
+     * @memberof CreateRaindropRequest
+     */
+    'collection'?: CreateRaindropRequestCollection;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequest
+     */
+    'type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequest
+     */
+    'excerpt'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequest
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequest
+     */
+    'link': string;
+    /**
+     * 
+     * @type {Array<CreateRaindropRequestHighlightsInner>}
+     * @memberof CreateRaindropRequest
+     */
+    'highlights'?: Array<CreateRaindropRequestHighlightsInner>;
+    /**
+     * 
+     * @type {object}
+     * @memberof CreateRaindropRequest
+     */
+    'reminder'?: object;
 }
 /**
  * 
  * @export
- * @interface CreatorRef
+ * @interface CreateRaindropRequestCollection
  */
-export interface CreatorRef {
+export interface CreateRaindropRequestCollection {
     /**
      * 
      * @type {number}
-     * @memberof CreatorRef
+     * @memberof CreateRaindropRequestCollection
+     */
+    '$id': number;
+}
+/**
+ * 
+ * @export
+ * @interface CreateRaindropRequestHighlightsInner
+ */
+export interface CreateRaindropRequestHighlightsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequestHighlightsInner
+     */
+    'text': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropRequestHighlightsInner
+     */
+    'note': string;
+}
+/**
+ * 
+ * @export
+ * @interface CreateRaindropResponse
+ */
+export interface CreateRaindropResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateRaindropResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {CreateRaindropResponseItem}
+     * @memberof CreateRaindropResponse
+     */
+    'item': CreateRaindropResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface CreateRaindropResponseItem
+ */
+export interface CreateRaindropResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindropResponseItem
+     */
+    '__v': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindropResponseItem
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {CollectionRef}
+     * @memberof CreateRaindropResponseItem
+     */
+    'collection': CollectionRef;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindropResponseItem
+     */
+    'collectionId': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'cover': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof CreateRaindropResponseItem
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'excerpt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'link': string;
+    /**
+     * 
+     * @type {Array<CreateRaindropResponseItemMediaInner>}
+     * @memberof CreateRaindropResponseItem
+     */
+    'media': Array<CreateRaindropResponseItemMediaInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'note': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateRaindropResponseItem
+     */
+    'removed': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof CreateRaindropResponseItem
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof CreateRaindropResponseItem
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItem
+     */
+    'type': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof CreateRaindropResponseItem
+     */
+    'user': UserRef;
+}
+/**
+ * 
+ * @export
+ * @interface CreateRaindropResponseItemMediaInner
+ */
+export interface CreateRaindropResponseItemMediaInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItemMediaInner
+     */
+    'link': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreateRaindropResponseItemMediaInner
+     */
+    'type': string;
+}
+/**
+ * 
+ * @export
+ * @interface CreateRaindropsResponse
+ */
+export interface CreateRaindropsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof CreateRaindropsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<UpdateRaindropResponseItem>}
+     * @memberof CreateRaindropsResponse
+     */
+    'items': Array<UpdateRaindropResponseItem>;
+}
+/**
+ * @type CreatorRef
+ * @export
+ */
+export type CreatorRef = CreatorRefOneOf | number;
+
+/**
+ * 
+ * @export
+ * @interface CreatorRefOneOf
+ */
+export interface CreatorRefOneOf {
+    /**
+     * 
+     * @type {number}
+     * @memberof CreatorRefOneOf
      */
     '_id': number;
     /**
      * 
      * @type {string}
-     * @memberof CreatorRef
-     */
-    'avatar': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreatorRef
+     * @memberof CreatorRefOneOf
      */
     'name': string;
     /**
      * 
      * @type {string}
-     * @memberof CreatorRef
+     * @memberof CreatorRefOneOf
      */
     'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatorRefOneOf
+     */
+    'avatar'?: string;
 }
 /**
  * 
@@ -671,28 +1095,28 @@ export interface ErrorResponse {
 export interface Filter {
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof Filter
      */
-    'broken': FilterBroken;
+    'broken': StatResponseAllOfMetaDuplicates;
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof Filter
      */
-    'duplicates': FilterBroken;
+    'duplicates': StatResponseAllOfMetaDuplicates;
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof Filter
      */
-    'important': FilterBroken;
+    'important': StatResponseAllOfMetaDuplicates;
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof Filter
      */
-    'notag': FilterBroken;
+    'notag': StatResponseAllOfMetaDuplicates;
     /**
      * 
      * @type {Array<FilterTagsInner>}
@@ -709,19 +1133,6 @@ export interface Filter {
 /**
  * 
  * @export
- * @interface FilterBroken
- */
-export interface FilterBroken {
-    /**
-     * 
-     * @type {number}
-     * @memberof FilterBroken
-     */
-    'count': number;
-}
-/**
- * 
- * @export
  * @interface FilterResponse
  */
 export interface FilterResponse {
@@ -733,28 +1144,28 @@ export interface FilterResponse {
     'result': boolean;
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof FilterResponse
      */
-    'broken': FilterBroken;
+    'broken': StatResponseAllOfMetaDuplicates;
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof FilterResponse
      */
-    'duplicates': FilterBroken;
+    'duplicates': StatResponseAllOfMetaDuplicates;
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof FilterResponse
      */
-    'important': FilterBroken;
+    'important': StatResponseAllOfMetaDuplicates;
     /**
      * 
-     * @type {FilterBroken}
+     * @type {StatResponseAllOfMetaDuplicates}
      * @memberof FilterResponse
      */
-    'notag': FilterBroken;
+    'notag': StatResponseAllOfMetaDuplicates;
     /**
      * 
      * @type {Array<FilterTagsInner>}
@@ -813,30 +1224,351 @@ export interface Folder {
     'bookmarks': Array<Bookmark>;
 }
 /**
+ * 
+ * @export
+ * @interface GetAllHighlightsResponse
+ */
+export interface GetAllHighlightsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetAllHighlightsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<GetAllHighlightsResponseItemsInner>}
+     * @memberof GetAllHighlightsResponse
+     */
+    'items': Array<GetAllHighlightsResponseItemsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface GetAllHighlightsResponseItemsInner
+ */
+export interface GetAllHighlightsResponseItemsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    'link': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    'title': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    '_id': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    'text': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    'note': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    'created': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetAllHighlightsResponseItemsInner
+     */
+    'raindropRef': number;
+}
+/**
+ * 
+ * @export
+ * @interface GetChildCollectionsResponse
+ */
+export interface GetChildCollectionsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetChildCollectionsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<GetChildCollectionsResponseItemsInner>}
+     * @memberof GetChildCollectionsResponse
+     */
+    'items': Array<GetChildCollectionsResponseItemsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface GetChildCollectionsResponseItemsInner
+ */
+export interface GetChildCollectionsResponseItemsInner {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'description': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'user': UserRef;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'public': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'view': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'count': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'cover': Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'expanded': boolean;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'lastAction': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'color'?: string;
+    /**
+     * 
+     * @type {CollectionAccess}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'access': CollectionAccess;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'author': boolean;
+    /**
+     * 
+     * @type {CollectionRef}
+     * @memberof GetChildCollectionsResponseItemsInner
+     */
+    'parent': CollectionRef;
+}
+/**
+ * 
+ * @export
+ * @interface GetCollectionResponse
+ */
+export interface GetCollectionResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetCollectionResponse
+     */
+    'result'?: boolean;
+    /**
+     * 
+     * @type {Collection}
+     * @memberof GetCollectionResponse
+     */
+    'item'?: Collection;
+}
+/**
+ * 
+ * @export
+ * @interface GetFeaturedCoversResponse
+ */
+export interface GetFeaturedCoversResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetFeaturedCoversResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<GetFeaturedCoversResponseItemsInner>}
+     * @memberof GetFeaturedCoversResponse
+     */
+    'items': Array<GetFeaturedCoversResponseItemsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface GetFeaturedCoversResponseItemsInner
+ */
+export interface GetFeaturedCoversResponseItemsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof GetFeaturedCoversResponseItemsInner
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetFeaturedCoversResponseItemsInner
+     */
+    'link'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetFeaturedCoversResponseItemsInner
+     */
+    'sort'?: number;
+    /**
+     * 
+     * @type {Array<SearchCoversResponseItemsInnerIconsInner>}
+     * @memberof GetFeaturedCoversResponseItemsInner
+     */
+    'icons': Array<SearchCoversResponseItemsInnerIconsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface GetFiltersResponse
+ */
+export interface GetFiltersResponse {
+    [key: string]: FilterTagsInner | any;
+
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetFiltersResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetFiltersResponse
+     */
+    'collectionId': number;
+    /**
+     * 
+     * @type {Array<FilterTagsInner>}
+     * @memberof GetFiltersResponse
+     */
+    'created': Array<FilterTagsInner>;
+    /**
+     * 
+     * @type {Array<FilterTagsInner>}
+     * @memberof GetFiltersResponse
+     */
+    'tags': Array<FilterTagsInner>;
+    /**
+     * 
+     * @type {Array<FilterTagsInner>}
+     * @memberof GetFiltersResponse
+     */
+    'types': Array<FilterTagsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface GetHighlightsInCollectionResponse
+ */
+export interface GetHighlightsInCollectionResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetHighlightsInCollectionResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<GetAllHighlightsResponseItemsInner>}
+     * @memberof GetHighlightsInCollectionResponse
+     */
+    'items': Array<GetAllHighlightsResponseItemsInner>;
+}
+/**
  * @type GetOrRefreshToken200Response
  * @export
  */
 export type GetOrRefreshToken200Response = TokenErrorResponse | TokenResponse;
-
-/**
- * 
- * @export
- * @interface GetOrRefreshToken400Response
- */
-export interface GetOrRefreshToken400Response {
-    /**
-     * 
-     * @type {string}
-     * @memberof GetOrRefreshToken400Response
-     */
-    'error'?: GetOrRefreshToken400ResponseErrorEnum;
-}
-
-export const GetOrRefreshToken400ResponseErrorEnum = {
-    BadAuthorizationCode: 'bad_authorization_code'
-} as const;
-
-export type GetOrRefreshToken400ResponseErrorEnum = typeof GetOrRefreshToken400ResponseErrorEnum[keyof typeof GetOrRefreshToken400ResponseErrorEnum];
 
 /**
  * @type GetOrRefreshTokenRequest
@@ -890,6 +1622,419 @@ export interface GetPublicUserByName200Response {
 /**
  * 
  * @export
+ * @interface GetPublicUserByNameResponse
+ */
+export interface GetPublicUserByNameResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetPublicUserByNameResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {GetPublicUserByNameResponseUser}
+     * @memberof GetPublicUserByNameResponse
+     */
+    'user': GetPublicUserByNameResponseUser;
+}
+/**
+ * 
+ * @export
+ * @interface GetPublicUserByNameResponseUser
+ */
+export interface GetPublicUserByNameResponseUser {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'fullName': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'avatar': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'pro': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'lastAction': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'registered': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {GetPublicUserByNameResponseUserConfig}
+     * @memberof GetPublicUserByNameResponseUser
+     */
+    'config': GetPublicUserByNameResponseUserConfig;
+}
+/**
+ * 
+ * @export
+ * @interface GetPublicUserByNameResponseUserConfig
+ */
+export interface GetPublicUserByNameResponseUserConfig {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GetPublicUserByNameResponseUserConfig
+     */
+    'raindrops_hide': Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetPublicUserByNameResponseUserConfig
+     */
+    'nested_view_legacy': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface GetRaindropResponse
+ */
+export interface GetRaindropResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetRaindropResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetRaindropResponse
+     */
+    'author': boolean;
+    /**
+     * 
+     * @type {GetRaindropResponseItem}
+     * @memberof GetRaindropResponse
+     */
+    'item': GetRaindropResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface GetRaindropResponseItem
+ */
+export interface GetRaindropResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetRaindropResponseItem
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {CollectionRef}
+     * @memberof GetRaindropResponseItem
+     */
+    'collection': CollectionRef;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetRaindropResponseItem
+     */
+    'collectionId': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRaindropResponseItem
+     */
+    'cover': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRaindropResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof GetRaindropResponseItem
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRaindropResponseItem
+     */
+    'domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRaindropResponseItem
+     */
+    'excerpt': string;
+    /**
+     * 
+     * @type {Array<GetRaindropResponseItemHighlightsInner>}
+     * @memberof GetRaindropResponseItem
+     */
+    'highlights': Array<GetRaindropResponseItemHighlightsInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRaindropResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRaindropResponseItem
+     */
+    'link': string;
+    /**
+     * 
+     * @type {Array<CreateRaindropResponseItemMediaInner>}
+     * @memberof GetRaindropResponseItem
+     */
+    'media': Array<CreateRaindropResponseItemMediaInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRaindropResponseItem
+     */
+    'note': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetRaindropResponseItem
+     */
+    'removed': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetRaindropResponseItem
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof GetRaindropResponseItem
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRaindropResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRaindropResponseItem
+     */
+    'type': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof GetRaindropResponseItem
+     */
+    'user': UserRef;
+}
+/**
+ * 
+ * @export
+ * @interface GetRaindropResponseItemHighlightsInner
+ */
+export interface GetRaindropResponseItemHighlightsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRaindropResponseItemHighlightsInner
+     */
+    'text': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRaindropResponseItemHighlightsInner
+     */
+    'note': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRaindropResponseItemHighlightsInner
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRaindropResponseItemHighlightsInner
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof GetRaindropResponseItemHighlightsInner
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetRaindropResponseItemHighlightsInner
+     */
+    '_id': string;
+}
+/**
+ * 
+ * @export
+ * @interface GetRaindropsResponse
+ */
+export interface GetRaindropsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetRaindropsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetRaindropsResponse
+     */
+    'collectionId': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetRaindropsResponse
+     */
+    'count': number;
+    /**
+     * 
+     * @type {Array<GetRaindropResponseItem>}
+     * @memberof GetRaindropsResponse
+     */
+    'items': Array<GetRaindropResponseItem>;
+}
+/**
+ * 
+ * @export
+ * @interface GetRootCollectionsResponse
+ */
+export interface GetRootCollectionsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetRootCollectionsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<Collection>}
+     * @memberof GetRootCollectionsResponse
+     */
+    'items': Array<Collection>;
+}
+/**
+ * 
+ * @export
+ * @interface GetSystemCollectionStatsResponse
+ */
+export interface GetSystemCollectionStatsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetSystemCollectionStatsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<GetSystemCollectionStatsResponseItemsInner>}
+     * @memberof GetSystemCollectionStatsResponse
+     */
+    'items': Array<GetSystemCollectionStatsResponseItemsInner>;
+    /**
+     * 
+     * @type {GetSystemCollectionStatsResponseMeta}
+     * @memberof GetSystemCollectionStatsResponse
+     */
+    'meta': GetSystemCollectionStatsResponseMeta;
+}
+/**
+ * 
+ * @export
+ * @interface GetSystemCollectionStatsResponseItemsInner
+ */
+export interface GetSystemCollectionStatsResponseItemsInner {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetSystemCollectionStatsResponseItemsInner
+     */
+    'count': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetSystemCollectionStatsResponseItemsInner
+     */
+    '_id': number;
+}
+/**
+ * 
+ * @export
+ * @interface GetSystemCollectionStatsResponseMeta
+ */
+export interface GetSystemCollectionStatsResponseMeta {
+    /**
+     * 
+     * @type {number}
+     * @memberof GetSystemCollectionStatsResponseMeta
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetSystemCollectionStatsResponseMeta
+     */
+    'pro': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof GetSystemCollectionStatsResponseMeta
+     */
+    'changedBookmarksDate': string;
+}
+/**
+ * 
+ * @export
  * @interface GetTagsInCollection200Response
  */
 export interface GetTagsInCollection200Response {
@@ -924,6 +2069,25 @@ export interface GetTagsInCollection200ResponseAllOfItemsInner {
      * @memberof GetTagsInCollection200ResponseAllOfItemsInner
      */
     'count'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface GetTagsInCollectionResponse
+ */
+export interface GetTagsInCollectionResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetTagsInCollectionResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<FilterTagsInner>}
+     * @memberof GetTagsInCollectionResponse
+     */
+    'items': Array<FilterTagsInner>;
 }
 /**
  * 
@@ -963,31 +2127,31 @@ export interface Group {
  */
 export interface Highlight {
     /**
-     * Unique id of highlight
+     * 
      * @type {string}
      * @memberof Highlight
      */
     '_id': string;
     /**
-     * Text of highlight (required)
+     * 
      * @type {string}
      * @memberof Highlight
      */
     'text': string;
     /**
-     * Color of highlight. Default yellow  Can be blue, brown, cyan, gray, green, indigo, orange, pink, purple, red, teal, yellow
+     * 
      * @type {string}
      * @memberof Highlight
      */
     'color': HighlightColorEnum;
     /**
-     * Optional note for highlight
+     * 
      * @type {string}
      * @memberof Highlight
      */
     'note': string;
     /**
-     * Creation date of highlight
+     * 
      * @type {string}
      * @memberof Highlight
      */
@@ -1018,31 +2182,31 @@ export type HighlightColorEnum = typeof HighlightColorEnum[keyof typeof Highligh
  */
 export interface HighlightItem {
     /**
-     * Unique id of highlight
+     * 
      * @type {string}
      * @memberof HighlightItem
      */
     '_id': string;
     /**
-     * Text of highlight (required)
+     * 
      * @type {string}
      * @memberof HighlightItem
      */
     'text': string;
     /**
-     * Color of highlight. Default yellow  Can be blue, brown, cyan, gray, green, indigo, orange, pink, purple, red, teal, yellow
+     * 
      * @type {string}
      * @memberof HighlightItem
      */
     'color': HighlightItemColorEnum;
     /**
-     * Optional note for highlight
+     * 
      * @type {string}
      * @memberof HighlightItem
      */
     'note': string;
     /**
-     * Creation date of highlight
+     * 
      * @type {string}
      * @memberof HighlightItem
      */
@@ -1131,11 +2295,159 @@ export interface ImportFileResponse {
 /**
  * 
  * @export
+ * @interface ImportHTMLBookmarkFileResponse
+ */
+export interface ImportHTMLBookmarkFileResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ImportHTMLBookmarkFileResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Array<ImportHTMLBookmarkFileResponseItemFolder>}
+     * @memberof ImportHTMLBookmarkFileResponse
+     */
+    'items': Array<ImportHTMLBookmarkFileResponseItemFolder>;
+    /**
+     * 
+     * @type {ImportHTMLBookmarkFileResponseCount}
+     * @memberof ImportHTMLBookmarkFileResponse
+     */
+    'count': ImportHTMLBookmarkFileResponseCount;
+}
+/**
+ * 
+ * @export
+ * @interface ImportHTMLBookmarkFileResponseCount
+ */
+export interface ImportHTMLBookmarkFileResponseCount {
+    /**
+     * 
+     * @type {number}
+     * @memberof ImportHTMLBookmarkFileResponseCount
+     */
+    'bookmarks': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ImportHTMLBookmarkFileResponseCount
+     */
+    'folders': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ImportHTMLBookmarkFileResponseCount
+     */
+    'tags': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ImportHTMLBookmarkFileResponseCount
+     */
+    'highlights': number;
+}
+/**
+ * 
+ * @export
+ * @interface ImportHTMLBookmarkFileResponseItemBookmark
+ */
+export interface ImportHTMLBookmarkFileResponseItemBookmark {
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'link': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'excerpt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'note': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'cover': string;
+    /**
+     * 
+     * @type {Array<ParseURLResponseItemMediaInner>}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'media': Array<ParseURLResponseItemMediaInner>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ImportHTMLBookmarkFileResponseItemBookmark
+     */
+    'important': boolean;
+}
+/**
+ * 
+ * @export
+ * @interface ImportHTMLBookmarkFileResponseItemFolder
+ */
+export interface ImportHTMLBookmarkFileResponseItemFolder {
+    /**
+     * 
+     * @type {string}
+     * @memberof ImportHTMLBookmarkFileResponseItemFolder
+     */
+    'title': string;
+    /**
+     * 
+     * @type {Array<ImportHTMLBookmarkFileResponseItemFolder>}
+     * @memberof ImportHTMLBookmarkFileResponseItemFolder
+     */
+    'folders': Array<ImportHTMLBookmarkFileResponseItemFolder>;
+    /**
+     * 
+     * @type {Array<ImportHTMLBookmarkFileResponseItemBookmark>}
+     * @memberof ImportHTMLBookmarkFileResponseItemFolder
+     */
+    'bookmarks': Array<ImportHTMLBookmarkFileResponseItemBookmark>;
+}
+/**
+ * 
+ * @export
  * @interface MergeCollectionsRequest
  */
 export interface MergeCollectionsRequest {
     /**
-     * Collection ID. Reserved system collection IDs are:  - -99 for Trash - -1 for Unsorted - 0 for All
+     * 
      * @type {number}
      * @memberof MergeCollectionsRequest
      */
@@ -1150,35 +2462,60 @@ export interface MergeCollectionsRequest {
 /**
  * 
  * @export
+ * @interface MergeCollectionsResponse
+ */
+export interface MergeCollectionsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof MergeCollectionsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof MergeCollectionsResponse
+     */
+    'modified': number;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof MergeCollectionsResponse
+     */
+    'ids': Array<number>;
+}
+/**
+ * 
+ * @export
  * @interface ObtainToken
  */
 export interface ObtainToken {
     /**
-     * Grant type
+     * 
      * @type {string}
      * @memberof ObtainToken
      */
     'grant_type': ObtainTokenGrantTypeEnum;
     /**
-     * Received authorization code
+     * 
      * @type {string}
      * @memberof ObtainToken
      */
     'code': string;
     /**
-     * Unique client ID of your Raindrop.io app
+     * 
      * @type {string}
      * @memberof ObtainToken
      */
     'client_id': string;
     /**
-     * Client secret of your Raindrop.io app
+     * 
      * @type {string}
      * @memberof ObtainToken
      */
     'client_secret': string;
     /**
-     * Redirect URI registered at your Raindrop.io app
+     * 
      * @type {string}
      * @memberof ObtainToken
      */
@@ -1192,11 +2529,93 @@ export const ObtainTokenGrantTypeEnum = {
 export type ObtainTokenGrantTypeEnum = typeof ObtainTokenGrantTypeEnum[keyof typeof ObtainTokenGrantTypeEnum];
 
 /**
- * @type ParseURL200Response
+ * 
  * @export
+ * @interface ParseURLResponse
  */
-export type ParseURL200Response = ParseUrlErrorResponse | ParseUrlResponse;
-
+export interface ParseURLResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ParseURLResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {ParseURLResponseItem}
+     * @memberof ParseURLResponse
+     */
+    'item': ParseURLResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface ParseURLResponseItem
+ */
+export interface ParseURLResponseItem {
+    /**
+     * 
+     * @type {string}
+     * @memberof ParseURLResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ParseURLResponseItem
+     */
+    'excerpt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ParseURLResponseItem
+     */
+    'cover': string;
+    /**
+     * 
+     * @type {Array<ParseURLResponseItemMediaInner>}
+     * @memberof ParseURLResponseItem
+     */
+    'media': Array<ParseURLResponseItemMediaInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof ParseURLResponseItem
+     */
+    'type': string;
+    /**
+     * 
+     * @type {ParseURLResponseItemMeta}
+     * @memberof ParseURLResponseItem
+     */
+    'meta': ParseURLResponseItemMeta;
+}
+/**
+ * 
+ * @export
+ * @interface ParseURLResponseItemMediaInner
+ */
+export interface ParseURLResponseItemMediaInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof ParseURLResponseItemMediaInner
+     */
+    'link': string;
+}
+/**
+ * 
+ * @export
+ * @interface ParseURLResponseItemMeta
+ */
+export interface ParseURLResponseItemMeta {
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ParseURLResponseItemMeta
+     */
+    'tags': Array<string>;
+}
 /**
  * 
  * @export
@@ -1266,13 +2685,13 @@ export interface Raindrop {
      */
     'lastUpdate': string;
     /**
-     * Specify sort order (ascending).  For example if you want to move raindrop to the first place set this field to 0
+     * 
      * @type {number}
      * @memberof Raindrop
      */
     'sort'?: number;
     /**
-     * Marked as \"favorite\"
+     * 
      * @type {boolean}
      * @memberof Raindrop
      */
@@ -1284,7 +2703,7 @@ export interface Raindrop {
      */
     'reminder': RaindropBaseReminder;
     /**
-     * Tags list
+     * 
      * @type {Array<string>}
      * @memberof Raindrop
      */
@@ -1344,13 +2763,13 @@ export interface Raindrop {
      */
     'highlights': Array<Highlight>;
     /**
-     * Unique identifier
+     * 
      * @type {number}
      * @memberof Raindrop
      */
     '_id': number;
     /**
-     * Hostname of a link. Files always have `raindrop.io` hostname
+     * 
      * @type {string}
      * @memberof Raindrop
      */
@@ -1368,7 +2787,7 @@ export interface Raindrop {
      */
     'user': UserRef;
     /**
-     * Marked as broken (original link is not reachable anymore)
+     * 
      * @type {boolean}
      * @memberof Raindrop
      */
@@ -1387,25 +2806,25 @@ export interface Raindrop {
     'file'?: RaindropAllOfFile;
 }
 /**
- * Permanent copy (cached version) details
+ * 
  * @export
  * @interface RaindropAllOfCache
  */
 export interface RaindropAllOfCache {
     /**
-     * ready retry failed invalid-origin invalid-timeout or invalid-size
+     * 
      * @type {string}
      * @memberof RaindropAllOfCache
      */
     'status': RaindropAllOfCacheStatusEnum;
     /**
-     * Full size in bytes
+     * 
      * @type {number}
      * @memberof RaindropAllOfCache
      */
     'size': number;
     /**
-     * Date when copy is successfully made
+     * 
      * @type {string}
      * @memberof RaindropAllOfCache
      */
@@ -1416,33 +2835,33 @@ export const RaindropAllOfCacheStatusEnum = {
     Ready: 'ready',
     Retry: 'retry',
     Failed: 'failed',
-    InvalidOrigin: 'invalid-origin',
-    InvalidTimeout: 'invalid-timeout',
-    InvalidSize: 'invalid-size'
+    InvalidMinusOrigin: 'invalid-origin',
+    InvalidMinusTimeout: 'invalid-timeout',
+    InvalidMinusSize: 'invalid-size'
 } as const;
 
 export type RaindropAllOfCacheStatusEnum = typeof RaindropAllOfCacheStatusEnum[keyof typeof RaindropAllOfCacheStatusEnum];
 
 /**
- * This raindrop uploaded from desktop [Supported file formats](https://help.raindrop.io/article/48-uploading-files)
+ * 
  * @export
  * @interface RaindropAllOfFile
  */
 export interface RaindropAllOfFile {
     /**
-     * File name
+     * 
      * @type {string}
      * @memberof RaindropAllOfFile
      */
     'name': string;
     /**
-     * File size in bytes
+     * 
      * @type {number}
      * @memberof RaindropAllOfFile
      */
     'size': number;
     /**
-     * Mime type
+     * 
      * @type {string}
      * @memberof RaindropAllOfFile
      */
@@ -1467,13 +2886,13 @@ export interface RaindropBase {
      */
     'lastUpdate': string;
     /**
-     * Specify sort order (ascending).  For example if you want to move raindrop to the first place set this field to 0
+     * 
      * @type {number}
      * @memberof RaindropBase
      */
     'sort'?: number;
     /**
-     * Marked as \"favorite\"
+     * 
      * @type {boolean}
      * @memberof RaindropBase
      */
@@ -1485,7 +2904,7 @@ export interface RaindropBase {
      */
     'reminder': RaindropBaseReminder;
     /**
-     * Tags list
+     * 
      * @type {Array<string>}
      * @memberof RaindropBase
      */
@@ -1610,7 +3029,7 @@ export interface RaindropResponseMany {
      */
     'count': number;
     /**
-     * Collection ID. Reserved system collection IDs are:  - -99 for Trash - -1 for Unsorted - 0 for All
+     * 
      * @type {number}
      * @memberof RaindropResponseMany
      */
@@ -1648,25 +3067,25 @@ export interface RaindropResponseOne {
  */
 export interface RefreshToken {
     /**
-     * Unique client ID of your Raindrop.io app
+     * 
      * @type {string}
      * @memberof RefreshToken
      */
     'client_id': string;
     /**
-     * Client secret of your Raindrop.io app
+     * 
      * @type {string}
      * @memberof RefreshToken
      */
     'client_secret': string;
     /**
-     * Grant type
+     * 
      * @type {string}
      * @memberof RefreshToken
      */
     'grant_type': RefreshTokenGrantTypeEnum;
     /**
-     * Refresh token received when obtain access token
+     * 
      * @type {string}
      * @memberof RefreshToken
      */
@@ -1682,21 +3101,21 @@ export type RefreshTokenGrantTypeEnum = typeof RefreshTokenGrantTypeEnum[keyof t
 /**
  * 
  * @export
- * @interface RemoveAllEmptyCollections200Response
+ * @interface RemoveAllEmptyCollectionsResponse
  */
-export interface RemoveAllEmptyCollections200Response {
+export interface RemoveAllEmptyCollectionsResponse {
     /**
      * 
      * @type {boolean}
-     * @memberof RemoveAllEmptyCollections200Response
+     * @memberof RemoveAllEmptyCollectionsResponse
      */
-    'result'?: boolean;
+    'result': boolean;
     /**
      * 
      * @type {number}
-     * @memberof RemoveAllEmptyCollections200Response
+     * @memberof RemoveAllEmptyCollectionsResponse
      */
-    'count'?: number;
+    'count': number;
 }
 /**
  * 
@@ -1714,21 +3133,167 @@ export interface RemoveCollectionsRequest {
 /**
  * 
  * @export
- * @interface RemoveRaindrops200Response
+ * @interface RemoveCollectionsResponse
  */
-export interface RemoveRaindrops200Response {
+export interface RemoveCollectionsResponse {
     /**
      * 
      * @type {boolean}
-     * @memberof RemoveRaindrops200Response
+     * @memberof RemoveCollectionsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoveCollectionsResponse
+     */
+    'modified': number;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof RemoveCollectionsResponse
+     */
+    'ids': Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface RemoveRaindropResponse
+ */
+export interface RemoveRaindropResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RemoveRaindropResponse
      */
     'result'?: boolean;
     /**
      * 
-     * @type {number}
-     * @memberof RemoveRaindrops200Response
+     * @type {RemoveRaindropResponseItem}
+     * @memberof RemoveRaindropResponse
      */
-    'modified'?: number;
+    'item'?: RemoveRaindropResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface RemoveRaindropResponseItem
+ */
+export interface RemoveRaindropResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoveRaindropResponseItem
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {CollectionRef}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'collection': CollectionRef;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'collectionId': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'cover': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'excerpt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'link': string;
+    /**
+     * 
+     * @type {Array<CreateRaindropResponseItemMediaInner>}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'media': Array<CreateRaindropResponseItemMediaInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'note': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'order': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'removed': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'type': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof RemoveRaindropResponseItem
+     */
+    'user': UserRef;
 }
 /**
  * 
@@ -1746,11 +3311,30 @@ export interface RemoveRaindropsRequest {
 /**
  * 
  * @export
+ * @interface RemoveRaindropsResponse
+ */
+export interface RemoveRaindropsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof RemoveRaindropsResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof RemoveRaindropsResponse
+     */
+    'modified': number;
+}
+/**
+ * 
+ * @export
  * @interface RemoveTagsFromCollectionRequest
  */
 export interface RemoveTagsFromCollectionRequest {
     /**
-     * List of tags
+     * 
      * @type {Array<string>}
      * @memberof RemoveTagsFromCollectionRequest
      */
@@ -1763,49 +3347,34 @@ export interface RemoveTagsFromCollectionRequest {
  */
 export interface RenameOrMergeTagsRequest {
     /**
-     * New name
+     * 
      * @type {string}
      * @memberof RenameOrMergeTagsRequest
      */
     'replace'?: string;
     /**
-     * Rename: Specify **array** with **only one** string (name of a tag)  Merge: List of tags
+     * 
      * @type {Array<string>}
      * @memberof RenameOrMergeTagsRequest
      */
     'tags'?: Array<string>;
 }
 /**
- * @type ReorderAllCollectionsRequest
- * @export
- */
-export type ReorderAllCollectionsRequest = ReorderAllCollectionsRequestOneOf | ReorderAllCollectionsRequestOneOf1;
-
-/**
  * 
  * @export
- * @interface ReorderAllCollectionsRequestOneOf
+ * @interface ReorderAllCollectionsRequest
  */
-export interface ReorderAllCollectionsRequestOneOf {
+export interface ReorderAllCollectionsRequest {
     /**
      * 
-     * @type {SortBy}
-     * @memberof ReorderAllCollectionsRequestOneOf
+     * @type {string}
+     * @memberof ReorderAllCollectionsRequest
      */
-    'sort'?: SortBy;
-}
-
-
-/**
- * 
- * @export
- * @interface ReorderAllCollectionsRequestOneOf1
- */
-export interface ReorderAllCollectionsRequestOneOf1 {
+    'sort'?: string;
     /**
-     * TRUE = expand all  FALSE = collapse all
+     * 
      * @type {boolean}
-     * @memberof ReorderAllCollectionsRequestOneOf1
+     * @memberof ReorderAllCollectionsRequest
      */
     'expanded'?: boolean;
 }
@@ -1839,40 +3408,53 @@ export type Role = typeof Role[keyof typeof Role];
 /**
  * 
  * @export
- * @interface ShareCollection200Response
+ * @interface SearchCoversResponse
  */
-export interface ShareCollection200Response {
+export interface SearchCoversResponse {
     /**
      * 
      * @type {boolean}
-     * @memberof ShareCollection200Response
+     * @memberof SearchCoversResponse
      */
-    'result'?: boolean;
+    'result': boolean;
     /**
      * 
-     * @type {Array<string>}
-     * @memberof ShareCollection200Response
+     * @type {Array<SearchCoversResponseItemsInner>}
+     * @memberof SearchCoversResponse
      */
-    'emails'?: Array<string>;
+    'items': Array<SearchCoversResponseItemsInner>;
 }
 /**
  * 
  * @export
- * @interface ShareCollection400Response
+ * @interface SearchCoversResponseItemsInner
  */
-export interface ShareCollection400Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ShareCollection400Response
-     */
-    'result'?: boolean;
+export interface SearchCoversResponseItemsInner {
     /**
      * 
      * @type {string}
-     * @memberof ShareCollection400Response
+     * @memberof SearchCoversResponseItemsInner
      */
-    'errorMessage'?: string;
+    'title': string;
+    /**
+     * 
+     * @type {Array<SearchCoversResponseItemsInnerIconsInner>}
+     * @memberof SearchCoversResponseItemsInner
+     */
+    'icons': Array<SearchCoversResponseItemsInnerIconsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface SearchCoversResponseItemsInnerIconsInner
+ */
+export interface SearchCoversResponseItemsInnerIconsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof SearchCoversResponseItemsInnerIconsInner
+     */
+    'png': string;
 }
 /**
  * 
@@ -1885,32 +3467,48 @@ export interface ShareCollectionRequest {
      * @type {Role}
      * @memberof ShareCollectionRequest
      */
-    'role'?: Role;
+    'role': Role;
     /**
-     * The user email(s) with whom to share the project.  Maximum 10
+     * 
      * @type {Array<string>}
      * @memberof ShareCollectionRequest
      */
-    'emails'?: Array<string>;
+    'emails': Array<string>;
 }
 
 
 /**
- * Change order of all collections.  Possible values:  \"title\" - sort alphabetically ascending  \"-title\" - sort alphabetically descending  \"-count\" - sort by raindrops count descending
+ * 
  * @export
- * @enum {string}
+ * @interface ShareCollectionResponse
  */
-
-export const SortBy = {
-    Title: 'title',
-    Title2: '-title',
-    Count: '-count',
-    LastUpdate: '-lastUpdate'
-} as const;
-
-export type SortBy = typeof SortBy[keyof typeof SortBy];
-
-
+export interface ShareCollectionResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof ShareCollectionResponse
+     */
+    'result'?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof ShareCollectionResponse
+     */
+    'emails'?: Array<string>;
+}
+/**
+ * 
+ * @export
+ * @interface SimpleResponse
+ */
+export interface SimpleResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SimpleResponse
+     */
+    'result': boolean;
+}
 /**
  * 
  * @export
@@ -2027,6 +3625,19 @@ export interface Suggest {
 /**
  * 
  * @export
+ * @interface SuggestForExistingBookmarkResponse
+ */
+export interface SuggestForExistingBookmarkResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SuggestForExistingBookmarkResponse
+     */
+    'result'?: boolean;
+}
+/**
+ * 
+ * @export
  * @interface SuggestForNewBookmarkRequest
  */
 export interface SuggestForNewBookmarkRequest {
@@ -2036,6 +3647,19 @@ export interface SuggestForNewBookmarkRequest {
      * @memberof SuggestForNewBookmarkRequest
      */
     'link'?: string;
+}
+/**
+ * 
+ * @export
+ * @interface SuggestForNewBookmarkResponse
+ */
+export interface SuggestForNewBookmarkResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof SuggestForNewBookmarkResponse
+     */
+    'result'?: boolean;
 }
 /**
  * 
@@ -2088,32 +3712,32 @@ export interface TokenErrorResponse {
  */
 export interface TokenResponse {
     /**
-     * API access token
+     * 
      * @type {string}
      * @memberof TokenResponse
      */
     'access_token': string;
     /**
-     * Token used to refresh access token
+     * 
      * @type {string}
      * @memberof TokenResponse
      */
     'refresh_token': string;
     /**
-     * Remaining time until access token expires, in miliseconds
+     * 
      * @type {number}
      * @memberof TokenResponse
      * @deprecated
      */
     'expires'?: number;
     /**
-     * Reamining time until access token expires, in seconds
+     * 
      * @type {number}
      * @memberof TokenResponse
      */
     'expires_in': number;
     /**
-     * Type of token
+     * 
      * @type {string}
      * @memberof TokenResponse
      */
@@ -2129,54 +3753,71 @@ export type TokenResponseTokenTypeEnum = typeof TokenResponseTokenTypeEnum[keyof
 /**
  * 
  * @export
- * @interface UpdateCollection
+ * @interface UpdateCollectionRequest
  */
-export interface UpdateCollection {
+export interface UpdateCollectionRequest {
     /**
      * 
-     * @type {View}
-     * @memberof UpdateCollection
-     */
-    'view': View;
-    /**
-     * Name of the collection
      * @type {string}
-     * @memberof UpdateCollection
+     * @memberof UpdateCollectionRequest
      */
-    'title': string;
+    'view'?: string;
     /**
-     * The order of collection (descending). Defines the position of the collection among all the collections with the same `parent.$id`
-     * @type {number}
-     * @memberof UpdateCollection
+     * 
+     * @type {string}
+     * @memberof UpdateCollectionRequest
      */
-    'sort': number;
+    'title'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateCollectionRequest
+     */
+    'sort'?: number;
     /**
      * Collection and raindrops that it contains will be accessible without authentication?
      * @type {boolean}
-     * @memberof UpdateCollection
+     * @memberof UpdateCollectionRequest
      */
-    'public': boolean;
+    'public'?: boolean;
     /**
      * 
      * @type {CollectionRef}
-     * @memberof UpdateCollection
+     * @memberof UpdateCollectionRequest
      */
-    'parent': CollectionRef;
+    'parent'?: CollectionRef;
     /**
      * 
      * @type {Array<string>}
-     * @memberof UpdateCollection
+     * @memberof UpdateCollectionRequest
      */
-    'cover': Array<string>;
+    'cover'?: Array<string>;
     /**
-     * Whether the collection`s sub-collections are expanded
+     * 
      * @type {boolean}
-     * @memberof UpdateCollection
+     * @memberof UpdateCollectionRequest
      */
-    'expanded': boolean;
+    'expanded'?: boolean;
 }
-
-
+/**
+ * 
+ * @export
+ * @interface UpdateCollectionResponse
+ */
+export interface UpdateCollectionResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateCollectionResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {Collection}
+     * @memberof UpdateCollectionResponse
+     */
+    'item': Collection;
+}
 /**
  * 
  * @export
@@ -2185,10 +3826,10 @@ export interface UpdateCollection {
 export interface UpdateCurrentUserRequest {
     /**
      * 
-     * @type {Array<Group>}
+     * @type {Array<UpdateCurrentUserRequestGroupsInner>}
      * @memberof UpdateCurrentUserRequest
      */
-    'groups'?: Array<Group>;
+    'groups'?: Array<UpdateCurrentUserRequestGroupsInner>;
     /**
      * 
      * @type {UserConfig}
@@ -2223,6 +3864,335 @@ export interface UpdateCurrentUserRequest {
 /**
  * 
  * @export
+ * @interface UpdateCurrentUserRequestGroupsInner
+ */
+export interface UpdateCurrentUserRequestGroupsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserRequestGroupsInner
+     */
+    'title'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateCurrentUserRequestGroupsInner
+     */
+    'hidden'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateCurrentUserRequestGroupsInner
+     */
+    'sort'?: number;
+    /**
+     * 
+     * @type {Array<number>}
+     * @memberof UpdateCurrentUserRequestGroupsInner
+     */
+    'collections'?: Array<number>;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateCurrentUserResponse
+ */
+export interface UpdateCurrentUserResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateCurrentUserResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {UpdateCurrentUserResponseUser}
+     * @memberof UpdateCurrentUserResponse
+     */
+    'user': UpdateCurrentUserResponseUser;
+    /**
+     * 
+     * @type {UpdateCurrentUserResponseUser}
+     * @memberof UpdateCurrentUserResponse
+     */
+    'item': UpdateCurrentUserResponseUser;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateCurrentUserResponseUser
+ */
+export interface UpdateCurrentUserResponseUser {
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {UserConfig}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'config': UserConfig;
+    /**
+     * 
+     * @type {UserDropbox}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'dropbox'?: UserDropbox;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'email': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'email_MD5'?: string;
+    /**
+     * 
+     * @type {UserFiles}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'files': UserFiles;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'fullName': string;
+    /**
+     * 
+     * @type {UserDropbox}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'gdrive'?: UserDropbox;
+    /**
+     * 
+     * @type {Array<Group>}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'groups': Array<Group>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'password': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'pro': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'proExpire'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'registered': string;
+    /**
+     * 
+     * @type {UserTfa}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'tfa'?: UserTfa;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'avatar'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'lastAction'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'lastVisit'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    'lastUpdate'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateCurrentUserResponseUser
+     */
+    '__v': number;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateRaindropResponse
+ */
+export interface UpdateRaindropResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateRaindropResponse
+     */
+    'result'?: boolean;
+    /**
+     * 
+     * @type {UpdateRaindropResponseItem}
+     * @memberof UpdateRaindropResponse
+     */
+    'item'?: UpdateRaindropResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateRaindropResponseItem
+ */
+export interface UpdateRaindropResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateRaindropResponseItem
+     */
+    '__v': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateRaindropResponseItem
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {CollectionRef}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'collection': CollectionRef;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'collectionId': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'cover': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'excerpt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'link': string;
+    /**
+     * 
+     * @type {Array<CreateRaindropResponseItemMediaInner>}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'media': Array<CreateRaindropResponseItemMediaInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'note': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'removed': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'type': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'user': UserRef;
+    /**
+     * 
+     * @type {Array<GetRaindropResponseItemHighlightsInner>}
+     * @memberof UpdateRaindropResponseItem
+     */
+    'highlights': Array<GetRaindropResponseItemHighlightsInner>;
+}
+/**
+ * 
+ * @export
  * @interface UpdateRaindropsRequest
  */
 export interface UpdateRaindropsRequest {
@@ -2233,13 +4203,13 @@ export interface UpdateRaindropsRequest {
      */
     'ids'?: Array<number>;
     /**
-     * TRUE - mark as \"favorite\"  FALSE - unmark as \"favorite\"
+     * 
      * @type {boolean}
      * @memberof UpdateRaindropsRequest
      */
     'important'?: boolean;
     /**
-     * Will append specified tags to raindrops. Or will remove all tags from raindrops if [] (empty array) is specified
+     * 
      * @type {Array<string>}
      * @memberof UpdateRaindropsRequest
      */
@@ -2251,7 +4221,7 @@ export interface UpdateRaindropsRequest {
      */
     'media'?: Array<string>;
     /**
-     * Set URL for cover. Tip: specify <screenshot> to set screenshots for all raindrops
+     * 
      * @type {string}
      * @memberof UpdateRaindropsRequest
      */
@@ -2264,7 +4234,7 @@ export interface UpdateRaindropsRequest {
     'collection'?: UpdateRaindropsRequestCollection;
 }
 /**
- * Specify {\"$id\": collectionId} to move raindrops to other collection
+ * 
  * @export
  * @interface UpdateRaindropsRequestCollection
  */
@@ -2275,6 +4245,451 @@ export interface UpdateRaindropsRequestCollection {
      * @memberof UpdateRaindropsRequestCollection
      */
     '$id'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface UpdateRaindropsResponse
+ */
+export interface UpdateRaindropsResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UpdateRaindropsResponse
+     */
+    'result'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof UpdateRaindropsResponse
+     */
+    'modified'?: number;
+}
+/**
+ * 
+ * @export
+ * @interface UploadCollectionCoverResponse
+ */
+export interface UploadCollectionCoverResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadCollectionCoverResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {UploadCollectionCoverResponseItem}
+     * @memberof UploadCollectionCoverResponse
+     */
+    'item': UploadCollectionCoverResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface UploadCollectionCoverResponseItem
+ */
+export interface UploadCollectionCoverResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'description': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'user': UserRef;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'public': boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'view': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'count': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'cover': Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'expanded': boolean;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'lastAction': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'slug': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'color'?: string;
+    /**
+     * 
+     * @type {CollectionAccess}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'access': CollectionAccess;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'author': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    '__v': number;
+}
+/**
+ * 
+ * @export
+ * @interface UploadFileResponse
+ */
+export interface UploadFileResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadFileResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {UploadFileResponseItem}
+     * @memberof UploadFileResponse
+     */
+    'item': UploadFileResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface UploadFileResponseItem
+ */
+export interface UploadFileResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadFileResponseItem
+     */
+    '__v': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadFileResponseItem
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {CollectionRef}
+     * @memberof UploadFileResponseItem
+     */
+    'collection': CollectionRef;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadFileResponseItem
+     */
+    'collectionId': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'cover': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof UploadFileResponseItem
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'excerpt': string;
+    /**
+     * 
+     * @type {RaindropAllOfFile}
+     * @memberof UploadFileResponseItem
+     */
+    'file': RaindropAllOfFile;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'link': string;
+    /**
+     * 
+     * @type {Array<CreateRaindropResponseItemMediaInner>}
+     * @memberof UploadFileResponseItem
+     */
+    'media': Array<CreateRaindropResponseItemMediaInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'note': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadFileResponseItem
+     */
+    'removed': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadFileResponseItem
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UploadFileResponseItem
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'type': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof UploadFileResponseItem
+     */
+    'user': UserRef;
+}
+/**
+ * 
+ * @export
+ * @interface UploadRaindropCoverResponse
+ */
+export interface UploadRaindropCoverResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadRaindropCoverResponse
+     */
+    'result'?: boolean;
+    /**
+     * 
+     * @type {UploadRaindropCoverResponseItem}
+     * @memberof UploadRaindropCoverResponse
+     */
+    'item'?: UploadRaindropCoverResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface UploadRaindropCoverResponseItem
+ */
+export interface UploadRaindropCoverResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    '__v': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {CollectionRef}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'collection': CollectionRef;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'collectionId': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'cover': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'excerpt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'link': string;
+    /**
+     * 
+     * @type {Array<CreateRaindropResponseItemMediaInner>}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'media': Array<CreateRaindropResponseItemMediaInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'note': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'removed': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'type': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'user': UserRef;
 }
 /**
  * 
@@ -2436,7 +4851,7 @@ export interface User {
      * @type {UserDropbox}
      * @memberof User
      */
-    'dropbox': UserDropbox;
+    'dropbox'?: UserDropbox;
     /**
      * 
      * @type {string}
@@ -2448,7 +4863,7 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    'email_MD5': string;
+    'email_MD5'?: string;
     /**
      * 
      * @type {UserFiles}
@@ -2466,7 +4881,7 @@ export interface User {
      * @type {UserDropbox}
      * @memberof User
      */
-    'gdrive': UserDropbox;
+    'gdrive'?: UserDropbox;
     /**
      * 
      * @type {Array<Group>}
@@ -2490,13 +4905,49 @@ export interface User {
      * @type {string}
      * @memberof User
      */
-    'proExpire': string;
+    'proExpire'?: string;
     /**
      * 
      * @type {string}
      * @memberof User
      */
     'registered': string;
+    /**
+     * 
+     * @type {UserTfa}
+     * @memberof User
+     */
+    'tfa'?: UserTfa;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'name'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'avatar'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'lastAction'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'lastVisit'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'lastUpdate'?: string;
 }
 /**
  * 
@@ -2515,7 +4966,7 @@ export interface UserConfig {
      * @type {string}
      * @memberof UserConfig
      */
-    'font_color': string;
+    'font_color'?: string;
     /**
      * 
      * @type {number}
@@ -2527,7 +4978,7 @@ export interface UserConfig {
      * @type {string}
      * @memberof UserConfig
      */
-    'lang': string;
+    'lang'?: string;
     /**
      * 
      * @type {number}
@@ -2536,19 +4987,71 @@ export interface UserConfig {
     'last_collection': number;
     /**
      * 
-     * @type {SortBy}
+     * @type {Array<string>}
      * @memberof UserConfig
      */
-    'raindrops_sort': SortBy;
+    'raindrops_buttons'?: Array<string>;
     /**
      * 
-     * @type {View}
+     * @type {Array<string>}
      * @memberof UserConfig
      */
-    'raindrops_view': View;
+    'raindrops_hide'?: Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserConfig
+     */
+    'raindrops_search_by_score'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserConfig
+     */
+    'raindrops_search_incollection'?: boolean;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserConfig
+     */
+    'raindrops_sort': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserConfig
+     */
+    'default_collection_view'?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserConfig
+     */
+    'nested_view_legacy'?: boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof UserConfig
+     */
+    'add_default_collection'?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UserConfig
+     */
+    'acknowledge'?: Array<string>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserConfig
+     */
+    'ai_suggestions'?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserConfig
+     */
+    'filters_hide'?: boolean;
 }
-
-
 /**
  * 
  * @export
@@ -2595,16 +5098,16 @@ export interface UserFiles {
 export interface UserRef {
     /**
      * 
-     * @type {string}
-     * @memberof UserRef
-     */
-    '$ref': string;
-    /**
-     * 
      * @type {number}
      * @memberof UserRef
      */
     '$id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserRef
+     */
+    '$ref': string;
 }
 /**
  * 
@@ -2626,7 +5129,20 @@ export interface UserResponse {
     'user': User;
 }
 /**
- * View style of collection, can be: - list (default) - simple - grid - masonry    Pinterest like grid
+ * 
+ * @export
+ * @interface UserTfa
+ */
+export interface UserTfa {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UserTfa
+     */
+    'enabled'?: boolean;
+}
+/**
+ * 
  * @export
  * @enum {string}
  */
@@ -2649,14 +5165,13 @@ export type View = typeof View[keyof typeof View];
 export const AuthenticationApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Direct the user to our authorization URL with specified request parameters.  - If the user is not logged in, they will be asked to log in  - The user will be asked if he would like to grant your application access to his Raindrop.io data
-         * @summary Authorization request
+         * 
          * @param {string} redirectUri 
          * @param {string} clientId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        authorize: async (redirectUri: string, clientId: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        authorize: async (redirectUri: string, clientId: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'redirectUri' is not null or undefined
             assertParamExists('authorize', 'redirectUri', redirectUri)
             // verify required parameter 'clientId' is not null or undefined
@@ -2693,13 +5208,12 @@ export const AuthenticationApiAxiosParamCreator = function (configuration?: Conf
             };
         },
         /**
-         * Once you have the authorization code, you can exchange it for the `access_token` by doing a POST request with all required body parameters as JSON.  For security reasons access tokens (except \"test tokens\") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON). 
-         * @summary Obtain or refresh access token
+         * 
          * @param {GetOrRefreshTokenRequest} [getOrRefreshTokenRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getOrRefreshToken: async (getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getOrRefreshToken: async (getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/v1/oauth/access_token`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2737,31 +5251,29 @@ export const AuthenticationApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = AuthenticationApiAxiosParamCreator(configuration)
     return {
         /**
-         * Direct the user to our authorization URL with specified request parameters.  - If the user is not logged in, they will be asked to log in  - The user will be asked if he would like to grant your application access to his Raindrop.io data
-         * @summary Authorization request
+         * 
          * @param {string} redirectUri 
          * @param {string} clientId 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async authorize(redirectUri: string, clientId: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async authorize(redirectUri: string, clientId: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.authorize(redirectUri, clientId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['AuthenticationApi.authorize']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AuthenticationApi.authorize']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Once you have the authorization code, you can exchange it for the `access_token` by doing a POST request with all required body parameters as JSON.  For security reasons access tokens (except \"test tokens\") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON). 
-         * @summary Obtain or refresh access token
+         * 
          * @param {GetOrRefreshTokenRequest} [getOrRefreshTokenRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrRefreshToken200Response>> {
+        async getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetOrRefreshToken200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getOrRefreshToken(getOrRefreshTokenRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['AuthenticationApi.getOrRefreshToken']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['AuthenticationApi.getOrRefreshToken']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -2774,8 +5286,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
     const localVarFp = AuthenticationApiFp(configuration)
     return {
         /**
-         * Direct the user to our authorization URL with specified request parameters.  - If the user is not logged in, they will be asked to log in  - The user will be asked if he would like to grant your application access to his Raindrop.io data
-         * @summary Authorization request
+         * 
          * @param {string} redirectUri 
          * @param {string} clientId 
          * @param {*} [options] Override http request option.
@@ -2785,8 +5296,7 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
             return localVarFp.authorize(redirectUri, clientId, options).then((request) => request(axios, basePath));
         },
         /**
-         * Once you have the authorization code, you can exchange it for the `access_token` by doing a POST request with all required body parameters as JSON.  For security reasons access tokens (except \"test tokens\") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON). 
-         * @summary Obtain or refresh access token
+         * 
          * @param {GetOrRefreshTokenRequest} [getOrRefreshTokenRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -2805,27 +5315,25 @@ export const AuthenticationApiFactory = function (configuration?: Configuration,
  */
 export class AuthenticationApi extends BaseAPI {
     /**
-     * Direct the user to our authorization URL with specified request parameters.  - If the user is not logged in, they will be asked to log in  - The user will be asked if he would like to grant your application access to his Raindrop.io data
-     * @summary Authorization request
+     * 
      * @param {string} redirectUri 
      * @param {string} clientId 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    public authorize(redirectUri: string, clientId: string, options?: AxiosRequestConfig) {
+    public authorize(redirectUri: string, clientId: string, options?: RawAxiosRequestConfig) {
         return AuthenticationApiFp(this.configuration).authorize(redirectUri, clientId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Once you have the authorization code, you can exchange it for the `access_token` by doing a POST request with all required body parameters as JSON.  For security reasons access tokens (except \"test tokens\") will expire after two weeks. In this case you should request the new one, by calling POST request with body parameters (JSON). 
-     * @summary Obtain or refresh access token
+     * 
      * @param {GetOrRefreshTokenRequest} [getOrRefreshTokenRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof AuthenticationApi
      */
-    public getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: AxiosRequestConfig) {
+    public getOrRefreshToken(getOrRefreshTokenRequest?: GetOrRefreshTokenRequest, options?: RawAxiosRequestConfig) {
         return AuthenticationApiFp(this.configuration).getOrRefreshToken(getOrRefreshTokenRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -2839,16 +5347,15 @@ export class AuthenticationApi extends BaseAPI {
 export const CollectionApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Accept an invitation to join a shared collection
-         * @summary Accept an invitation
-         * @param {number} id Existing collection
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        acceptInvitation: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        acceptInvitation: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('acceptInvitation', 'id', id)
-            const localVarPath = `/rest/v1/collections/{id}/join`
+            const localVarPath = `/rest/v1/collection/{id}/join`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2878,19 +5385,18 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Change access level of collaborator
-         * @param {number} userId User ID of collaborator
-         * @param {number} id Existing collection ID
+         * @param {number} userId 
+         * @param {number} id 
          * @param {ChangeCollaboratorAccessLevelRequest} [changeCollaboratorAccessLevelRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        changeCollaboratorAccessLevel: async (userId: number, id: number, changeCollaboratorAccessLevelRequest?: ChangeCollaboratorAccessLevelRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        changeCollaboratorAccessLevel: async (userId: number, id: number, changeCollaboratorAccessLevelRequest?: ChangeCollaboratorAccessLevelRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('changeCollaboratorAccessLevel', 'userId', userId)
             // verify required parameter 'id' is not null or undefined
             assertParamExists('changeCollaboratorAccessLevel', 'id', id)
-            const localVarPath = `/rest/v1/collections/{id}/sharing/{userId}`
+            const localVarPath = `/rest/v1/collection/{id}/sharing/{userId}`
                 .replace(`{${"userId"}}`, encodeURIComponent(String(userId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -2923,13 +5429,12 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Create a new collection
-         * @summary Create collection
-         * @param {CreateCollection} [createCollection] 
+         * 
+         * @param {CreateCollectionRequest} [createCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCollection: async (createCollection?: CreateCollection, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createCollection: async (createCollectionRequest?: CreateCollectionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collection`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -2953,7 +5458,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createCollection, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createCollectionRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -2961,19 +5466,18 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Remove an user from shared collection
-         * @summary Delete a collaborator
-         * @param {number} userId User ID of collaborator
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} userId 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCollaborator: async (userId: number, id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        deleteCollaborator: async (userId: number, id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'userId' is not null or undefined
             assertParamExists('deleteCollaborator', 'userId', userId)
             // verify required parameter 'id' is not null or undefined
             assertParamExists('deleteCollaborator', 'id', id)
-            const localVarPath = `/rest/v1/collections/{id}/sharing/{userId}`
+            const localVarPath = `/rest/v1/collection/{id}/sharing/{userId}`
                 .replace(`{${"userId"}}`, encodeURIComponent(String(userId)))
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -3004,11 +5508,10 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Empty Trash
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        emptyTrash: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        emptyTrash: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collection/-99`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3037,12 +5540,11 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Returns JSON-encoded array containing all nested collections (that have positive `parent.$id`)
-         * @summary Get child collections
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getChildCollections: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getChildCollections: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collections/childrens`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3072,15 +5574,14 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Get collaborators list of collection
-         * @param {number} id Existing collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCollaborators: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCollaborators: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getCollaborators', 'id', id)
-            const localVarPath = `/rest/v1/collections/{id}/sharing`
+            const localVarPath = `/rest/v1/collection/{id}/sharing`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3110,12 +5611,11 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Get collection
-         * @param {number} id Collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCollection: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCollection: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getCollection', 'id', id)
             const localVarPath = `/rest/v1/collection/{id}`
@@ -3148,11 +5648,10 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Featured covers
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFeaturedCovers: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getFeaturedCovers: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collections/covers`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3181,12 +5680,11 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Returns JSON-encoded array containing all root collections.
-         * @summary Get root collections
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRootCollections: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRootCollections: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collections`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3216,11 +5714,10 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Get system collections count
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSystemCollectionStats: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSystemCollectionStats: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/user/stats`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3249,13 +5746,12 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Merge multiple collections
-         * @summary Merge collections
+         * 
          * @param {MergeCollectionsRequest} [mergeCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mergeCollections: async (mergeCollectionsRequest?: MergeCollectionsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        mergeCollections: async (mergeCollectionsRequest?: MergeCollectionsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collections/merge`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3288,11 +5784,10 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
         },
         /**
          * 
-         * @summary Remove all empty collections
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeAllEmptyCollections: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeAllEmptyCollections: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collections/clean`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3321,13 +5816,12 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Remove an existing collection and all its descendants.  Raindrops will be moved to \"Trash\" collection
-         * @summary Remove collection
-         * @param {number} id Collection ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeCollection: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeCollection: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('removeCollection', 'id', id)
             const localVarPath = `/rest/v1/collection/{id}`
@@ -3359,13 +5853,12 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Remove multiple collections at once.  Nested collections are ignored (include ID\'s in ids array to remove them)
-         * @summary Remove multiple collections
+         * 
          * @param {RemoveCollectionsRequest} [removeCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeCollections: async (removeCollectionsRequest?: RemoveCollectionsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeCollections: async (removeCollectionsRequest?: RemoveCollectionsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collections`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3397,13 +5890,12 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Updates order of all collections
-         * @summary Reorder all collections
+         * 
          * @param {ReorderAllCollectionsRequest} [reorderAllCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reorderAllCollections: async (reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        reorderAllCollections: async (reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/collections`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3435,13 +5927,12 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Search for specific cover (icon)
-         * @summary Search for cover
-         * @param {string} text For example \&quot;pokemon\&quot;
+         * 
+         * @param {string} text 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchCovers: async (text: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        searchCovers: async (text: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'text' is not null or undefined
             assertParamExists('searchCovers', 'text', text)
             const localVarPath = `/rest/v1/collections/covers/{text}`
@@ -3473,17 +5964,16 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Share collection with another user(s). As result invitation(s) will be send to specified email(s) with link to join collection.
-         * @summary Share collection
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {ShareCollectionRequest} [shareCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        shareCollection: async (id: number, shareCollectionRequest?: ShareCollectionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        shareCollection: async (id: number, shareCollectionRequest?: ShareCollectionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('shareCollection', 'id', id)
-            const localVarPath = `/rest/v1/collections/{id}/sharing`
+            const localVarPath = `/rest/v1/collection/{id}/sharing`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3515,16 +6005,15 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * There two possible results of calling this method, depends on who authenticated user is: - Owner: collection will be unshared and all collaborators will be removed - Member or viewer: authenticated user will be removed from collaborators list
-         * @summary Unshare or leave collection
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unshareOrLeaveCollection: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        unshareOrLeaveCollection: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('unshareOrLeaveCollection', 'id', id)
-            const localVarPath = `/rest/v1/collections/{id}/sharing`
+            const localVarPath = `/rest/v1/collection/{id}/sharing`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3553,14 +6042,13 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * Update an existing collection
-         * @summary Update collection
-         * @param {number} id Collection ID
-         * @param {UpdateCollection} [updateCollection] 
+         * 
+         * @param {number} id 
+         * @param {UpdateCollectionRequest} [updateCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCollection: async (id: number, updateCollection?: UpdateCollection, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateCollection: async (id: number, updateCollectionRequest?: UpdateCollectionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateCollection', 'id', id)
             const localVarPath = `/rest/v1/collection/{id}`
@@ -3587,7 +6075,7 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(updateCollection, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(updateCollectionRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -3595,17 +6083,16 @@ export const CollectionApiAxiosParamCreator = function (configuration?: Configur
             };
         },
         /**
-         * It\'s possible to upload cover from desktop. PNG, GIF and JPEG supported
-         * @summary Upload cover
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {File} [cover] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadCollectionCover: async (id: number, cover?: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        uploadCollectionCover: async (id: number, cover?: File, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('uploadCollectionCover', 'id', id)
-            const localVarPath = `/rest/v1/collections/{id}/cover`
+            const localVarPath = `/rest/v1/collection/{id}/cover`
                 .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -3652,277 +6139,256 @@ export const CollectionApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = CollectionApiAxiosParamCreator(configuration)
     return {
         /**
-         * Accept an invitation to join a shared collection
-         * @summary Accept an invitation
-         * @param {number} id Existing collection
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async acceptInvitation(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AcceptInvitation200Response>> {
+        async acceptInvitation(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<AcceptInvitation200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.acceptInvitation(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.acceptInvitation']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.acceptInvitation']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Change access level of collaborator
-         * @param {number} userId User ID of collaborator
-         * @param {number} id Existing collection ID
+         * @param {number} userId 
+         * @param {number} id 
          * @param {ChangeCollaboratorAccessLevelRequest} [changeCollaboratorAccessLevelRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async changeCollaboratorAccessLevel(userId: number, id: number, changeCollaboratorAccessLevelRequest?: ChangeCollaboratorAccessLevelRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async changeCollaboratorAccessLevel(userId: number, id: number, changeCollaboratorAccessLevelRequest?: ChangeCollaboratorAccessLevelRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.changeCollaboratorAccessLevel(userId, id, changeCollaboratorAccessLevelRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.changeCollaboratorAccessLevel']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.changeCollaboratorAccessLevel']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Create a new collection
-         * @summary Create collection
-         * @param {CreateCollection} [createCollection] 
+         * 
+         * @param {CreateCollectionRequest} [createCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createCollection(createCollection?: CreateCollection, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createCollection(createCollection, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.createCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        async createCollection(createCollectionRequest?: CreateCollectionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateCollectionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createCollection(createCollectionRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.createCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Remove an user from shared collection
-         * @summary Delete a collaborator
-         * @param {number} userId User ID of collaborator
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} userId 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteCollaborator(userId: number, id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async deleteCollaborator(userId: number, id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteCollaborator(userId, id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.deleteCollaborator']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.deleteCollaborator']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Empty Trash
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async emptyTrash(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async emptyTrash(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimpleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.emptyTrash(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.emptyTrash']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.emptyTrash']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Returns JSON-encoded array containing all nested collections (that have positive `parent.$id`)
-         * @summary Get child collections
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getChildCollections(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseMany>> {
+        async getChildCollections(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetChildCollectionsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getChildCollections(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.getChildCollections']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.getChildCollections']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Get collaborators list of collection
-         * @param {number} id Existing collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCollaborators(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async getCollaborators(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCollaborators(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.getCollaborators']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.getCollaborators']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Get collection
-         * @param {number} id Collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCollection(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
+        async getCollection(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCollectionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCollection(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.getCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.getCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Featured covers
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFeaturedCovers(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CoverResponse>> {
+        async getFeaturedCovers(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetFeaturedCoversResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFeaturedCovers(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.getFeaturedCovers']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * Returns JSON-encoded array containing all root collections.
-         * @summary Get root collections
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getRootCollections(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseMany>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getRootCollections(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.getRootCollections']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.getFeaturedCovers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Get system collections count
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSystemCollectionStats(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getSystemCollectionStats(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.getSystemCollectionStats']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        async getRootCollections(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetRootCollectionsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getRootCollections(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.getRootCollections']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Merge multiple collections
-         * @summary Merge collections
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getSystemCollectionStats(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetSystemCollectionStatsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSystemCollectionStats(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.getSystemCollectionStats']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {MergeCollectionsRequest} [mergeCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async mergeCollections(mergeCollectionsRequest?: MergeCollectionsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async mergeCollections(mergeCollectionsRequest?: MergeCollectionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<MergeCollectionsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.mergeCollections(mergeCollectionsRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.mergeCollections']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.mergeCollections']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Remove all empty collections
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeAllEmptyCollections(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveAllEmptyCollections200Response>> {
+        async removeAllEmptyCollections(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveAllEmptyCollectionsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeAllEmptyCollections(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.removeAllEmptyCollections']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.removeAllEmptyCollections']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Remove an existing collection and all its descendants.  Raindrops will be moved to \"Trash\" collection
-         * @summary Remove collection
-         * @param {number} id Collection ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeCollection(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async removeCollection(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeCollection(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.removeCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.removeCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Remove multiple collections at once.  Nested collections are ignored (include ID\'s in ids array to remove them)
-         * @summary Remove multiple collections
+         * 
          * @param {RemoveCollectionsRequest} [removeCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveCollectionsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeCollections(removeCollectionsRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.removeCollections']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.removeCollections']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Updates order of all collections
-         * @summary Reorder all collections
+         * 
          * @param {ReorderAllCollectionsRequest} [reorderAllCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async reorderAllCollections(reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async reorderAllCollections(reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimpleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.reorderAllCollections(reorderAllCollectionsRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.reorderAllCollections']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.reorderAllCollections']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Search for specific cover (icon)
-         * @summary Search for cover
-         * @param {string} text For example \&quot;pokemon\&quot;
+         * 
+         * @param {string} text 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchCovers(text: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CoverResponse>> {
+        async searchCovers(text: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CoverResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.searchCovers(text, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.searchCovers']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.searchCovers']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Share collection with another user(s). As result invitation(s) will be send to specified email(s) with link to join collection.
-         * @summary Share collection
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {ShareCollectionRequest} [shareCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async shareCollection(id: number, shareCollectionRequest?: ShareCollectionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShareCollection200Response>> {
+        async shareCollection(id: number, shareCollectionRequest?: ShareCollectionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ShareCollectionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.shareCollection(id, shareCollectionRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.shareCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.shareCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * There two possible results of calling this method, depends on who authenticated user is: - Owner: collection will be unshared and all collaborators will be removed - Member or viewer: authenticated user will be removed from collaborators list
-         * @summary Unshare or leave collection
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async unshareOrLeaveCollection(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async unshareOrLeaveCollection(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.unshareOrLeaveCollection(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.unshareOrLeaveCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.unshareOrLeaveCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Update an existing collection
-         * @summary Update collection
-         * @param {number} id Collection ID
-         * @param {UpdateCollection} [updateCollection] 
+         * 
+         * @param {number} id 
+         * @param {UpdateCollectionRequest} [updateCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateCollection(id: number, updateCollection?: UpdateCollection, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateCollection(id, updateCollection, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.updateCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        async updateCollection(id: number, updateCollectionRequest?: UpdateCollectionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCollectionResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateCollection(id, updateCollectionRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.updateCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * It\'s possible to upload cover from desktop. PNG, GIF and JPEG supported
-         * @summary Upload cover
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {File} [cover] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async uploadCollectionCover(id: number, cover?: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CollectionResponseOne>> {
+        async uploadCollectionCover(id: number, cover?: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadCollectionCoverResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.uploadCollectionCover(id, cover, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['CollectionApi.uploadCollectionCover']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['CollectionApi.uploadCollectionCover']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -3935,9 +6401,8 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
     const localVarFp = CollectionApiFp(configuration)
     return {
         /**
-         * Accept an invitation to join a shared collection
-         * @summary Accept an invitation
-         * @param {number} id Existing collection
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3946,9 +6411,8 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary Change access level of collaborator
-         * @param {number} userId User ID of collaborator
-         * @param {number} id Existing collection ID
+         * @param {number} userId 
+         * @param {number} id 
          * @param {ChangeCollaboratorAccessLevelRequest} [changeCollaboratorAccessLevelRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -3957,20 +6421,18 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.changeCollaboratorAccessLevel(userId, id, changeCollaboratorAccessLevelRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Create a new collection
-         * @summary Create collection
-         * @param {CreateCollection} [createCollection] 
+         * 
+         * @param {CreateCollectionRequest} [createCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createCollection(createCollection?: CreateCollection, options?: any): AxiosPromise<CollectionResponseOne> {
-            return localVarFp.createCollection(createCollection, options).then((request) => request(axios, basePath));
+        createCollection(createCollectionRequest?: CreateCollectionRequest, options?: any): AxiosPromise<CreateCollectionResponse> {
+            return localVarFp.createCollection(createCollectionRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Remove an user from shared collection
-         * @summary Delete a collaborator
-         * @param {number} userId User ID of collaborator
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} userId 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -3979,26 +6441,23 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary Empty Trash
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        emptyTrash(options?: any): AxiosPromise<Response> {
+        emptyTrash(options?: any): AxiosPromise<SimpleResponse> {
             return localVarFp.emptyTrash(options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns JSON-encoded array containing all nested collections (that have positive `parent.$id`)
-         * @summary Get child collections
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getChildCollections(options?: any): AxiosPromise<CollectionResponseMany> {
+        getChildCollections(options?: any): AxiosPromise<GetChildCollectionsResponse> {
             return localVarFp.getChildCollections(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Get collaborators list of collection
-         * @param {number} id Existing collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4007,64 +6466,57 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
         },
         /**
          * 
-         * @summary Get collection
-         * @param {number} id Collection ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCollection(id: number, options?: any): AxiosPromise<CollectionResponseOne> {
+        getCollection(id: number, options?: any): AxiosPromise<GetCollectionResponse> {
             return localVarFp.getCollection(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Featured covers
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFeaturedCovers(options?: any): AxiosPromise<CoverResponse> {
+        getFeaturedCovers(options?: any): AxiosPromise<GetFeaturedCoversResponse> {
             return localVarFp.getFeaturedCovers(options).then((request) => request(axios, basePath));
         },
         /**
-         * Returns JSON-encoded array containing all root collections.
-         * @summary Get root collections
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRootCollections(options?: any): AxiosPromise<CollectionResponseMany> {
+        getRootCollections(options?: any): AxiosPromise<GetRootCollectionsResponse> {
             return localVarFp.getRootCollections(options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Get system collections count
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSystemCollectionStats(options?: any): AxiosPromise<StatResponse> {
+        getSystemCollectionStats(options?: any): AxiosPromise<GetSystemCollectionStatsResponse> {
             return localVarFp.getSystemCollectionStats(options).then((request) => request(axios, basePath));
         },
         /**
-         * Merge multiple collections
-         * @summary Merge collections
+         * 
          * @param {MergeCollectionsRequest} [mergeCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        mergeCollections(mergeCollectionsRequest?: MergeCollectionsRequest, options?: any): AxiosPromise<void> {
+        mergeCollections(mergeCollectionsRequest?: MergeCollectionsRequest, options?: any): AxiosPromise<MergeCollectionsResponse> {
             return localVarFp.mergeCollections(mergeCollectionsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Remove all empty collections
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeAllEmptyCollections(options?: any): AxiosPromise<RemoveAllEmptyCollections200Response> {
+        removeAllEmptyCollections(options?: any): AxiosPromise<RemoveAllEmptyCollectionsResponse> {
             return localVarFp.removeAllEmptyCollections(options).then((request) => request(axios, basePath));
         },
         /**
-         * Remove an existing collection and all its descendants.  Raindrops will be moved to \"Trash\" collection
-         * @summary Remove collection
-         * @param {number} id Collection ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4072,29 +6524,26 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.removeCollection(id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Remove multiple collections at once.  Nested collections are ignored (include ID\'s in ids array to remove them)
-         * @summary Remove multiple collections
+         * 
          * @param {RemoveCollectionsRequest} [removeCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: any): AxiosPromise<void> {
+        removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: any): AxiosPromise<RemoveCollectionsResponse> {
             return localVarFp.removeCollections(removeCollectionsRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Updates order of all collections
-         * @summary Reorder all collections
+         * 
          * @param {ReorderAllCollectionsRequest} [reorderAllCollectionsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        reorderAllCollections(reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options?: any): AxiosPromise<Response> {
+        reorderAllCollections(reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options?: any): AxiosPromise<SimpleResponse> {
             return localVarFp.reorderAllCollections(reorderAllCollectionsRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Search for specific cover (icon)
-         * @summary Search for cover
-         * @param {string} text For example \&quot;pokemon\&quot;
+         * 
+         * @param {string} text 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4102,20 +6551,18 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.searchCovers(text, options).then((request) => request(axios, basePath));
         },
         /**
-         * Share collection with another user(s). As result invitation(s) will be send to specified email(s) with link to join collection.
-         * @summary Share collection
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {ShareCollectionRequest} [shareCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        shareCollection(id: number, shareCollectionRequest?: ShareCollectionRequest, options?: any): AxiosPromise<ShareCollection200Response> {
+        shareCollection(id: number, shareCollectionRequest?: ShareCollectionRequest, options?: any): AxiosPromise<ShareCollectionResponse> {
             return localVarFp.shareCollection(id, shareCollectionRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * There two possible results of calling this method, depends on who authenticated user is: - Owner: collection will be unshared and all collaborators will be removed - Member or viewer: authenticated user will be removed from collaborators list
-         * @summary Unshare or leave collection
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4123,25 +6570,23 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
             return localVarFp.unshareOrLeaveCollection(id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Update an existing collection
-         * @summary Update collection
-         * @param {number} id Collection ID
-         * @param {UpdateCollection} [updateCollection] 
+         * 
+         * @param {number} id 
+         * @param {UpdateCollectionRequest} [updateCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCollection(id: number, updateCollection?: UpdateCollection, options?: any): AxiosPromise<CollectionResponseOne> {
-            return localVarFp.updateCollection(id, updateCollection, options).then((request) => request(axios, basePath));
+        updateCollection(id: number, updateCollectionRequest?: UpdateCollectionRequest, options?: any): AxiosPromise<UpdateCollectionResponse> {
+            return localVarFp.updateCollection(id, updateCollectionRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * It\'s possible to upload cover from desktop. PNG, GIF and JPEG supported
-         * @summary Upload cover
-         * @param {number} id Existing collection ID
+         * 
+         * @param {number} id 
          * @param {File} [cover] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadCollectionCover(id: number, cover?: File, options?: any): AxiosPromise<CollectionResponseOne> {
+        uploadCollectionCover(id: number, cover?: File, options?: any): AxiosPromise<UploadCollectionCoverResponse> {
             return localVarFp.uploadCollectionCover(id, cover, options).then((request) => request(axios, basePath));
         },
     };
@@ -4155,254 +6600,233 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
  */
 export class CollectionApi extends BaseAPI {
     /**
-     * Accept an invitation to join a shared collection
-     * @summary Accept an invitation
-     * @param {number} id Existing collection
+     * 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public acceptInvitation(id: number, options?: AxiosRequestConfig) {
+    public acceptInvitation(id: number, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).acceptInvitation(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Change access level of collaborator
-     * @param {number} userId User ID of collaborator
-     * @param {number} id Existing collection ID
+     * @param {number} userId 
+     * @param {number} id 
      * @param {ChangeCollaboratorAccessLevelRequest} [changeCollaboratorAccessLevelRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public changeCollaboratorAccessLevel(userId: number, id: number, changeCollaboratorAccessLevelRequest?: ChangeCollaboratorAccessLevelRequest, options?: AxiosRequestConfig) {
+    public changeCollaboratorAccessLevel(userId: number, id: number, changeCollaboratorAccessLevelRequest?: ChangeCollaboratorAccessLevelRequest, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).changeCollaboratorAccessLevel(userId, id, changeCollaboratorAccessLevelRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Create a new collection
-     * @summary Create collection
-     * @param {CreateCollection} [createCollection] 
+     * 
+     * @param {CreateCollectionRequest} [createCollectionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public createCollection(createCollection?: CreateCollection, options?: AxiosRequestConfig) {
-        return CollectionApiFp(this.configuration).createCollection(createCollection, options).then((request) => request(this.axios, this.basePath));
+    public createCollection(createCollectionRequest?: CreateCollectionRequest, options?: RawAxiosRequestConfig) {
+        return CollectionApiFp(this.configuration).createCollection(createCollectionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Remove an user from shared collection
-     * @summary Delete a collaborator
-     * @param {number} userId User ID of collaborator
-     * @param {number} id Existing collection ID
+     * 
+     * @param {number} userId 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public deleteCollaborator(userId: number, id: number, options?: AxiosRequestConfig) {
+    public deleteCollaborator(userId: number, id: number, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).deleteCollaborator(userId, id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Empty Trash
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public emptyTrash(options?: AxiosRequestConfig) {
+    public emptyTrash(options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).emptyTrash(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Returns JSON-encoded array containing all nested collections (that have positive `parent.$id`)
-     * @summary Get child collections
+     * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public getChildCollections(options?: AxiosRequestConfig) {
+    public getChildCollections(options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).getChildCollections(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Get collaborators list of collection
-     * @param {number} id Existing collection ID
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public getCollaborators(id: number, options?: AxiosRequestConfig) {
+    public getCollaborators(id: number, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).getCollaborators(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Get collection
-     * @param {number} id Collection ID
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public getCollection(id: number, options?: AxiosRequestConfig) {
+    public getCollection(id: number, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).getCollection(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Featured covers
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public getFeaturedCovers(options?: AxiosRequestConfig) {
+    public getFeaturedCovers(options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).getFeaturedCovers(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Returns JSON-encoded array containing all root collections.
-     * @summary Get root collections
+     * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public getRootCollections(options?: AxiosRequestConfig) {
+    public getRootCollections(options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).getRootCollections(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Get system collections count
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public getSystemCollectionStats(options?: AxiosRequestConfig) {
+    public getSystemCollectionStats(options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).getSystemCollectionStats(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Merge multiple collections
-     * @summary Merge collections
+     * 
      * @param {MergeCollectionsRequest} [mergeCollectionsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public mergeCollections(mergeCollectionsRequest?: MergeCollectionsRequest, options?: AxiosRequestConfig) {
+    public mergeCollections(mergeCollectionsRequest?: MergeCollectionsRequest, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).mergeCollections(mergeCollectionsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Remove all empty collections
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public removeAllEmptyCollections(options?: AxiosRequestConfig) {
+    public removeAllEmptyCollections(options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).removeAllEmptyCollections(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Remove an existing collection and all its descendants.  Raindrops will be moved to \"Trash\" collection
-     * @summary Remove collection
-     * @param {number} id Collection ID
+     * 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public removeCollection(id: number, options?: AxiosRequestConfig) {
+    public removeCollection(id: number, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).removeCollection(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Remove multiple collections at once.  Nested collections are ignored (include ID\'s in ids array to remove them)
-     * @summary Remove multiple collections
+     * 
      * @param {RemoveCollectionsRequest} [removeCollectionsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: AxiosRequestConfig) {
+    public removeCollections(removeCollectionsRequest?: RemoveCollectionsRequest, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).removeCollections(removeCollectionsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Updates order of all collections
-     * @summary Reorder all collections
+     * 
      * @param {ReorderAllCollectionsRequest} [reorderAllCollectionsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public reorderAllCollections(reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options?: AxiosRequestConfig) {
+    public reorderAllCollections(reorderAllCollectionsRequest?: ReorderAllCollectionsRequest, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).reorderAllCollections(reorderAllCollectionsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Search for specific cover (icon)
-     * @summary Search for cover
-     * @param {string} text For example \&quot;pokemon\&quot;
+     * 
+     * @param {string} text 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public searchCovers(text: string, options?: AxiosRequestConfig) {
+    public searchCovers(text: string, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).searchCovers(text, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Share collection with another user(s). As result invitation(s) will be send to specified email(s) with link to join collection.
-     * @summary Share collection
-     * @param {number} id Existing collection ID
+     * 
+     * @param {number} id 
      * @param {ShareCollectionRequest} [shareCollectionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public shareCollection(id: number, shareCollectionRequest?: ShareCollectionRequest, options?: AxiosRequestConfig) {
+    public shareCollection(id: number, shareCollectionRequest?: ShareCollectionRequest, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).shareCollection(id, shareCollectionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * There two possible results of calling this method, depends on who authenticated user is: - Owner: collection will be unshared and all collaborators will be removed - Member or viewer: authenticated user will be removed from collaborators list
-     * @summary Unshare or leave collection
-     * @param {number} id Existing collection ID
+     * 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public unshareOrLeaveCollection(id: number, options?: AxiosRequestConfig) {
+    public unshareOrLeaveCollection(id: number, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).unshareOrLeaveCollection(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Update an existing collection
-     * @summary Update collection
-     * @param {number} id Collection ID
-     * @param {UpdateCollection} [updateCollection] 
+     * 
+     * @param {number} id 
+     * @param {UpdateCollectionRequest} [updateCollectionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public updateCollection(id: number, updateCollection?: UpdateCollection, options?: AxiosRequestConfig) {
-        return CollectionApiFp(this.configuration).updateCollection(id, updateCollection, options).then((request) => request(this.axios, this.basePath));
+    public updateCollection(id: number, updateCollectionRequest?: UpdateCollectionRequest, options?: RawAxiosRequestConfig) {
+        return CollectionApiFp(this.configuration).updateCollection(id, updateCollectionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * It\'s possible to upload cover from desktop. PNG, GIF and JPEG supported
-     * @summary Upload cover
-     * @param {number} id Existing collection ID
+     * 
+     * @param {number} id 
      * @param {File} [cover] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CollectionApi
      */
-    public uploadCollectionCover(id: number, cover?: File, options?: AxiosRequestConfig) {
+    public uploadCollectionCover(id: number, cover?: File, options?: RawAxiosRequestConfig) {
         return CollectionApiFp(this.configuration).uploadCollectionCover(id, cover, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -4417,14 +6841,13 @@ export const FilterApiAxiosParamCreator = function (configuration?: Configuratio
     return {
         /**
          * 
-         * @summary Get filters
-         * @param {number} collectionId Collection ID
-         * @param {GetFiltersTagsSortEnum} [tagsSort] Sort tags by: &#x60;-count&#x60; by count, default &#x60;_id&#x60; by name
-         * @param {string} [search] Check \&quot;raindrops\&quot; documentation for more details
+         * @param {number} collectionId 
+         * @param {GetFiltersTagsSortEnum} [tagsSort] 
+         * @param {string} [search] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFilters: async (collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getFilters: async (collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'collectionId' is not null or undefined
             assertParamExists('getFilters', 'collectionId', collectionId)
             const localVarPath = `/rest/v1/filters/{collectionId}`
@@ -4475,18 +6898,17 @@ export const FilterApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Get filters
-         * @param {number} collectionId Collection ID
-         * @param {GetFiltersTagsSortEnum} [tagsSort] Sort tags by: &#x60;-count&#x60; by count, default &#x60;_id&#x60; by name
-         * @param {string} [search] Check \&quot;raindrops\&quot; documentation for more details
+         * @param {number} collectionId 
+         * @param {GetFiltersTagsSortEnum} [tagsSort] 
+         * @param {string} [search] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFilters(collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FilterResponse>> {
+        async getFilters(collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FilterResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFilters(collectionId, tagsSort, search, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['FilterApi.getFilters']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['FilterApi.getFilters']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -4500,10 +6922,9 @@ export const FilterApiFactory = function (configuration?: Configuration, basePat
     return {
         /**
          * 
-         * @summary Get filters
-         * @param {number} collectionId Collection ID
-         * @param {GetFiltersTagsSortEnum} [tagsSort] Sort tags by: &#x60;-count&#x60; by count, default &#x60;_id&#x60; by name
-         * @param {string} [search] Check \&quot;raindrops\&quot; documentation for more details
+         * @param {number} collectionId 
+         * @param {GetFiltersTagsSortEnum} [tagsSort] 
+         * @param {string} [search] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4522,15 +6943,14 @@ export const FilterApiFactory = function (configuration?: Configuration, basePat
 export class FilterApi extends BaseAPI {
     /**
      * 
-     * @summary Get filters
-     * @param {number} collectionId Collection ID
-     * @param {GetFiltersTagsSortEnum} [tagsSort] Sort tags by: &#x60;-count&#x60; by count, default &#x60;_id&#x60; by name
-     * @param {string} [search] Check \&quot;raindrops\&quot; documentation for more details
+     * @param {number} collectionId 
+     * @param {GetFiltersTagsSortEnum} [tagsSort] 
+     * @param {string} [search] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof FilterApi
      */
-    public getFilters(collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options?: AxiosRequestConfig) {
+    public getFilters(collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options?: RawAxiosRequestConfig) {
         return FilterApiFp(this.configuration).getFilters(collectionId, tagsSort, search, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -4539,7 +6959,7 @@ export class FilterApi extends BaseAPI {
  * @export
  */
 export const GetFiltersTagsSortEnum = {
-    Count: '-count',
+    MinusCount: '-count',
     Id: '_id'
 } as const;
 export type GetFiltersTagsSortEnum = typeof GetFiltersTagsSortEnum[keyof typeof GetFiltersTagsSortEnum];
@@ -4553,13 +6973,12 @@ export const HighlightApiAxiosParamCreator = function (configuration?: Configura
     return {
         /**
          * 
-         * @summary Get all highlights
          * @param {number} [page] 
-         * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+         * @param {number} [perpage] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllHighlights: async (page?: number, perpage?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getAllHighlights: async (page?: number, perpage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/highlights`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4597,14 +7016,13 @@ export const HighlightApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary Get all highlights in a collection
-         * @param {number} collectionId Collection ID
+         * @param {number} collectionId 
          * @param {number} [page] 
-         * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+         * @param {number} [perpage] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getHighlightsInCollection: async (collectionId: number, page?: number, perpage?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getHighlightsInCollection: async (collectionId: number, page?: number, perpage?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'collectionId' is not null or undefined
             assertParamExists('getHighlightsInCollection', 'collectionId', collectionId)
             const localVarPath = `/rest/v1/highlights/{collectionId}`
@@ -4645,12 +7063,11 @@ export const HighlightApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary Get raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRaindrop: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRaindrop: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getRaindrop', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}`
@@ -4683,13 +7100,12 @@ export const HighlightApiAxiosParamCreator = function (configuration?: Configura
         },
         /**
          * 
-         * @summary Update raindrop
-         * @param {number} id Existing raindrop ID
-         * @param {CreateRaindrop} [createRaindrop] 
+         * @param {number} id 
+         * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRaindrop: async (id: number, createRaindrop?: CreateRaindrop, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateRaindrop: async (id: number, body?: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateRaindrop', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}`
@@ -4716,7 +7132,7 @@ export const HighlightApiAxiosParamCreator = function (configuration?: Configura
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createRaindrop, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -4735,59 +7151,55 @@ export const HighlightApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Get all highlights
          * @param {number} [page] 
-         * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+         * @param {number} [perpage] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllHighlights(page?: number, perpage?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<HighlightResponse>> {
+        async getAllHighlights(page?: number, perpage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<HighlightResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllHighlights(page, perpage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['HighlightApi.getAllHighlights']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['HighlightApi.getAllHighlights']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Get all highlights in a collection
-         * @param {number} collectionId Collection ID
+         * @param {number} collectionId 
          * @param {number} [page] 
-         * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+         * @param {number} [perpage] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getHighlightsInCollection(collectionId: number, page?: number, perpage?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<HighlightResponse>> {
+        async getHighlightsInCollection(collectionId: number, page?: number, perpage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<HighlightResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getHighlightsInCollection(collectionId, page, perpage, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['HighlightApi.getHighlightsInCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['HighlightApi.getHighlightsInCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Get raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRaindrop(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async getRaindrop(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetRaindropResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRaindrop(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['HighlightApi.getRaindrop']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['HighlightApi.getRaindrop']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Update raindrop
-         * @param {number} id Existing raindrop ID
-         * @param {CreateRaindrop} [createRaindrop] 
+         * @param {number} id 
+         * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateRaindrop(id: number, createRaindrop?: CreateRaindrop, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateRaindrop(id, createRaindrop, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['HighlightApi.updateRaindrop']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        async updateRaindrop(id: number, body?: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateRaindropResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateRaindrop(id, body, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['HighlightApi.updateRaindrop']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -4801,9 +7213,8 @@ export const HighlightApiFactory = function (configuration?: Configuration, base
     return {
         /**
          * 
-         * @summary Get all highlights
          * @param {number} [page] 
-         * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+         * @param {number} [perpage] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4812,10 +7223,9 @@ export const HighlightApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @summary Get all highlights in a collection
-         * @param {number} collectionId Collection ID
+         * @param {number} collectionId 
          * @param {number} [page] 
-         * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+         * @param {number} [perpage] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -4824,24 +7234,22 @@ export const HighlightApiFactory = function (configuration?: Configuration, base
         },
         /**
          * 
-         * @summary Get raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRaindrop(id: number, options?: any): AxiosPromise<void> {
+        getRaindrop(id: number, options?: any): AxiosPromise<GetRaindropResponse> {
             return localVarFp.getRaindrop(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Update raindrop
-         * @param {number} id Existing raindrop ID
-         * @param {CreateRaindrop} [createRaindrop] 
+         * @param {number} id 
+         * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRaindrop(id: number, createRaindrop?: CreateRaindrop, options?: any): AxiosPromise<RaindropResponseOne> {
-            return localVarFp.updateRaindrop(id, createRaindrop, options).then((request) => request(axios, basePath));
+        updateRaindrop(id: number, body?: object, options?: any): AxiosPromise<UpdateRaindropResponse> {
+            return localVarFp.updateRaindrop(id, body, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -4855,54 +7263,50 @@ export const HighlightApiFactory = function (configuration?: Configuration, base
 export class HighlightApi extends BaseAPI {
     /**
      * 
-     * @summary Get all highlights
      * @param {number} [page] 
-     * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+     * @param {number} [perpage] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HighlightApi
      */
-    public getAllHighlights(page?: number, perpage?: number, options?: AxiosRequestConfig) {
+    public getAllHighlights(page?: number, perpage?: number, options?: RawAxiosRequestConfig) {
         return HighlightApiFp(this.configuration).getAllHighlights(page, perpage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Get all highlights in a collection
-     * @param {number} collectionId Collection ID
+     * @param {number} collectionId 
      * @param {number} [page] 
-     * @param {number} [perpage] How many highlights per page. 50 max. Default 25
+     * @param {number} [perpage] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HighlightApi
      */
-    public getHighlightsInCollection(collectionId: number, page?: number, perpage?: number, options?: AxiosRequestConfig) {
+    public getHighlightsInCollection(collectionId: number, page?: number, perpage?: number, options?: RawAxiosRequestConfig) {
         return HighlightApiFp(this.configuration).getHighlightsInCollection(collectionId, page, perpage, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Get raindrop
-     * @param {number} id Existing raindrop ID
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HighlightApi
      */
-    public getRaindrop(id: number, options?: AxiosRequestConfig) {
+    public getRaindrop(id: number, options?: RawAxiosRequestConfig) {
         return HighlightApiFp(this.configuration).getRaindrop(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Update raindrop
-     * @param {number} id Existing raindrop ID
-     * @param {CreateRaindrop} [createRaindrop] 
+     * @param {number} id 
+     * @param {object} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof HighlightApi
      */
-    public updateRaindrop(id: number, createRaindrop?: CreateRaindrop, options?: AxiosRequestConfig) {
-        return HighlightApiFp(this.configuration).updateRaindrop(id, createRaindrop, options).then((request) => request(this.axios, this.basePath));
+    public updateRaindrop(id: number, body?: object, options?: RawAxiosRequestConfig) {
+        return HighlightApiFp(this.configuration).updateRaindrop(id, body, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -4915,13 +7319,12 @@ export class HighlightApi extends BaseAPI {
 export const ImportApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Does specified URL\'s are already saved?
-         * @summary Check URL(s) existence
+         * 
          * @param {CheckURLsExistRequest} [checkURLsExistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        checkURLsExist: async (checkURLsExistRequest?: CheckURLsExistRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        checkURLsExist: async (checkURLsExistRequest?: CheckURLsExistRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/import/url/exists`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4953,13 +7356,12 @@ export const ImportApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Convert HTML bookmark file to JSON.  Support Nestcape, Pocket and Instapaper file formats
-         * @summary Parse HTML import file
-         * @param {File} [_import] File
+         * 
+         * @param {File} [_import] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        importHTMLBookmarkFile: async (_import?: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        importHTMLBookmarkFile: async (_import?: File, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/import/file`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4996,13 +7398,12 @@ export const ImportApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * Parse and extract useful info from any URL
-         * @summary Parse URL
-         * @param {string} [url] URL
+         * 
+         * @param {string} [url] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        parseURL: async (url?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        parseURL: async (url?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/import/url/parse`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5045,43 +7446,40 @@ export const ImportApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = ImportApiAxiosParamCreator(configuration)
     return {
         /**
-         * Does specified URL\'s are already saved?
-         * @summary Check URL(s) existence
+         * 
          * @param {CheckURLsExistRequest} [checkURLsExistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async checkURLsExist(checkURLsExistRequest?: CheckURLsExistRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckURLsExist200Response>> {
+        async checkURLsExist(checkURLsExistRequest?: CheckURLsExistRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CheckURLsExistResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.checkURLsExist(checkURLsExistRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ImportApi.checkURLsExist']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ImportApi.checkURLsExist']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Convert HTML bookmark file to JSON.  Support Nestcape, Pocket and Instapaper file formats
-         * @summary Parse HTML import file
-         * @param {File} [_import] File
+         * 
+         * @param {File} [_import] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async importHTMLBookmarkFile(_import?: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImportFileResponse>> {
+        async importHTMLBookmarkFile(_import?: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ImportHTMLBookmarkFileResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.importHTMLBookmarkFile(_import, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ImportApi.importHTMLBookmarkFile']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ImportApi.importHTMLBookmarkFile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Parse and extract useful info from any URL
-         * @summary Parse URL
-         * @param {string} [url] URL
+         * 
+         * @param {string} [url] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async parseURL(url?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ParseURL200Response>> {
+        async parseURL(url?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ParseURLResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.parseURL(url, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['ImportApi.parseURL']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['ImportApi.parseURL']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -5094,33 +7492,30 @@ export const ImportApiFactory = function (configuration?: Configuration, basePat
     const localVarFp = ImportApiFp(configuration)
     return {
         /**
-         * Does specified URL\'s are already saved?
-         * @summary Check URL(s) existence
+         * 
          * @param {CheckURLsExistRequest} [checkURLsExistRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        checkURLsExist(checkURLsExistRequest?: CheckURLsExistRequest, options?: any): AxiosPromise<CheckURLsExist200Response> {
+        checkURLsExist(checkURLsExistRequest?: CheckURLsExistRequest, options?: any): AxiosPromise<CheckURLsExistResponse> {
             return localVarFp.checkURLsExist(checkURLsExistRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Convert HTML bookmark file to JSON.  Support Nestcape, Pocket and Instapaper file formats
-         * @summary Parse HTML import file
-         * @param {File} [_import] File
+         * 
+         * @param {File} [_import] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        importHTMLBookmarkFile(_import?: File, options?: any): AxiosPromise<ImportFileResponse> {
+        importHTMLBookmarkFile(_import?: File, options?: any): AxiosPromise<ImportHTMLBookmarkFileResponse> {
             return localVarFp.importHTMLBookmarkFile(_import, options).then((request) => request(axios, basePath));
         },
         /**
-         * Parse and extract useful info from any URL
-         * @summary Parse URL
-         * @param {string} [url] URL
+         * 
+         * @param {string} [url] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        parseURL(url?: string, options?: any): AxiosPromise<ParseURL200Response> {
+        parseURL(url?: string, options?: any): AxiosPromise<ParseURLResponse> {
             return localVarFp.parseURL(url, options).then((request) => request(axios, basePath));
         },
     };
@@ -5134,38 +7529,35 @@ export const ImportApiFactory = function (configuration?: Configuration, basePat
  */
 export class ImportApi extends BaseAPI {
     /**
-     * Does specified URL\'s are already saved?
-     * @summary Check URL(s) existence
+     * 
      * @param {CheckURLsExistRequest} [checkURLsExistRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ImportApi
      */
-    public checkURLsExist(checkURLsExistRequest?: CheckURLsExistRequest, options?: AxiosRequestConfig) {
+    public checkURLsExist(checkURLsExistRequest?: CheckURLsExistRequest, options?: RawAxiosRequestConfig) {
         return ImportApiFp(this.configuration).checkURLsExist(checkURLsExistRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Convert HTML bookmark file to JSON.  Support Nestcape, Pocket and Instapaper file formats
-     * @summary Parse HTML import file
-     * @param {File} [_import] File
+     * 
+     * @param {File} [_import] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ImportApi
      */
-    public importHTMLBookmarkFile(_import?: File, options?: AxiosRequestConfig) {
+    public importHTMLBookmarkFile(_import?: File, options?: RawAxiosRequestConfig) {
         return ImportApiFp(this.configuration).importHTMLBookmarkFile(_import, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Parse and extract useful info from any URL
-     * @summary Parse URL
-     * @param {string} [url] URL
+     * 
+     * @param {string} [url] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ImportApi
      */
-    public parseURL(url?: string, options?: AxiosRequestConfig) {
+    public parseURL(url?: string, options?: RawAxiosRequestConfig) {
         return ImportApiFp(this.configuration).parseURL(url, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -5180,12 +7572,11 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
     return {
         /**
          * 
-         * @summary Create raindrop
-         * @param {CreateRaindrop} [createRaindrop] 
+         * @param {CreateRaindropRequest} [createRaindropRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRaindrop: async (createRaindrop?: CreateRaindrop, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createRaindrop: async (createRaindropRequest?: CreateRaindropRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/raindrop`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5209,7 +7600,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createRaindrop, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(createRaindropRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -5218,12 +7609,11 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Create many raindrops
-         * @param {CreateRaindropsRequest} [createRaindropsRequest] 
+         * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRaindrops: async (createRaindropsRequest?: CreateRaindropsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        createRaindrops: async (body?: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/raindrops`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5247,7 +7637,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createRaindropsRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -5255,13 +7645,12 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * Links permanently saved with all content (only in PRO plan). Using this method you can navigate to this copy.
-         * @summary Get permanent copy
-         * @param {number} id Existing raindrop ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPermanentCopy: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPermanentCopy: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getPermanentCopy', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}/cache`
@@ -5294,12 +7683,11 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Get raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRaindrop: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRaindrop: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('getRaindrop', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}`
@@ -5332,8 +7720,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Get raindrops
-         * @param {number} collectionId Collection ID
+         * @param {number} collectionId 
          * @param {string} [sort] 
          * @param {number} [perpage] 
          * @param {number} [page] 
@@ -5341,7 +7728,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRaindrops: async (collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getRaindrops: async (collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'collectionId' is not null or undefined
             assertParamExists('getRaindrops', 'collectionId', collectionId)
             const localVarPath = `/rest/v1/raindrops/{collectionId}`
@@ -5389,13 +7776,12 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * When you remove raindrop it will be moved to user Trash collection. But if you try to remove raindrop from Trash, it will be removed permanently.
-         * @summary Remove raindrop
-         * @param {number} id Existing raindrop ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeRaindrop: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeRaindrop: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('removeRaindrop', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}`
@@ -5427,15 +7813,14 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * Specify optional search and/or ids parameters to limit raindrops that will be moved to \"Trash\" When :collectionId is -99, raindrops will be permanently removed!
-         * @summary Remove many raindrops
-         * @param {number} collectionId Collection ID
+         * 
+         * @param {number} collectionId 
          * @param {string} [search] 
          * @param {RemoveRaindropsRequest} [removeRaindropsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeRaindrops: async (collectionId: number, search?: string, removeRaindropsRequest?: RemoveRaindropsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeRaindrops: async (collectionId: number, search?: string, removeRaindropsRequest?: RemoveRaindropsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'collectionId' is not null or undefined
             assertParamExists('removeRaindrops', 'collectionId', collectionId)
             const localVarPath = `/rest/v1/raindrops/{collectionId}`
@@ -5475,12 +7860,11 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Suggest collection and tags for existing bookmark
-         * @param {number} id Bookmark id
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        suggestForExistingBookmark: async (id: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        suggestForExistingBookmark: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('suggestForExistingBookmark', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}/suggest`
@@ -5513,12 +7897,11 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Suggest collection and tags for new bookmark
          * @param {SuggestForNewBookmarkRequest} [suggestForNewBookmarkRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        suggestForNewBookmark: async (suggestForNewBookmarkRequest?: SuggestForNewBookmarkRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        suggestForNewBookmark: async (suggestForNewBookmarkRequest?: SuggestForNewBookmarkRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/raindrop/suggest`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5551,13 +7934,12 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
         },
         /**
          * 
-         * @summary Update raindrop
-         * @param {number} id Existing raindrop ID
-         * @param {CreateRaindrop} [createRaindrop] 
+         * @param {number} id 
+         * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRaindrop: async (id: number, createRaindrop?: CreateRaindrop, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateRaindrop: async (id: number, body?: object, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('updateRaindrop', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}`
@@ -5584,7 +7966,7 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(createRaindrop, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(body, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -5592,14 +7974,13 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * Specify optional search and/or ids parameters to limit raindrops that will be updated. Possible fields that could be updated are described in \"Body Parameters\"
-         * @summary Update many raindrops
-         * @param {number} collectionId Collection ID
+         * 
+         * @param {number} collectionId 
          * @param {UpdateRaindropsRequest} [updateRaindropsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRaindrops: async (collectionId: number, updateRaindropsRequest?: UpdateRaindropsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateRaindrops: async (collectionId: number, updateRaindropsRequest?: UpdateRaindropsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'collectionId' is not null or undefined
             assertParamExists('updateRaindrops', 'collectionId', collectionId)
             const localVarPath = `/rest/v1/raindrops/{collectionId}`
@@ -5634,14 +8015,13 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * Make sure to send PUT request with [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST#example) body
-         * @summary Upload file
-         * @param {File} [file] File
-         * @param {number} [collectionId] Collection Id
+         * 
+         * @param {File} [file] 
+         * @param {number} [collectionId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadFile: async (file?: File, collectionId?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        uploadFile: async (file?: File, collectionId?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/raindrop/file`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -5682,14 +8062,13 @@ export const RaindropApiAxiosParamCreator = function (configuration?: Configurat
             };
         },
         /**
-         * PNG, GIF or JPEG
-         * @summary Upload cover
-         * @param {number} id Existing raindrop ID
-         * @param {File} [cover] File
+         * 
+         * @param {number} id 
+         * @param {File} [cover] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadRaindropCover: async (id: number, cover?: File, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        uploadRaindropCover: async (id: number, cover?: File, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('uploadRaindropCover', 'id', id)
             const localVarPath = `/rest/v1/raindrop/{id}/cover`
@@ -5740,60 +8119,55 @@ export const RaindropApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Create raindrop
-         * @param {CreateRaindrop} [createRaindrop] 
+         * @param {CreateRaindropRequest} [createRaindropRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createRaindrop(createRaindrop?: CreateRaindrop, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createRaindrop(createRaindrop, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.createRaindrop']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        async createRaindrop(createRaindropRequest?: CreateRaindropRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateRaindropResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createRaindrop(createRaindropRequest, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.createRaindrop']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Create many raindrops
-         * @param {CreateRaindropsRequest} [createRaindropsRequest] 
+         * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async createRaindrops(createRaindropsRequest?: CreateRaindropsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseMany>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.createRaindrops(createRaindropsRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.createRaindrops']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        async createRaindrops(body?: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CreateRaindropsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.createRaindrops(body, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.createRaindrops']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Links permanently saved with all content (only in PRO plan). Using this method you can navigate to this copy.
-         * @summary Get permanent copy
-         * @param {number} id Existing raindrop ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPermanentCopy(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async getPermanentCopy(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPermanentCopy(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.getPermanentCopy']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.getPermanentCopy']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Get raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRaindrop(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async getRaindrop(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetRaindropResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRaindrop(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.getRaindrop']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.getRaindrop']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Get raindrops
-         * @param {number} collectionId Collection ID
+         * @param {number} collectionId 
          * @param {string} [sort] 
          * @param {number} [perpage] 
          * @param {number} [page] 
@@ -5801,121 +8175,113 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseMany>> {
+        async getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseMany>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRaindrops(collectionId, sort, perpage, page, search, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.getRaindrops']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.getRaindrops']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * When you remove raindrop it will be moved to user Trash collection. But if you try to remove raindrop from Trash, it will be removed permanently.
-         * @summary Remove raindrop
-         * @param {number} id Existing raindrop ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeRaindrop(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async removeRaindrop(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveRaindropResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeRaindrop(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.removeRaindrop']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.removeRaindrop']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Specify optional search and/or ids parameters to limit raindrops that will be moved to \"Trash\" When :collectionId is -99, raindrops will be permanently removed!
-         * @summary Remove many raindrops
-         * @param {number} collectionId Collection ID
+         * 
+         * @param {number} collectionId 
          * @param {string} [search] 
          * @param {RemoveRaindropsRequest} [removeRaindropsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeRaindrops(collectionId: number, search?: string, removeRaindropsRequest?: RemoveRaindropsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveRaindrops200Response>> {
+        async removeRaindrops(collectionId: number, search?: string, removeRaindropsRequest?: RemoveRaindropsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RemoveRaindropsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeRaindrops(collectionId, search, removeRaindropsRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.removeRaindrops']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.removeRaindrops']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Suggest collection and tags for existing bookmark
-         * @param {number} id Bookmark id
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async suggestForExistingBookmark(id: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SuggestResponse>> {
+        async suggestForExistingBookmark(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SuggestForExistingBookmarkResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.suggestForExistingBookmark(id, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.suggestForExistingBookmark']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.suggestForExistingBookmark']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Suggest collection and tags for new bookmark
          * @param {SuggestForNewBookmarkRequest} [suggestForNewBookmarkRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async suggestForNewBookmark(suggestForNewBookmarkRequest?: SuggestForNewBookmarkRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SuggestResponse>> {
+        async suggestForNewBookmark(suggestForNewBookmarkRequest?: SuggestForNewBookmarkRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SuggestForNewBookmarkResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.suggestForNewBookmark(suggestForNewBookmarkRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.suggestForNewBookmark']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.suggestForNewBookmark']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Update raindrop
-         * @param {number} id Existing raindrop ID
-         * @param {CreateRaindrop} [createRaindrop] 
+         * @param {number} id 
+         * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateRaindrop(id: number, createRaindrop?: CreateRaindrop, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.updateRaindrop(id, createRaindrop, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.updateRaindrop']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        async updateRaindrop(id: number, body?: object, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateRaindropResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.updateRaindrop(id, body, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.updateRaindrop']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Specify optional search and/or ids parameters to limit raindrops that will be updated. Possible fields that could be updated are described in \"Body Parameters\"
-         * @summary Update many raindrops
-         * @param {number} collectionId Collection ID
+         * 
+         * @param {number} collectionId 
          * @param {UpdateRaindropsRequest} [updateRaindropsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateRaindrops(collectionId: number, updateRaindropsRequest?: UpdateRaindropsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async updateRaindrops(collectionId: number, updateRaindropsRequest?: UpdateRaindropsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateRaindropsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateRaindrops(collectionId, updateRaindropsRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.updateRaindrops']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.updateRaindrops']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * Make sure to send PUT request with [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST#example) body
-         * @summary Upload file
-         * @param {File} [file] File
-         * @param {number} [collectionId] Collection Id
+         * 
+         * @param {File} [file] 
+         * @param {number} [collectionId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async uploadFile(file?: File, collectionId?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
+        async uploadFile(file?: File, collectionId?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadFileResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.uploadFile(file, collectionId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.uploadFile']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.uploadFile']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * PNG, GIF or JPEG
-         * @summary Upload cover
-         * @param {number} id Existing raindrop ID
-         * @param {File} [cover] File
+         * 
+         * @param {number} id 
+         * @param {File} [cover] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async uploadRaindropCover(id: number, cover?: File, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseOne>> {
+        async uploadRaindropCover(id: number, cover?: File, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UploadRaindropCoverResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.uploadRaindropCover(id, cover, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['RaindropApi.uploadRaindropCover']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['RaindropApi.uploadRaindropCover']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -5929,28 +8295,25 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
     return {
         /**
          * 
-         * @summary Create raindrop
-         * @param {CreateRaindrop} [createRaindrop] 
+         * @param {CreateRaindropRequest} [createRaindropRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRaindrop(createRaindrop?: CreateRaindrop, options?: any): AxiosPromise<RaindropResponseOne> {
-            return localVarFp.createRaindrop(createRaindrop, options).then((request) => request(axios, basePath));
+        createRaindrop(createRaindropRequest?: CreateRaindropRequest, options?: any): AxiosPromise<CreateRaindropResponse> {
+            return localVarFp.createRaindrop(createRaindropRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Create many raindrops
-         * @param {CreateRaindropsRequest} [createRaindropsRequest] 
+         * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        createRaindrops(createRaindropsRequest?: CreateRaindropsRequest, options?: any): AxiosPromise<RaindropResponseMany> {
-            return localVarFp.createRaindrops(createRaindropsRequest, options).then((request) => request(axios, basePath));
+        createRaindrops(body?: object, options?: any): AxiosPromise<CreateRaindropsResponse> {
+            return localVarFp.createRaindrops(body, options).then((request) => request(axios, basePath));
         },
         /**
-         * Links permanently saved with all content (only in PRO plan). Using this method you can navigate to this copy.
-         * @summary Get permanent copy
-         * @param {number} id Existing raindrop ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -5959,18 +8322,16 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
         },
         /**
          * 
-         * @summary Get raindrop
-         * @param {number} id Existing raindrop ID
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRaindrop(id: number, options?: any): AxiosPromise<void> {
+        getRaindrop(id: number, options?: any): AxiosPromise<GetRaindropResponse> {
             return localVarFp.getRaindrop(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Get raindrops
-         * @param {number} collectionId Collection ID
+         * @param {number} collectionId 
          * @param {string} [sort] 
          * @param {number} [perpage] 
          * @param {number} [page] 
@@ -5982,89 +8343,81 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
             return localVarFp.getRaindrops(collectionId, sort, perpage, page, search, options).then((request) => request(axios, basePath));
         },
         /**
-         * When you remove raindrop it will be moved to user Trash collection. But if you try to remove raindrop from Trash, it will be removed permanently.
-         * @summary Remove raindrop
-         * @param {number} id Existing raindrop ID
+         * 
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeRaindrop(id: number, options?: any): AxiosPromise<Response> {
+        removeRaindrop(id: number, options?: any): AxiosPromise<RemoveRaindropResponse> {
             return localVarFp.removeRaindrop(id, options).then((request) => request(axios, basePath));
         },
         /**
-         * Specify optional search and/or ids parameters to limit raindrops that will be moved to \"Trash\" When :collectionId is -99, raindrops will be permanently removed!
-         * @summary Remove many raindrops
-         * @param {number} collectionId Collection ID
+         * 
+         * @param {number} collectionId 
          * @param {string} [search] 
          * @param {RemoveRaindropsRequest} [removeRaindropsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeRaindrops(collectionId: number, search?: string, removeRaindropsRequest?: RemoveRaindropsRequest, options?: any): AxiosPromise<RemoveRaindrops200Response> {
+        removeRaindrops(collectionId: number, search?: string, removeRaindropsRequest?: RemoveRaindropsRequest, options?: any): AxiosPromise<RemoveRaindropsResponse> {
             return localVarFp.removeRaindrops(collectionId, search, removeRaindropsRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Suggest collection and tags for existing bookmark
-         * @param {number} id Bookmark id
+         * @param {number} id 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        suggestForExistingBookmark(id: number, options?: any): AxiosPromise<SuggestResponse> {
+        suggestForExistingBookmark(id: number, options?: any): AxiosPromise<SuggestForExistingBookmarkResponse> {
             return localVarFp.suggestForExistingBookmark(id, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Suggest collection and tags for new bookmark
          * @param {SuggestForNewBookmarkRequest} [suggestForNewBookmarkRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        suggestForNewBookmark(suggestForNewBookmarkRequest?: SuggestForNewBookmarkRequest, options?: any): AxiosPromise<SuggestResponse> {
+        suggestForNewBookmark(suggestForNewBookmarkRequest?: SuggestForNewBookmarkRequest, options?: any): AxiosPromise<SuggestForNewBookmarkResponse> {
             return localVarFp.suggestForNewBookmark(suggestForNewBookmarkRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * 
-         * @summary Update raindrop
-         * @param {number} id Existing raindrop ID
-         * @param {CreateRaindrop} [createRaindrop] 
+         * @param {number} id 
+         * @param {object} [body] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRaindrop(id: number, createRaindrop?: CreateRaindrop, options?: any): AxiosPromise<RaindropResponseOne> {
-            return localVarFp.updateRaindrop(id, createRaindrop, options).then((request) => request(axios, basePath));
+        updateRaindrop(id: number, body?: object, options?: any): AxiosPromise<UpdateRaindropResponse> {
+            return localVarFp.updateRaindrop(id, body, options).then((request) => request(axios, basePath));
         },
         /**
-         * Specify optional search and/or ids parameters to limit raindrops that will be updated. Possible fields that could be updated are described in \"Body Parameters\"
-         * @summary Update many raindrops
-         * @param {number} collectionId Collection ID
+         * 
+         * @param {number} collectionId 
          * @param {UpdateRaindropsRequest} [updateRaindropsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateRaindrops(collectionId: number, updateRaindropsRequest?: UpdateRaindropsRequest, options?: any): AxiosPromise<void> {
+        updateRaindrops(collectionId: number, updateRaindropsRequest?: UpdateRaindropsRequest, options?: any): AxiosPromise<UpdateRaindropsResponse> {
             return localVarFp.updateRaindrops(collectionId, updateRaindropsRequest, options).then((request) => request(axios, basePath));
         },
         /**
-         * Make sure to send PUT request with [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST#example) body
-         * @summary Upload file
-         * @param {File} [file] File
-         * @param {number} [collectionId] Collection Id
+         * 
+         * @param {File} [file] 
+         * @param {number} [collectionId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadFile(file?: File, collectionId?: number, options?: any): AxiosPromise<RaindropResponseOne> {
+        uploadFile(file?: File, collectionId?: number, options?: any): AxiosPromise<UploadFileResponse> {
             return localVarFp.uploadFile(file, collectionId, options).then((request) => request(axios, basePath));
         },
         /**
-         * PNG, GIF or JPEG
-         * @summary Upload cover
-         * @param {number} id Existing raindrop ID
-         * @param {File} [cover] File
+         * 
+         * @param {number} id 
+         * @param {File} [cover] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        uploadRaindropCover(id: number, cover?: File, options?: any): AxiosPromise<RaindropResponseOne> {
+        uploadRaindropCover(id: number, cover?: File, options?: any): AxiosPromise<UploadRaindropCoverResponse> {
             return localVarFp.uploadRaindropCover(id, cover, options).then((request) => request(axios, basePath));
         },
     };
@@ -6079,56 +8432,51 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
 export class RaindropApi extends BaseAPI {
     /**
      * 
-     * @summary Create raindrop
-     * @param {CreateRaindrop} [createRaindrop] 
+     * @param {CreateRaindropRequest} [createRaindropRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public createRaindrop(createRaindrop?: CreateRaindrop, options?: AxiosRequestConfig) {
-        return RaindropApiFp(this.configuration).createRaindrop(createRaindrop, options).then((request) => request(this.axios, this.basePath));
+    public createRaindrop(createRaindropRequest?: CreateRaindropRequest, options?: RawAxiosRequestConfig) {
+        return RaindropApiFp(this.configuration).createRaindrop(createRaindropRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Create many raindrops
-     * @param {CreateRaindropsRequest} [createRaindropsRequest] 
+     * @param {object} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public createRaindrops(createRaindropsRequest?: CreateRaindropsRequest, options?: AxiosRequestConfig) {
-        return RaindropApiFp(this.configuration).createRaindrops(createRaindropsRequest, options).then((request) => request(this.axios, this.basePath));
+    public createRaindrops(body?: object, options?: RawAxiosRequestConfig) {
+        return RaindropApiFp(this.configuration).createRaindrops(body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Links permanently saved with all content (only in PRO plan). Using this method you can navigate to this copy.
-     * @summary Get permanent copy
-     * @param {number} id Existing raindrop ID
+     * 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public getPermanentCopy(id: number, options?: AxiosRequestConfig) {
+    public getPermanentCopy(id: number, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).getPermanentCopy(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Get raindrop
-     * @param {number} id Existing raindrop ID
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public getRaindrop(id: number, options?: AxiosRequestConfig) {
+    public getRaindrop(id: number, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).getRaindrop(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Get raindrops
-     * @param {number} collectionId Collection ID
+     * @param {number} collectionId 
      * @param {string} [sort] 
      * @param {number} [perpage] 
      * @param {number} [page] 
@@ -6137,109 +8485,101 @@ export class RaindropApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: AxiosRequestConfig) {
+    public getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).getRaindrops(collectionId, sort, perpage, page, search, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * When you remove raindrop it will be moved to user Trash collection. But if you try to remove raindrop from Trash, it will be removed permanently.
-     * @summary Remove raindrop
-     * @param {number} id Existing raindrop ID
+     * 
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public removeRaindrop(id: number, options?: AxiosRequestConfig) {
+    public removeRaindrop(id: number, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).removeRaindrop(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Specify optional search and/or ids parameters to limit raindrops that will be moved to \"Trash\" When :collectionId is -99, raindrops will be permanently removed!
-     * @summary Remove many raindrops
-     * @param {number} collectionId Collection ID
+     * 
+     * @param {number} collectionId 
      * @param {string} [search] 
      * @param {RemoveRaindropsRequest} [removeRaindropsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public removeRaindrops(collectionId: number, search?: string, removeRaindropsRequest?: RemoveRaindropsRequest, options?: AxiosRequestConfig) {
+    public removeRaindrops(collectionId: number, search?: string, removeRaindropsRequest?: RemoveRaindropsRequest, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).removeRaindrops(collectionId, search, removeRaindropsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Suggest collection and tags for existing bookmark
-     * @param {number} id Bookmark id
+     * @param {number} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public suggestForExistingBookmark(id: number, options?: AxiosRequestConfig) {
+    public suggestForExistingBookmark(id: number, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).suggestForExistingBookmark(id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Suggest collection and tags for new bookmark
      * @param {SuggestForNewBookmarkRequest} [suggestForNewBookmarkRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public suggestForNewBookmark(suggestForNewBookmarkRequest?: SuggestForNewBookmarkRequest, options?: AxiosRequestConfig) {
+    public suggestForNewBookmark(suggestForNewBookmarkRequest?: SuggestForNewBookmarkRequest, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).suggestForNewBookmark(suggestForNewBookmarkRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Update raindrop
-     * @param {number} id Existing raindrop ID
-     * @param {CreateRaindrop} [createRaindrop] 
+     * @param {number} id 
+     * @param {object} [body] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public updateRaindrop(id: number, createRaindrop?: CreateRaindrop, options?: AxiosRequestConfig) {
-        return RaindropApiFp(this.configuration).updateRaindrop(id, createRaindrop, options).then((request) => request(this.axios, this.basePath));
+    public updateRaindrop(id: number, body?: object, options?: RawAxiosRequestConfig) {
+        return RaindropApiFp(this.configuration).updateRaindrop(id, body, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Specify optional search and/or ids parameters to limit raindrops that will be updated. Possible fields that could be updated are described in \"Body Parameters\"
-     * @summary Update many raindrops
-     * @param {number} collectionId Collection ID
+     * 
+     * @param {number} collectionId 
      * @param {UpdateRaindropsRequest} [updateRaindropsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public updateRaindrops(collectionId: number, updateRaindropsRequest?: UpdateRaindropsRequest, options?: AxiosRequestConfig) {
+    public updateRaindrops(collectionId: number, updateRaindropsRequest?: UpdateRaindropsRequest, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).updateRaindrops(collectionId, updateRaindropsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Make sure to send PUT request with [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/POST#example) body
-     * @summary Upload file
-     * @param {File} [file] File
-     * @param {number} [collectionId] Collection Id
+     * 
+     * @param {File} [file] 
+     * @param {number} [collectionId] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public uploadFile(file?: File, collectionId?: number, options?: AxiosRequestConfig) {
+    public uploadFile(file?: File, collectionId?: number, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).uploadFile(file, collectionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * PNG, GIF or JPEG
-     * @summary Upload cover
-     * @param {number} id Existing raindrop ID
-     * @param {File} [cover] File
+     * 
+     * @param {number} id 
+     * @param {File} [cover] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RaindropApi
      */
-    public uploadRaindropCover(id: number, cover?: File, options?: AxiosRequestConfig) {
+    public uploadRaindropCover(id: number, cover?: File, options?: RawAxiosRequestConfig) {
         return RaindropApiFp(this.configuration).uploadRaindropCover(id, cover, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -6254,12 +8594,11 @@ export const TagApiAxiosParamCreator = function (configuration?: Configuration) 
     return {
         /**
          * 
-         * @summary Get tags
-         * @param {number} [collectionId] Optional collection ID, when not specified all tags from all collections will be retrieved
+         * @param {number} [collectionId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTagsInCollection: async (collectionId?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getTagsInCollection: async (collectionId?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/tags/{collectionId}`
                 .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -6290,13 +8629,12 @@ export const TagApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
-         * @summary Remove tags
-         * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+         * @param {number} [collectionId] 
          * @param {RemoveTagsFromCollectionRequest} [removeTagsFromCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeTagsFromCollection: async (collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        removeTagsFromCollection: async (collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/tags/{collectionId}`
                 .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -6330,13 +8668,12 @@ export const TagApiAxiosParamCreator = function (configuration?: Configuration) 
         },
         /**
          * 
-         * @summary Rename tag / Merge tags
-         * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+         * @param {number} [collectionId] 
          * @param {RenameOrMergeTagsRequest} [renameOrMergeTagsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        renameOrMergeTags: async (collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        renameOrMergeTags: async (collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/tags/{collectionId}`
                 .replace(`{${"collectionId"}}`, encodeURIComponent(String(collectionId)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -6380,44 +8717,41 @@ export const TagApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
-         * @summary Get tags
-         * @param {number} [collectionId] Optional collection ID, when not specified all tags from all collections will be retrieved
+         * @param {number} [collectionId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTagsInCollection(collectionId?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTagsInCollection200Response>> {
+        async getTagsInCollection(collectionId?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTagsInCollection200Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTagsInCollection(collectionId, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['TagApi.getTagsInCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TagApi.getTagsInCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Remove tags
-         * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+         * @param {number} [collectionId] 
          * @param {RemoveTagsFromCollectionRequest} [removeTagsFromCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeTagsFromCollection(collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async removeTagsFromCollection(collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeTagsFromCollection(collectionId, removeTagsFromCollectionRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['TagApi.removeTagsFromCollection']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TagApi.removeTagsFromCollection']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Rename tag / Merge tags
-         * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+         * @param {number} [collectionId] 
          * @param {RenameOrMergeTagsRequest} [renameOrMergeTagsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async renameOrMergeTags(collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async renameOrMergeTags(collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.renameOrMergeTags(collectionId, renameOrMergeTagsRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['TagApi.renameOrMergeTags']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['TagApi.renameOrMergeTags']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -6431,8 +8765,7 @@ export const TagApiFactory = function (configuration?: Configuration, basePath?:
     return {
         /**
          * 
-         * @summary Get tags
-         * @param {number} [collectionId] Optional collection ID, when not specified all tags from all collections will be retrieved
+         * @param {number} [collectionId] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6441,8 +8774,7 @@ export const TagApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * 
-         * @summary Remove tags
-         * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+         * @param {number} [collectionId] 
          * @param {RemoveTagsFromCollectionRequest} [removeTagsFromCollectionRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6452,8 +8784,7 @@ export const TagApiFactory = function (configuration?: Configuration, basePath?:
         },
         /**
          * 
-         * @summary Rename tag / Merge tags
-         * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+         * @param {number} [collectionId] 
          * @param {RenameOrMergeTagsRequest} [renameOrMergeTagsRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6473,39 +8804,36 @@ export const TagApiFactory = function (configuration?: Configuration, basePath?:
 export class TagApi extends BaseAPI {
     /**
      * 
-     * @summary Get tags
-     * @param {number} [collectionId] Optional collection ID, when not specified all tags from all collections will be retrieved
+     * @param {number} [collectionId] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TagApi
      */
-    public getTagsInCollection(collectionId?: number, options?: AxiosRequestConfig) {
+    public getTagsInCollection(collectionId?: number, options?: RawAxiosRequestConfig) {
         return TagApiFp(this.configuration).getTagsInCollection(collectionId, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Remove tags
-     * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+     * @param {number} [collectionId] 
      * @param {RemoveTagsFromCollectionRequest} [removeTagsFromCollectionRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TagApi
      */
-    public removeTagsFromCollection(collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options?: AxiosRequestConfig) {
+    public removeTagsFromCollection(collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options?: RawAxiosRequestConfig) {
         return TagApiFp(this.configuration).removeTagsFromCollection(collectionId, removeTagsFromCollectionRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Rename tag / Merge tags
-     * @param {number} [collectionId] It\&#39;s possible to restrict rename action to just one collection. It\&#39;s optional
+     * @param {number} [collectionId] 
      * @param {RenameOrMergeTagsRequest} [renameOrMergeTagsRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof TagApi
      */
-    public renameOrMergeTags(collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options?: AxiosRequestConfig) {
+    public renameOrMergeTags(collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options?: RawAxiosRequestConfig) {
         return TagApiFp(this.configuration).renameOrMergeTags(collectionId, renameOrMergeTagsRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
@@ -6519,13 +8847,12 @@ export class TagApi extends BaseAPI {
 export const UserApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * Connect social network account as sign in authentication option
-         * @summary Connect social network acount
-         * @param {ConnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+         * 
+         * @param {ConnectSocialNetworkProviderProviderEnum} provider 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        connectSocialNetworkProvider: async (provider: ConnectSocialNetworkProviderProviderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        connectSocialNetworkProvider: async (provider: ConnectSocialNetworkProviderProviderEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'provider' is not null or undefined
             assertParamExists('connectSocialNetworkProvider', 'provider', provider)
             const localVarPath = `/rest/v1/user/connect/{provider}`
@@ -6557,13 +8884,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Disconnect social network account from available authentication options
-         * @summary Disconnect social network account
-         * @param {DisconnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+         * 
+         * @param {DisconnectSocialNetworkProviderProviderEnum} provider 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        disconnectSocialNetworkProvider: async (provider: DisconnectSocialNetworkProviderProviderEnum, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        disconnectSocialNetworkProvider: async (provider: DisconnectSocialNetworkProviderProviderEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'provider' is not null or undefined
             assertParamExists('disconnectSocialNetworkProvider', 'provider', provider)
             const localVarPath = `/rest/v1/user/connect/{provider}/revoke`
@@ -6595,12 +8921,11 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Get currently authenticated user details
-         * @summary Get user
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCurrentUser: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getCurrentUser: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/user`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6629,13 +8954,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * Get\'s publicly available user details
-         * @summary Get user by name
-         * @param {number} name Username
+         * 
+         * @param {number} name 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPublicUserByName: async (name: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getPublicUserByName: async (name: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'name' is not null or undefined
             assertParamExists('getPublicUserByName', 'name', name)
             const localVarPath = `/rest/v1/user/{name}`
@@ -6668,11 +8992,10 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
         },
         /**
          * 
-         * @summary Get system collections count
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSystemCollectionStats: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        getSystemCollectionStats: async (options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/user/stats`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6701,13 +9024,12 @@ export const UserApiAxiosParamCreator = function (configuration?: Configuration)
             };
         },
         /**
-         * To change email, config, password, etc... you can do it from single endpoint
-         * @summary Update user
+         * 
          * @param {UpdateCurrentUserRequest} [updateCurrentUserRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCurrentUser: async (updateCurrentUserRequest?: UpdateCurrentUserRequest, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        updateCurrentUser: async (updateCurrentUserRequest?: UpdateCurrentUserRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/rest/v1/user`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6749,80 +9071,74 @@ export const UserApiFp = function(configuration?: Configuration) {
     const localVarAxiosParamCreator = UserApiAxiosParamCreator(configuration)
     return {
         /**
-         * Connect social network account as sign in authentication option
-         * @summary Connect social network acount
-         * @param {ConnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+         * 
+         * @param {ConnectSocialNetworkProviderProviderEnum} provider 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async connectSocialNetworkProvider(provider: ConnectSocialNetworkProviderProviderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async connectSocialNetworkProvider(provider: ConnectSocialNetworkProviderProviderEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.connectSocialNetworkProvider(provider, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['UserApi.connectSocialNetworkProvider']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * Disconnect social network account from available authentication options
-         * @summary Disconnect social network account
-         * @param {DisconnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async disconnectSocialNetworkProvider(provider: DisconnectSocialNetworkProviderProviderEnum, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.disconnectSocialNetworkProvider(provider, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['UserApi.disconnectSocialNetworkProvider']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * Get currently authenticated user details
-         * @summary Get user
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getCurrentUser(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getCurrentUser(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['UserApi.getCurrentUser']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * Get\'s publicly available user details
-         * @summary Get user by name
-         * @param {number} name Username
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async getPublicUserByName(name: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPublicUserByName200Response>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getPublicUserByName(name, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['UserApi.getPublicUserByName']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.connectSocialNetworkProvider']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
          * 
-         * @summary Get system collections count
+         * @param {DisconnectSocialNetworkProviderProviderEnum} provider 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getSystemCollectionStats(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<StatResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getSystemCollectionStats(options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['UserApi.getSystemCollectionStats']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        async disconnectSocialNetworkProvider(provider: DisconnectSocialNetworkProviderProviderEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.disconnectSocialNetworkProvider(provider, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.disconnectSocialNetworkProvider']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
         /**
-         * To change email, config, password, etc... you can do it from single endpoint
-         * @summary Update user
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getCurrentUser(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getCurrentUser(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.getCurrentUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {number} name 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getPublicUserByName(name: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPublicUserByName200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getPublicUserByName(name, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.getPublicUserByName']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getSystemCollectionStats(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetSystemCollectionStatsResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getSystemCollectionStats(options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.getSystemCollectionStats']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
+        /**
+         * 
          * @param {UpdateCurrentUserRequest} [updateCurrentUserRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateCurrentUser(updateCurrentUserRequest?: UpdateCurrentUserRequest, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+        async updateCurrentUser(updateCurrentUserRequest?: UpdateCurrentUserRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateCurrentUser(updateCurrentUserRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['UserApi.updateCurrentUser']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['UserApi.updateCurrentUser']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
     }
 };
@@ -6835,9 +9151,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
     const localVarFp = UserApiFp(configuration)
     return {
         /**
-         * Connect social network account as sign in authentication option
-         * @summary Connect social network acount
-         * @param {ConnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+         * 
+         * @param {ConnectSocialNetworkProviderProviderEnum} provider 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6845,9 +9160,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.connectSocialNetworkProvider(provider, options).then((request) => request(axios, basePath));
         },
         /**
-         * Disconnect social network account from available authentication options
-         * @summary Disconnect social network account
-         * @param {DisconnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+         * 
+         * @param {DisconnectSocialNetworkProviderProviderEnum} provider 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6855,8 +9169,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.disconnectSocialNetworkProvider(provider, options).then((request) => request(axios, basePath));
         },
         /**
-         * Get currently authenticated user details
-         * @summary Get user
+         * 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6864,9 +9177,8 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
             return localVarFp.getCurrentUser(options).then((request) => request(axios, basePath));
         },
         /**
-         * Get\'s publicly available user details
-         * @summary Get user by name
-         * @param {number} name Username
+         * 
+         * @param {number} name 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
@@ -6875,16 +9187,14 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
         },
         /**
          * 
-         * @summary Get system collections count
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getSystemCollectionStats(options?: any): AxiosPromise<StatResponse> {
+        getSystemCollectionStats(options?: any): AxiosPromise<GetSystemCollectionStatsResponse> {
             return localVarFp.getSystemCollectionStats(options).then((request) => request(axios, basePath));
         },
         /**
-         * To change email, config, password, etc... you can do it from single endpoint
-         * @summary Update user
+         * 
          * @param {UpdateCurrentUserRequest} [updateCurrentUserRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
@@ -6903,72 +9213,66 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
  */
 export class UserApi extends BaseAPI {
     /**
-     * Connect social network account as sign in authentication option
-     * @summary Connect social network acount
-     * @param {ConnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+     * 
+     * @param {ConnectSocialNetworkProviderProviderEnum} provider 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public connectSocialNetworkProvider(provider: ConnectSocialNetworkProviderProviderEnum, options?: AxiosRequestConfig) {
+    public connectSocialNetworkProvider(provider: ConnectSocialNetworkProviderProviderEnum, options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).connectSocialNetworkProvider(provider, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Disconnect social network account from available authentication options
-     * @summary Disconnect social network account
-     * @param {DisconnectSocialNetworkProviderProviderEnum} provider facebook google twitter vkontakte dropbox or gdrive
+     * 
+     * @param {DisconnectSocialNetworkProviderProviderEnum} provider 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public disconnectSocialNetworkProvider(provider: DisconnectSocialNetworkProviderProviderEnum, options?: AxiosRequestConfig) {
+    public disconnectSocialNetworkProvider(provider: DisconnectSocialNetworkProviderProviderEnum, options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).disconnectSocialNetworkProvider(provider, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Get currently authenticated user details
-     * @summary Get user
+     * 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public getCurrentUser(options?: AxiosRequestConfig) {
+    public getCurrentUser(options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).getCurrentUser(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * Get\'s publicly available user details
-     * @summary Get user by name
-     * @param {number} name Username
+     * 
+     * @param {number} name 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public getPublicUserByName(name: number, options?: AxiosRequestConfig) {
+    public getPublicUserByName(name: number, options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).getPublicUserByName(name, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
      * 
-     * @summary Get system collections count
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public getSystemCollectionStats(options?: AxiosRequestConfig) {
+    public getSystemCollectionStats(options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).getSystemCollectionStats(options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * To change email, config, password, etc... you can do it from single endpoint
-     * @summary Update user
+     * 
      * @param {UpdateCurrentUserRequest} [updateCurrentUserRequest] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof UserApi
      */
-    public updateCurrentUser(updateCurrentUserRequest?: UpdateCurrentUserRequest, options?: AxiosRequestConfig) {
+    public updateCurrentUser(updateCurrentUserRequest?: UpdateCurrentUserRequest, options?: RawAxiosRequestConfig) {
         return UserApiFp(this.configuration).updateCurrentUser(updateCurrentUserRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
