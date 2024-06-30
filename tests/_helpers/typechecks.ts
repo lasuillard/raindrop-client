@@ -73,19 +73,23 @@ it('${item.testId}', () => {
 	return filepath;
 }
 
-export function generateAllTests() {
+export async function generateAllTests() {
 	const dir = path.join(__dirname, "..", "__typechecks__");
 	if (!fs.existsSync(dir)) fs.mkdirSync(dir);
 
 	for (const spec of filesToCreate) {
 		const filepath = generateTest(dir, spec);
-		exec(`yarn run biome check --write ${filepath}`, (err, stdout, stderr) => {
-			if (err) {
-				console.error(stderr);
-				process.exit(1);
-			}
-
-			console.log(stdout);
+		await new Promise((resolve, reject) => {
+			exec(
+				`yarn run biome check --write --unsafe ${filepath}`,
+				(err, stdout, stderr) => {
+					if (err) {
+						console.error(stderr);
+						reject(err);
+					}
+					resolve(stdout);
+				},
+			);
 		});
 	}
 }
