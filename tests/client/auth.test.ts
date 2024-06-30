@@ -1,5 +1,4 @@
 import { it } from "^/tests/_helpers/vitest";
-import tokenResponse from "^/tests/fixtures/token.json";
 import { describe, expect } from "vitest";
 
 // For sample data creation
@@ -8,6 +7,14 @@ const client_secret = "<CLIENT_SECRET>";
 const redirect_uri = "<REDIRECT_URI>";
 const code = "<AUTHORIZATION_CODE>";
 const refresh_token = "<REFRESH_TOKEN>";
+
+const tokenResponse = {
+	access_token: "<ACCESS_TOKEN>",
+	refresh_token: refresh_token,
+	expires: 1209599974,
+	expires_in: 1209599,
+	token_type: "Bearer",
+};
 
 describe("auth.exchangeToken", () => {
 	it("exchange authorization code with access token", async ({

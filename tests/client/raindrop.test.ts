@@ -1,81 +1,126 @@
 import { it } from "^/tests/_helpers/vitest";
-import raindropResponse from "^/tests/fixtures/raindrops.json";
 import { describe, expect } from "vitest";
-
-// Mocks
-const mockPaginatedResponse = (page: number, pageSize: number) => {
-	return {
-		...raindropResponse,
-		items: raindropResponse.items.slice(page * pageSize, (page + 1) * pageSize),
-	};
-};
-
-const getParams = (url: string) =>
-	Object.fromEntries(new URL(url).searchParams.entries());
+import { createCollection, createRaindrop } from "../generated/_helpers";
 
 describe("raindrop.getAllRaindrops", () => {
-	it("fetch full pagination results", async ({ mockAxios, client }) => {
-		mockAxios
-			.onGet(/https:\/\/api\.raindrop\.io\/rest\/v1\/raindrops\/0/)
-			.reply((config) => {
-				const params = getParams(config.url ?? "");
-				expect(params).toEqual({
-					sort: "",
-					perpage: "1",
-					page: expect.any(String),
-					search: "",
-				});
-				const response = mockPaginatedResponse(Number.parseInt(params.page), 1);
-				return [200, response];
-			});
-		const result = await client.raindrop.getAllRaindrops(0, { pageSize: 1 });
-		expect(mockAxios.history.get.length).toBe(5);
-		expect(result).toHaveLength(5);
-		expect(result).toEqual(raindropResponse.items);
-	});
+	it("fetch full pagination results", async ({ task, client }) => {
+		const collection = await createCollection(task, client);
+		await createRaindrop(task, client, {
+			collection: { $id: collection.item._id },
+		});
+		await createRaindrop(task, client, {
+			collection: { $id: collection.item._id },
+		});
+		await createRaindrop(task, client, {
+			collection: { $id: collection.item._id },
+		});
 
-	it("single page size", async ({ mockAxios, client }) => {
-		mockAxios
-			.onGet(/https:\/\/api\.raindrop\.io\/rest\/v1\/raindrops\/0/)
-			.reply((config) => {
-				const params = getParams(config.url ?? "");
-				expect(params).toEqual({
-					sort: "",
-					perpage: "5",
-					page: "0",
-					search: "",
-				});
-				return [200, mockPaginatedResponse(0, 5)];
-			});
-		const result = await client.raindrop.getAllRaindrops(0, { pageSize: 5 });
-		expect(mockAxios.history.get.length).toBe(1);
-		expect(result).toEqual(raindropResponse.items);
-	});
-
-	// TODO: Should rewrite whole custom client codes using Polly
-	it.skip("collection not found", ({ mockAxios, client }) => {
-		mockAxios
-			.onGet(/https:\/\/api\.raindrop\.io\/rest\/v1\/raindrops\/35947374/)
-			.reply((config) => {
-				const params = getParams(config.url ?? "");
-				expect(params).toEqual({
-					sort: "",
-					perpage: "50",
-					page: "0",
-					search: "",
-				});
-				return [
-					403,
-					{
-						result: false,
-						status: 403,
-						errorMessage: "collection 35947374 not found",
-						access: false,
-					},
-				];
-			});
-		expect(client.raindrop.getAllRaindrops(35947374)).rejects.toThrowError(
-			"Request failed with status code 403",
-		);
+		const result = await client.raindrop.getAllRaindrops(collection.item._id, {
+			pageSize: 1,
+		});
+		expect(result.length).toBe(3);
+		expect(result).toMatchInlineSnapshot(`
+			[
+			  {
+			    "_id": 809520465,
+			    "collection": {
+			      "$id": 45559848,
+			      "$ref": "collections",
+			      "oid": 45559848,
+			    },
+			    "collectionId": 45559848,
+			    "cover": "",
+			    "created": "2024-06-30T11:28:37.267Z",
+			    "creatorRef": {
+			      "_id": 2067190,
+			      "avatar": "",
+			      "email": "",
+			      "name": "miyil99106",
+			    },
+			    "domain": "raindrop.io",
+			    "excerpt": "",
+			    "highlights": [],
+			    "lastUpdate": "2024-06-30T11:28:37.267Z",
+			    "link": "https://raindrop.io",
+			    "media": [],
+			    "note": "",
+			    "removed": false,
+			    "sort": 809520465,
+			    "tags": [],
+			    "title": "fetch full pagination results",
+			    "type": "link",
+			    "user": {
+			      "$id": 2067190,
+			      "$ref": "users",
+			    },
+			  },
+			  {
+			    "_id": 809520464,
+			    "collection": {
+			      "$id": 45559848,
+			      "$ref": "collections",
+			      "oid": 45559848,
+			    },
+			    "collectionId": 45559848,
+			    "cover": "",
+			    "created": "2024-06-30T11:28:36.877Z",
+			    "creatorRef": {
+			      "_id": 2067190,
+			      "avatar": "",
+			      "email": "",
+			      "name": "miyil99106",
+			    },
+			    "domain": "raindrop.io",
+			    "excerpt": "",
+			    "highlights": [],
+			    "lastUpdate": "2024-06-30T11:28:36.877Z",
+			    "link": "https://raindrop.io",
+			    "media": [],
+			    "note": "",
+			    "removed": false,
+			    "sort": 809520464,
+			    "tags": [],
+			    "title": "fetch full pagination results",
+			    "type": "link",
+			    "user": {
+			      "$id": 2067190,
+			      "$ref": "users",
+			    },
+			  },
+			  {
+			    "_id": 809520461,
+			    "collection": {
+			      "$id": 45559848,
+			      "$ref": "collections",
+			      "oid": 45559848,
+			    },
+			    "collectionId": 45559848,
+			    "cover": "",
+			    "created": "2024-06-30T11:28:36.496Z",
+			    "creatorRef": {
+			      "_id": 2067190,
+			      "avatar": "",
+			      "email": "",
+			      "name": "miyil99106",
+			    },
+			    "domain": "raindrop.io",
+			    "excerpt": "",
+			    "highlights": [],
+			    "lastUpdate": "2024-06-30T11:28:36.496Z",
+			    "link": "https://raindrop.io",
+			    "media": [],
+			    "note": "",
+			    "removed": false,
+			    "sort": 809520461,
+			    "tags": [],
+			    "title": "fetch full pagination results",
+			    "type": "link",
+			    "user": {
+			      "$id": 2067190,
+			      "$ref": "users",
+			    },
+			  },
+			]
+		`);
 	});
 });
