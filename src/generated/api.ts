@@ -910,10 +910,10 @@ export interface CreateRaindropResponseItem {
     'created': string;
     /**
      * 
-     * @type {number}
+     * @type {CreatorRef}
      * @memberof CreateRaindropResponseItem
      */
-    'creatorRef': number;
+    'creatorRef': CreatorRef;
     /**
      * 
      * @type {string}
@@ -1020,162 +1020,47 @@ export interface CreateRaindropsResponse {
     'result': boolean;
     /**
      * 
-     * @type {Array<CreateRaindropsResponseItemsInner>}
+     * @type {Array<UpdateRaindropResponseItem>}
      * @memberof CreateRaindropsResponse
      */
-    'items': Array<CreateRaindropsResponseItemsInner>;
+    'items': Array<UpdateRaindropResponseItem>;
 }
+/**
+ * @type CreatorRef
+ * @export
+ */
+export type CreatorRef = CreatorRefOneOf | number;
+
 /**
  * 
  * @export
- * @interface CreateRaindropsResponseItemsInner
+ * @interface CreatorRefOneOf
  */
-export interface CreateRaindropsResponseItemsInner {
+export interface CreatorRefOneOf {
     /**
      * 
      * @type {number}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    '__v': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    '_id': number;
-    /**
-     * 
-     * @type {CollectionRef}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'collection': CollectionRef;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'collectionId': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'cover': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'created': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'creatorRef': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'domain': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'excerpt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'lastUpdate': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'link': string;
-    /**
-     * 
-     * @type {Array<CreateRaindropResponseItemMediaInner>}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'media': Array<CreateRaindropResponseItemMediaInner>;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'note': string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'removed': boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'sort': number;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'tags': Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'type': string;
-    /**
-     * 
-     * @type {UserRef}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'user': UserRef;
-    /**
-     * 
-     * @type {Array<GetRaindropResponseItemHighlightsInner>}
-     * @memberof CreateRaindropsResponseItemsInner
-     */
-    'highlights': Array<GetRaindropResponseItemHighlightsInner>;
-}
-/**
- * 
- * @export
- * @interface CreatorRef
- */
-export interface CreatorRef {
-    /**
-     * 
-     * @type {number}
-     * @memberof CreatorRef
+     * @memberof CreatorRefOneOf
      */
     '_id': number;
     /**
      * 
      * @type {string}
-     * @memberof CreatorRef
+     * @memberof CreatorRefOneOf
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreatorRefOneOf
      */
     'email': string;
     /**
      * 
      * @type {string}
-     * @memberof CreatorRef
+     * @memberof CreatorRefOneOf
      */
-    'name': string;
+    'avatar'?: string;
 }
 /**
  * 
@@ -1902,10 +1787,10 @@ export interface GetRaindropResponseItem {
     'created': string;
     /**
      * 
-     * @type {GetRaindropResponseItemCreatorRef}
+     * @type {CreatorRef}
      * @memberof GetRaindropResponseItem
      */
-    'creatorRef': GetRaindropResponseItemCreatorRef;
+    'creatorRef': CreatorRef;
     /**
      * 
      * @type {string}
@@ -1988,37 +1873,6 @@ export interface GetRaindropResponseItem {
 /**
  * 
  * @export
- * @interface GetRaindropResponseItemCreatorRef
- */
-export interface GetRaindropResponseItemCreatorRef {
-    /**
-     * 
-     * @type {number}
-     * @memberof GetRaindropResponseItemCreatorRef
-     */
-    '_id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetRaindropResponseItemCreatorRef
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetRaindropResponseItemCreatorRef
-     */
-    'avatar': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetRaindropResponseItemCreatorRef
-     */
-    'email': string;
-}
-/**
- * 
- * @export
  * @interface GetRaindropResponseItemHighlightsInner
  */
 export interface GetRaindropResponseItemHighlightsInner {
@@ -2048,10 +1902,10 @@ export interface GetRaindropResponseItemHighlightsInner {
     'lastUpdate': string;
     /**
      * 
-     * @type {GetRaindropResponseItemCreatorRef}
+     * @type {CreatorRef}
      * @memberof GetRaindropResponseItemHighlightsInner
      */
-    'creatorRef': GetRaindropResponseItemCreatorRef;
+    'creatorRef': CreatorRef;
     /**
      * 
      * @type {string}
@@ -3358,10 +3212,10 @@ export interface RemoveRaindropResponseItem {
     'created': string;
     /**
      * 
-     * @type {GetRaindropResponseItemCreatorRef}
+     * @type {CreatorRef}
      * @memberof RemoveRaindropResponseItem
      */
-    'creatorRef': GetRaindropResponseItemCreatorRef;
+    'creatorRef': CreatorRef;
     /**
      * 
      * @type {string}
@@ -4253,10 +4107,10 @@ export interface UpdateRaindropResponseItem {
     'created': string;
     /**
      * 
-     * @type {GetRaindropResponseItemCreatorRef}
+     * @type {CreatorRef}
      * @memberof UpdateRaindropResponseItem
      */
-    'creatorRef': GetRaindropResponseItemCreatorRef;
+    'creatorRef': CreatorRef;
     /**
      * 
      * @type {string}
@@ -4331,53 +4185,10 @@ export interface UpdateRaindropResponseItem {
     'user': UserRef;
     /**
      * 
-     * @type {Array<UpdateRaindropResponseItemHighlightsInner>}
+     * @type {Array<GetRaindropResponseItemHighlightsInner>}
      * @memberof UpdateRaindropResponseItem
      */
-    'highlights': Array<UpdateRaindropResponseItemHighlightsInner>;
-}
-/**
- * 
- * @export
- * @interface UpdateRaindropResponseItemHighlightsInner
- */
-export interface UpdateRaindropResponseItemHighlightsInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateRaindropResponseItemHighlightsInner
-     */
-    'text': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateRaindropResponseItemHighlightsInner
-     */
-    'note': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateRaindropResponseItemHighlightsInner
-     */
-    'created': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateRaindropResponseItemHighlightsInner
-     */
-    'lastUpdate': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof UpdateRaindropResponseItemHighlightsInner
-     */
-    'creatorRef': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof UpdateRaindropResponseItemHighlightsInner
-     */
-    '_id': string;
+    'highlights': Array<GetRaindropResponseItemHighlightsInner>;
 }
 /**
  * 
@@ -4605,7 +4416,140 @@ export interface UploadFileResponse {
      * @type {boolean}
      * @memberof UploadFileResponse
      */
-    'result'?: boolean;
+    'result': boolean;
+    /**
+     * 
+     * @type {UploadFileResponseItem}
+     * @memberof UploadFileResponse
+     */
+    'item': UploadFileResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface UploadFileResponseItem
+ */
+export interface UploadFileResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadFileResponseItem
+     */
+    '__v': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadFileResponseItem
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {CollectionRef}
+     * @memberof UploadFileResponseItem
+     */
+    'collection': CollectionRef;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadFileResponseItem
+     */
+    'collectionId': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'cover': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof UploadFileResponseItem
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'excerpt': string;
+    /**
+     * 
+     * @type {RaindropAllOfFile}
+     * @memberof UploadFileResponseItem
+     */
+    'file': RaindropAllOfFile;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'link': string;
+    /**
+     * 
+     * @type {Array<CreateRaindropResponseItemMediaInner>}
+     * @memberof UploadFileResponseItem
+     */
+    'media': Array<CreateRaindropResponseItemMediaInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'note': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadFileResponseItem
+     */
+    'removed': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadFileResponseItem
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UploadFileResponseItem
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItem
+     */
+    'type': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof UploadFileResponseItem
+     */
+    'user': UserRef;
 }
 /**
  * 
@@ -4619,6 +4563,133 @@ export interface UploadRaindropCoverResponse {
      * @memberof UploadRaindropCoverResponse
      */
     'result'?: boolean;
+    /**
+     * 
+     * @type {UploadRaindropCoverResponseItem}
+     * @memberof UploadRaindropCoverResponse
+     */
+    'item'?: UploadRaindropCoverResponseItem;
+}
+/**
+ * 
+ * @export
+ * @interface UploadRaindropCoverResponseItem
+ */
+export interface UploadRaindropCoverResponseItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    '__v': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    '_id': number;
+    /**
+     * 
+     * @type {CollectionRef}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'collection': CollectionRef;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'collectionId': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'cover': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'created': string;
+    /**
+     * 
+     * @type {CreatorRef}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'creatorRef': CreatorRef;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'domain': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'excerpt': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'lastUpdate': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'link': string;
+    /**
+     * 
+     * @type {Array<CreateRaindropResponseItemMediaInner>}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'media': Array<CreateRaindropResponseItemMediaInner>;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'note': string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'removed': boolean;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'sort': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'tags': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'type': string;
+    /**
+     * 
+     * @type {UserRef}
+     * @memberof UploadRaindropCoverResponseItem
+     */
+    'user': UserRef;
 }
 /**
  * 

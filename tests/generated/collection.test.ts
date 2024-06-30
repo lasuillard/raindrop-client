@@ -363,8 +363,7 @@ it("createCollection", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-// ! FIXME: Polly.js record hash for file upload keep changing
-it.skip("uploadCollectionCover", async ({
+it("uploadCollectionCover", async ({
 	setupTools,
 	client,
 	expect,
@@ -377,13 +376,19 @@ it.skip("uploadCollectionCover", async ({
 		collection.item._id,
 		// @ts-expect-error File is not Blob
 		cover,
+		{
+			headers: {
+				"Content-Type": "multipart/form-data; boundary=0000000000",
+			},
+		},
 	);
+
 	generateTypeTest({ type: "UploadCollectionCoverResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
 		    "__v": 1,
-		    "_id": 45400966,
+		    "_id": 45565506,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -394,9 +399,9 @@ it.skip("uploadCollectionCover", async ({
 		    "color": "#cc0404",
 		    "count": 0,
 		    "cover": [
-		      "https://up.raindrop.io/collection/thumbs/454/009/66/1719229529995.png",
+		      "https://up.raindrop.io/collection/thumbs/455/655/06/1719754884288.png",
 		    ],
-		    "created": "2024-06-24T11:45:04.466Z",
+		    "created": "2024-06-30T13:41:23.272Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -404,12 +409,12 @@ it.skip("uploadCollectionCover", async ({
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-24T11:45:04.465Z",
-		    "lastUpdate": "2024-06-24T11:45:30.121Z",
+		    "lastAction": "2024-06-30T13:41:23.272Z",
+		    "lastUpdate": "2024-06-30T13:41:24.396Z",
 		    "public": false,
-		    "slug": "test-upload-collection-cover",
+		    "slug": "upload-collection-cover",
 		    "sort": 0,
-		    "title": "test_uploadCollectionCover",
+		    "title": "uploadCollectionCover",
 		    "user": {
 		      "$id": 2067190,
 		      "$ref": "users",

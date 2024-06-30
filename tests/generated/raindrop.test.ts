@@ -250,27 +250,30 @@ it("removeRaindrop", async ({
 	`);
 });
 
-// ! FIXME: Polly.js record hash for file upload keep changing
-it.skip("uploadFile", async ({ client, expect, generateTypeTest }) => {
+it("uploadFile", async ({ client, expect, generateTypeTest }) => {
 	const cover = await fs.openAsBlob(path.join(__dirname, "./cover.png"));
 
 	// @ts-expect-error File is not Blob
-	const response = await client.raindrop.uploadFile(cover);
+	const response = await client.raindrop.uploadFile(cover, 0, {
+		headers: {
+			"Content-Type": "multipart/form-data; boundary=0000000000",
+		},
+	});
 
 	generateTypeTest({ type: "UploadFileResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
 		    "__v": 0,
-		    "_id": 809246213,
+		    "_id": 809582809,
 		    "collection": {
 		      "$id": -1,
 		      "$ref": "collections",
 		      "oid": -1,
 		    },
 		    "collectionId": -1,
-		    "cover": "https://rdl.ink/render/https%3A%2F%2Fup.raindrop.io%2Fraindrop%2Ffiles%2F809%2F246%2F213%2Fblob",
-		    "created": "2024-06-30T05:26:48.140Z",
+		    "cover": "https://rdl.ink/render/https%3A%2F%2Fup.raindrop.io%2Fraindrop%2Ffiles%2F809%2F582%2F809%2Fblob",
+		    "created": "2024-06-30T13:57:57.598Z",
 		    "creatorRef": 2067190,
 		    "domain": "up.raindrop.io",
 		    "excerpt": "",
@@ -279,12 +282,12 @@ it.skip("uploadFile", async ({ client, expect, generateTypeTest }) => {
 		      "size": 111258,
 		      "type": "image/png",
 		    },
-		    "lastUpdate": "2024-06-30T05:26:48.274Z",
-		    "link": "https://api.raindrop.io/v2/raindrop/809246213/file?type=image/png",
+		    "lastUpdate": "2024-06-30T13:57:57.709Z",
+		    "link": "https://api.raindrop.io/v2/raindrop/809582809/file?type=image/png",
 		    "media": [],
 		    "note": "",
 		    "removed": false,
-		    "sort": 809246213,
+		    "sort": 809582809,
 		    "tags": [],
 		    "title": "blob",
 		    "type": "image",
@@ -298,8 +301,7 @@ it.skip("uploadFile", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-// ! FIXME: Polly.js record hash for file upload keep changing
-it.skip("uploadRaindropCover", async ({
+it("uploadRaindropCover", async ({
 	setupTools,
 	client,
 	expect,
@@ -312,6 +314,11 @@ it.skip("uploadRaindropCover", async ({
 		raindrop.item._id,
 		// @ts-expect-error File is not Blob
 		cover,
+		{
+			headers: {
+				"Content-Type": "multipart/form-data; boundary=0000000000",
+			},
+		},
 	);
 
 	generateTypeTest({ type: "UploadRaindropCoverResponse" });
@@ -319,15 +326,15 @@ it.skip("uploadRaindropCover", async ({
 		{
 		  "item": {
 		    "__v": 1,
-		    "_id": 809246235,
+		    "_id": 809580615,
 		    "collection": {
 		      "$id": -1,
 		      "$ref": "collections",
 		      "oid": -1,
 		    },
 		    "collectionId": -1,
-		    "cover": "https://up.raindrop.io/raindrop/thumbs/809/246/235/1719725217086.png",
-		    "created": "2024-06-30T05:26:56.151Z",
+		    "cover": "https://up.raindrop.io/raindrop/thumbs/809/580/615/1719754936977.png",
+		    "created": "2024-06-30T13:42:16.020Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "avatar": "",
@@ -336,17 +343,17 @@ it.skip("uploadRaindropCover", async ({
 		    },
 		    "domain": "raindrop.io",
 		    "excerpt": "",
-		    "lastUpdate": "2024-06-30T05:26:57.204Z",
+		    "lastUpdate": "2024-06-30T13:42:17.066Z",
 		    "link": "https://raindrop.io",
 		    "media": [
 		      {
-		        "link": "https://up.raindrop.io/raindrop/thumbs/809/246/235/1719725217086.png",
+		        "link": "https://up.raindrop.io/raindrop/thumbs/809/580/615/1719754936977.png",
 		        "type": "image",
 		      },
 		    ],
 		    "note": "",
 		    "removed": false,
-		    "sort": 809246235,
+		    "sort": 809580615,
 		    "tags": [],
 		    "title": "uploadRaindropCover",
 		    "type": "link",

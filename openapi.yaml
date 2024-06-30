@@ -1769,15 +1769,19 @@ components:
           type: string
 
     CreatorRef:
-      type: object
-      required: [_id, email, name]
-      properties:
-        _id:
-          type: integer
-        email:
-          type: string
-        name:
-          type: string
+      oneOf:
+        - type: object
+          required: [_id, email, name]
+          properties:
+            _id:
+              type: integer
+            name:
+              type: string
+            email:
+              type: string
+            avatar:
+              type: string
+        - type: integer
 
     CollectionRef:
       type: object
@@ -2487,7 +2491,7 @@ components:
               type: string
               format: date-time
             creatorRef:
-              type: integer
+              $ref: "#/components/schemas/CreatorRef"
             domain:
               type: string
             excerpt:
@@ -2570,17 +2574,7 @@ components:
               type: string
               format: date-time
             creatorRef:
-              type: object
-              required: [_id, name, avatar, email]
-              properties:
-                _id:
-                  type: integer
-                name:
-                  type: string
-                avatar:
-                  type: string
-                email:
-                  type: string
+              $ref: "#/components/schemas/CreatorRef"
             domain:
               type: string
             excerpt:
@@ -2602,17 +2596,7 @@ components:
                     type: string
                     format: date-time
                   creatorRef:
-                    type: object
-                    required: [_id, name, avatar, email]
-                    properties:
-                      _id:
-                        type: integer
-                      name:
-                        type: string
-                      avatar:
-                        type: string
-                      email:
-                        type: string
+                    $ref: "#/components/schemas/CreatorRef"
                   _id:
                     type: string
             lastUpdate:
@@ -2696,17 +2680,7 @@ components:
               type: string
               format: date-time
             creatorRef:
-              type: object
-              required: [_id, name, avatar, email]
-              properties:
-                _id:
-                  type: integer
-                name:
-                  type: string
-                avatar:
-                  type: string
-                email:
-                  type: string
+              $ref: "#/components/schemas/CreatorRef"
             domain:
               type: string
             excerpt:
@@ -2760,7 +2734,7 @@ components:
                     type: string
                     format: date-time
                   creatorRef:
-                    type: integer
+                    $ref: "#/components/schemas/CreatorRef"
                   _id:
                     type: string
 
@@ -2806,17 +2780,7 @@ components:
               type: string
               format: date-time
             creatorRef:
-              type: object
-              required: [_id, name, avatar, email]
-              properties:
-                _id:
-                  type: integer
-                name:
-                  type: string
-                avatar:
-                  type: string
-                email:
-                  type: string
+              $ref: "#/components/schemas/CreatorRef"
             domain:
               type: string
             excerpt:
@@ -2867,9 +2831,98 @@ components:
 
     UploadFileResponse:
       type: object
+      required: [result, item]
       properties:
         result:
           type: boolean
+        item:
+          type: object
+          required:
+            [
+              __v,
+              _id,
+              collection,
+              collectionId,
+              cover,
+              created,
+              creatorRef,
+              domain,
+              excerpt,
+              file,
+              lastUpdate,
+              link,
+              media,
+              note,
+              removed,
+              sort,
+              tags,
+              title,
+              type,
+              user,
+            ]
+          properties:
+            __v:
+              type: integer
+            _id:
+              type: integer
+            collection:
+              $ref: "#/components/schemas/CollectionRef"
+            collectionId:
+              type: integer
+            cover:
+              type: string
+              format: uri
+            created:
+              type: string
+              format: date-time
+            creatorRef:
+              $ref: "#/components/schemas/CreatorRef"
+            domain:
+              type: string
+            excerpt:
+              type: string
+            file:
+              type: object
+              required: [name, size, type]
+              properties:
+                name:
+                  type: string
+                size:
+                  type: integer
+                type:
+                  type: string
+            lastUpdate:
+              type: string
+              format: date-time
+            link:
+              type: string
+              format: uri
+            media:
+              type: array
+              items:
+                type: object
+                required: [link, type]
+                properties:
+                  link:
+                    type: string
+                  type:
+                    type: string
+            note:
+              type: string
+            removed:
+              type: boolean
+            sort:
+              type: integer
+            tags:
+              type: array
+              items:
+                type: string
+            title:
+              type: string
+            type:
+              type: string
+            user:
+              $ref: "#/components/schemas/UserRef"
 
     UploadRaindropCoverRequest:
       type: object
@@ -2883,6 +2936,83 @@ components:
       properties:
         result:
           type: boolean
+        item:
+          type: object
+          required:
+            [
+              __v,
+              _id,
+              collection,
+              collectionId,
+              cover,
+              created,
+              creatorRef,
+              domain,
+              excerpt,
+              lastUpdate,
+              link,
+              media,
+              note,
+              removed,
+              sort,
+              tags,
+              title,
+              type,
+              user,
+            ]
+          properties:
+            __v:
+              type: integer
+            _id:
+              type: integer
+            collection:
+              $ref: "#/components/schemas/CollectionRef"
+            collectionId:
+              type: integer
+            cover:
+              type: string
+              format: uri
+            created:
+              type: string
+              format: date-time
+            creatorRef:
+              $ref: "#/components/schemas/CreatorRef"
+            domain:
+              type: string
+            excerpt:
+              type: string
+            lastUpdate:
+              type: string
+              format: date-time
+            link:
+              type: string
+              format: uri
+            media:
+              type: array
+              items:
+                type: object
+                required: [link, type]
+                properties:
+                  link:
+                    type: string
+                  type:
+                    type: string
+            note:
+              type: string
+            removed:
+              type: boolean
+            sort:
+              type: integer
+            tags:
+              type: array
+              items:
+                type: string
+            title:
+              type: string
+            type:
+              type: string
+            user:
+              $ref: "#/components/schemas/UserRef"
 
     SuggestForNewBookmarkResponse:
       type: object
@@ -2945,17 +3075,7 @@ components:
                 type: string
                 format: date-time
               creatorRef:
-                type: object
-                required: [_id, name, avatar, email]
-                properties:
-                  _id:
-                    type: integer
-                  name:
-                    type: string
-                  avatar:
-                    type: string
-                  email:
-                    type: string
+                $ref: "#/components/schemas/CreatorRef"
               domain:
                 type: string
               excerpt:
@@ -2977,17 +3097,7 @@ components:
                       type: string
                       format: date-time
                     creatorRef:
-                      type: object
-                      required: [_id, name, avatar, email]
-                      properties:
-                        _id:
-                          type: integer
-                        name:
-                          type: string
-                        avatar:
-                          type: string
-                        email:
-                          type: string
+                      $ref: "#/components/schemas/CreatorRef"
                     _id:
                       type: string
               lastUpdate:
@@ -3125,7 +3235,7 @@ components:
                 type: string
                 format: date-time
               creatorRef:
-                type: integer
+                $ref: "#/components/schemas/CreatorRef"
               domain:
                 type: string
               excerpt:
@@ -3179,17 +3289,7 @@ components:
                       type: string
                       format: date-time
                     creatorRef:
-                      type: object
-                      required: [_id, name, avatar, email]
-                      properties:
-                        _id:
-                          type: integer
-                        name:
-                          type: string
-                        avatar:
-                          type: string
-                        email:
-                          type: string
+                      $ref: "#/components/schemas/CreatorRef"
                     _id:
                       type: string
 

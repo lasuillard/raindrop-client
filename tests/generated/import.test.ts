@@ -54,18 +54,17 @@ it("checkURLsExist", async ({
 	`);
 });
 
-// ! FIXME: Polly.js record hash for file upload keep changing
-it.skip("importHTMLBookmarkFile", async ({
-	client,
-	expect,
-	generateTypeTest,
-}) => {
+it("importHTMLBookmarkFile", async ({ client, expect, generateTypeTest }) => {
 	const file = await fs.openAsBlob(
 		path.join(__dirname, "./chrome-bookmarks.html"),
 	);
 
 	// @ts-expect-error File is not Blob
-	const response = await client.import.importHTMLBookmarkFile(file);
+	const response = await client.import.importHTMLBookmarkFile(file, {
+		headers: {
+			"Content-Type": "multipart/form-data; boundary=0000000000",
+		},
+	});
 
 	generateTypeTest({ type: "ImportHTMLBookmarkFileResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
