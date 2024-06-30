@@ -535,14 +535,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/CreateRaindrop"
+              $ref: "#/components/schemas/UpdateRaindropRequest"
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RaindropResponseOne"
+                $ref: "#/components/schemas/UpdateRaindropResponse"
     delete:
       operationId: removeRaindrop
       tags:
@@ -553,7 +553,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Response"
+                $ref: "#/components/schemas/RemoveRaindropResponse"
 
   /rest/v1/raindrop/file:
     put:
@@ -564,20 +564,14 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: object
-              properties:
-                file:
-                  type: string
-                  format: binary
-                collectionId:
-                  type: integer
+              $ref: "#/components/schemas/UploadFileRequest"
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RaindropResponseOne"
+                $ref: "#/components/schemas/UploadFileResponse"
 
   /rest/v1/raindrop/{id}/cover:
     put:
@@ -594,18 +588,15 @@ paths:
         content:
           multipart/form-data:
             schema:
-              type: object
-              properties:
-                cover:
-                  type: string
-                  format: binary
+              $ref: "#/components/schemas/UploadRaindropCoverRequest"
+
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RaindropResponseOne"
+                $ref: "#/components/schemas/UploadRaindropCoverResponse"
 
   /rest/v1/raindrop/{id}/cache:
     get:
@@ -641,7 +632,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SuggestResponse"
+                $ref: "#/components/schemas/SuggestForNewBookmarkResponse"
 
   /rest/v1/raindrop/{id}/suggest:
     get:
@@ -660,7 +651,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SuggestResponse"
+                $ref: "#/components/schemas/SuggestForExistingBookmarkResponse"
 
   /rest/v1/raindrops/{collectionId}:
     parameters:
@@ -705,33 +696,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                ids:
-                  type: array
-                  items:
-                    type: integer
-                important:
-                  type: boolean
-                tags:
-                  type: array
-                  items:
-                    type: string
-                media:
-                  type: array
-                  items:
-                    type: string
-                    format: uri
-                cover:
-                  type: string
-                collection:
-                  type: object
-                  properties:
-                    $id:
-                      type: integer
+              $ref: "#/components/schemas/UpdateRaindropsRequest"
       responses:
         200:
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateRaindropsResponse"
     delete:
       operationId: removeRaindrops
       tags:
@@ -745,24 +717,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                ids:
-                  type: array
-                  items:
-                    type: integer
+              $ref: "#/components/schemas/RemoveRaindropsRequest"
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  result:
-                    type: boolean
-                  modified:
-                    type: integer
+                $ref: "#/components/schemas/RemoveRaindropsResponse"
 
   /rest/v1/raindrops:
     post:
@@ -773,19 +735,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                items:
-                  type: array
-                  items:
-                    $ref: "#/components/schemas/CreateRaindrop"
+              $ref: "#/components/schemas/CreateRaindropsRequest"
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RaindropResponseMany"
+                $ref: "#/components/schemas/CreateRaindropsResponse"
 
   /rest/v1/highlights:
     get:
@@ -2691,6 +2648,254 @@ components:
             user:
               $ref: "#/components/schemas/UserRef"
 
+    UpdateRaindropRequest:
+      type: object
+
+    UpdateRaindropResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+        item:
+          type: object
+          required:
+            [
+              __v,
+              _id,
+              collection,
+              collectionId,
+              cover,
+              created,
+              creatorRef,
+              domain,
+              excerpt,
+              lastUpdate,
+              link,
+              media,
+              note,
+              removed,
+              sort,
+              tags,
+              title,
+              type,
+              user,
+              highlights,
+            ]
+          properties:
+            __v:
+              type: integer
+            _id:
+              type: integer
+            collection:
+              $ref: "#/components/schemas/CollectionRef"
+            collectionId:
+              type: integer
+            cover:
+              type: string
+            created:
+              type: string
+              format: date-time
+            creatorRef:
+              type: object
+              required: [_id, name, avatar, email]
+              properties:
+                _id:
+                  type: integer
+                name:
+                  type: string
+                avatar:
+                  type: string
+                email:
+                  type: string
+            domain:
+              type: string
+            excerpt:
+              type: string
+            lastUpdate:
+              type: string
+              format: date-time
+            link:
+              type: string
+              format: uri
+            media:
+              type: array
+              items:
+                type: object
+                required: [link, type]
+                properties:
+                  link:
+                    type: string
+                  type:
+                    type: string
+            note:
+              type: string
+            removed:
+              type: boolean
+            sort:
+              type: integer
+            tags:
+              type: array
+              items:
+                type: string
+            title:
+              type: string
+            type:
+              type: string
+            user:
+              $ref: "#/components/schemas/UserRef"
+            highlights:
+              type: array
+              items:
+                type: object
+                required: [text, note, created, lastUpdate, creatorRef, _id]
+                properties:
+                  text:
+                    type: string
+                  note:
+                    type: string
+                  created:
+                    type: string
+                    format: date-time
+                  lastUpdate:
+                    type: string
+                    format: date-time
+                  creatorRef:
+                    type: integer
+                  _id:
+                    type: string
+
+    RemoveRaindropResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+        item:
+          type: object
+          required:
+            [
+              _id,
+              collection,
+              collectionId,
+              cover,
+              created,
+              creatorRef,
+              domain,
+              excerpt,
+              lastUpdate,
+              link,
+              media,
+              note,
+              order,
+              removed,
+              sort,
+              tags,
+              title,
+              type,
+              user,
+            ]
+          properties:
+            _id:
+              type: integer
+            collection:
+              $ref: "#/components/schemas/CollectionRef"
+            collectionId:
+              type: integer
+            cover:
+              type: string
+            created:
+              type: string
+              format: date-time
+            creatorRef:
+              type: object
+              required: [_id, name, avatar, email]
+              properties:
+                _id:
+                  type: integer
+                name:
+                  type: string
+                avatar:
+                  type: string
+                email:
+                  type: string
+            domain:
+              type: string
+            excerpt:
+              type: string
+            lastUpdate:
+              type: string
+              format: date-time
+            link:
+              type: string
+              format: uri
+            media:
+              type: array
+              items:
+                type: object
+                required: [link, type]
+                properties:
+                  link:
+                    type: string
+                  type:
+                    type: string
+            note:
+              type: string
+            order:
+              type: integer
+            removed:
+              type: boolean
+            sort:
+              type: integer
+            tags:
+              type: array
+              items:
+                type: string
+            title:
+              type: string
+            type:
+              type: string
+            user:
+              $ref: "#/components/schemas/UserRef"
+
+    UploadFileRequest:
+      type: object
+      properties:
+        file:
+          type: string
+          format: binary
+        collectionId:
+          type: integer
+
+    UploadFileResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+
+    UploadRaindropCoverRequest:
+      type: object
+      properties:
+        cover:
+          type: string
+          format: binary
+
+    UploadRaindropCoverResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+
+    SuggestForNewBookmarkResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+
+    SuggestForExistingBookmarkResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+
     GetRaindropsResponse:
       type: object
       required: [result, collectionId, count, items]
@@ -2817,6 +3022,176 @@ components:
                 type: string
               user:
                 $ref: "#/components/schemas/UserRef"
+
+    UpdateRaindropsRequest:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+        important:
+          type: boolean
+        tags:
+          type: array
+          items:
+            type: string
+        media:
+          type: array
+          items:
+            type: string
+            format: uri
+        cover:
+          type: string
+        collection:
+          type: object
+          properties:
+            $id:
+              type: integer
+
+    UpdateRaindropsResponse:
+      type: object
+      properties:
+        result:
+          type: boolean
+        modified:
+          type: integer
+
+    RemoveRaindropsRequest:
+      type: object
+      properties:
+        ids:
+          type: array
+          items:
+            type: integer
+
+    RemoveRaindropsResponse:
+      type: object
+      required: [result, modified]
+      properties:
+        result:
+          type: boolean
+        modified:
+          type: integer
+
+    CreateRaindropsRequest:
+      type: object
+
+    CreateRaindropsResponse:
+      type: object
+      required: [result, items]
+      properties:
+        result:
+          type: boolean
+        items:
+          type: array
+          items:
+            type: object
+            required:
+              [
+                __v,
+                _id,
+                collection,
+                collectionId,
+                cover,
+                created,
+                creatorRef,
+                domain,
+                excerpt,
+                lastUpdate,
+                link,
+                media,
+                note,
+                removed,
+                sort,
+                tags,
+                title,
+                type,
+                user,
+                highlights,
+              ]
+            properties:
+              __v:
+                type: integer
+              _id:
+                type: integer
+              collection:
+                $ref: "#/components/schemas/CollectionRef"
+              collectionId:
+                type: integer
+              cover:
+                type: string
+              created:
+                type: string
+                format: date-time
+              creatorRef:
+                type: integer
+              domain:
+                type: string
+              excerpt:
+                type: string
+              lastUpdate:
+                type: string
+                format: date-time
+              link:
+                type: string
+                format: uri
+              media:
+                type: array
+                items:
+                  type: object
+                  required: [link, type]
+                  properties:
+                    link:
+                      type: string
+                    type:
+                      type: string
+              note:
+                type: string
+              removed:
+                type: boolean
+              sort:
+                type: integer
+              tags:
+                type: array
+                items:
+                  type: string
+              title:
+                type: string
+              type:
+                type: string
+              user:
+                $ref: "#/components/schemas/UserRef"
+              highlights:
+                type: array
+                items:
+                  type: object
+                  required: [text, note, created, lastUpdate, creatorRef, _id]
+                  properties:
+                    text:
+                      type: string
+                    note:
+                      type: string
+                    created:
+                      type: string
+                      format: date-time
+                    lastUpdate:
+                      type: string
+                      format: date-time
+                    creatorRef:
+                      type: object
+                      required: [_id, name, avatar, email]
+                      properties:
+                        _id:
+                          type: integer
+                        name:
+                          type: string
+                        avatar:
+                          type: string
+                        email:
+                          type: string
+                    _id:
+                      type: string
 
     GetTagsInCollectionResponse:
       type: object

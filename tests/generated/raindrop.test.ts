@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import path from "node:path";
 import { it } from "^/tests/_helpers/vitest";
 import { createCollection, createRaindrop } from "./_helpers";
 
@@ -131,19 +133,232 @@ it("getRaindrop", async ({ task, client, expect, generateTypeTest }) => {
 	`);
 });
 
-it.todo("updateRaindrop");
+it("updateRaindrop", async ({ task, client, expect, generateTypeTest }) => {
+	const raindrop = await createRaindrop(task, client);
 
-it.todo("removeRaindrop");
+	const response = await client.raindrop.updateRaindrop(raindrop.item._id, {
+		excerpt: "updateRaindrop",
+		tags: ["raindrop"],
+		highlights: [{ text: "ignore", note: "" }],
+	});
 
-it.todo("uploadFile");
+	generateTypeTest({ type: "UpdateRaindropResponse" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "item": {
+		    "__v": 1,
+		    "_id": 809246844,
+		    "collection": {
+		      "$id": -1,
+		      "$ref": "collections",
+		      "oid": -1,
+		    },
+		    "collectionId": -1,
+		    "cover": "",
+		    "created": "2024-06-30T05:32:32.523Z",
+		    "creatorRef": {
+		      "_id": 2067190,
+		      "avatar": "",
+		      "email": "",
+		      "name": "miyil99106",
+		    },
+		    "domain": "raindrop.io",
+		    "excerpt": "updateRaindrop",
+		    "highlights": [
+		      {
+		        "_id": "6680edf0f378b723e3bfccad",
+		        "created": "2024-06-30T05:32:32.890Z",
+		        "creatorRef": 2067190,
+		        "lastUpdate": "2024-06-30T05:32:32.890Z",
+		        "note": "",
+		        "text": "ignore",
+		      },
+		    ],
+		    "lastUpdate": "2024-06-30T05:32:32.890Z",
+		    "link": "https://raindrop.io",
+		    "media": [],
+		    "note": "",
+		    "removed": false,
+		    "sort": 809246844,
+		    "tags": [
+		      "raindrop",
+		    ],
+		    "title": "updateRaindrop",
+		    "type": "link",
+		    "user": {
+		      "$id": 2067190,
+		      "$ref": "users",
+		    },
+		  },
+		  "result": true,
+		}
+	`);
+});
 
-it.todo("uploadRaindropCover");
+it("removeRaindrop", async ({ task, client, expect, generateTypeTest }) => {
+	const raindrop = await createRaindrop(task, client);
 
-it.todo("getPermanentCopy");
+	const response = await client.raindrop.removeRaindrop(raindrop.item._id);
 
-it.todo("suggestForNewBookmark");
+	generateTypeTest({ type: "RemoveRaindropResponse" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "item": {
+		    "_id": 809246845,
+		    "collection": {
+		      "$id": -99,
+		      "$ref": "collections",
+		      "oid": -99,
+		    },
+		    "collectionId": -99,
+		    "cover": "",
+		    "created": "2024-06-30T05:32:33.292Z",
+		    "creatorRef": {
+		      "_id": 2067190,
+		      "avatar": "",
+		      "email": "",
+		      "name": "miyil99106",
+		    },
+		    "domain": "raindrop.io",
+		    "excerpt": "",
+		    "lastUpdate": "2024-06-30T05:32:33.677Z",
+		    "link": "https://raindrop.io",
+		    "media": [],
+		    "note": "",
+		    "order": 0,
+		    "removed": true,
+		    "sort": 809246845,
+		    "tags": [],
+		    "title": "removeRaindrop",
+		    "type": "link",
+		    "user": {
+		      "$id": 2067190,
+		      "$ref": "users",
+		    },
+		  },
+		  "result": true,
+		}
+	`);
+});
 
-it.todo("suggestForExistingBookmark");
+// ! FIXME: Polly.js record hash for file upload keep changing
+it.skip("uploadFile", async ({ client, expect, generateTypeTest }) => {
+	const cover = await fs.openAsBlob(path.join(__dirname, "./cover.png"));
+
+	// @ts-expect-error File is not Blob
+	const response = await client.raindrop.uploadFile(cover);
+
+	generateTypeTest({ type: "UploadFileResponse" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "item": {
+		    "__v": 0,
+		    "_id": 809246213,
+		    "collection": {
+		      "$id": -1,
+		      "$ref": "collections",
+		      "oid": -1,
+		    },
+		    "collectionId": -1,
+		    "cover": "https://rdl.ink/render/https%3A%2F%2Fup.raindrop.io%2Fraindrop%2Ffiles%2F809%2F246%2F213%2Fblob",
+		    "created": "2024-06-30T05:26:48.140Z",
+		    "creatorRef": 2067190,
+		    "domain": "up.raindrop.io",
+		    "excerpt": "",
+		    "file": {
+		      "name": "blob",
+		      "size": 111258,
+		      "type": "image/png",
+		    },
+		    "lastUpdate": "2024-06-30T05:26:48.274Z",
+		    "link": "https://api.raindrop.io/v2/raindrop/809246213/file?type=image/png",
+		    "media": [],
+		    "note": "",
+		    "removed": false,
+		    "sort": 809246213,
+		    "tags": [],
+		    "title": "blob",
+		    "type": "image",
+		    "user": {
+		      "$id": 2067190,
+		      "$ref": "users",
+		    },
+		  },
+		  "result": true,
+		}
+	`);
+});
+
+// ! FIXME: Polly.js record hash for file upload keep changing
+it.skip("uploadRaindropCover", async ({
+	task,
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const raindrop = await createRaindrop(task, client);
+	const cover = await fs.openAsBlob(path.join(__dirname, "./cover.png"));
+
+	const response = await client.raindrop.uploadRaindropCover(
+		raindrop.item._id,
+		// @ts-expect-error File is not Blob
+		cover,
+	);
+
+	generateTypeTest({ type: "UploadRaindropCoverResponse" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "item": {
+		    "__v": 1,
+		    "_id": 809246235,
+		    "collection": {
+		      "$id": -1,
+		      "$ref": "collections",
+		      "oid": -1,
+		    },
+		    "collectionId": -1,
+		    "cover": "https://up.raindrop.io/raindrop/thumbs/809/246/235/1719725217086.png",
+		    "created": "2024-06-30T05:26:56.151Z",
+		    "creatorRef": {
+		      "_id": 2067190,
+		      "avatar": "",
+		      "email": "",
+		      "name": "miyil99106",
+		    },
+		    "domain": "raindrop.io",
+		    "excerpt": "",
+		    "lastUpdate": "2024-06-30T05:26:57.204Z",
+		    "link": "https://raindrop.io",
+		    "media": [
+		      {
+		        "link": "https://up.raindrop.io/raindrop/thumbs/809/246/235/1719725217086.png",
+		        "type": "image",
+		      },
+		    ],
+		    "note": "",
+		    "removed": false,
+		    "sort": 809246235,
+		    "tags": [],
+		    "title": "uploadRaindropCover",
+		    "type": "link",
+		    "user": {
+		      "$id": 2067190,
+		      "$ref": "users",
+		    },
+		  },
+		  "result": true,
+		}
+	`);
+});
+
+// ? Pro feature
+it.skip("getPermanentCopy");
+
+// ? Pro feature
+it.skip("suggestForNewBookmark");
+
+// ? Pro feature
+it.skip("suggestForExistingBookmark");
 
 it("getRaindrops", async ({ task, client, expect, generateTypeTest }) => {
 	const collection = await createCollection(task, client);
@@ -270,8 +485,106 @@ it("getRaindrops", async ({ task, client, expect, generateTypeTest }) => {
 	`);
 });
 
-it.todo("updateRaindrops");
+it("updateRaindrops", async ({ task, client, expect, generateTypeTest }) => {
+	const collection = await createCollection(task, client);
+	const raindrop = await createRaindrop(task, client, {
+		collection: { $id: collection.item._id },
+	});
 
-it.todo("removeRaindrops");
+	const response = await client.raindrop.updateRaindrops(collection.item._id, {
+		ids: [raindrop.item._id],
+		tags: ["rainy-days"],
+	});
 
-it.todo("createRaindrops");
+	generateTypeTest({ type: "UpdateRaindropsResponse" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "modified": 1,
+		  "result": true,
+		}
+	`);
+});
+
+it("removeRaindrops", async ({ task, client, expect, generateTypeTest }) => {
+	const collection = await createCollection(task, client);
+	const raindrop = await createRaindrop(task, client, {
+		collection: { $id: collection.item._id },
+	});
+
+	const response = await client.raindrop.removeRaindrops(
+		collection.item._id,
+		"",
+		{
+			ids: [raindrop.item._id],
+		},
+	);
+
+	generateTypeTest({ type: "RemoveRaindropsResponse" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "modified": 1,
+		  "result": true,
+		}
+	`);
+});
+
+it("createRaindrops", async ({ client, expect, generateTypeTest }) => {
+	const response = await client.raindrop.createRaindrops({
+		items: [
+			{
+				link: "https://raindrop.io",
+				media: [
+					{
+						link: "https://t3.ftcdn.net/jpg/00/92/53/56/360_F_92535664_IvFsQeHjBzfE6sD4VHdO8u5OHUSc6yHF.jpg",
+					},
+				],
+				tags: ["raindrop"],
+			},
+		],
+	});
+
+	generateTypeTest({ type: "CreateRaindropsResponse" });
+	expect(response.data).toMatchInlineSnapshot(`
+		{
+		  "items": [
+		    {
+		      "__v": 0,
+		      "_id": 809246855,
+		      "collection": {
+		        "$id": -1,
+		        "$ref": "collections",
+		        "oid": -1,
+		      },
+		      "collectionId": -1,
+		      "cover": "https://t3.ftcdn.net/jpg/00/92/53/56/360_F_92535664_IvFsQeHjBzfE6sD4VHdO8u5OHUSc6yHF.jpg",
+		      "created": "2024-06-30T05:32:36.811Z",
+		      "creatorRef": 2067190,
+		      "domain": "raindrop.io",
+		      "excerpt": "",
+		      "highlights": [],
+		      "lastUpdate": "2024-06-30T05:32:36.811Z",
+		      "link": "https://raindrop.io",
+		      "media": [
+		        {
+		          "link": "https://t3.ftcdn.net/jpg/00/92/53/56/360_F_92535664_IvFsQeHjBzfE6sD4VHdO8u5OHUSc6yHF.jpg",
+		          "type": "image",
+		        },
+		      ],
+		      "note": "",
+		      "removed": false,
+		      "sort": 809246855,
+		      "tags": [
+		        "raindrop",
+		      ],
+		      "title": "https://raindrop.io",
+		      "type": "link",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		    },
+		  ],
+		  "result": true,
+		}
+	`);
+});
