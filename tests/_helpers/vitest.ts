@@ -5,15 +5,19 @@ import { test as base } from "vitest";
 import type { Raindrop } from "~/client";
 import { axiosInstance, client, mockAxios } from "./axios";
 import { polly } from "./polly";
-import { resetData } from "./raindrop";
+import { type SetupTools, resetData, setupTools } from "./raindrop";
 import { type RegisterHook, generateTypeTest } from "./typechecks";
 
 export const it = base.extend({
+	// HTTP utils
 	axiosInstance,
 	mockAxios,
-	client,
 	polly: [polly, { auto: true }],
+	// Schema testing
 	generateTypeTest,
+	// Raindrop.io fixtures
+	setupTools,
+	client,
 	resetData,
 });
 
@@ -25,5 +29,6 @@ declare module "vitest" {
 		polly: Polly;
 		generateTypeTest: RegisterHook;
 		resetData: undefined;
+		setupTools: SetupTools;
 	}
 }

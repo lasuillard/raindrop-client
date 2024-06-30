@@ -1,14 +1,13 @@
 import { it } from "^/tests/_helpers/vitest";
-import { createCollection, createRaindrop } from "./_helpers";
 
 it("getAllHighlights", async ({
-	task,
+	setupTools,
 	client,
 	expect,
 	generateTypeTest,
 	resetData: _,
 }) => {
-	await createRaindrop(task, client, {
+	await setupTools.createRaindrop({
 		highlights: [
 			{
 				text: "ignore",
@@ -39,13 +38,13 @@ it("getAllHighlights", async ({
 });
 
 it("getHighlightsInCollection", async ({
-	task,
+	setupTools,
 	client,
 	expect,
 	generateTypeTest,
 }) => {
-	const collection = await createCollection(task, client);
-	await createRaindrop(task, client, {
+	const collection = await setupTools.createCollection();
+	await setupTools.createRaindrop({
 		collection: { $id: collection.item._id },
 		highlights: [
 			{

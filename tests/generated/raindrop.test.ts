@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 import { it } from "^/tests/_helpers/vitest";
-import { createCollection, createRaindrop } from "./_helpers";
 
 it("createRaindrop", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.raindrop.createRaindrop({
@@ -57,8 +56,8 @@ it("createRaindrop", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("getRaindrop", async ({ task, client, expect, generateTypeTest }) => {
-	const raindrop = await createRaindrop(task, client, {
+it("getRaindrop", async ({ setupTools, client, expect, generateTypeTest }) => {
+	const raindrop = await setupTools.createRaindrop({
 		media: [
 			{
 				link: "https://t3.ftcdn.net/jpg/00/92/53/56/360_F_92535664_IvFsQeHjBzfE6sD4VHdO8u5OHUSc6yHF.jpg",
@@ -133,8 +132,13 @@ it("getRaindrop", async ({ task, client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("updateRaindrop", async ({ task, client, expect, generateTypeTest }) => {
-	const raindrop = await createRaindrop(task, client);
+it("updateRaindrop", async ({
+	setupTools,
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const raindrop = await setupTools.createRaindrop();
 
 	const response = await client.raindrop.updateRaindrop(raindrop.item._id, {
 		excerpt: "updateRaindrop",
@@ -195,8 +199,13 @@ it("updateRaindrop", async ({ task, client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("removeRaindrop", async ({ task, client, expect, generateTypeTest }) => {
-	const raindrop = await createRaindrop(task, client);
+it("removeRaindrop", async ({
+	setupTools,
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const raindrop = await setupTools.createRaindrop();
 
 	const response = await client.raindrop.removeRaindrop(raindrop.item._id);
 
@@ -291,12 +300,12 @@ it.skip("uploadFile", async ({ client, expect, generateTypeTest }) => {
 
 // ! FIXME: Polly.js record hash for file upload keep changing
 it.skip("uploadRaindropCover", async ({
-	task,
+	setupTools,
 	client,
 	expect,
 	generateTypeTest,
 }) => {
-	const raindrop = await createRaindrop(task, client);
+	const raindrop = await setupTools.createRaindrop();
 	const cover = await fs.openAsBlob(path.join(__dirname, "./cover.png"));
 
 	const response = await client.raindrop.uploadRaindropCover(
@@ -360,15 +369,15 @@ it.skip("suggestForNewBookmark");
 // ? Pro feature
 it.skip("suggestForExistingBookmark");
 
-it("getRaindrops", async ({ task, client, expect, generateTypeTest }) => {
-	const collection = await createCollection(task, client);
-	await createRaindrop(task, client, {
+it("getRaindrops", async ({ setupTools, client, expect, generateTypeTest }) => {
+	const collection = await setupTools.createCollection();
+	await setupTools.createRaindrop({
 		collection: { $id: collection.item._id },
 	});
-	await createRaindrop(task, client, {
+	await setupTools.createRaindrop({
 		collection: { $id: collection.item._id },
 	});
-	await createRaindrop(task, client, {
+	await setupTools.createRaindrop({
 		collection: { $id: collection.item._id },
 	});
 
@@ -485,9 +494,14 @@ it("getRaindrops", async ({ task, client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("updateRaindrops", async ({ task, client, expect, generateTypeTest }) => {
-	const collection = await createCollection(task, client);
-	const raindrop = await createRaindrop(task, client, {
+it("updateRaindrops", async ({
+	setupTools,
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const collection = await setupTools.createCollection();
+	const raindrop = await setupTools.createRaindrop({
 		collection: { $id: collection.item._id },
 	});
 
@@ -505,9 +519,14 @@ it("updateRaindrops", async ({ task, client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("removeRaindrops", async ({ task, client, expect, generateTypeTest }) => {
-	const collection = await createCollection(task, client);
-	const raindrop = await createRaindrop(task, client, {
+it("removeRaindrops", async ({
+	setupTools,
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const collection = await setupTools.createCollection();
+	const raindrop = await setupTools.createRaindrop({
 		collection: { $id: collection.item._id },
 	});
 

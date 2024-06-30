@@ -1,17 +1,16 @@
 import { it } from "^/tests/_helpers/vitest";
 import { describe, expect } from "vitest";
-import { createCollection, createRaindrop } from "../generated/_helpers";
 
 describe("raindrop.getAllRaindrops", () => {
-	it("fetch full pagination results", async ({ task, client }) => {
-		const collection = await createCollection(task, client);
-		await createRaindrop(task, client, {
+	it("fetch full pagination results", async ({ setupTools, client }) => {
+		const collection = await setupTools.createCollection();
+		await setupTools.createRaindrop({
 			collection: { $id: collection.item._id },
 		});
-		await createRaindrop(task, client, {
+		await setupTools.createRaindrop({
 			collection: { $id: collection.item._id },
 		});
-		await createRaindrop(task, client, {
+		await setupTools.createRaindrop({
 			collection: { $id: collection.item._id },
 		});
 

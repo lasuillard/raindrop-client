@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 import { it } from "^/tests/_helpers/vitest";
-import { createRaindrop } from "./_helpers";
 
 it("parseURL", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.import.parseURL("https://example.com");
@@ -24,8 +23,13 @@ it("parseURL", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("checkURLsExist", async ({ task, client, expect, generateTypeTest }) => {
-	await createRaindrop(task, client, {
+it("checkURLsExist", async ({
+	setupTools,
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	await setupTools.createRaindrop({
 		link: "https://raindrop.com",
 	});
 	const response = await client.import.checkURLsExist({

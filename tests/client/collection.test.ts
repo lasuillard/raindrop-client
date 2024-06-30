@@ -1,10 +1,9 @@
 import { it } from "^/tests/_helpers/vitest";
 import { describe, expect } from "vitest";
-import { createCollection } from "../generated/_helpers";
 
 describe("collection.getCollectionTree", () => {
 	it("build tree from groups and collections", async ({
-		task,
+		setupTools,
 		client,
 		resetData: _,
 	}) => {
@@ -22,21 +21,21 @@ describe("collection.getCollectionTree", () => {
     Other root groups can be created by using user API (`updateCurrentUser`),
     but omitting that for simplicity.
     */
-		const A = await createCollection(task, client, { title: "A" });
-		await createCollection(task, client, {
+		const A = await setupTools.createCollection({ title: "A" });
+		await setupTools.createCollection({
 			title: "A1",
 			parent: { $ref: "collections", $id: A.item._id },
 		});
-		const B = await createCollection(task, client, { title: "B" });
-		await createCollection(task, client, {
+		const B = await setupTools.createCollection({ title: "B" });
+		await setupTools.createCollection({
 			title: "B1",
 			parent: { $ref: "collections", $id: B.item._id },
 		});
-		await createCollection(task, client, {
+		await setupTools.createCollection({
 			title: "B2",
 			parent: { $ref: "collections", $id: B.item._id },
 		});
-		await createCollection(task, client, { title: "C" });
+		await setupTools.createCollection({ title: "C" });
 
 		const tree = await client.collection.getCollectionTree();
 		const visits: string[] = [];

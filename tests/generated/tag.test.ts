@@ -1,14 +1,13 @@
 import { it } from "^/tests/_helpers/vitest";
-import { createCollection, createRaindrop } from "./_helpers";
 
 it("getTagsInCollection", async ({
-	task,
+	setupTools,
 	client,
 	expect,
 	generateTypeTest,
 }) => {
-	const collection = await createCollection(task, client);
-	await createRaindrop(task, client, {
+	const collection = await setupTools.createCollection();
+	await setupTools.createRaindrop({
 		collection: { $id: collection.item._id },
 		tags: ["soup", "salad", "bread"],
 	});
@@ -37,9 +36,14 @@ it("getTagsInCollection", async ({
 	`);
 });
 
-it("renameOrMergeTags", async ({ task, client, expect, generateTypeTest }) => {
-	const collection = await createCollection(task, client);
-	await createRaindrop(task, client, {
+it("renameOrMergeTags", async ({
+	setupTools,
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const collection = await setupTools.createCollection();
+	await setupTools.createRaindrop({
 		collection: { $id: collection.item._id },
 		tags: ["soup", "salad", "bread"],
 	});
@@ -58,13 +62,13 @@ it("renameOrMergeTags", async ({ task, client, expect, generateTypeTest }) => {
 });
 
 it("removeTagsFromCollection", async ({
-	task,
+	setupTools,
 	client,
 	expect,
 	generateTypeTest,
 }) => {
-	const collection = await createCollection(task, client);
-	await createRaindrop(task, client, {
+	const collection = await setupTools.createCollection();
+	await setupTools.createRaindrop({
 		collection: { $id: collection.item._id },
 		tags: ["soup", "salad", "bread"],
 	});

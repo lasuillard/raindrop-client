@@ -1,17 +1,16 @@
 import fs from "node:fs";
 import path from "node:path";
 import { it } from "^/tests/_helpers/vitest";
-import { createCollection } from "./_helpers";
 
 it("getRootCollections", async ({
-	task,
+	setupTools,
 	client,
 	expect,
 	generateTypeTest,
 	resetData: _,
 }) => {
-	await createCollection(task, client);
-	await createCollection(task, client, {
+	await setupTools.createCollection();
+	await setupTools.createCollection({
 		cover: [
 			"https://png.pngtree.com/png-vector/20221217/ourmid/pngtree-example-sample-grungy-stamp-vector-png-image_15560590.png",
 		],
@@ -105,8 +104,13 @@ it("reorderAllCollections", async ({ client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("removeCollections", async ({ task, client, expect, generateTypeTest }) => {
-	const collection = await createCollection(task, client);
+it("removeCollections", async ({
+	setupTools,
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const collection = await setupTools.createCollection();
 
 	const response = await client.collection.removeCollections({
 		ids: [collection.item._id],
@@ -125,13 +129,13 @@ it("removeCollections", async ({ task, client, expect, generateTypeTest }) => {
 });
 
 it("getChildCollections", async ({
-	task,
+	setupTools,
 	client,
 	expect,
 	generateTypeTest,
 }) => {
-	const parent = await createCollection(task, client);
-	await createCollection(task, client, {
+	const parent = await setupTools.createCollection();
+	await setupTools.createCollection({
 		parent: {
 			$ref: "collections",
 			$id: parent.item._id,
@@ -186,8 +190,13 @@ it("getChildCollections", async ({
 	`);
 });
 
-it("getCollection", async ({ task, client, expect, generateTypeTest }) => {
-	const collection = await createCollection(task, client);
+it("getCollection", async ({
+	setupTools,
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const collection = await setupTools.createCollection();
 
 	const response = await client.collection.getCollection(collection.item._id);
 
@@ -230,8 +239,13 @@ it("getCollection", async ({ task, client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("updateCollection", async ({ task, client, expect, generateTypeTest }) => {
-	const collection = await createCollection(task, client);
+it("updateCollection", async ({
+	setupTools,
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const collection = await setupTools.createCollection();
 
 	const response = await client.collection.updateCollection(
 		collection.item._id,
@@ -284,8 +298,13 @@ it("updateCollection", async ({ task, client, expect, generateTypeTest }) => {
 	`);
 });
 
-it("removeCollection", async ({ task, client, expect, generateTypeTest }) => {
-	const collection = await createCollection(task, client);
+it("removeCollection", async ({
+	setupTools,
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const collection = await setupTools.createCollection();
 
 	const response = await client.collection.removeCollection(
 		collection.item._id,
@@ -346,12 +365,12 @@ it("createCollection", async ({ client, expect, generateTypeTest }) => {
 
 // ! FIXME: Polly.js record hash for file upload keep changing
 it.skip("uploadCollectionCover", async ({
-	task,
+	setupTools,
 	client,
 	expect,
 	generateTypeTest,
 }) => {
-	const collection = await createCollection(task, client);
+	const collection = await setupTools.createCollection();
 	const cover = await fs.openAsBlob(path.join(__dirname, "./cover.png"));
 
 	const response = await client.collection.uploadCollectionCover(
@@ -402,10 +421,15 @@ it.skip("uploadCollectionCover", async ({
 	`);
 });
 
-it("mergeCollections", async ({ task, client, expect, generateTypeTest }) => {
-	const one = await createCollection(task, client);
-	const two = await createCollection(task, client);
-	const three = await createCollection(task, client);
+it("mergeCollections", async ({
+	setupTools,
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const one = await setupTools.createCollection();
+	const two = await setupTools.createCollection();
+	const three = await setupTools.createCollection();
 
 	const response = await client.collection.mergeCollections({
 		ids: [one.item._id, two.item._id],
@@ -484,8 +508,13 @@ it("getSystemCollectionStats", async ({ client, expect, generateTypeTest }) => {
 
 it.skip("getCollaborators");
 
-it("shareCollection", async ({ task, client, expect, generateTypeTest }) => {
-	const collection = await createCollection(task, client);
+it("shareCollection", async ({
+	setupTools,
+	client,
+	expect,
+	generateTypeTest,
+}) => {
+	const collection = await setupTools.createCollection();
 
 	const response = await client.collection.shareCollection(
 		collection.item._id,

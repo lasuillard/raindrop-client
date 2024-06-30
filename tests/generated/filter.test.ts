@@ -1,16 +1,15 @@
 import { it } from "^/tests/_helpers/vitest";
-import { createRaindrop } from "./_helpers";
 
 it("getFilters", async ({
-	task,
+	setupTools,
 	client,
 	expect,
 	generateTypeTest,
 	resetData: _,
 }) => {
-	await createRaindrop(task, client);
-	await createRaindrop(task, client, { important: true });
-	await createRaindrop(task, client, { tags: ["science", "novel"] });
+	await setupTools.createRaindrop();
+	await setupTools.createRaindrop({ important: true });
+	await setupTools.createRaindrop({ tags: ["science", "novel"] });
 
 	const response = await client.filter.getFilters(0);
 
