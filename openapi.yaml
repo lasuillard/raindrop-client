@@ -191,7 +191,7 @@ paths:
         in: path
         required: true
         schema:
-          $ref: "#/components/schemas/CollectionID"
+          type: integer
     get:
       operationId: getCollection
       tags:
@@ -229,7 +229,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Response"
+                $ref: "#/components/schemas/SimpleResponse"
 
   /rest/v1/collection:
     post:
@@ -348,7 +348,7 @@ paths:
         in: path
         required: true
         schema:
-          $ref: "#/components/schemas/CollectionID"
+          type: integer
     get:
       operationId: getCollaborators
       tags:
@@ -364,16 +364,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required: [emails, role]
-              properties:
-                role:
-                  $ref: "#/components/schemas/Role"
-                emails:
-                  type: array
-                  items:
-                    type: string
-                    format: email
+              $ref: "#/components/schemas/ShareCollectionRequest"
       responses:
         200:
           description: OK
@@ -392,7 +383,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Response"
+                $ref: "#/components/schemas/SimpleResponse"
 
   /rest/v1/collection/{id}/sharing/{userId}:
     parameters:
@@ -405,7 +396,7 @@ paths:
         in: path
         required: true
         schema:
-          $ref: "#/components/schemas/CollectionID"
+          type: integer
     put:
       operationId: changeCollaboratorAccessLevel
       tags:
@@ -431,7 +422,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Response"
+                $ref: "#/components/schemas/SimpleResponse"
 
   /rest/v1/collection/{id}/join:
     post:
@@ -443,7 +434,7 @@ paths:
           in: path
           required: true
           schema:
-            $ref: "#/components/schemas/CollectionID"
+            type: integer
       responses:
         200:
           description: OK
@@ -474,7 +465,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CoverResponse"
+                $ref: "#/components/schemas/SearchCoversResponse"
 
   /rest/v1/collections/covers:
     get:
@@ -687,7 +678,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/RaindropResponseMany"
+                $ref: "#/components/schemas/GetRaindropsResponse"
     put:
       operationId: updateRaindrops
       tags:
@@ -764,7 +755,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/HighlightResponse"
+                $ref: "#/components/schemas/GetAllHighlightsResponse"
 
   /rest/v1/highlights/{collectionId}:
     get:
@@ -791,7 +782,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/HighlightResponse"
+                $ref: "#/components/schemas/GetHighlightsInCollectionResponse"
 
   /rest/v1/user:
     get:
@@ -804,7 +795,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UserResponse"
+                $ref: "#/components/schemas/GetCurrentUserResponse"
     put:
       operationId: updateCurrentUser
       tags:
@@ -820,7 +811,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/UserResponse"
+                $ref: "#/components/schemas/UpdateCurrentUserResponse"
 
   /rest/v1/user/{name}:
     get:
@@ -839,20 +830,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: "#/components/schemas/Response"
-                  - properties:
-                      _id:
-                        type: integer
-                      email_MD5:
-                        $ref: "#/components/schemas/MD5"
-                      fullName:
-                        type: string
-                      pro:
-                        type: boolean
-                      registered:
-                        type: string
-                        format: date-time
+                $ref: "#/components/schemas/GetPublicUserByNameResponse"
 
   /rest/v1/user/connect/{provider}:
     get:
@@ -903,18 +881,7 @@ paths:
           content:
             application/json:
               schema:
-                allOf:
-                  - $ref: "#/components/schemas/Response"
-                  - properties:
-                      items:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            _id:
-                              type: string
-                            count:
-                              type: integer
+                $ref: "#/components/schemas/GetTagsInCollectionResponse"
     put:
       operationId: renameOrMergeTags
       tags:
@@ -943,7 +910,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Response"
+                $ref: "#/components/schemas/SimpleResponse"
     delete:
       operationId: removeTagsFromCollection
       tags:
@@ -970,7 +937,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Response"
+                $ref: "#/components/schemas/SimpleResponse"
 
   /rest/v1/filters/{collectionId}:
     get:
@@ -998,7 +965,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/FilterResponse"
+                $ref: "#/components/schemas/GetFiltersResponse"
 
   /rest/v1/import/url/parse:
     get:
@@ -1071,21 +1038,6 @@ components:
       type: http
       scheme: bearer
   schemas:
-    Response:
-      type: object
-      required: [result]
-      properties:
-        result:
-          type: boolean
-    ErrorResponse:
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - required: [error, errorMessage]
-          properties:
-            error:
-              type: string
-            errorMessage:
-              type: string
     ObtainToken:
       type: object
       required: [grant_type, code, client_id, client_secret, redirect_uri]
@@ -1141,309 +1093,10 @@ components:
         errorMessage:
           type: string
 
-    CollectionResponseOne:
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - required: [items]
-          properties:
-            item:
-              $ref: "#/components/schemas/Collection"
-    CollectionResponseMany:
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - required: [items]
-          properties:
-            items:
-              type: array
-              items:
-                $ref: "#/components/schemas/Collection"
+    Role:
+      type: string
+      enum: [member, viewer]
 
-    StatResponse:
-      type: object
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - required: [items, meta]
-          properties:
-            items:
-              type: array
-              items:
-                type: object
-                required: [_id, count]
-                properties:
-                  _id:
-                    type: integer
-                  count:
-                    type: integer
-            meta:
-              type: object
-              required: [pro, _id, changedBookmarksDate, duplicates, broken]
-              properties:
-                pro:
-                  type: boolean
-                _id:
-                  type: integer
-                changedBookmarksDate:
-                  type: string
-                  format: date-time
-                duplicates:
-                  type: object
-                  required: [count]
-                  properties:
-                    count:
-                      type: integer
-                broken:
-                  type: object
-                  required: [count]
-                  properties:
-                    count:
-                      type: integer
-    Cover:
-      type: object
-      required: [title, icons]
-      properties:
-        title:
-          type: string
-        icons:
-          type: array
-          items:
-            type: object
-            required: [png] # SVG possibly not given
-            properties:
-              png:
-                type: string
-                format: uri
-              svg:
-                type: string
-                format: uri
-    CoverResponse:
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - required: [items]
-          properties:
-            items:
-              type: array
-              items:
-                $ref: "#/components/schemas/Cover"
-    RaindropBase:
-      type: object
-      required:
-        [
-          created,
-          lastUpdate,
-          order,
-          important,
-          reminder,
-          tags,
-          media,
-          cover,
-          collection,
-          type,
-          excerpt,
-          note,
-          title,
-          link,
-          highlights,
-        ]
-      properties:
-        created:
-          type: string
-          format: date-time
-        lastUpdate:
-          type: string
-          format: date-time
-        sort:
-          type: integer
-        important:
-          type: boolean
-        reminder:
-          type: object
-          required: [date]
-          properties:
-            date:
-              type: string
-              format: uri
-              nullable: true
-        tags:
-          type: array
-          items:
-            type: string
-        media:
-          type: array
-          items:
-            type: object
-            required: [type, link]
-            properties:
-              type:
-                type: string
-                enum: [link, image]
-              link:
-                type: string
-                format: uri
-        cover:
-          type: string
-        collection:
-          $ref: "#/components/schemas/CollectionRef"
-        type:
-          type: string
-        excerpt:
-          type: string
-        note:
-          type: string
-        title:
-          type: string
-        link:
-          type: string
-        highlights:
-          type: array
-          items:
-            $ref: "#/components/schemas/Highlight"
-    Raindrop:
-      allOf:
-        - $ref: "#/components/schemas/RaindropBase"
-        - type: object
-          required: [_id, domain, user, broken, cache, creatorRef]
-          properties:
-            _id:
-              type: integer
-            domain:
-              type: string
-            creatorRef:
-              $ref: "#/components/schemas/CreatorRef"
-            user:
-              $ref: "#/components/schemas/UserRef"
-            broken:
-              type: boolean
-            cache:
-              type: object
-              required: [status, size, created]
-              properties:
-                status:
-                  type: string
-                  enum:
-                    [
-                      ready,
-                      retry,
-                      failed,
-                      invalid-origin,
-                      invalid-timeout,
-                      invalid-size,
-                    ]
-                size:
-                  type: integer
-                created:
-                  type: string
-                  format: date-time
-            file:
-              type: object
-              required: [name, size, type]
-              properties:
-                name:
-                  type: string
-                size:
-                  type: integer
-                type:
-                  type: string
-    RaindropResponseOne:
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - required: [item, author]
-          properties:
-            item:
-              $ref: "#/components/schemas/Raindrop"
-            author:
-              type: boolean
-    RaindropResponseMany:
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - required: [items, count, collectionId]
-          properties:
-            items:
-              type: array
-              items:
-                $ref: "#/components/schemas/Raindrop"
-            count:
-              type: integer
-            collectionId:
-              $ref: "#/components/schemas/CollectionID"
-    CreateRaindrop:
-      allOf:
-        - $ref: "#/components/schemas/RaindropBase"
-        - properties:
-            pleaseParse:
-              type: object
-    Highlight:
-      type: object
-      required: [_id, text, color, note, created]
-      properties:
-        _id:
-          type: string
-        text:
-          type: string
-        color:
-          type: string
-          enum:
-            [
-              blue,
-              brown,
-              cyan,
-              gray,
-              green,
-              indigo,
-              orange,
-              pink,
-              purple,
-              red,
-              teal,
-              yellow,
-            ]
-        note:
-          type: string
-        created:
-          type: string
-    HighlightItem:
-      allOf:
-        - $ref: "#/components/schemas/Highlight"
-        - required: [raindropRef, link, title, tags]
-          properties:
-            raindropRef:
-              type: integer
-            link:
-              type: string
-              format: uri
-            title:
-              type: string
-            tags:
-              type: array
-              items:
-                type: string
-    HighlightResponse:
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - required: [items]
-          properties:
-            items:
-              type: array
-              items:
-                $ref: "#/components/schemas/HighlightItem"
-    Suggest:
-      type: object
-      required: [collections, tags]
-      properties:
-        collections:
-          type: array
-          items:
-            $ref: "#/components/schemas/CollectionRef"
-        tags:
-          type: array
-          items:
-            type: string
-    SuggestResponse:
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - required: [item]
-          properties:
-            item:
-              $ref: "#/components/schemas/Suggest"
     UserConfig:
       type: object
       required:
@@ -1478,7 +1131,7 @@ components:
         raindrops_search_incollection:
           type: boolean
         raindrops_sort:
-          $ref: "#/components/schemas/SortBy"
+          type: string
         default_collection_view:
           type: string
         nested_view_legacy:
@@ -1491,6 +1144,22 @@ components:
           type: boolean
         filters_hide:
           type: boolean
+
+    Group:
+      type: object
+      required: [title, hidden, sort, collections]
+      properties:
+        title:
+          type: string
+        hidden:
+          type: boolean
+        sort:
+          type: integer
+        collections:
+          type: array
+          items:
+            type: integer
+
     User:
       type: object
       required:
@@ -1510,7 +1179,7 @@ components:
           type: string
           format: email
         email_MD5:
-          $ref: "#/components/schemas/MD5"
+          type: string
         files:
           type: object
           required: [used, size, lastCheckPoint]
@@ -1562,201 +1231,6 @@ components:
         lastUpdate:
           type: string
           format: date-time
-
-    Group:
-      type: object
-      required: [title, hidden, sort, collections]
-      properties:
-        title:
-          type: string
-        hidden:
-          type: boolean
-        sort:
-          type: integer
-        collections:
-          type: array
-          items:
-            type: integer
-    UserResponse:
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - required: [user]
-          properties:
-            user:
-              $ref: "#/components/schemas/User"
-    Filter:
-      type: object
-      required: [broken, duplicates, important, notag, tags, types]
-      properties:
-        broken:
-          type: object
-          required: [count]
-          properties:
-            count:
-              type: integer
-        duplicates:
-          type: object
-          required: [count]
-          properties:
-            count:
-              type: integer
-        important:
-          type: object
-          required: [count]
-          properties:
-            count:
-              type: integer
-        notag:
-          type: object
-          required: [count]
-          properties:
-            count:
-              type: integer
-        tags:
-          type: array
-          items:
-            type: object
-            required: [_id, count]
-            properties:
-              _id:
-                type: string
-              count:
-                type: integer
-        types:
-          type: array
-          items:
-            type: object
-            required: [_id, count]
-            properties:
-              _id:
-                type: string
-              count:
-                type: integer
-    FilterResponse:
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - $ref: "#/components/schemas/Filter"
-    UrlParse:
-      type: object
-      required: [title, excerpt, media, type, meta]
-      properties:
-        title:
-          type: string
-        excerpt:
-          type: string
-        media:
-          type: array
-          items:
-            type: object
-            required: [type, link]
-            properties:
-              type:
-                type: string
-              link:
-                type: string
-                format: uri
-        type:
-          type: string
-        meta:
-          type: object
-          required: [possibleArticle, canonical, site, tags]
-          properties:
-            possibleArticle:
-              type: boolean
-            canonical:
-              type: string
-            site:
-              type: string
-            tags:
-              type: array
-              items:
-                type: string
-    UrlParseResponse:
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - required: [item]
-          properties:
-            item:
-              $ref: "#/components/schemas/UrlParse"
-    UrlParseErrorResponse:
-      allOf:
-        - $ref: "#/components/schemas/ErrorResponse"
-        - required: [item]
-          properties:
-            item:
-              $ref: "#/components/schemas/UrlParse"
-    Bookmark:
-      type: object
-      required: [link, title, lastUpdate, tags, excerpt]
-      properties:
-        link:
-          type: string
-          format: uri
-        title:
-          type: string
-        lastUpdate:
-          type: string
-          format: date-time
-        tags:
-          type: array
-          items:
-            type: string
-        excerpt:
-          type: string
-    Folder:
-      type: object
-      required: [title, folders, bookmarks]
-      properties:
-        title:
-          type: string
-        folders:
-          type: array
-          items:
-            $ref: "#/components/schemas/Folder"
-        bookmarks:
-          type: array
-          items:
-            $ref: "#/components/schemas/Bookmark"
-    ImportFileResponse:
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - required: [items]
-          properties:
-            items:
-              type: array
-              items:
-                $ref: "#/components/schemas/Folder"
-    CollectionID:
-      type: integer
-    View:
-      type: string
-      enum: [list, simple, grid, masonry]
-    Sort:
-      type: integer
-    SortBy:
-      type: string
-    Role:
-      type: string
-      enum: [member, viewer]
-
-    MD5:
-      type: string
-
-    ParseUrlResponse:
-      allOf:
-        - $ref: "#/components/schemas/Response"
-        - required: [item]
-          properties:
-            item:
-              $ref: "#/components/schemas/UrlParse"
-
-    ParseUrlErrorResponse:
-      allOf:
-        - $ref: "#/components/schemas/ErrorResponse"
-        - required: [item]
-          properties:
-            item:
-              $ref: "#/components/schemas/UrlParse"
 
     # TODO: Re-declare schema per API responses rather than making it reusable
     UserRef:
@@ -2065,6 +1539,18 @@ components:
               format: date-time
 
     # GetCollaboratorsResponse
+    ShareCollectionRequest:
+      type: object
+      required: [emails, role]
+      properties:
+        role:
+          $ref: "#/components/schemas/Role"
+        emails:
+          type: array
+          items:
+            type: string
+            format: email
+
     ShareCollectionResponse:
       type: object
       properties:
@@ -2077,7 +1563,6 @@ components:
             type: string
             format: email
 
-    # UnshareOrLeaveCollectionResponse
     # ChangeCollaboratorAccessLevelResponse
     # DeleteCollaboratorResponse
     # AcceptInvitationResponse
@@ -3309,6 +2794,18 @@ components:
                 type: string
               count:
                 type: integer
+
+    GetCurrentUserResponse:
+      allOf:
+        - type: object
+          required: [result]
+          properties:
+            result:
+              type: boolean
+        - required: [user]
+          properties:
+            user:
+              $ref: "#/components/schemas/User"
 
     UpdateCurrentUserRequest:
       type: object
