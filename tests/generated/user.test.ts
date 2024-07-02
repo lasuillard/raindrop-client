@@ -3,7 +3,7 @@ import { it } from "^/tests/_helpers/vitest";
 it("getCurrentUser", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.user.getCurrentUser();
 
-	generateTypeTest({ type: "UserResponse" });
+	generateTypeTest({ type: "GetCurrentUserResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "result": true,

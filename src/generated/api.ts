@@ -47,43 +47,6 @@ export interface AcceptInvitation200Response {
 /**
  * 
  * @export
- * @interface Bookmark
- */
-export interface Bookmark {
-    /**
-     * 
-     * @type {string}
-     * @memberof Bookmark
-     */
-    'link': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Bookmark
-     */
-    'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Bookmark
-     */
-    'lastUpdate': string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof Bookmark
-     */
-    'tags': Array<string>;
-    /**
-     * 
-     * @type {string}
-     * @memberof Bookmark
-     */
-    'excerpt': string;
-}
-/**
- * 
- * @export
  * @interface ChangeCollaboratorAccessLevelRequest
  */
 export interface ChangeCollaboratorAccessLevelRequest {
@@ -340,101 +303,6 @@ export type CollectionRefRefEnum = typeof CollectionRefRefEnum[keyof typeof Coll
 /**
  * 
  * @export
- * @interface CollectionResponseMany
- */
-export interface CollectionResponseMany {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CollectionResponseMany
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {Array<Collection>}
-     * @memberof CollectionResponseMany
-     */
-    'items': Array<Collection>;
-}
-/**
- * 
- * @export
- * @interface CollectionResponseOne
- */
-export interface CollectionResponseOne {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CollectionResponseOne
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {Collection}
-     * @memberof CollectionResponseOne
-     */
-    'item'?: Collection;
-}
-/**
- * 
- * @export
- * @interface Cover
- */
-export interface Cover {
-    /**
-     * 
-     * @type {string}
-     * @memberof Cover
-     */
-    'title': string;
-    /**
-     * 
-     * @type {Array<CoverIconsInner>}
-     * @memberof Cover
-     */
-    'icons': Array<CoverIconsInner>;
-}
-/**
- * 
- * @export
- * @interface CoverIconsInner
- */
-export interface CoverIconsInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof CoverIconsInner
-     */
-    'png': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CoverIconsInner
-     */
-    'svg'?: string;
-}
-/**
- * 
- * @export
- * @interface CoverResponse
- */
-export interface CoverResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CoverResponse
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {Array<Cover>}
-     * @memberof CoverResponse
-     */
-    'items': Array<Cover>;
-}
-/**
- * 
- * @export
  * @interface CreateCollectionRequest
  */
 export interface CreateCollectionRequest {
@@ -614,109 +482,6 @@ export interface CreateCollectionResponseItem {
      * @memberof CreateCollectionResponseItem
      */
     '__v': number;
-}
-/**
- * 
- * @export
- * @interface CreateRaindrop
- */
-export interface CreateRaindrop {
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop
-     */
-    'created': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop
-     */
-    'lastUpdate': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof CreateRaindrop
-     */
-    'sort'?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof CreateRaindrop
-     */
-    'important': boolean;
-    /**
-     * 
-     * @type {RaindropBaseReminder}
-     * @memberof CreateRaindrop
-     */
-    'reminder': RaindropBaseReminder;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof CreateRaindrop
-     */
-    'tags': Array<string>;
-    /**
-     * 
-     * @type {Array<RaindropBaseMediaInner>}
-     * @memberof CreateRaindrop
-     */
-    'media': Array<RaindropBaseMediaInner>;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop
-     */
-    'cover': string;
-    /**
-     * 
-     * @type {CollectionRef}
-     * @memberof CreateRaindrop
-     */
-    'collection': CollectionRef;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop
-     */
-    'type': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop
-     */
-    'excerpt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop
-     */
-    'note': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop
-     */
-    'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CreateRaindrop
-     */
-    'link': string;
-    /**
-     * 
-     * @type {Array<Highlight>}
-     * @memberof CreateRaindrop
-     */
-    'highlights': Array<Highlight>;
-    /**
-     * 
-     * @type {object}
-     * @memberof CreateRaindrop
-     */
-    'pleaseParse'?: object;
 }
 /**
  * 
@@ -1065,167 +830,6 @@ export interface CreatorRefOneOf {
 /**
  * 
  * @export
- * @interface ErrorResponse
- */
-export interface ErrorResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ErrorResponse
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorResponse
-     */
-    'error': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ErrorResponse
-     */
-    'errorMessage': string;
-}
-/**
- * 
- * @export
- * @interface Filter
- */
-export interface Filter {
-    /**
-     * 
-     * @type {StatResponseAllOfMetaDuplicates}
-     * @memberof Filter
-     */
-    'broken': StatResponseAllOfMetaDuplicates;
-    /**
-     * 
-     * @type {StatResponseAllOfMetaDuplicates}
-     * @memberof Filter
-     */
-    'duplicates': StatResponseAllOfMetaDuplicates;
-    /**
-     * 
-     * @type {StatResponseAllOfMetaDuplicates}
-     * @memberof Filter
-     */
-    'important': StatResponseAllOfMetaDuplicates;
-    /**
-     * 
-     * @type {StatResponseAllOfMetaDuplicates}
-     * @memberof Filter
-     */
-    'notag': StatResponseAllOfMetaDuplicates;
-    /**
-     * 
-     * @type {Array<FilterTagsInner>}
-     * @memberof Filter
-     */
-    'tags': Array<FilterTagsInner>;
-    /**
-     * 
-     * @type {Array<FilterTagsInner>}
-     * @memberof Filter
-     */
-    'types': Array<FilterTagsInner>;
-}
-/**
- * 
- * @export
- * @interface FilterResponse
- */
-export interface FilterResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof FilterResponse
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {StatResponseAllOfMetaDuplicates}
-     * @memberof FilterResponse
-     */
-    'broken': StatResponseAllOfMetaDuplicates;
-    /**
-     * 
-     * @type {StatResponseAllOfMetaDuplicates}
-     * @memberof FilterResponse
-     */
-    'duplicates': StatResponseAllOfMetaDuplicates;
-    /**
-     * 
-     * @type {StatResponseAllOfMetaDuplicates}
-     * @memberof FilterResponse
-     */
-    'important': StatResponseAllOfMetaDuplicates;
-    /**
-     * 
-     * @type {StatResponseAllOfMetaDuplicates}
-     * @memberof FilterResponse
-     */
-    'notag': StatResponseAllOfMetaDuplicates;
-    /**
-     * 
-     * @type {Array<FilterTagsInner>}
-     * @memberof FilterResponse
-     */
-    'tags': Array<FilterTagsInner>;
-    /**
-     * 
-     * @type {Array<FilterTagsInner>}
-     * @memberof FilterResponse
-     */
-    'types': Array<FilterTagsInner>;
-}
-/**
- * 
- * @export
- * @interface FilterTagsInner
- */
-export interface FilterTagsInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof FilterTagsInner
-     */
-    '_id': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof FilterTagsInner
-     */
-    'count': number;
-}
-/**
- * 
- * @export
- * @interface Folder
- */
-export interface Folder {
-    /**
-     * 
-     * @type {string}
-     * @memberof Folder
-     */
-    'title': string;
-    /**
-     * 
-     * @type {Array<Folder>}
-     * @memberof Folder
-     */
-    'folders': Array<Folder>;
-    /**
-     * 
-     * @type {Array<Bookmark>}
-     * @memberof Folder
-     */
-    'bookmarks': Array<Bookmark>;
-}
-/**
- * 
- * @export
  * @interface GetAllHighlightsResponse
  */
 export interface GetAllHighlightsResponse {
@@ -1459,6 +1063,25 @@ export interface GetCollectionResponse {
 /**
  * 
  * @export
+ * @interface GetCurrentUserResponse
+ */
+export interface GetCurrentUserResponse {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof GetCurrentUserResponse
+     */
+    'result': boolean;
+    /**
+     * 
+     * @type {User}
+     * @memberof GetCurrentUserResponse
+     */
+    'user': User;
+}
+/**
+ * 
+ * @export
  * @interface GetFeaturedCoversResponse
  */
 export interface GetFeaturedCoversResponse {
@@ -1512,7 +1135,7 @@ export interface GetFeaturedCoversResponseItemsInner {
  * @interface GetFiltersResponse
  */
 export interface GetFiltersResponse {
-    [key: string]: FilterTagsInner | any;
+    [key: string]: GetFiltersResponseCreatedInner | any;
 
     /**
      * 
@@ -1528,22 +1151,41 @@ export interface GetFiltersResponse {
     'collectionId': number;
     /**
      * 
-     * @type {Array<FilterTagsInner>}
+     * @type {Array<GetFiltersResponseCreatedInner>}
      * @memberof GetFiltersResponse
      */
-    'created': Array<FilterTagsInner>;
+    'created': Array<GetFiltersResponseCreatedInner>;
     /**
      * 
-     * @type {Array<FilterTagsInner>}
+     * @type {Array<GetFiltersResponseCreatedInner>}
      * @memberof GetFiltersResponse
      */
-    'tags': Array<FilterTagsInner>;
+    'tags': Array<GetFiltersResponseCreatedInner>;
     /**
      * 
-     * @type {Array<FilterTagsInner>}
+     * @type {Array<GetFiltersResponseCreatedInner>}
      * @memberof GetFiltersResponse
      */
-    'types': Array<FilterTagsInner>;
+    'types': Array<GetFiltersResponseCreatedInner>;
+}
+/**
+ * 
+ * @export
+ * @interface GetFiltersResponseCreatedInner
+ */
+export interface GetFiltersResponseCreatedInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof GetFiltersResponseCreatedInner
+     */
+    '_id': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof GetFiltersResponseCreatedInner
+     */
+    'count': number;
 }
 /**
  * 
@@ -1576,49 +1218,6 @@ export type GetOrRefreshToken200Response = TokenErrorResponse | TokenResponse;
  */
 export type GetOrRefreshTokenRequest = ObtainToken | RefreshToken;
 
-/**
- * 
- * @export
- * @interface GetPublicUserByName200Response
- */
-export interface GetPublicUserByName200Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GetPublicUserByName200Response
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof GetPublicUserByName200Response
-     */
-    '_id'?: number;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetPublicUserByName200Response
-     */
-    'email_MD5'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetPublicUserByName200Response
-     */
-    'fullName'?: string;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GetPublicUserByName200Response
-     */
-    'pro'?: boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof GetPublicUserByName200Response
-     */
-    'registered'?: string;
-}
 /**
  * 
  * @export
@@ -2035,44 +1634,6 @@ export interface GetSystemCollectionStatsResponseMeta {
 /**
  * 
  * @export
- * @interface GetTagsInCollection200Response
- */
-export interface GetTagsInCollection200Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof GetTagsInCollection200Response
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {Array<GetTagsInCollection200ResponseAllOfItemsInner>}
-     * @memberof GetTagsInCollection200Response
-     */
-    'items'?: Array<GetTagsInCollection200ResponseAllOfItemsInner>;
-}
-/**
- * 
- * @export
- * @interface GetTagsInCollection200ResponseAllOfItemsInner
- */
-export interface GetTagsInCollection200ResponseAllOfItemsInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof GetTagsInCollection200ResponseAllOfItemsInner
-     */
-    '_id'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof GetTagsInCollection200ResponseAllOfItemsInner
-     */
-    'count'?: number;
-}
-/**
- * 
- * @export
  * @interface GetTagsInCollectionResponse
  */
 export interface GetTagsInCollectionResponse {
@@ -2084,10 +1645,10 @@ export interface GetTagsInCollectionResponse {
     'result': boolean;
     /**
      * 
-     * @type {Array<FilterTagsInner>}
+     * @type {Array<GetFiltersResponseCreatedInner>}
      * @memberof GetTagsInCollectionResponse
      */
-    'items': Array<FilterTagsInner>;
+    'items': Array<GetFiltersResponseCreatedInner>;
 }
 /**
  * 
@@ -2119,178 +1680,6 @@ export interface Group {
      * @memberof Group
      */
     'collections': Array<number>;
-}
-/**
- * 
- * @export
- * @interface Highlight
- */
-export interface Highlight {
-    /**
-     * 
-     * @type {string}
-     * @memberof Highlight
-     */
-    '_id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Highlight
-     */
-    'text': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Highlight
-     */
-    'color': HighlightColorEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof Highlight
-     */
-    'note': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Highlight
-     */
-    'created': string;
-}
-
-export const HighlightColorEnum = {
-    Blue: 'blue',
-    Brown: 'brown',
-    Cyan: 'cyan',
-    Gray: 'gray',
-    Green: 'green',
-    Indigo: 'indigo',
-    Orange: 'orange',
-    Pink: 'pink',
-    Purple: 'purple',
-    Red: 'red',
-    Teal: 'teal',
-    Yellow: 'yellow'
-} as const;
-
-export type HighlightColorEnum = typeof HighlightColorEnum[keyof typeof HighlightColorEnum];
-
-/**
- * 
- * @export
- * @interface HighlightItem
- */
-export interface HighlightItem {
-    /**
-     * 
-     * @type {string}
-     * @memberof HighlightItem
-     */
-    '_id': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HighlightItem
-     */
-    'text': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HighlightItem
-     */
-    'color': HighlightItemColorEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof HighlightItem
-     */
-    'note': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HighlightItem
-     */
-    'created': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof HighlightItem
-     */
-    'raindropRef': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof HighlightItem
-     */
-    'link': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof HighlightItem
-     */
-    'title': string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof HighlightItem
-     */
-    'tags': Array<string>;
-}
-
-export const HighlightItemColorEnum = {
-    Blue: 'blue',
-    Brown: 'brown',
-    Cyan: 'cyan',
-    Gray: 'gray',
-    Green: 'green',
-    Indigo: 'indigo',
-    Orange: 'orange',
-    Pink: 'pink',
-    Purple: 'purple',
-    Red: 'red',
-    Teal: 'teal',
-    Yellow: 'yellow'
-} as const;
-
-export type HighlightItemColorEnum = typeof HighlightItemColorEnum[keyof typeof HighlightItemColorEnum];
-
-/**
- * 
- * @export
- * @interface HighlightResponse
- */
-export interface HighlightResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof HighlightResponse
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {Array<HighlightItem>}
-     * @memberof HighlightResponse
-     */
-    'items': Array<HighlightItem>;
-}
-/**
- * 
- * @export
- * @interface ImportFileResponse
- */
-export interface ImportFileResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ImportFileResponse
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {Array<Folder>}
-     * @memberof ImportFileResponse
-     */
-    'items': Array<Folder>;
 }
 /**
  * 
@@ -2619,450 +2008,6 @@ export interface ParseURLResponseItemMeta {
 /**
  * 
  * @export
- * @interface ParseUrlErrorResponse
- */
-export interface ParseUrlErrorResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ParseUrlErrorResponse
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof ParseUrlErrorResponse
-     */
-    'error': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ParseUrlErrorResponse
-     */
-    'errorMessage': string;
-    /**
-     * 
-     * @type {UrlParse}
-     * @memberof ParseUrlErrorResponse
-     */
-    'item': UrlParse;
-}
-/**
- * 
- * @export
- * @interface ParseUrlResponse
- */
-export interface ParseUrlResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof ParseUrlResponse
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {UrlParse}
-     * @memberof ParseUrlResponse
-     */
-    'item': UrlParse;
-}
-/**
- * 
- * @export
- * @interface Raindrop
- */
-export interface Raindrop {
-    /**
-     * 
-     * @type {string}
-     * @memberof Raindrop
-     */
-    'created': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Raindrop
-     */
-    'lastUpdate': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof Raindrop
-     */
-    'sort'?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Raindrop
-     */
-    'important': boolean;
-    /**
-     * 
-     * @type {RaindropBaseReminder}
-     * @memberof Raindrop
-     */
-    'reminder': RaindropBaseReminder;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof Raindrop
-     */
-    'tags': Array<string>;
-    /**
-     * 
-     * @type {Array<RaindropBaseMediaInner>}
-     * @memberof Raindrop
-     */
-    'media': Array<RaindropBaseMediaInner>;
-    /**
-     * 
-     * @type {string}
-     * @memberof Raindrop
-     */
-    'cover': string;
-    /**
-     * 
-     * @type {CollectionRef}
-     * @memberof Raindrop
-     */
-    'collection': CollectionRef;
-    /**
-     * 
-     * @type {string}
-     * @memberof Raindrop
-     */
-    'type': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Raindrop
-     */
-    'excerpt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Raindrop
-     */
-    'note': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Raindrop
-     */
-    'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Raindrop
-     */
-    'link': string;
-    /**
-     * 
-     * @type {Array<Highlight>}
-     * @memberof Raindrop
-     */
-    'highlights': Array<Highlight>;
-    /**
-     * 
-     * @type {number}
-     * @memberof Raindrop
-     */
-    '_id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof Raindrop
-     */
-    'domain': string;
-    /**
-     * 
-     * @type {CreatorRef}
-     * @memberof Raindrop
-     */
-    'creatorRef': CreatorRef;
-    /**
-     * 
-     * @type {UserRef}
-     * @memberof Raindrop
-     */
-    'user': UserRef;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Raindrop
-     */
-    'broken': boolean;
-    /**
-     * 
-     * @type {RaindropAllOfCache}
-     * @memberof Raindrop
-     */
-    'cache': RaindropAllOfCache;
-    /**
-     * 
-     * @type {RaindropAllOfFile}
-     * @memberof Raindrop
-     */
-    'file'?: RaindropAllOfFile;
-}
-/**
- * 
- * @export
- * @interface RaindropAllOfCache
- */
-export interface RaindropAllOfCache {
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropAllOfCache
-     */
-    'status': RaindropAllOfCacheStatusEnum;
-    /**
-     * 
-     * @type {number}
-     * @memberof RaindropAllOfCache
-     */
-    'size': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropAllOfCache
-     */
-    'created': string;
-}
-
-export const RaindropAllOfCacheStatusEnum = {
-    Ready: 'ready',
-    Retry: 'retry',
-    Failed: 'failed',
-    InvalidMinusOrigin: 'invalid-origin',
-    InvalidMinusTimeout: 'invalid-timeout',
-    InvalidMinusSize: 'invalid-size'
-} as const;
-
-export type RaindropAllOfCacheStatusEnum = typeof RaindropAllOfCacheStatusEnum[keyof typeof RaindropAllOfCacheStatusEnum];
-
-/**
- * 
- * @export
- * @interface RaindropAllOfFile
- */
-export interface RaindropAllOfFile {
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropAllOfFile
-     */
-    'name': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof RaindropAllOfFile
-     */
-    'size': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropAllOfFile
-     */
-    'type': string;
-}
-/**
- * 
- * @export
- * @interface RaindropBase
- */
-export interface RaindropBase {
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropBase
-     */
-    'created': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropBase
-     */
-    'lastUpdate': string;
-    /**
-     * 
-     * @type {number}
-     * @memberof RaindropBase
-     */
-    'sort'?: number;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RaindropBase
-     */
-    'important': boolean;
-    /**
-     * 
-     * @type {RaindropBaseReminder}
-     * @memberof RaindropBase
-     */
-    'reminder': RaindropBaseReminder;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof RaindropBase
-     */
-    'tags': Array<string>;
-    /**
-     * 
-     * @type {Array<RaindropBaseMediaInner>}
-     * @memberof RaindropBase
-     */
-    'media': Array<RaindropBaseMediaInner>;
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropBase
-     */
-    'cover': string;
-    /**
-     * 
-     * @type {CollectionRef}
-     * @memberof RaindropBase
-     */
-    'collection': CollectionRef;
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropBase
-     */
-    'type': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropBase
-     */
-    'excerpt': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropBase
-     */
-    'note': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropBase
-     */
-    'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropBase
-     */
-    'link': string;
-    /**
-     * 
-     * @type {Array<Highlight>}
-     * @memberof RaindropBase
-     */
-    'highlights': Array<Highlight>;
-}
-/**
- * 
- * @export
- * @interface RaindropBaseMediaInner
- */
-export interface RaindropBaseMediaInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropBaseMediaInner
-     */
-    'type': RaindropBaseMediaInnerTypeEnum;
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropBaseMediaInner
-     */
-    'link': string;
-}
-
-export const RaindropBaseMediaInnerTypeEnum = {
-    Link: 'link',
-    Image: 'image'
-} as const;
-
-export type RaindropBaseMediaInnerTypeEnum = typeof RaindropBaseMediaInnerTypeEnum[keyof typeof RaindropBaseMediaInnerTypeEnum];
-
-/**
- * 
- * @export
- * @interface RaindropBaseReminder
- */
-export interface RaindropBaseReminder {
-    /**
-     * 
-     * @type {string}
-     * @memberof RaindropBaseReminder
-     */
-    'date': string | null;
-}
-/**
- * 
- * @export
- * @interface RaindropResponseMany
- */
-export interface RaindropResponseMany {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RaindropResponseMany
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {Array<Raindrop>}
-     * @memberof RaindropResponseMany
-     */
-    'items': Array<Raindrop>;
-    /**
-     * 
-     * @type {number}
-     * @memberof RaindropResponseMany
-     */
-    'count': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof RaindropResponseMany
-     */
-    'collectionId': number;
-}
-/**
- * 
- * @export
- * @interface RaindropResponseOne
- */
-export interface RaindropResponseOne {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RaindropResponseOne
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {Raindrop}
-     * @memberof RaindropResponseOne
-     */
-    'item': Raindrop;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof RaindropResponseOne
-     */
-    'author': boolean;
-}
-/**
- * 
- * @export
  * @interface RefreshToken
  */
 export interface RefreshToken {
@@ -3381,19 +2326,6 @@ export interface ReorderAllCollectionsRequest {
 /**
  * 
  * @export
- * @interface Response
- */
-export interface Response {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof Response
-     */
-    'result': boolean;
-}
-/**
- * 
- * @export
  * @enum {string}
  */
 
@@ -3512,119 +2444,6 @@ export interface SimpleResponse {
 /**
  * 
  * @export
- * @interface StatResponse
- */
-export interface StatResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof StatResponse
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {Array<StatResponseAllOfItems>}
-     * @memberof StatResponse
-     */
-    'items': Array<StatResponseAllOfItems>;
-    /**
-     * 
-     * @type {StatResponseAllOfMeta}
-     * @memberof StatResponse
-     */
-    'meta': StatResponseAllOfMeta;
-}
-/**
- * 
- * @export
- * @interface StatResponseAllOfItems
- */
-export interface StatResponseAllOfItems {
-    /**
-     * 
-     * @type {number}
-     * @memberof StatResponseAllOfItems
-     */
-    '_id': number;
-    /**
-     * 
-     * @type {number}
-     * @memberof StatResponseAllOfItems
-     */
-    'count': number;
-}
-/**
- * 
- * @export
- * @interface StatResponseAllOfMeta
- */
-export interface StatResponseAllOfMeta {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof StatResponseAllOfMeta
-     */
-    'pro': boolean;
-    /**
-     * 
-     * @type {number}
-     * @memberof StatResponseAllOfMeta
-     */
-    '_id': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof StatResponseAllOfMeta
-     */
-    'changedBookmarksDate': string;
-    /**
-     * 
-     * @type {StatResponseAllOfMetaDuplicates}
-     * @memberof StatResponseAllOfMeta
-     */
-    'duplicates': StatResponseAllOfMetaDuplicates;
-    /**
-     * 
-     * @type {StatResponseAllOfMetaDuplicates}
-     * @memberof StatResponseAllOfMeta
-     */
-    'broken': StatResponseAllOfMetaDuplicates;
-}
-/**
- * 
- * @export
- * @interface StatResponseAllOfMetaDuplicates
- */
-export interface StatResponseAllOfMetaDuplicates {
-    /**
-     * 
-     * @type {number}
-     * @memberof StatResponseAllOfMetaDuplicates
-     */
-    'count': number;
-}
-/**
- * 
- * @export
- * @interface Suggest
- */
-export interface Suggest {
-    /**
-     * 
-     * @type {Array<CollectionRef>}
-     * @memberof Suggest
-     */
-    'collections': Array<CollectionRef>;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof Suggest
-     */
-    'tags': Array<string>;
-}
-/**
- * 
- * @export
  * @interface SuggestForExistingBookmarkResponse
  */
 export interface SuggestForExistingBookmarkResponse {
@@ -3660,25 +2479,6 @@ export interface SuggestForNewBookmarkResponse {
      * @memberof SuggestForNewBookmarkResponse
      */
     'result'?: boolean;
-}
-/**
- * 
- * @export
- * @interface SuggestResponse
- */
-export interface SuggestResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof SuggestResponse
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {Suggest}
-     * @memberof SuggestResponse
-     */
-    'item': Suggest;
 }
 /**
  * 
@@ -4486,10 +3286,10 @@ export interface UploadFileResponseItem {
     'excerpt': string;
     /**
      * 
-     * @type {RaindropAllOfFile}
+     * @type {UploadFileResponseItemFile}
      * @memberof UploadFileResponseItem
      */
-    'file': RaindropAllOfFile;
+    'file': UploadFileResponseItemFile;
     /**
      * 
      * @type {string}
@@ -4550,6 +3350,31 @@ export interface UploadFileResponseItem {
      * @memberof UploadFileResponseItem
      */
     'user': UserRef;
+}
+/**
+ * 
+ * @export
+ * @interface UploadFileResponseItemFile
+ */
+export interface UploadFileResponseItemFile {
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItemFile
+     */
+    'name': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UploadFileResponseItemFile
+     */
+    'size': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof UploadFileResponseItemFile
+     */
+    'type': string;
 }
 /**
  * 
@@ -4690,143 +3515,6 @@ export interface UploadRaindropCoverResponseItem {
      * @memberof UploadRaindropCoverResponseItem
      */
     'user': UserRef;
-}
-/**
- * 
- * @export
- * @interface UrlParse
- */
-export interface UrlParse {
-    /**
-     * 
-     * @type {string}
-     * @memberof UrlParse
-     */
-    'title': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UrlParse
-     */
-    'excerpt': string;
-    /**
-     * 
-     * @type {Array<UrlParseMediaInner>}
-     * @memberof UrlParse
-     */
-    'media': Array<UrlParseMediaInner>;
-    /**
-     * 
-     * @type {string}
-     * @memberof UrlParse
-     */
-    'type': string;
-    /**
-     * 
-     * @type {UrlParseMeta}
-     * @memberof UrlParse
-     */
-    'meta': UrlParseMeta;
-}
-/**
- * 
- * @export
- * @interface UrlParseErrorResponse
- */
-export interface UrlParseErrorResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UrlParseErrorResponse
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof UrlParseErrorResponse
-     */
-    'error': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UrlParseErrorResponse
-     */
-    'errorMessage': string;
-    /**
-     * 
-     * @type {UrlParse}
-     * @memberof UrlParseErrorResponse
-     */
-    'item': UrlParse;
-}
-/**
- * 
- * @export
- * @interface UrlParseMediaInner
- */
-export interface UrlParseMediaInner {
-    /**
-     * 
-     * @type {string}
-     * @memberof UrlParseMediaInner
-     */
-    'type': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UrlParseMediaInner
-     */
-    'link': string;
-}
-/**
- * 
- * @export
- * @interface UrlParseMeta
- */
-export interface UrlParseMeta {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UrlParseMeta
-     */
-    'possibleArticle': boolean;
-    /**
-     * 
-     * @type {string}
-     * @memberof UrlParseMeta
-     */
-    'canonical': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof UrlParseMeta
-     */
-    'site': string;
-    /**
-     * 
-     * @type {Array<string>}
-     * @memberof UrlParseMeta
-     */
-    'tags': Array<string>;
-}
-/**
- * 
- * @export
- * @interface UrlParseResponse
- */
-export interface UrlParseResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UrlParseResponse
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {UrlParse}
-     * @memberof UrlParseResponse
-     */
-    'item': UrlParse;
 }
 /**
  * 
@@ -5112,25 +3800,6 @@ export interface UserRef {
 /**
  * 
  * @export
- * @interface UserResponse
- */
-export interface UserResponse {
-    /**
-     * 
-     * @type {boolean}
-     * @memberof UserResponse
-     */
-    'result': boolean;
-    /**
-     * 
-     * @type {User}
-     * @memberof UserResponse
-     */
-    'user': User;
-}
-/**
- * 
- * @export
  * @interface UserTfa
  */
 export interface UserTfa {
@@ -5141,22 +3810,6 @@ export interface UserTfa {
      */
     'enabled'?: boolean;
 }
-/**
- * 
- * @export
- * @enum {string}
- */
-
-export const View = {
-    List: 'list',
-    Simple: 'simple',
-    Grid: 'grid',
-    Masonry: 'masonry'
-} as const;
-
-export type View = typeof View[keyof typeof View];
-
-
 
 /**
  * AuthenticationApi - axios parameter creator
@@ -6183,7 +4836,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async deleteCollaborator(userId: number, id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async deleteCollaborator(userId: number, id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimpleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.deleteCollaborator(userId, id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.deleteCollaborator']?.[localVarOperationServerIndex]?.url;
@@ -6297,7 +4950,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeCollection(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async removeCollection(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimpleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeCollection(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.removeCollection']?.[localVarOperationServerIndex]?.url;
@@ -6333,7 +4986,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async searchCovers(text: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<CoverResponse>> {
+        async searchCovers(text: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SearchCoversResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.searchCovers(text, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.searchCovers']?.[localVarOperationServerIndex]?.url;
@@ -6358,7 +5011,7 @@ export const CollectionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async unshareOrLeaveCollection(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async unshareOrLeaveCollection(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimpleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.unshareOrLeaveCollection(id, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['CollectionApi.unshareOrLeaveCollection']?.[localVarOperationServerIndex]?.url;
@@ -6436,7 +5089,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        deleteCollaborator(userId: number, id: number, options?: any): AxiosPromise<Response> {
+        deleteCollaborator(userId: number, id: number, options?: any): AxiosPromise<SimpleResponse> {
             return localVarFp.deleteCollaborator(userId, id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -6520,7 +5173,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeCollection(id: number, options?: any): AxiosPromise<Response> {
+        removeCollection(id: number, options?: any): AxiosPromise<SimpleResponse> {
             return localVarFp.removeCollection(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -6547,7 +5200,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        searchCovers(text: string, options?: any): AxiosPromise<CoverResponse> {
+        searchCovers(text: string, options?: any): AxiosPromise<SearchCoversResponse> {
             return localVarFp.searchCovers(text, options).then((request) => request(axios, basePath));
         },
         /**
@@ -6566,7 +5219,7 @@ export const CollectionApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        unshareOrLeaveCollection(id: number, options?: any): AxiosPromise<Response> {
+        unshareOrLeaveCollection(id: number, options?: any): AxiosPromise<SimpleResponse> {
             return localVarFp.unshareOrLeaveCollection(id, options).then((request) => request(axios, basePath));
         },
         /**
@@ -6904,7 +5557,7 @@ export const FilterApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getFilters(collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FilterResponse>> {
+        async getFilters(collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetFiltersResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getFilters(collectionId, tagsSort, search, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['FilterApi.getFilters']?.[localVarOperationServerIndex]?.url;
@@ -6928,7 +5581,7 @@ export const FilterApiFactory = function (configuration?: Configuration, basePat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getFilters(collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options?: any): AxiosPromise<FilterResponse> {
+        getFilters(collectionId: number, tagsSort?: GetFiltersTagsSortEnum, search?: string, options?: any): AxiosPromise<GetFiltersResponse> {
             return localVarFp.getFilters(collectionId, tagsSort, search, options).then((request) => request(axios, basePath));
         },
     };
@@ -7156,7 +5809,7 @@ export const HighlightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getAllHighlights(page?: number, perpage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<HighlightResponse>> {
+        async getAllHighlights(page?: number, perpage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetAllHighlightsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getAllHighlights(page, perpage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['HighlightApi.getAllHighlights']?.[localVarOperationServerIndex]?.url;
@@ -7170,7 +5823,7 @@ export const HighlightApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getHighlightsInCollection(collectionId: number, page?: number, perpage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<HighlightResponse>> {
+        async getHighlightsInCollection(collectionId: number, page?: number, perpage?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetHighlightsInCollectionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getHighlightsInCollection(collectionId, page, perpage, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['HighlightApi.getHighlightsInCollection']?.[localVarOperationServerIndex]?.url;
@@ -7218,7 +5871,7 @@ export const HighlightApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getAllHighlights(page?: number, perpage?: number, options?: any): AxiosPromise<HighlightResponse> {
+        getAllHighlights(page?: number, perpage?: number, options?: any): AxiosPromise<GetAllHighlightsResponse> {
             return localVarFp.getAllHighlights(page, perpage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -7229,7 +5882,7 @@ export const HighlightApiFactory = function (configuration?: Configuration, base
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getHighlightsInCollection(collectionId: number, page?: number, perpage?: number, options?: any): AxiosPromise<HighlightResponse> {
+        getHighlightsInCollection(collectionId: number, page?: number, perpage?: number, options?: any): AxiosPromise<GetHighlightsInCollectionResponse> {
             return localVarFp.getHighlightsInCollection(collectionId, page, perpage, options).then((request) => request(axios, basePath));
         },
         /**
@@ -8175,7 +6828,7 @@ export const RaindropApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<RaindropResponseMany>> {
+        async getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetRaindropsResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getRaindrops(collectionId, sort, perpage, page, search, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['RaindropApi.getRaindrops']?.[localVarOperationServerIndex]?.url;
@@ -8339,7 +6992,7 @@ export const RaindropApiFactory = function (configuration?: Configuration, baseP
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: any): AxiosPromise<RaindropResponseMany> {
+        getRaindrops(collectionId: number, sort?: string, perpage?: number, page?: number, search?: string, options?: any): AxiosPromise<GetRaindropsResponse> {
             return localVarFp.getRaindrops(collectionId, sort, perpage, page, search, options).then((request) => request(axios, basePath));
         },
         /**
@@ -8721,7 +7374,7 @@ export const TagApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getTagsInCollection(collectionId?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTagsInCollection200Response>> {
+        async getTagsInCollection(collectionId?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetTagsInCollectionResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getTagsInCollection(collectionId, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TagApi.getTagsInCollection']?.[localVarOperationServerIndex]?.url;
@@ -8734,7 +7387,7 @@ export const TagApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async removeTagsFromCollection(collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async removeTagsFromCollection(collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimpleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.removeTagsFromCollection(collectionId, removeTagsFromCollectionRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TagApi.removeTagsFromCollection']?.[localVarOperationServerIndex]?.url;
@@ -8747,7 +7400,7 @@ export const TagApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async renameOrMergeTags(collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Response>> {
+        async renameOrMergeTags(collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<SimpleResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.renameOrMergeTags(collectionId, renameOrMergeTagsRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['TagApi.renameOrMergeTags']?.[localVarOperationServerIndex]?.url;
@@ -8769,7 +7422,7 @@ export const TagApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getTagsInCollection(collectionId?: number, options?: any): AxiosPromise<GetTagsInCollection200Response> {
+        getTagsInCollection(collectionId?: number, options?: any): AxiosPromise<GetTagsInCollectionResponse> {
             return localVarFp.getTagsInCollection(collectionId, options).then((request) => request(axios, basePath));
         },
         /**
@@ -8779,7 +7432,7 @@ export const TagApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        removeTagsFromCollection(collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options?: any): AxiosPromise<Response> {
+        removeTagsFromCollection(collectionId?: number, removeTagsFromCollectionRequest?: RemoveTagsFromCollectionRequest, options?: any): AxiosPromise<SimpleResponse> {
             return localVarFp.removeTagsFromCollection(collectionId, removeTagsFromCollectionRequest, options).then((request) => request(axios, basePath));
         },
         /**
@@ -8789,7 +7442,7 @@ export const TagApiFactory = function (configuration?: Configuration, basePath?:
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        renameOrMergeTags(collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options?: any): AxiosPromise<Response> {
+        renameOrMergeTags(collectionId?: number, renameOrMergeTagsRequest?: RenameOrMergeTagsRequest, options?: any): AxiosPromise<SimpleResponse> {
             return localVarFp.renameOrMergeTags(collectionId, renameOrMergeTagsRequest, options).then((request) => request(axios, basePath));
         },
     };
@@ -9099,7 +7752,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getCurrentUser(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+        async getCurrentUser(options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetCurrentUserResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getCurrentUser(options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.getCurrentUser']?.[localVarOperationServerIndex]?.url;
@@ -9111,7 +7764,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getPublicUserByName(name: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPublicUserByName200Response>> {
+        async getPublicUserByName(name: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetPublicUserByNameResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.getPublicUserByName(name, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.getPublicUserByName']?.[localVarOperationServerIndex]?.url;
@@ -9134,7 +7787,7 @@ export const UserApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async updateCurrentUser(updateCurrentUserRequest?: UpdateCurrentUserRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UserResponse>> {
+        async updateCurrentUser(updateCurrentUserRequest?: UpdateCurrentUserRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<UpdateCurrentUserResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.updateCurrentUser(updateCurrentUserRequest, options);
             const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
             const localVarOperationServerBasePath = operationServerMap['UserApi.updateCurrentUser']?.[localVarOperationServerIndex]?.url;
@@ -9173,7 +7826,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getCurrentUser(options?: any): AxiosPromise<UserResponse> {
+        getCurrentUser(options?: any): AxiosPromise<GetCurrentUserResponse> {
             return localVarFp.getCurrentUser(options).then((request) => request(axios, basePath));
         },
         /**
@@ -9182,7 +7835,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getPublicUserByName(name: number, options?: any): AxiosPromise<GetPublicUserByName200Response> {
+        getPublicUserByName(name: number, options?: any): AxiosPromise<GetPublicUserByNameResponse> {
             return localVarFp.getPublicUserByName(name, options).then((request) => request(axios, basePath));
         },
         /**
@@ -9199,7 +7852,7 @@ export const UserApiFactory = function (configuration?: Configuration, basePath?
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        updateCurrentUser(updateCurrentUserRequest?: UpdateCurrentUserRequest, options?: any): AxiosPromise<UserResponse> {
+        updateCurrentUser(updateCurrentUserRequest?: UpdateCurrentUserRequest, options?: any): AxiosPromise<UpdateCurrentUserResponse> {
             return localVarFp.updateCurrentUser(updateCurrentUserRequest, options).then((request) => request(axios, basePath));
         },
     };

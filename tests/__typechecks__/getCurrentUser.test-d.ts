@@ -1,8 +1,8 @@
 import { assertType, it } from "vitest";
-import type { UserResponse } from "~/generated/api";
+import type { GetCurrentUserResponse } from "~/generated/api";
 
 it("getCurrentUser", () => {
-	assertType<UserResponse>({
+	assertType<GetCurrentUserResponse>({
 		result: true,
 		user: {
 			tfa: { enabled: false },
