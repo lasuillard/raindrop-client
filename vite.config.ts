@@ -37,9 +37,7 @@ export default defineConfig({
 		include: ["tests/**/*.{test,spec}.{js,ts}"],
 		exclude: ["**/__mocks__/*"],
 		reporters: ["junit"],
-		outputFile: {
-			junit: "./junit.xml",
-		},
+		// NOTE: outputFile should passed to CLI to avoid report being overwritten
 		coverage: {
 			all: true,
 			include: ["src/**"],

@@ -40,7 +40,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: false
-          files: junit.xml
+          files: junit.xml,typecheck.junit.xml
 
       - name: Upload coverage report
         uses: codecov/codecov-action@v4

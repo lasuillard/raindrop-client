@@ -30,8 +30,8 @@
 		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"test": "yarn test:unit && yarn test:type",
-		"test:unit": "vitest --coverage --run",
-		"test:type": "vitest --typecheck.only --run",
+		"test:unit": "vitest --coverage --run --outputFile.junit=./junit.xml",
+		"test:type": "vitest --typecheck.only --run --outputFile.junit=./typecheck.junit.xml",
 		"make-docs": "yarn run typedoc --plugin typedoc-plugin-missing-exports src"
 	},
 	"devDependencies": {
