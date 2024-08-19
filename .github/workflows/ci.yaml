@@ -30,6 +30,18 @@ jobs:
       - uses: pre-commit-ci/lite-action@v1.0.2
         if: always()
 
+      - name: Try build
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        run: yarn run build
+
+      - name: Upload test results to codecov
+        uses: codecov/test-results-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
+          files: junit.xml
+
       - name: Upload coverage report
         uses: codecov/codecov-action@v4
         with:

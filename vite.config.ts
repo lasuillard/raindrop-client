@@ -1,4 +1,5 @@
 import { resolve } from "node:path";
+import { codecovVitePlugin } from "@codecov/vite-plugin";
 import dts from "vite-plugin-dts";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
@@ -9,6 +10,11 @@ export default defineConfig({
 		tsconfigPaths(),
 		dts({
 			rollupTypes: true,
+		}),
+		codecovVitePlugin({
+			enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
+			bundleName: "raindrop-client",
+			uploadToken: process.env.CODECOV_TOKEN,
 		}),
 	],
 	build: {
@@ -30,6 +36,10 @@ export default defineConfig({
 		testTimeout: 10000,
 		include: ["tests/**/*.{test,spec}.{js,ts}"],
 		exclude: ["**/__mocks__/*"],
+		reporters: ["junit"],
+		outputFile: {
+			junit: "./junit.xml",
+		},
 		coverage: {
 			all: true,
 			include: ["src/**"],
