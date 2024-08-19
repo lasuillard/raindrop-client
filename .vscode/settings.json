@@ -1,6 +1,6 @@
 {
 	"conventionalCommits.scopes": ["deps-dev", "deps", "vscode", "workspace"],
-	"cSpell.words": ["openapi"],
+	"cSpell.words": ["CODECOV", "openapi", "typecheck"],
 	"editor.codeActionsOnSave": {
 		"quickfix.biome": "explicit",
 		"source.organizeImports.biome": "explicit"
