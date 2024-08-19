@@ -1,4 +1,6 @@
 docs/
+junit.xml
+typecheck.junit.xml
 
 # User hook scripts for VSC devcontainer lifecycle
 .devcontainer/initializeCommand/
