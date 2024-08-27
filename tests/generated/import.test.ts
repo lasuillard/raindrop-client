@@ -41,15 +41,15 @@ it("checkURLsExist", async ({
 		{
 		  "duplicates": [
 		    {
-		      "_id": 807603868,
+		      "_id": 842212832,
 		      "link": "https://raindrop.com",
 		    },
 		  ],
-		  "id": 807603868,
+		  "id": 842212832,
 		  "ids": [
-		    807603868,
+		    842212832,
 		  ],
-		  "result": true,
+		  "result": false,
 		}
 	`);
 });

@@ -1259,6 +1259,7 @@ components:
 
     CollectionRef:
       type: object
+      nullable: true
       required: [$ref, $id]
       properties:
         $ref:
@@ -1305,6 +1306,7 @@ components:
           # color,
           access,
           author,
+          parent,
         ]
       properties:
         _id:
@@ -1348,6 +1350,9 @@ components:
           $ref: "#/components/schemas/CollectionAccess"
         author:
           type: boolean
+        parent:
+          type: object
+          nullable: true
 
     SimpleResponse:
       type: object
@@ -1466,12 +1471,15 @@ components:
           allOf:
             - $ref: "#/components/schemas/Collection"
             - type: object
-              required: [__v, creatorRef]
+              required: [__v, creatorRef, parent]
               properties:
                 __v:
                   type: integer
                 creatorRef:
                   type: integer
+                parent:
+                  type: object
+                  nullable: true
 
     UploadCollectionCoverResponse:
       type: object
@@ -2845,15 +2853,13 @@ components:
         user:
           allOf:
             - $ref: "#/components/schemas/User"
-            - required: [__v]
-              properties:
+            - properties:
                 __v:
                   type: integer
         item:
           allOf:
             - $ref: "#/components/schemas/User"
-            - required: [__v]
-              properties:
+            - properties:
                 __v:
                   type: integer
 

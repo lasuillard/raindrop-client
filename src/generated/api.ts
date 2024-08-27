@@ -236,6 +236,12 @@ export interface Collection {
      * @memberof Collection
      */
     'author': boolean;
+    /**
+     * 
+     * @type {object}
+     * @memberof Collection
+     */
+    'parent': object | null;
 }
 /**
  * 
@@ -335,7 +341,7 @@ export interface CreateCollectionRequest {
      * @type {CollectionRef}
      * @memberof CreateCollectionRequest
      */
-    'parent'?: CollectionRef;
+    'parent'?: CollectionRef | null;
     /**
      * 
      * @type {Array<string>}
@@ -476,6 +482,12 @@ export interface CreateCollectionResponseItem {
      * @memberof CreateCollectionResponseItem
      */
     'author': boolean;
+    /**
+     * 
+     * @type {object}
+     * @memberof CreateCollectionResponseItem
+     */
+    'parent': object | null;
     /**
      * 
      * @type {number}
@@ -654,7 +666,7 @@ export interface CreateRaindropResponseItem {
      * @type {CollectionRef}
      * @memberof CreateRaindropResponseItem
      */
-    'collection': CollectionRef;
+    'collection': CollectionRef | null;
     /**
      * 
      * @type {number}
@@ -1039,7 +1051,7 @@ export interface GetChildCollectionsResponseItemsInner {
      * @type {CollectionRef}
      * @memberof GetChildCollectionsResponseItemsInner
      */
-    'parent': CollectionRef;
+    'parent': CollectionRef | null;
 }
 /**
  * 
@@ -1365,7 +1377,7 @@ export interface GetRaindropResponseItem {
      * @type {CollectionRef}
      * @memberof GetRaindropResponseItem
      */
-    'collection': CollectionRef;
+    'collection': CollectionRef | null;
     /**
      * 
      * @type {number}
@@ -2136,7 +2148,7 @@ export interface RemoveRaindropResponseItem {
      * @type {CollectionRef}
      * @memberof RemoveRaindropResponseItem
      */
-    'collection': CollectionRef;
+    'collection': CollectionRef | null;
     /**
      * 
      * @type {number}
@@ -2585,7 +2597,7 @@ export interface UpdateCollectionRequest {
      * @type {CollectionRef}
      * @memberof UpdateCollectionRequest
      */
-    'parent'?: CollectionRef;
+    'parent'?: CollectionRef | null;
     /**
      * 
      * @type {Array<string>}
@@ -2842,7 +2854,7 @@ export interface UpdateCurrentUserResponseUser {
      * @type {number}
      * @memberof UpdateCurrentUserResponseUser
      */
-    '__v': number;
+    '__v'?: number;
 }
 /**
  * 
@@ -2886,7 +2898,7 @@ export interface UpdateRaindropResponseItem {
      * @type {CollectionRef}
      * @memberof UpdateRaindropResponseItem
      */
-    'collection': CollectionRef;
+    'collection': CollectionRef | null;
     /**
      * 
      * @type {number}
@@ -3200,6 +3212,12 @@ export interface UploadCollectionCoverResponseItem {
     'author': boolean;
     /**
      * 
+     * @type {object}
+     * @memberof UploadCollectionCoverResponseItem
+     */
+    'parent': object | null;
+    /**
+     * 
      * @type {number}
      * @memberof UploadCollectionCoverResponseItem
      */
@@ -3247,7 +3265,7 @@ export interface UploadFileResponseItem {
      * @type {CollectionRef}
      * @memberof UploadFileResponseItem
      */
-    'collection': CollectionRef;
+    'collection': CollectionRef | null;
     /**
      * 
      * @type {number}
@@ -3418,7 +3436,7 @@ export interface UploadRaindropCoverResponseItem {
      * @type {CollectionRef}
      * @memberof UploadRaindropCoverResponseItem
      */
-    'collection': CollectionRef;
+    'collection': CollectionRef | null;
     /**
      * 
      * @type {number}

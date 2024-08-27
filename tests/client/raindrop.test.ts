@@ -4,32 +4,27 @@ import { describe, expect } from "vitest";
 describe("raindrop.getAllRaindrops", () => {
 	it("fetch full pagination results", async ({ setupTools, client }) => {
 		const collection = await setupTools.createCollection();
-		await setupTools.createRaindrop({
-			collection: { $id: collection.item._id },
-		});
-		await setupTools.createRaindrop({
-			collection: { $id: collection.item._id },
-		});
-		await setupTools.createRaindrop({
-			collection: { $id: collection.item._id },
-		});
+		const collectionId = collection.item._id;
+		await setupTools.createRaindrop({ collection: { $id: collectionId } });
+		await setupTools.createRaindrop({ collection: { $id: collectionId } });
+		await setupTools.createRaindrop({ collection: { $id: collectionId } });
 
-		const result = await client.raindrop.getAllRaindrops(collection.item._id, {
+		const result = await client.raindrop.getAllRaindrops(collectionId, {
 			pageSize: 1,
 		});
 		expect(result.length).toBe(3);
 		expect(result).toMatchInlineSnapshot(`
 			[
 			  {
-			    "_id": 809520465,
+			    "_id": 842214459,
 			    "collection": {
-			      "$id": 45559848,
+			      "$id": 47216491,
 			      "$ref": "collections",
-			      "oid": 45559848,
+			      "oid": 47216491,
 			    },
-			    "collectionId": 45559848,
+			    "collectionId": 47216491,
 			    "cover": "",
-			    "created": "2024-06-30T11:28:37.267Z",
+			    "created": "2024-08-27T11:26:27.766Z",
 			    "creatorRef": {
 			      "_id": 2067190,
 			      "avatar": "",
@@ -39,12 +34,12 @@ describe("raindrop.getAllRaindrops", () => {
 			    "domain": "raindrop.io",
 			    "excerpt": "",
 			    "highlights": [],
-			    "lastUpdate": "2024-06-30T11:28:37.267Z",
+			    "lastUpdate": "2024-08-27T11:26:27.766Z",
 			    "link": "https://raindrop.io",
 			    "media": [],
 			    "note": "",
 			    "removed": false,
-			    "sort": 809520465,
+			    "sort": 842214459,
 			    "tags": [],
 			    "title": "fetch full pagination results",
 			    "type": "link",
@@ -54,15 +49,15 @@ describe("raindrop.getAllRaindrops", () => {
 			    },
 			  },
 			  {
-			    "_id": 809520464,
+			    "_id": 842214458,
 			    "collection": {
-			      "$id": 45559848,
+			      "$id": 47216491,
 			      "$ref": "collections",
-			      "oid": 45559848,
+			      "oid": 47216491,
 			    },
-			    "collectionId": 45559848,
+			    "collectionId": 47216491,
 			    "cover": "",
-			    "created": "2024-06-30T11:28:36.877Z",
+			    "created": "2024-08-27T11:26:27.381Z",
 			    "creatorRef": {
 			      "_id": 2067190,
 			      "avatar": "",
@@ -72,12 +67,12 @@ describe("raindrop.getAllRaindrops", () => {
 			    "domain": "raindrop.io",
 			    "excerpt": "",
 			    "highlights": [],
-			    "lastUpdate": "2024-06-30T11:28:36.877Z",
+			    "lastUpdate": "2024-08-27T11:26:27.381Z",
 			    "link": "https://raindrop.io",
 			    "media": [],
 			    "note": "",
 			    "removed": false,
-			    "sort": 809520464,
+			    "sort": 842214458,
 			    "tags": [],
 			    "title": "fetch full pagination results",
 			    "type": "link",
@@ -87,15 +82,15 @@ describe("raindrop.getAllRaindrops", () => {
 			    },
 			  },
 			  {
-			    "_id": 809520461,
+			    "_id": 842214456,
 			    "collection": {
-			      "$id": 45559848,
+			      "$id": 47216491,
 			      "$ref": "collections",
-			      "oid": 45559848,
+			      "oid": 47216491,
 			    },
-			    "collectionId": 45559848,
+			    "collectionId": 47216491,
 			    "cover": "",
-			    "created": "2024-06-30T11:28:36.496Z",
+			    "created": "2024-08-27T11:26:26.997Z",
 			    "creatorRef": {
 			      "_id": 2067190,
 			      "avatar": "",
@@ -105,12 +100,12 @@ describe("raindrop.getAllRaindrops", () => {
 			    "domain": "raindrop.io",
 			    "excerpt": "",
 			    "highlights": [],
-			    "lastUpdate": "2024-06-30T11:28:36.496Z",
+			    "lastUpdate": "2024-08-27T11:26:26.997Z",
 			    "link": "https://raindrop.io",
 			    "media": [],
 			    "note": "",
 			    "removed": false,
-			    "sort": 809520461,
+			    "sort": 842214456,
 			    "tags": [],
 			    "title": "fetch full pagination results",
 			    "type": "link",
