@@ -20,7 +20,10 @@ export async function polly({ task }: { task: Task }, use: Use<Polly>) {
 		recordFailedRequests: true,
 		matchRequestsBy: {
 			headers: {
-				exclude: ["authorization"],
+				exclude: [
+					"authorization",
+					"user-agent", // Prevent Axios version change triggering a re-record
+				],
 			},
 		},
 	});
