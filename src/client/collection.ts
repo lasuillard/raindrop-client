@@ -38,7 +38,7 @@ export class CollectionApi extends _CollectionApi {
 			collections.items.map((item) => ({
 				data: item,
 				id: item._id.toString(),
-				parent: item.parent.$id.toString(),
+				parent: item.parent?.$id.toString() || null,
 
 				toNode() {
 					return new TreeNode(this.data);

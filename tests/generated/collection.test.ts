@@ -23,7 +23,7 @@ it("getRootCollections", async ({
 		{
 		  "items": [
 		    {
-		      "_id": 45429359,
+		      "_id": 47216382,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -33,7 +33,7 @@ it("getRootCollections", async ({
 		      "author": true,
 		      "count": 0,
 		      "cover": [],
-		      "created": "2024-06-25T12:01:49.350Z",
+		      "created": "2024-08-27T11:15:38.862Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -41,8 +41,9 @@ it("getRootCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-06-25T12:01:49.349Z",
-		      "lastUpdate": "2024-06-25T12:01:49.350Z",
+		      "lastAction": "2024-08-27T11:15:38.862Z",
+		      "lastUpdate": "2024-08-27T11:15:38.862Z",
+		      "parent": null,
 		      "public": false,
 		      "slug": "get-root-collections",
 		      "sort": 0,
@@ -54,7 +55,39 @@ it("getRootCollections", async ({
 		      "view": "list",
 		    },
 		    {
-		      "_id": 45429361,
+		      "_id": 47216383,
+		      "access": {
+		        "draggable": true,
+		        "for": 2067190,
+		        "level": 4,
+		        "root": false,
+		      },
+		      "author": true,
+		      "count": 1,
+		      "cover": [],
+		      "created": "2024-08-27T11:15:39.175Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "description": "",
+		      "expanded": true,
+		      "lastAction": "2024-08-27T11:15:40.005Z",
+		      "lastUpdate": "2024-08-27T11:15:40.005Z",
+		      "parent": null,
+		      "public": false,
+		      "slug": "rename-or-merge-tags",
+		      "sort": 0,
+		      "title": "renameOrMergeTags",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		      "view": "list",
+		    },
+		    {
+		      "_id": 47216384,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -65,9 +98,9 @@ it("getRootCollections", async ({
 		      "color": "#da1f26",
 		      "count": 0,
 		      "cover": [
-		        "https://up.raindrop.io/collection/thumbs/454/293/61/e0baf93e1f297abd2c2baabee2ec3cc1.png",
+		        "https://up.raindrop.io/collection/thumbs/472/163/84/e0baf93e1f297abd2c2baabee2ec3cc1.png",
 		      ],
-		      "created": "2024-06-25T12:01:49.799Z",
+		      "created": "2024-08-27T11:15:39.252Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -75,12 +108,45 @@ it("getRootCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-06-25T12:01:49.798Z",
-		      "lastUpdate": "2024-06-25T12:01:49.799Z",
+		      "lastAction": "2024-08-27T11:15:39.252Z",
+		      "lastUpdate": "2024-08-27T11:15:39.252Z",
+		      "parent": null,
 		      "public": false,
 		      "slug": "get-root-collections",
 		      "sort": 0,
 		      "title": "getRootCollections",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		      "view": "list",
+		    },
+		    {
+		      "_id": 47216385,
+		      "access": {
+		        "draggable": true,
+		        "for": 2067190,
+		        "level": 4,
+		        "root": false,
+		      },
+		      "author": true,
+		      "count": 0,
+		      "cover": [],
+		      "created": "2024-08-27T11:15:40.343Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "description": "",
+		      "expanded": true,
+		      "lastAction": "2024-08-27T11:15:40.343Z",
+		      "lastUpdate": "2024-08-27T11:15:40.343Z",
+		      "parent": null,
+		      "public": false,
+		      "slug": "remove-tags-from-collection",
+		      "sort": 0,
+		      "title": "removeTagsFromCollection",
 		      "user": {
 		        "$id": 2067190,
 		        "$ref": "users",
@@ -120,7 +186,7 @@ it("removeCollections", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "ids": [
-		    45429364,
+		    47216387,
 		  ],
 		  "modified": 1,
 		  "result": true,
@@ -150,7 +216,7 @@ it("getChildCollections", async ({
 		{
 		  "items": [
 		    {
-		      "_id": 45429367,
+		      "_id": 47216388,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -160,7 +226,7 @@ it("getChildCollections", async ({
 		      "author": true,
 		      "count": 0,
 		      "cover": [],
-		      "created": "2024-06-25T12:01:53.038Z",
+		      "created": "2024-08-27T11:15:42.055Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -168,10 +234,74 @@ it("getChildCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-06-25T12:01:53.037Z",
-		      "lastUpdate": "2024-06-25T12:01:53.038Z",
+		      "lastAction": "2024-08-27T11:15:42.055Z",
+		      "lastUpdate": "2024-08-27T11:15:42.055Z",
+		      "parent": null,
+		      "public": false,
+		      "slug": "get-child-collections",
+		      "sort": 0,
+		      "title": "getChildCollections",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		      "view": "list",
+		    },
+		    {
+		      "_id": 47216389,
+		      "access": {
+		        "draggable": true,
+		        "for": 2067190,
+		        "level": 4,
+		        "root": false,
+		      },
+		      "author": true,
+		      "count": 1,
+		      "cover": [],
+		      "created": "2024-08-27T11:15:42.451Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "description": "",
+		      "expanded": true,
+		      "lastAction": "2024-08-27T11:15:42.909Z",
+		      "lastUpdate": "2024-08-27T11:15:42.909Z",
+		      "parent": null,
+		      "public": false,
+		      "slug": "get-raindrops",
+		      "sort": 0,
+		      "title": "getRaindrops",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		      "view": "list",
+		    },
+		    {
+		      "_id": 47216390,
+		      "access": {
+		        "draggable": true,
+		        "for": 2067190,
+		        "level": 4,
+		        "root": false,
+		      },
+		      "author": true,
+		      "count": 0,
+		      "cover": [],
+		      "created": "2024-08-27T11:15:42.478Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "description": "",
+		      "expanded": true,
+		      "lastAction": "2024-08-27T11:15:42.478Z",
+		      "lastUpdate": "2024-08-27T11:15:42.478Z",
 		      "parent": {
-		        "$id": 45429366,
+		        "$id": 47216388,
 		        "$ref": "collections",
 		      },
 		      "public": false,
@@ -204,7 +334,7 @@ it("getCollection", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
-		    "_id": 45429369,
+		    "_id": 47216393,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -214,7 +344,7 @@ it("getCollection", async ({
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-06-25T12:01:53.968Z",
+		    "created": "2024-08-27T11:15:43.275Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -222,8 +352,9 @@ it("getCollection", async ({
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-25T12:01:53.968Z",
-		    "lastUpdate": "2024-06-25T12:01:53.968Z",
+		    "lastAction": "2024-08-27T11:15:43.274Z",
+		    "lastUpdate": "2024-08-27T11:15:43.275Z",
+		    "parent": null,
 		    "public": false,
 		    "slug": "get-collection",
 		    "sort": 0,
@@ -263,7 +394,7 @@ it("updateCollection", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
-		    "_id": 45429372,
+		    "_id": 47216396,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -273,7 +404,7 @@ it("updateCollection", async ({
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-06-25T12:01:54.924Z",
+		    "created": "2024-08-27T11:15:44.052Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -281,8 +412,9 @@ it("updateCollection", async ({
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-25T12:01:54.924Z",
-		    "lastUpdate": "2024-06-25T12:01:55.443Z",
+		    "lastAction": "2024-08-27T11:15:44.051Z",
+		    "lastUpdate": "2024-08-27T11:15:44.496Z",
+		    "parent": null,
 		    "public": true,
 		    "slug": "updated-collection",
 		    "sort": 0,
@@ -332,7 +464,7 @@ it("createCollection", async ({ client, expect, generateTypeTest }) => {
 		{
 		  "item": {
 		    "__v": 0,
-		    "_id": 45429375,
+		    "_id": 47216403,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -342,12 +474,13 @@ it("createCollection", async ({ client, expect, generateTypeTest }) => {
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-06-25T12:01:56.802Z",
+		    "created": "2024-08-27T11:15:45.766Z",
 		    "creatorRef": 2067190,
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-25T12:01:56.802Z",
-		    "lastUpdate": "2024-06-25T12:01:56.802Z",
+		    "lastAction": "2024-08-27T11:15:45.765Z",
+		    "lastUpdate": "2024-08-27T11:15:45.766Z",
+		    "parent": null,
 		    "public": true,
 		    "slug": "create-collection-test",
 		    "sort": 0,
@@ -388,7 +521,7 @@ it("uploadCollectionCover", async ({
 		{
 		  "item": {
 		    "__v": 1,
-		    "_id": 45565506,
+		    "_id": 47216404,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -399,9 +532,9 @@ it("uploadCollectionCover", async ({
 		    "color": "#cc0404",
 		    "count": 0,
 		    "cover": [
-		      "https://up.raindrop.io/collection/thumbs/455/655/06/1719754884288.png",
+		      "https://up.raindrop.io/collection/thumbs/472/164/04/1724757347102.png",
 		    ],
-		    "created": "2024-06-30T13:41:23.272Z",
+		    "created": "2024-08-27T11:15:46.176Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -409,8 +542,9 @@ it("uploadCollectionCover", async ({
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-06-30T13:41:23.272Z",
-		    "lastUpdate": "2024-06-30T13:41:24.396Z",
+		    "lastAction": "2024-08-27T11:15:46.176Z",
+		    "lastUpdate": "2024-08-27T11:15:47.177Z",
+		    "parent": null,
 		    "public": false,
 		    "slug": "upload-collection-cover",
 		    "sort": 0,
@@ -445,8 +579,8 @@ it("mergeCollections", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "ids": [
-		    45429376,
-		    45429378,
+		    47216406,
+		    47216407,
 		  ],
 		  "modified": 2,
 		  "result": true,
@@ -464,7 +598,7 @@ it("removeAllEmptyCollections", async ({
 	generateTypeTest({ type: "RemoveAllEmptyCollectionsResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
-		  "count": 8,
+		  "count": 14,
 		  "result": true,
 		}
 	`);
@@ -490,11 +624,11 @@ it("getSystemCollectionStats", async ({ client, expect, generateTypeTest }) => {
 		  "items": [
 		    {
 		      "_id": 0,
-		      "count": 0,
+		      "count": 8,
 		    },
 		    {
 		      "_id": -1,
-		      "count": 0,
+		      "count": 4,
 		    },
 		    {
 		      "_id": -99,
@@ -503,7 +637,7 @@ it("getSystemCollectionStats", async ({ client, expect, generateTypeTest }) => {
 		  ],
 		  "meta": {
 		    "_id": 2067190,
-		    "changedBookmarksDate": "2024-06-25T12:10:22.598Z",
+		    "changedBookmarksDate": "2024-08-27T11:15:49.861Z",
 		    "pro": false,
 		  },
 		  "result": true,
@@ -555,10 +689,10 @@ it("searchCovers", async ({ client, expect, generateTypeTest }) => {
 		    {
 		      "icons": [
 		        {
-		          "png": "https://icon-finder.fly.dev/pack/fxemoji-emojis/400795-256.png",
+		          "png": "https://icon-finder.fly.dev/pack/twemoji-emojis/407533-256.png",
 		        },
 		        {
-		          "png": "https://icon-finder.fly.dev/pack/twemoji-emojis/407533-256.png",
+		          "png": "https://icon-finder.fly.dev/pack/fxemoji-emojis/400795-256.png",
 		        },
 		        {
 		          "png": "https://icon-finder.fly.dev/pack/fruits-and-vegetables-tiny/474529-256.png",

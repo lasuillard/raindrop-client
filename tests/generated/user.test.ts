@@ -40,9 +40,9 @@ it("getCurrentUser", async ({ client, expect, generateTypeTest }) => {
 		    },
 		    "email": "miyil99106@iliken.com",
 		    "files": {
-		      "lastCheckPoint": "2024-04-21T06:46:01.479Z",
+		      "lastCheckPoint": "2024-08-19T14:05:44.923Z",
 		      "size": 100000000,
-		      "used": 0,
+		      "used": -778806,
 		    },
 		    "fullName": "miyil99106",
 		    "groups": [
@@ -53,9 +53,9 @@ it("getCurrentUser", async ({ client, expect, generateTypeTest }) => {
 		        "title": "raindrop-client",
 		      },
 		    ],
-		    "lastAction": "2024-06-27T12:19:57.372Z",
-		    "lastUpdate": "2024-06-27T12:19:57.372Z",
-		    "lastVisit": "2024-06-26T11:07:37.787Z",
+		    "lastAction": "2024-08-27T11:15:37.658Z",
+		    "lastUpdate": "2024-08-27T11:15:37.658Z",
+		    "lastVisit": "2024-08-27T10:28:04.465Z",
 		    "name": "miyil99106",
 		    "password": true,
 		    "pro": false,
@@ -81,7 +81,6 @@ it("updateCurrentUser", async ({ client, expect, generateTypeTest }) => {
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
-		    "__v": 1,
 		    "_id": 2067190,
 		    "avatar": "",
 		    "config": {
@@ -114,9 +113,9 @@ it("updateCurrentUser", async ({ client, expect, generateTypeTest }) => {
 		    },
 		    "email": "miyil99106@iliken.com",
 		    "files": {
-		      "lastCheckPoint": "2024-04-21T06:46:01.479Z",
+		      "lastCheckPoint": "2024-08-19T14:05:44.923Z",
 		      "size": 100000000,
-		      "used": 0,
+		      "used": -778806,
 		    },
 		    "fullName": "miyil99106",
 		    "groups": [
@@ -127,9 +126,9 @@ it("updateCurrentUser", async ({ client, expect, generateTypeTest }) => {
 		        "title": "raindrop-client",
 		      },
 		    ],
-		    "lastAction": "2024-06-27T12:19:57.372Z",
-		    "lastUpdate": "2024-06-27T12:19:57.372Z",
-		    "lastVisit": "2024-06-26T11:07:37.787Z",
+		    "lastAction": "2024-08-27T11:15:38.009Z",
+		    "lastUpdate": "2024-08-27T11:15:38.009Z",
+		    "lastVisit": "2024-08-27T10:28:04.465Z",
 		    "name": "miyil99106",
 		    "password": true,
 		    "pro": false,
@@ -140,7 +139,6 @@ it("updateCurrentUser", async ({ client, expect, generateTypeTest }) => {
 		  },
 		  "result": true,
 		  "user": {
-		    "__v": 1,
 		    "_id": 2067190,
 		    "avatar": "",
 		    "config": {
@@ -173,9 +171,9 @@ it("updateCurrentUser", async ({ client, expect, generateTypeTest }) => {
 		    },
 		    "email": "miyil99106@iliken.com",
 		    "files": {
-		      "lastCheckPoint": "2024-04-21T06:46:01.479Z",
+		      "lastCheckPoint": "2024-08-19T14:05:44.923Z",
 		      "size": 100000000,
-		      "used": 0,
+		      "used": -778806,
 		    },
 		    "fullName": "miyil99106",
 		    "groups": [
@@ -186,9 +184,9 @@ it("updateCurrentUser", async ({ client, expect, generateTypeTest }) => {
 		        "title": "raindrop-client",
 		      },
 		    ],
-		    "lastAction": "2024-06-27T12:19:57.372Z",
-		    "lastUpdate": "2024-06-27T12:19:57.372Z",
-		    "lastVisit": "2024-06-26T11:07:37.787Z",
+		    "lastAction": "2024-08-27T11:15:38.009Z",
+		    "lastUpdate": "2024-08-27T11:15:38.009Z",
+		    "lastVisit": "2024-08-27T10:28:04.465Z",
 		    "name": "miyil99106",
 		    "password": true,
 		    "pro": false,
@@ -222,8 +220,8 @@ it("getPublicUserByName", async ({ client, expect, generateTypeTest }) => {
 		    },
 		    "email": "",
 		    "fullName": "miyil99106",
-		    "lastAction": "2024-06-27T12:19:57.372Z",
-		    "lastUpdate": "2024-06-27T12:19:57.372Z",
+		    "lastAction": "2024-08-27T11:15:38.174Z",
+		    "lastUpdate": "2024-08-27T11:15:38.174Z",
 		    "name": "miyil99106",
 		    "pro": false,
 		    "registered": "2024-04-21T06:46:01.480Z",
