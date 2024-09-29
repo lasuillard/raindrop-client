@@ -3,9 +3,10 @@
 	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
 	"features": {
 		"ghcr.io/devcontainers-contrib/features/pre-commit:2": {},
-		"ghcr.io/devcontainers/features/java:1": {}
+		"ghcr.io/devcontainers/features/java:1": {
+			"version": "22"
+		}
 	},
-	"onCreateCommand": "./.devcontainer/onCreateCommand.sh",
 	"postAttachCommand": "pre-commit install",
 	"customizations": {
 		"vscode": {
