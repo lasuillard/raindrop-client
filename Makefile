@@ -70,6 +70,12 @@ test: generate  ## Run tests
 	yarn run test
 .PHONY: test
 
+test-refresh: generate
+	rm -rf ./tests/__recordings__/*
+	yarn run test:unit --update
+	yarn run test:type
+.PHONY: test-refresh
+
 docs:  ## Generate dev documents
 	yarn run make-docs
 .PHONY: docs
