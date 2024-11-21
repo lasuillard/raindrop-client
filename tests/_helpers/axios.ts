@@ -10,6 +10,16 @@ export async function axiosInstance({}, use: Use<AxiosInstance>) {
 	const instance = axios.create({
 		validateStatus: () => true,
 	});
+	instance.interceptors.response.use((response) => {
+		const { method, path } = response.request;
+		if (
+			method === "POST" &&
+			/^\/rest\/v1\/collection\/.+\/sharing$/.test(path)
+		) {
+			response.data.token = "<REDACTED>";
+		}
+		return response;
+	});
 	const rateLimited = rateLimit(instance, { maxRPS: 5 });
 	await use(rateLimited);
 }
