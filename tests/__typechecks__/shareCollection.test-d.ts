@@ -4,6 +4,7 @@ import type { ShareCollectionResponse } from "~/generated/api";
 it("shareCollection", () => {
 	assertType<ShareCollectionResponse>({
 		result: true,
-		emails: ["example@example.com"],
+		token: "<REDACTED>",
+		link: "https://app.raindrop.io/join/5c30ba41-8671-4d35-98de-d8dcfefed6cc",
 	});
 });

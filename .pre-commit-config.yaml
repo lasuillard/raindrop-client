@@ -3,7 +3,7 @@ exclude: |
     \.snap$
     | src/generated
   )
-default_stages: [commit]
+default_stages: [pre-commit]
 fail_fast: true
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -24,7 +24,7 @@ repos:
       - id: biome
         name: Fix with Biome
         language: system
-        types_or: [javascript, ts, json, yaml]
+        types_or: [javascript, ts, json]
         entry: yarn run biome check
         args: [--write]
 

@@ -2432,13 +2432,19 @@ export interface ShareCollectionResponse {
      * @type {boolean}
      * @memberof ShareCollectionResponse
      */
-    'result'?: boolean;
+    'result': boolean;
     /**
      * 
-     * @type {Array<string>}
+     * @type {string}
      * @memberof ShareCollectionResponse
      */
-    'emails'?: Array<string>;
+    'token': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof ShareCollectionResponse
+     */
+    'link': string;
 }
 /**
  * 

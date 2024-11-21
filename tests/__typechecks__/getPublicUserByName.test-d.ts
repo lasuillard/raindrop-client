@@ -11,9 +11,9 @@ it("getPublicUserByName", () => {
 			email: "",
 			avatar: "",
 			pro: false,
-			lastAction: "2024-08-27T11:15:38.174Z",
+			lastAction: "2024-11-21T12:56:14.169Z",
 			registered: "2024-04-21T06:46:01.480Z",
-			lastUpdate: "2024-08-27T11:15:38.174Z",
+			lastUpdate: "2024-11-21T12:56:14.169Z",
 			config: {
 				raindrops_hide: [
 					"list_excerpt",
