@@ -8,16 +8,12 @@ it("getFilters", () => {
 			{ _id: "novel", count: 1 },
 			{ _id: "science", count: 1 },
 		],
-		types: [
-			{ _id: "link", count: 6 },
-			{ _id: "image", count: 1 },
-		],
-		created: [{ _id: "2024-11", count: 7 }],
-		total: { count: 7 },
-		notag: { count: 6 },
+		types: [{ _id: "link", count: 5 }],
+		created: [{ _id: "2024-11", count: 5 }],
+		total: { count: 5 },
+		notag: { count: 4 },
 		important: { count: 1 },
-		file: { count: 1 },
-		highlights: { count: 2 },
+		highlights: { count: 1 },
 		collectionId: 0,
 	});
 });

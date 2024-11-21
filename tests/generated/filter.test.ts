@@ -20,20 +20,17 @@ it("getFilters", async ({
 		  "created": [
 		    {
 		      "_id": "2024-11",
-		      "count": 7,
+		      "count": 5,
 		    },
 		  ],
-		  "file": {
-		    "count": 1,
-		  },
 		  "highlights": {
-		    "count": 2,
+		    "count": 1,
 		  },
 		  "important": {
 		    "count": 1,
 		  },
 		  "notag": {
-		    "count": 6,
+		    "count": 4,
 		  },
 		  "result": true,
 		  "tags": [
@@ -47,16 +44,12 @@ it("getFilters", async ({
 		    },
 		  ],
 		  "total": {
-		    "count": 7,
+		    "count": 5,
 		  },
 		  "types": [
 		    {
 		      "_id": "link",
-		      "count": 6,
-		    },
-		    {
-		      "_id": "image",
-		      "count": 1,
+		      "count": 5,
 		    },
 		  ],
 		}

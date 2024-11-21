@@ -7,7 +7,7 @@ it("getCurrentUser", () => {
 		user: {
 			tfa: { enabled: false },
 			files: {
-				used: 0,
+				used: 111258,
 				size: 100000000,
 				lastCheckPoint: "2024-11-21T11:19:36.998Z",
 			},
@@ -20,10 +20,10 @@ it("getCurrentUser", () => {
 			groups: [
 				{ title: "raindrop-client", hidden: false, sort: 0, collections: [] },
 			],
-			lastAction: "2024-11-21T12:46:36.367Z",
+			lastAction: "2024-11-21T12:56:13.609Z",
 			lastVisit: "2024-11-21T11:19:35.254Z",
 			registered: "2024-04-21T06:46:01.480Z",
-			lastUpdate: "2024-11-21T12:46:36.367Z",
+			lastUpdate: "2024-11-21T12:56:13.609Z",
 			config: {
 				default_collection_view: "list",
 				raindrops_hide: [
