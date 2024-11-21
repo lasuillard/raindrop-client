@@ -42,6 +42,3 @@ repos:
         types_or: [javascript, ts]
         pass_filenames: false
         entry: yarn run test
-
-ci:
-  autofix_prs: false
