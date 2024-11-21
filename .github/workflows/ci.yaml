@@ -29,6 +29,8 @@ jobs:
       - uses: pre-commit/action@v3.0.1
       - uses: pre-commit-ci/lite-action@v1.1.0
         if: always()
+        env:
+          RAINDROP_API_TOKEN: ${{ secrets.RAINDROP_API_TOKEN }}
 
       - name: Try build
         env:
