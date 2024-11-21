@@ -1561,15 +1561,15 @@ components:
 
     ShareCollectionResponse:
       type: object
+      required: [result, token, link]
       properties:
         result:
           type: boolean
           example: true
-        emails:
-          type: array
-          items:
-            type: string
-            format: email
+        token:
+          type: string
+        link:
+          type: string
 
     # ChangeCollaboratorAccessLevelResponse
     # DeleteCollaboratorResponse

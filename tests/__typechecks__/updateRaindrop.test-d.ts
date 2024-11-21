@@ -5,7 +5,7 @@ it("updateRaindrop", () => {
 	assertType<UpdateRaindropResponse>({
 		result: true,
 		item: {
-			_id: 842212828,
+			_id: 905640723,
 			link: "https://raindrop.io",
 			domain: "raindrop.io",
 			title: "updateRaindrop",
@@ -21,19 +21,19 @@ it("updateRaindrop", () => {
 				{
 					text: "ignore",
 					note: "",
-					created: "2024-08-27T11:15:39.096Z",
-					lastUpdate: "2024-08-27T11:15:39.096Z",
+					created: "2024-11-21T12:20:31.682Z",
+					lastUpdate: "2024-11-21T12:20:31.683Z",
 					creatorRef: 2067190,
-					_id: "66cdb55b0e9282cf678b5912",
+					_id: "673f258fa1d8200efe798413",
 				},
 			],
-			removed: false,
-			sort: 842212828,
-			created: "2024-08-27T11:15:38.725Z",
-			lastUpdate: "2024-08-27T11:15:39.096Z",
-			collection: { $ref: "collections", $id: -1, oid: -1 },
+			removed: true,
+			sort: 905640723,
+			created: "2024-11-21T12:20:30.457Z",
+			lastUpdate: "2024-11-21T12:20:31.683Z",
+			collection: { $ref: "collections", $id: -99, oid: -99 },
 			__v: 1,
-			collectionId: -1,
+			collectionId: -99,
 		},
 	});
 });

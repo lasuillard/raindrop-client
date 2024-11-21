@@ -7,9 +7,9 @@ it("updateCurrentUser", () => {
 		user: {
 			tfa: { enabled: false },
 			files: {
-				used: -778806,
+				used: 0,
 				size: 100000000,
-				lastCheckPoint: "2024-08-19T14:05:44.923Z",
+				lastCheckPoint: "2024-11-21T11:19:36.998Z",
 			},
 			_id: 2067190,
 			fullName: "miyil99106",
@@ -20,10 +20,10 @@ it("updateCurrentUser", () => {
 			groups: [
 				{ title: "raindrop-client", hidden: false, sort: 0, collections: [] },
 			],
-			lastAction: "2024-08-27T11:15:38.009Z",
-			lastVisit: "2024-08-27T10:28:04.465Z",
+			lastAction: "2024-11-21T12:20:29.707Z",
+			lastVisit: "2024-11-21T11:19:35.254Z",
 			registered: "2024-04-21T06:46:01.480Z",
-			lastUpdate: "2024-08-27T11:15:38.009Z",
+			lastUpdate: "2024-11-21T12:20:29.707Z",
 			config: {
 				default_collection_view: "list",
 				raindrops_hide: [
@@ -40,7 +40,7 @@ it("updateCurrentUser", () => {
 				nested_view_legacy: true,
 				add_default_collection: -1,
 				acknowledge: ["onboard_upgrade"],
-				last_collection: 45430305,
+				last_collection: 48071472,
 				raindrops_sort: "title",
 				ai_suggestions: true,
 				filters_hide: false,
@@ -50,9 +50,9 @@ it("updateCurrentUser", () => {
 		item: {
 			tfa: { enabled: false },
 			files: {
-				used: -778806,
+				used: 0,
 				size: 100000000,
-				lastCheckPoint: "2024-08-19T14:05:44.923Z",
+				lastCheckPoint: "2024-11-21T11:19:36.998Z",
 			},
 			_id: 2067190,
 			fullName: "miyil99106",
@@ -63,10 +63,10 @@ it("updateCurrentUser", () => {
 			groups: [
 				{ title: "raindrop-client", hidden: false, sort: 0, collections: [] },
 			],
-			lastAction: "2024-08-27T11:15:38.009Z",
-			lastVisit: "2024-08-27T10:28:04.465Z",
+			lastAction: "2024-11-21T12:20:29.707Z",
+			lastVisit: "2024-11-21T11:19:35.254Z",
 			registered: "2024-04-21T06:46:01.480Z",
-			lastUpdate: "2024-08-27T11:15:38.009Z",
+			lastUpdate: "2024-11-21T12:20:29.707Z",
 			config: {
 				default_collection_view: "list",
 				raindrops_hide: [
@@ -83,7 +83,7 @@ it("updateCurrentUser", () => {
 				nested_view_legacy: true,
 				add_default_collection: -1,
 				acknowledge: ["onboard_upgrade"],
-				last_collection: 45430305,
+				last_collection: 48071472,
 				raindrops_sort: "title",
 				ai_suggestions: true,
 				filters_hide: false,

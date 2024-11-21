@@ -17,7 +17,20 @@ it("getTagsInCollection", async ({
 	generateTypeTest({ type: "GetTagsInCollectionResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
-		  "items": [],
+		  "items": [
+		    {
+		      "_id": "bread",
+		      "count": 1,
+		    },
+		    {
+		      "_id": "salad",
+		      "count": 1,
+		    },
+		    {
+		      "_id": "soup",
+		      "count": 1,
+		    },
+		  ],
 		  "result": true,
 		}
 	`);

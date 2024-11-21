@@ -23,7 +23,7 @@ it("getRootCollections", async ({
 		{
 		  "items": [
 		    {
-		      "_id": 47216382,
+		      "_id": 49867700,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -33,7 +33,7 @@ it("getRootCollections", async ({
 		      "author": true,
 		      "count": 0,
 		      "cover": [],
-		      "created": "2024-08-27T11:15:38.862Z",
+		      "created": "2024-11-21T12:20:31.973Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -41,8 +41,72 @@ it("getRootCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-08-27T11:15:38.862Z",
-		      "lastUpdate": "2024-08-27T11:15:38.862Z",
+		      "lastAction": "2024-11-21T12:20:31.973Z",
+		      "lastUpdate": "2024-11-21T12:20:31.973Z",
+		      "parent": null,
+		      "public": false,
+		      "slug": "a",
+		      "sort": 0,
+		      "title": "A",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		      "view": "list",
+		    },
+		    {
+		      "_id": 49867701,
+		      "access": {
+		        "draggable": true,
+		        "for": 2067190,
+		        "level": 4,
+		        "root": false,
+		      },
+		      "author": true,
+		      "count": 1,
+		      "cover": [],
+		      "created": "2024-11-21T12:20:32.358Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "description": "",
+		      "expanded": true,
+		      "lastAction": "2024-11-21T12:20:32.824Z",
+		      "lastUpdate": "2024-11-21T12:20:32.824Z",
+		      "parent": null,
+		      "public": false,
+		      "slug": "get-tags-in-collection",
+		      "sort": 0,
+		      "title": "getTagsInCollection",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		      "view": "list",
+		    },
+		    {
+		      "_id": 49867703,
+		      "access": {
+		        "draggable": true,
+		        "for": 2067190,
+		        "level": 4,
+		        "root": false,
+		      },
+		      "author": true,
+		      "count": 0,
+		      "cover": [],
+		      "created": "2024-11-21T12:20:32.403Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "description": "",
+		      "expanded": true,
+		      "lastAction": "2024-11-21T12:20:32.403Z",
+		      "lastUpdate": "2024-11-21T12:20:32.403Z",
 		      "parent": null,
 		      "public": false,
 		      "slug": "get-root-collections",
@@ -55,7 +119,7 @@ it("getRootCollections", async ({
 		      "view": "list",
 		    },
 		    {
-		      "_id": 47216383,
+		      "_id": 49867705,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -65,7 +129,7 @@ it("getRootCollections", async ({
 		      "author": true,
 		      "count": 1,
 		      "cover": [],
-		      "created": "2024-08-27T11:15:39.175Z",
+		      "created": "2024-11-21T12:20:32.776Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -73,13 +137,13 @@ it("getRootCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-08-27T11:15:40.005Z",
-		      "lastUpdate": "2024-08-27T11:15:40.005Z",
+		      "lastAction": "2024-11-21T12:20:33.355Z",
+		      "lastUpdate": "2024-11-21T12:20:33.355Z",
 		      "parent": null,
 		      "public": false,
-		      "slug": "rename-or-merge-tags",
+		      "slug": "get-highlights-in-collection",
 		      "sort": 0,
-		      "title": "renameOrMergeTags",
+		      "title": "getHighlightsInCollection",
 		      "user": {
 		        "$id": 2067190,
 		        "$ref": "users",
@@ -87,7 +151,39 @@ it("getRootCollections", async ({
 		      "view": "list",
 		    },
 		    {
-		      "_id": 47216384,
+		      "_id": 49867707,
+		      "access": {
+		        "draggable": true,
+		        "for": 2067190,
+		        "level": 4,
+		        "root": false,
+		      },
+		      "author": true,
+		      "count": 0,
+		      "cover": [],
+		      "created": "2024-11-21T12:20:32.840Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "description": "",
+		      "expanded": true,
+		      "lastAction": "2024-11-21T12:20:32.840Z",
+		      "lastUpdate": "2024-11-21T12:20:32.840Z",
+		      "parent": null,
+		      "public": false,
+		      "slug": "b",
+		      "sort": 0,
+		      "title": "B",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		      "view": "list",
+		    },
+		    {
+		      "_id": 49867706,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -98,9 +194,9 @@ it("getRootCollections", async ({
 		      "color": "#da1f26",
 		      "count": 0,
 		      "cover": [
-		        "https://up.raindrop.io/collection/thumbs/472/163/84/e0baf93e1f297abd2c2baabee2ec3cc1.png",
+		        "https://up.raindrop.io/collection/thumbs/498/677/06/e0baf93e1f297abd2c2baabee2ec3cc1.png",
 		      ],
-		      "created": "2024-08-27T11:15:39.252Z",
+		      "created": "2024-11-21T12:20:32.816Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -108,45 +204,13 @@ it("getRootCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-08-27T11:15:39.252Z",
-		      "lastUpdate": "2024-08-27T11:15:39.252Z",
+		      "lastAction": "2024-11-21T12:20:32.816Z",
+		      "lastUpdate": "2024-11-21T12:20:32.816Z",
 		      "parent": null,
 		      "public": false,
 		      "slug": "get-root-collections",
 		      "sort": 0,
 		      "title": "getRootCollections",
-		      "user": {
-		        "$id": 2067190,
-		        "$ref": "users",
-		      },
-		      "view": "list",
-		    },
-		    {
-		      "_id": 47216385,
-		      "access": {
-		        "draggable": true,
-		        "for": 2067190,
-		        "level": 4,
-		        "root": false,
-		      },
-		      "author": true,
-		      "count": 0,
-		      "cover": [],
-		      "created": "2024-08-27T11:15:40.343Z",
-		      "creatorRef": {
-		        "_id": 2067190,
-		        "email": "",
-		        "name": "miyil99106",
-		      },
-		      "description": "",
-		      "expanded": true,
-		      "lastAction": "2024-08-27T11:15:40.343Z",
-		      "lastUpdate": "2024-08-27T11:15:40.343Z",
-		      "parent": null,
-		      "public": false,
-		      "slug": "remove-tags-from-collection",
-		      "sort": 0,
-		      "title": "removeTagsFromCollection",
 		      "user": {
 		        "$id": 2067190,
 		        "$ref": "users",
@@ -186,7 +250,7 @@ it("removeCollections", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "ids": [
-		    47216387,
+		    49867719,
 		  ],
 		  "modified": 1,
 		  "result": true,
@@ -216,7 +280,42 @@ it("getChildCollections", async ({
 		{
 		  "items": [
 		    {
-		      "_id": 47216388,
+		      "_id": 49867706,
+		      "access": {
+		        "draggable": true,
+		        "for": 2067190,
+		        "level": 4,
+		        "root": false,
+		      },
+		      "author": true,
+		      "color": "#da1f26",
+		      "count": 0,
+		      "cover": [
+		        "https://up.raindrop.io/collection/thumbs/498/677/06/e0baf93e1f297abd2c2baabee2ec3cc1.png",
+		      ],
+		      "created": "2024-11-21T12:20:32.816Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "description": "",
+		      "expanded": true,
+		      "lastAction": "2024-11-21T12:20:32.816Z",
+		      "lastUpdate": "2024-11-21T12:20:32.816Z",
+		      "parent": null,
+		      "public": false,
+		      "slug": "get-root-collections",
+		      "sort": 0,
+		      "title": "getRootCollections",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		      "view": "list",
+		    },
+		    {
+		      "_id": 49867710,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -226,7 +325,7 @@ it("getChildCollections", async ({
 		      "author": true,
 		      "count": 0,
 		      "cover": [],
-		      "created": "2024-08-27T11:15:42.055Z",
+		      "created": "2024-11-21T12:20:33.683Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -234,13 +333,13 @@ it("getChildCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-08-27T11:15:42.055Z",
-		      "lastUpdate": "2024-08-27T11:15:42.055Z",
+		      "lastAction": "2024-11-21T12:20:34.822Z",
+		      "lastUpdate": "2024-11-21T12:20:34.822Z",
 		      "parent": null,
 		      "public": false,
-		      "slug": "get-child-collections",
+		      "slug": "rename-or-merge-tags",
 		      "sort": 0,
-		      "title": "getChildCollections",
+		      "title": "renameOrMergeTags",
 		      "user": {
 		        "$id": 2067190,
 		        "$ref": "users",
@@ -248,7 +347,39 @@ it("getChildCollections", async ({
 		      "view": "list",
 		    },
 		    {
-		      "_id": 47216389,
+		      "_id": 49867722,
+		      "access": {
+		        "draggable": true,
+		        "for": 2067190,
+		        "level": 4,
+		        "root": false,
+		      },
+		      "author": true,
+		      "count": 0,
+		      "cover": [],
+		      "created": "2024-11-21T12:20:34.519Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "description": "",
+		      "expanded": true,
+		      "lastAction": "2024-11-21T12:20:34.519Z",
+		      "lastUpdate": "2024-11-21T12:20:34.519Z",
+		      "parent": null,
+		      "public": false,
+		      "slug": "c",
+		      "sort": 0,
+		      "title": "C",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		      "view": "list",
+		    },
+		    {
+		      "_id": 49867723,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -258,7 +389,7 @@ it("getChildCollections", async ({
 		      "author": true,
 		      "count": 1,
 		      "cover": [],
-		      "created": "2024-08-27T11:15:42.451Z",
+		      "created": "2024-11-21T12:20:34.933Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -266,8 +397,8 @@ it("getChildCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-08-27T11:15:42.909Z",
-		      "lastUpdate": "2024-08-27T11:15:42.909Z",
+		      "lastAction": "2024-11-21T12:20:35.416Z",
+		      "lastUpdate": "2024-11-21T12:20:35.416Z",
 		      "parent": null,
 		      "public": false,
 		      "slug": "get-raindrops",
@@ -280,7 +411,7 @@ it("getChildCollections", async ({
 		      "view": "list",
 		    },
 		    {
-		      "_id": 47216390,
+		      "_id": 49867725,
 		      "access": {
 		        "draggable": true,
 		        "for": 2067190,
@@ -290,7 +421,7 @@ it("getChildCollections", async ({
 		      "author": true,
 		      "count": 0,
 		      "cover": [],
-		      "created": "2024-08-27T11:15:42.478Z",
+		      "created": "2024-11-21T12:20:35.010Z",
 		      "creatorRef": {
 		        "_id": 2067190,
 		        "email": "",
@@ -298,10 +429,74 @@ it("getChildCollections", async ({
 		      },
 		      "description": "",
 		      "expanded": true,
-		      "lastAction": "2024-08-27T11:15:42.478Z",
-		      "lastUpdate": "2024-08-27T11:15:42.478Z",
+		      "lastAction": "2024-11-21T12:20:35.010Z",
+		      "lastUpdate": "2024-11-21T12:20:35.010Z",
+		      "parent": null,
+		      "public": false,
+		      "slug": "get-child-collections",
+		      "sort": 0,
+		      "title": "getChildCollections",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		      "view": "list",
+		    },
+		    {
+		      "_id": 49867726,
+		      "access": {
+		        "draggable": true,
+		        "for": 2067190,
+		        "level": 4,
+		        "root": false,
+		      },
+		      "author": true,
+		      "count": 1,
+		      "cover": [],
+		      "created": "2024-11-21T12:20:35.150Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "description": "",
+		      "expanded": true,
+		      "lastAction": "2024-11-21T12:20:35.624Z",
+		      "lastUpdate": "2024-11-21T12:20:35.624Z",
+		      "parent": null,
+		      "public": false,
+		      "slug": "remove-tags-from-collection",
+		      "sort": 0,
+		      "title": "removeTagsFromCollection",
+		      "user": {
+		        "$id": 2067190,
+		        "$ref": "users",
+		      },
+		      "view": "list",
+		    },
+		    {
+		      "_id": 49867727,
+		      "access": {
+		        "draggable": true,
+		        "for": 2067190,
+		        "level": 4,
+		        "root": false,
+		      },
+		      "author": true,
+		      "count": 0,
+		      "cover": [],
+		      "created": "2024-11-21T12:20:35.420Z",
+		      "creatorRef": {
+		        "_id": 2067190,
+		        "email": "",
+		        "name": "miyil99106",
+		      },
+		      "description": "",
+		      "expanded": true,
+		      "lastAction": "2024-11-21T12:20:35.419Z",
+		      "lastUpdate": "2024-11-21T12:20:35.420Z",
 		      "parent": {
-		        "$id": 47216388,
+		        "$id": 49867725,
 		        "$ref": "collections",
 		      },
 		      "public": false,
@@ -334,7 +529,7 @@ it("getCollection", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
-		    "_id": 47216393,
+		    "_id": 49867729,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -344,7 +539,7 @@ it("getCollection", async ({
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-08-27T11:15:43.275Z",
+		    "created": "2024-11-21T12:20:36.231Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -352,8 +547,8 @@ it("getCollection", async ({
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-08-27T11:15:43.274Z",
-		    "lastUpdate": "2024-08-27T11:15:43.275Z",
+		    "lastAction": "2024-11-21T12:20:36.231Z",
+		    "lastUpdate": "2024-11-21T12:20:36.231Z",
 		    "parent": null,
 		    "public": false,
 		    "slug": "get-collection",
@@ -394,7 +589,7 @@ it("updateCollection", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "item": {
-		    "_id": 47216396,
+		    "_id": 49867731,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -404,7 +599,7 @@ it("updateCollection", async ({
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-08-27T11:15:44.052Z",
+		    "created": "2024-11-21T12:20:37.006Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -412,8 +607,8 @@ it("updateCollection", async ({
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-08-27T11:15:44.051Z",
-		    "lastUpdate": "2024-08-27T11:15:44.496Z",
+		    "lastAction": "2024-11-21T12:20:37.006Z",
+		    "lastUpdate": "2024-11-21T12:20:37.435Z",
 		    "parent": null,
 		    "public": true,
 		    "slug": "updated-collection",
@@ -464,7 +659,7 @@ it("createCollection", async ({ client, expect, generateTypeTest }) => {
 		{
 		  "item": {
 		    "__v": 0,
-		    "_id": 47216403,
+		    "_id": 49867737,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -474,12 +669,12 @@ it("createCollection", async ({ client, expect, generateTypeTest }) => {
 		    "author": true,
 		    "count": 0,
 		    "cover": [],
-		    "created": "2024-08-27T11:15:45.766Z",
+		    "created": "2024-11-21T12:20:38.709Z",
 		    "creatorRef": 2067190,
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-08-27T11:15:45.765Z",
-		    "lastUpdate": "2024-08-27T11:15:45.766Z",
+		    "lastAction": "2024-11-21T12:20:38.709Z",
+		    "lastUpdate": "2024-11-21T12:20:38.709Z",
 		    "parent": null,
 		    "public": true,
 		    "slug": "create-collection-test",
@@ -521,7 +716,7 @@ it("uploadCollectionCover", async ({
 		{
 		  "item": {
 		    "__v": 1,
-		    "_id": 47216404,
+		    "_id": 49867738,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -532,9 +727,9 @@ it("uploadCollectionCover", async ({
 		    "color": "#cc0404",
 		    "count": 0,
 		    "cover": [
-		      "https://up.raindrop.io/collection/thumbs/472/164/04/1724757347102.png",
+		      "https://up.raindrop.io/collection/thumbs/498/677/38/1732191640063.png",
 		    ],
-		    "created": "2024-08-27T11:15:46.176Z",
+		    "created": "2024-11-21T12:20:39.184Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -542,8 +737,8 @@ it("uploadCollectionCover", async ({
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2024-08-27T11:15:46.176Z",
-		    "lastUpdate": "2024-08-27T11:15:47.177Z",
+		    "lastAction": "2024-11-21T12:20:39.184Z",
+		    "lastUpdate": "2024-11-21T12:20:40.144Z",
 		    "parent": null,
 		    "public": false,
 		    "slug": "upload-collection-cover",
@@ -579,8 +774,8 @@ it("mergeCollections", async ({
 	expect(response.data).toMatchInlineSnapshot(`
 		{
 		  "ids": [
-		    47216406,
-		    47216407,
+		    49867741,
+		    49867743,
 		  ],
 		  "modified": 2,
 		  "result": true,
@@ -598,7 +793,7 @@ it("removeAllEmptyCollections", async ({
 	generateTypeTest({ type: "RemoveAllEmptyCollectionsResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
-		  "count": 14,
+		  "count": 11,
 		  "result": true,
 		}
 	`);
@@ -624,7 +819,7 @@ it("getSystemCollectionStats", async ({ client, expect, generateTypeTest }) => {
 		  "items": [
 		    {
 		      "_id": 0,
-		      "count": 8,
+		      "count": 9,
 		    },
 		    {
 		      "_id": -1,
@@ -637,7 +832,7 @@ it("getSystemCollectionStats", async ({ client, expect, generateTypeTest }) => {
 		  ],
 		  "meta": {
 		    "_id": 2067190,
-		    "changedBookmarksDate": "2024-08-27T11:15:49.861Z",
+		    "changedBookmarksDate": "2024-11-21T12:20:42.881Z",
 		    "pro": false,
 		  },
 		  "result": true,
@@ -666,10 +861,9 @@ it("shareCollection", async ({
 	generateTypeTest({ type: "ShareCollectionResponse" });
 	expect(response.data).toMatchInlineSnapshot(`
 		{
-		  "emails": [
-		    "example@example.com",
-		  ],
+		  "link": "https://app.raindrop.io/join/0f009803-a777-4bab-a861-c3f819063e7c",
 		  "result": true,
+		  "token": "<REDACTED>",
 		}
 	`);
 });

@@ -4,8 +4,8 @@ import type { CheckURLsExistResponse } from "~/generated/api";
 it("checkURLsExist", () => {
 	assertType<CheckURLsExistResponse>({
 		result: false,
-		ids: [842212832],
-		duplicates: [{ link: "https://raindrop.com", _id: 842212832 }],
-		id: 842212832,
+		ids: [905640659],
+		duplicates: [{ link: "https://raindrop.com", _id: 905640659 }],
+		id: 905640659,
 	});
 });

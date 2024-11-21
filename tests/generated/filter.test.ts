@@ -19,7 +19,7 @@ it("getFilters", async ({
 		  "collectionId": 0,
 		  "created": [
 		    {
-		      "_id": "2024-08",
+		      "_id": "2024-11",
 		      "count": 6,
 		    },
 		  ],
@@ -27,16 +27,28 @@ it("getFilters", async ({
 		    "count": 1,
 		  },
 		  "notag": {
-		    "count": 5,
+		    "count": 4,
 		  },
 		  "result": true,
 		  "tags": [
+		    {
+		      "_id": "bread",
+		      "count": 1,
+		    },
 		    {
 		      "_id": "novel",
 		      "count": 1,
 		    },
 		    {
+		      "_id": "salad",
+		      "count": 1,
+		    },
+		    {
 		      "_id": "science",
+		      "count": 1,
+		    },
+		    {
+		      "_id": "soup",
 		      "count": 1,
 		    },
 		  ],
