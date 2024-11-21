@@ -20,45 +20,43 @@ it("getFilters", async ({
 		  "created": [
 		    {
 		      "_id": "2024-11",
-		      "count": 6,
+		      "count": 7,
 		    },
 		  ],
+		  "file": {
+		    "count": 1,
+		  },
+		  "highlights": {
+		    "count": 2,
+		  },
 		  "important": {
 		    "count": 1,
 		  },
 		  "notag": {
-		    "count": 4,
+		    "count": 6,
 		  },
 		  "result": true,
 		  "tags": [
 		    {
-		      "_id": "bread",
-		      "count": 1,
-		    },
-		    {
 		      "_id": "novel",
-		      "count": 1,
-		    },
-		    {
-		      "_id": "salad",
 		      "count": 1,
 		    },
 		    {
 		      "_id": "science",
 		      "count": 1,
 		    },
-		    {
-		      "_id": "soup",
-		      "count": 1,
-		    },
 		  ],
 		  "total": {
-		    "count": 6,
+		    "count": 7,
 		  },
 		  "types": [
 		    {
 		      "_id": "link",
 		      "count": 6,
+		    },
+		    {
+		      "_id": "image",
+		      "count": 1,
 		    },
 		  ],
 		}
