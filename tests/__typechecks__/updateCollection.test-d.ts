@@ -5,7 +5,7 @@ it("updateCollection", () => {
 	assertType<UpdateCollectionResponse>({
 		result: true,
 		item: {
-			_id: 49867731,
+			_id: 49868359,
 			title: "updatedCollection",
 			description: "",
 			slug: "updated-collection",
@@ -18,9 +18,9 @@ it("updateCollection", () => {
 			cover: [],
 			sort: 0,
 			expanded: true,
-			lastAction: "2024-11-21T12:20:37.006Z",
-			created: "2024-11-21T12:20:37.006Z",
-			lastUpdate: "2024-11-21T12:20:37.435Z",
+			lastAction: "2024-11-21T12:42:54.726Z",
+			created: "2024-11-21T12:42:54.726Z",
+			lastUpdate: "2024-11-21T12:42:55.025Z",
 			access: { for: 2067190, level: 4, root: false, draggable: true },
 			author: true,
 		},
