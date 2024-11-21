@@ -20,23 +20,25 @@ export async function polly({ task }: { task: Task }, use: Use<Polly>) {
 		recordFailedRequests: true,
 		matchRequestsBy: {
 			headers: {
-				exclude: [
-					"authorization",
-					"user-agent", // Prevent Axios version change triggering a re-record
-				],
+				exclude: ["authorization"],
 			},
 		},
 	});
 	_polly.server.any().on("beforePersist", (_, recording) => {
-		recording.request.headers = recording.request.headers.map(
+		recording.request.headers = recording.request.headers
 			// @ts-expect-error Don't care
-			(header: Header) => {
-				if (header.name === "authorization") {
-					header.value = "<REDACTED>";
-				}
-				return header;
-			},
-		);
+			.filter((header: Header) => {
+				return !["user-agent"].includes(header.name);
+			})
+			.map(
+				// @ts-expect-error Don't care
+				(header: Header) => {
+					if (header.name === "authorization") {
+						header.value = "<REDACTED>";
+					}
+					return header;
+				},
+			);
 	});
 	await use(_polly);
 	await _polly.stop();
