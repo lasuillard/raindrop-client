@@ -46,26 +46,12 @@ describe("collection.getCollectionTree", () => {
 		expect(visits).toMatchInlineSnapshot(`
 			[
 			  "null: root",
-			  "49869389: A",
-			  "49869391: A1",
-			  "49869389: A",
-			  "49869391: A1",
-			  "49869393: B",
-			  "49869396: B1",
-			  "49869400: B2",
-			  "49869393: B",
-			  "49869396: B1",
-			  "49869400: B2",
-			  "49869404: C",
-			  "49869404: C",
-			  "49869399: fetch full pagination results",
-			  "49869399: fetch full pagination results",
-			  "49869394: getRootCollections",
-			  "49869394: getRootCollections",
-			  "49869398: getRootCollections",
-			  "49869398: getRootCollections",
-			  "49869402: getTagsInCollection",
-			  "49869402: getTagsInCollection",
+			  "51900749: A",
+			  "51900750: A1",
+			  "51900751: B",
+			  "51900752: B1",
+			  "51900753: B2",
+			  "51900754: C",
 			]
 		`);
 	});
