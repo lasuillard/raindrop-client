@@ -52,7 +52,12 @@ export class CollectionApi extends _CollectionApi {
 				a.data.title.localeCompare(b.data.title) || a.data._id - b.data._id,
 		);
 
-		const rootNode = makeTree(null, source);
+		// ? Deduplicate items; can't explain the detail because it's been a while since I wrote this.
+		const sourceDedupe = source.filter(
+			(obj1, idx, arr) => arr.findIndex((obj2) => obj2.id === obj1.id) === idx,
+		);
+
+		const rootNode = makeTree(null, sourceDedupe);
 		return rootNode;
 	}
 }
