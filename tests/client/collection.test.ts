@@ -43,6 +43,7 @@ describe("collection.getCollectionTree", () => {
 			visits.push(`${node.data?._id || null}: ${node.data?.title || "root"}`);
 		});
 
+		expect(visits).toHaveLength(7);
 		expect(visits).toMatchInlineSnapshot(`
 			[
 			  "null: root",
