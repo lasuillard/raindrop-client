@@ -12,9 +12,11 @@ export default defineConfig({
 			rollupTypes: true,
 		}),
 		codecovVitePlugin({
-			enableBundleAnalysis: process.env.CODECOV_TOKEN !== undefined,
+			enableBundleAnalysis: true,
 			bundleName: "raindrop-client",
-			uploadToken: process.env.CODECOV_TOKEN,
+			oidc: {
+				useGitHubOIDC: true,
+			},
 		}),
 	],
 	build: {
