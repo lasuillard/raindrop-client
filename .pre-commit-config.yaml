@@ -26,7 +26,7 @@ repos:
         language: system
         types_or: [javascript, ts, json]
         entry: yarn run biome check
-        args: [--write]
+        args: [--write, --no-errors-on-unmatched]
 
       - id: typescript
         name: Type check with TypeScript
