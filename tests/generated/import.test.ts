@@ -41,15 +41,15 @@ it("checkURLsExist", async ({
 		{
 		  "duplicates": [
 		    {
-		      "_id": 905659792,
+		      "_id": 1210213874,
 		      "link": "https://raindrop.com",
 		    },
 		  ],
-		  "id": 905659792,
+		  "id": 1210213874,
 		  "ids": [
-		    905659792,
+		    1210213874,
 		  ],
-		  "result": false,
+		  "result": true,
 		}
 	`);
 });
@@ -71,6 +71,7 @@ it("importHTMLBookmarkFile", async ({ client, expect, generateTypeTest }) => {
 		{
 		  "count": {
 		    "bookmarks": 8,
+		    "duplicates": 0,
 		    "folders": 3,
 		    "highlights": 0,
 		    "tags": 0,

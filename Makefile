@@ -70,7 +70,7 @@ test: generate  ## Run tests
 	yarn run test
 .PHONY: test
 
-test-refresh: generate
+test-refresh: generate  ## Invalidate recordings and run tests to update them
 	rm -rf ./tests/__recordings__/*
 	yarn run test:unit --update
 	yarn run test:type

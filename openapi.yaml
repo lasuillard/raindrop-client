@@ -1476,7 +1476,7 @@ components:
                 __v:
                   type: integer
                 creatorRef:
-                  type: integer
+                  $ref: "#/components/schemas/CreatorRef"
                 parent:
                   type: object
                   nullable: true

@@ -5,6 +5,6 @@ it("shareCollection", () => {
 	assertType<ShareCollectionResponse>({
 		result: true,
 		token: "<REDACTED>",
-		link: "https://app.raindrop.io/join/5c30ba41-8671-4d35-98de-d8dcfefed6cc",
+		link: "https://app.raindrop.io/join/f7530cfd-77d8-40bc-867b-32e2d6841ba3",
 	});
 });
