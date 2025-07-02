@@ -1,6 +1,6 @@
+import { it } from "^/tests/_helpers/vitest";
 import fs from "node:fs";
 import path from "node:path";
-import { it } from "^/tests/_helpers/vitest";
 
 it("createRaindrop", async ({ client, expect, generateTypeTest }) => {
 	const response = await client.raindrop.createRaindrop({

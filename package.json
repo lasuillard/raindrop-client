@@ -2,7 +2,11 @@
 	"name": "@lasuillard/raindrop-client",
 	"version": "0.6.2",
 	"description": "Axios client built with OpenAPI generator for Raindrop.io.",
-	"keywords": ["raindrop.io", "axios", "openapi"],
+	"keywords": [
+		"raindrop.io",
+		"axios",
+		"openapi"
+	],
 	"license": "MIT",
 	"repository": {
 		"type": "git",
@@ -20,7 +24,9 @@
 	"main": "./dist/index.cjs.js",
 	"module": "./dist/index.es.js",
 	"types": "./dist/index.d.ts",
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"publishConfig": {
 		"access": "public"
 	},

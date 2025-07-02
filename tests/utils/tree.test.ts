@@ -1,6 +1,6 @@
 import { it } from "^/tests/_helpers/vitest";
 import { expect } from "vitest";
-import { TreeNode, type TreeSource, makeTree } from "~/utils/tree";
+import { makeTree, TreeNode, type TreeSource } from "~/utils/tree";
 
 it("should have following default values", () => {
 	const node = new TreeNode("test");

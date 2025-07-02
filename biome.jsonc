@@ -1,5 +1,21 @@
 {
 	"files": {
-		"ignore": ["src/generated/**", "coverage/"]
+		"includes": ["src/**", "!**/src/generated/**", "!**/coverage/", "tests/**"]
+	},
+	"linter": {
+		"rules": {
+			"style": {
+				"noParameterAssign": "error",
+				"useAsConstAssertion": "error",
+				"useDefaultParameterLast": "error",
+				"useEnumInitializers": "error",
+				"useSelfClosingElements": "error",
+				"useSingleVarDeclarator": "error",
+				"noUnusedTemplateLiteral": "error",
+				"useNumberNamespace": "error",
+				"noInferrableTypes": "error",
+				"noUselessElse": "error"
+			}
+		}
 	}
 }

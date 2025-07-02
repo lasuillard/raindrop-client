@@ -1,5 +1,6 @@
 import type { AxiosRequestConfig, AxiosResponse } from "axios";
 import {
+	AuthenticationApi as _AuthenticationApi,
 	type GetOrRefreshToken200Response,
 	type ObtainToken,
 	ObtainTokenGrantTypeEnum,
@@ -7,7 +8,6 @@ import {
 	RefreshTokenGrantTypeEnum,
 	type TokenErrorResponse,
 	type TokenResponse,
-	AuthenticationApi as _AuthenticationApi,
 } from "~/generated";
 
 export class AuthenticationApi extends _AuthenticationApi {

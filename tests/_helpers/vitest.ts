@@ -5,8 +5,8 @@ import { test as base } from "vitest";
 import type { Raindrop } from "~/client";
 import { axiosInstance, client, mockAxios } from "./axios";
 import { polly } from "./polly";
-import { type SetupTools, resetData, setupTools } from "./raindrop";
-import { type RegisterHook, generateTypeTest } from "./typechecks";
+import { resetData, type SetupTools, setupTools } from "./raindrop";
+import { generateTypeTest, type RegisterHook } from "./typechecks";
 
 export const it = base.extend({
 	// HTTP utils
