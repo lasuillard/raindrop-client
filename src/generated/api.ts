@@ -1748,6 +1748,12 @@ export interface ImportHTMLBookmarkFileResponseCount {
      * @memberof ImportHTMLBookmarkFileResponseCount
      */
     'highlights': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ImportHTMLBookmarkFileResponseCount
+     */
+    'duplicates': number;
 }
 /**
  * 
