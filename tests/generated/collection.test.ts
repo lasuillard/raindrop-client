@@ -526,7 +526,7 @@ it("uploadCollectionCover", async ({
 		{
 		  "item": {
 		    "__v": 1,
-		    "_id": 57170536,
+		    "_id": 57171605,
 		    "access": {
 		      "draggable": true,
 		      "for": 2067190,
@@ -537,9 +537,9 @@ it("uploadCollectionCover", async ({
 		    "color": "#cc0404",
 		    "count": 0,
 		    "cover": [
-		      "https://up.raindrop.io/collection/thumbs/571/705/36/1751433683953.png",
+		      "https://up.raindrop.io/collection/thumbs/571/716/05/1751439490570.png",
 		    ],
-		    "created": "2025-07-02T05:21:23.369Z",
+		    "created": "2025-07-02T06:58:09.614Z",
 		    "creatorRef": {
 		      "_id": 2067190,
 		      "email": "",
@@ -547,8 +547,8 @@ it("uploadCollectionCover", async ({
 		    },
 		    "description": "",
 		    "expanded": true,
-		    "lastAction": "2025-07-02T05:21:23.369Z",
-		    "lastUpdate": "2025-07-02T05:21:24.064Z",
+		    "lastAction": "2025-07-02T06:58:09.613Z",
+		    "lastUpdate": "2025-07-02T06:58:10.664Z",
 		    "parent": null,
 		    "public": false,
 		    "slug": "upload-collection-cover",
