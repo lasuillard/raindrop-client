@@ -2,7 +2,11 @@
 	"name": "@lasuillard/raindrop-client",
 	"version": "0.6.2",
 	"description": "Axios client built with OpenAPI generator for Raindrop.io.",
-	"keywords": ["raindrop.io", "axios", "openapi"],
+	"keywords": [
+		"raindrop.io",
+		"axios",
+		"openapi"
+	],
 	"license": "MIT",
 	"repository": {
 		"type": "git",
@@ -20,7 +24,9 @@
 	"main": "./dist/index.cjs.js",
 	"module": "./dist/index.es.js",
 	"types": "./dist/index.d.ts",
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"publishConfig": {
 		"access": "public"
 	},
@@ -35,24 +41,24 @@
 		"make-docs": "yarn run typedoc --plugin typedoc-plugin-missing-exports src"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.8.0",
+		"@biomejs/biome": "^2.0.6",
 		"@codecov/vite-plugin": "^1.1.0",
 		"@openapitools/openapi-generator-cli": "^2.13.1",
 		"@pollyjs/adapter-node-http": "^6.0.6",
 		"@pollyjs/core": "^6.0.6",
 		"@pollyjs/persister-fs": "^6.0.6",
-		"@types/node": "^22.0.2",
+		"@types/node": "^24.0.8",
 		"@vitest/coverage-v8": "^3.0.4",
 		"@vitest/ui": "^3.0.4",
 		"axios-mock-adapter": "^2.0.0",
 		"axios-rate-limit": "^1.4.0",
-		"dotenv": "^16.4.5",
+		"dotenv": "^17.0.0",
 		"slugify": "^1.6.6",
 		"tslib": "^2.6.2",
 		"typedoc": "^0.28.1",
 		"typedoc-plugin-missing-exports": "^4.0.0",
 		"typescript": "^5.4.3",
-		"vite": "^6.0.1",
+		"vite": "^7.0.0",
 		"vite-plugin-dts": "^4.2.1",
 		"vite-tsconfig-paths": "^5.0.1",
 		"vitest": "^3.0.4"

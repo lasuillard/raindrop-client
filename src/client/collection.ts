@@ -1,9 +1,9 @@
 import {
+	CollectionApi as _CollectionApi,
 	type GetChildCollectionsResponse,
 	type GetRootCollectionsResponse,
-	CollectionApi as _CollectionApi,
 } from "~/generated";
-import { TreeNode, type TreeSource, makeTree } from "~/utils/tree";
+import { makeTree, TreeNode, type TreeSource } from "~/utils/tree";
 
 type GetRootCollectionsResponseItem = GetRootCollectionsResponse["items"][0];
 type GetChildCollectionsResponseItem = GetChildCollectionsResponse["items"][0];

@@ -1,7 +1,7 @@
 import type { AxiosRequestConfig } from "axios";
 import {
-	type GetRaindropsResponse,
 	RaindropApi as _RaindropApi,
+	type GetRaindropsResponse,
 } from "~/generated";
 
 type RaindropItem = GetRaindropsResponse["items"][0];

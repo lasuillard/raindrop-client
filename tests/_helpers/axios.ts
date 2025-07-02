@@ -1,5 +1,5 @@
-import type { Use } from "@vitest/runner";
 import { Configuration } from "^/src/generated";
+import type { Use } from "@vitest/runner";
 import axios, { type AxiosInstance } from "axios";
 import MockAdapter from "axios-mock-adapter";
 import rateLimit from "axios-rate-limit";
