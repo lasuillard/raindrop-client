@@ -1,6 +1,6 @@
-import { it } from "^/tests/_helpers/vitest";
 import fs from "node:fs";
 import path from "node:path";
+import { it } from "^/tests/_helpers/vitest";
 
 it("getRootCollections", async ({
 	setupTools,
