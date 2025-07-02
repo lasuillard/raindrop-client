@@ -52,11 +52,6 @@ export class SetupTools {
 			title: this.task.name,
 			sort: 0,
 			public: false,
-			parent: {
-				$ref: "collections",
-				$id: 0,
-				oid: 0,
-			},
 			cover: [],
 			...(args || {}),
 		});

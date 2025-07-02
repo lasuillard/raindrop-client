@@ -7,9 +7,9 @@ it("getCurrentUser", () => {
 		user: {
 			tfa: { enabled: false },
 			files: {
-				used: 111258,
+				used: 222516,
 				size: 100000000,
-				lastCheckPoint: "2024-11-21T11:19:36.998Z",
+				lastCheckPoint: "2025-07-02T03:58:09.050Z",
 			},
 			_id: 2067190,
 			fullName: "miyil99106",
@@ -18,12 +18,17 @@ it("getCurrentUser", () => {
 			avatar: "",
 			pro: false,
 			groups: [
-				{ title: "raindrop-client", hidden: false, sort: 0, collections: [] },
+				{
+					title: "My Collections",
+					hidden: false,
+					sort: 0,
+					collections: [57170323],
+				},
 			],
-			lastAction: "2024-11-21T12:56:13.609Z",
-			lastVisit: "2024-11-21T11:19:35.254Z",
+			lastAction: "2025-07-02T05:19:26.442Z",
+			lastVisit: "2025-07-02T04:51:11.347Z",
 			registered: "2024-04-21T06:46:01.480Z",
-			lastUpdate: "2024-11-21T12:56:13.609Z",
+			lastUpdate: "2025-07-02T05:19:26.442Z",
 			config: {
 				default_collection_view: "list",
 				raindrops_hide: [
