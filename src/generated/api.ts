@@ -436,10 +436,10 @@ export interface CreateCollectionResponseItem {
     'expanded': boolean;
     /**
      * 
-     * @type {number}
+     * @type {CreatorRef}
      * @memberof CreateCollectionResponseItem
      */
-    'creatorRef': number;
+    'creatorRef': CreatorRef;
     /**
      * 
      * @type {string}
@@ -1748,6 +1748,12 @@ export interface ImportHTMLBookmarkFileResponseCount {
      * @memberof ImportHTMLBookmarkFileResponseCount
      */
     'highlights': number;
+    /**
+     * 
+     * @type {number}
+     * @memberof ImportHTMLBookmarkFileResponseCount
+     */
+    'duplicates': number;
 }
 /**
  * 

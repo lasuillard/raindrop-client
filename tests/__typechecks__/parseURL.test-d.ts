@@ -5,11 +5,11 @@ it("parseURL", () => {
 	assertType<ParseURLResponse>({
 		result: true,
 		item: {
+			type: "link",
 			title: "Example Domain",
 			excerpt: "",
 			cover: "<screenshot>",
 			media: [],
-			type: "link",
 			meta: { tags: [] },
 		},
 	});
