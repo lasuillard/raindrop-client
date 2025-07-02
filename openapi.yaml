@@ -1476,7 +1476,7 @@ components:
                 __v:
                   type: integer
                 creatorRef:
-                  type: integer
+                  $ref: "#/components/schemas/CreatorRef"
                 parent:
                   type: object
                   nullable: true
@@ -1812,7 +1812,7 @@ components:
             $ref: "#/components/schemas/ImportHTMLBookmarkFileResponseItemFolder"
         count:
           type: object
-          required: [bookmarks, folders, tags, highlights]
+          required: [bookmarks, folders, tags, highlights, duplicates]
           properties:
             bookmarks:
               type: integer
@@ -1821,6 +1821,8 @@ components:
             tags:
               type: integer
             highlights:
+              type: integer
+            duplicates:
               type: integer
 
     ImportHTMLBookmarkFileResponseItemFolder:

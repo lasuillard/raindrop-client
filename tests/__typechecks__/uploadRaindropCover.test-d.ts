@@ -5,7 +5,7 @@ it("uploadRaindropCover", () => {
 	assertType<UploadRaindropCoverResponse>({
 		result: true,
 		item: {
-			_id: 905659892,
+			_id: 1210213888,
 			link: "https://raindrop.io",
 			domain: "raindrop.io",
 			title: "uploadRaindropCover",
@@ -15,21 +15,21 @@ it("uploadRaindropCover", () => {
 			user: { $ref: "users", $id: 2067190 },
 			creatorRef: { _id: 2067190, name: "miyil99106", avatar: "", email: "" },
 			cover:
-				"https://up.raindrop.io/raindrop/thumbs/905/659/892/1732193778642.png",
+				"https://up.raindrop.io/raindrop/thumbs/121/021/388/8/1751433675844.png",
 			media: [
 				{
-					link: "https://up.raindrop.io/raindrop/thumbs/905/659/892/1732193778642.png",
+					link: "https://up.raindrop.io/raindrop/thumbs/121/021/388/8/1751433675844.png",
 					type: "image",
 				},
 			],
 			tags: [],
-			removed: true,
-			sort: 905659892,
-			created: "2024-11-21T12:56:17.875Z",
-			lastUpdate: "2024-11-21T12:56:18.748Z",
-			collection: { $ref: "collections", $id: -99, oid: -99 },
+			removed: false,
+			sort: 1210213888,
+			created: "2025-07-02T05:21:15.198Z",
+			lastUpdate: "2025-07-02T05:21:15.919Z",
+			collection: { $ref: "collections", $id: -1, oid: -1 },
 			__v: 1,
-			collectionId: -99,
+			collectionId: -1,
 		},
 	});
 });

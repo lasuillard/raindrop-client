@@ -121,6 +121,6 @@ it("importHTMLBookmarkFile", () => {
 				],
 			},
 		],
-		count: { bookmarks: 8, folders: 3, tags: 0, highlights: 0 },
+		count: { bookmarks: 8, folders: 3, tags: 0, highlights: 0, duplicates: 0 },
 	});
 });

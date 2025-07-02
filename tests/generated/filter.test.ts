@@ -19,18 +19,15 @@ it("getFilters", async ({
 		  "collectionId": 0,
 		  "created": [
 		    {
-		      "_id": "2024-11",
-		      "count": 5,
+		      "_id": "2025-07",
+		      "count": 3,
 		    },
 		  ],
-		  "highlights": {
-		    "count": 1,
-		  },
 		  "important": {
 		    "count": 1,
 		  },
 		  "notag": {
-		    "count": 4,
+		    "count": 2,
 		  },
 		  "result": true,
 		  "tags": [
@@ -44,12 +41,12 @@ it("getFilters", async ({
 		    },
 		  ],
 		  "total": {
-		    "count": 5,
+		    "count": 3,
 		  },
 		  "types": [
 		    {
 		      "_id": "link",
-		      "count": 5,
+		      "count": 3,
 		    },
 		  ],
 		}
