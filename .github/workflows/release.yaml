@@ -4,8 +4,6 @@ on:
   push:
     tags: [v*]
 
-permissions: read-all
-
 jobs:
   release:
     name: Release

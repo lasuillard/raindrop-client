@@ -4,12 +4,12 @@ on:
   push:
     tags: [v*]
 
-permissions: read-all
-
 jobs:
   build-docs:
     name: Build Docs
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - name: Checkout
         uses: actions/checkout@v4
