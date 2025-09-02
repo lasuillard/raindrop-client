@@ -4,8 +4,6 @@ on:
   push:
     tags: [v*]
 
-permissions: read-all
-
 jobs:
   release:
     name: Release
@@ -13,6 +11,7 @@ jobs:
     permissions:
       contents: write
       packages: write
+      id-token: write
     environment: npm
     steps:
       - name: Checkout
@@ -24,7 +23,7 @@ jobs:
           node-version-file: .node-version
           cache: yarn
           registry-url: https://registry.npmjs.org
-          scope: '@lasuillard'
+          scope: "@lasuillard"
 
       - name: Install deps
         run: yarn install --frozen-lockfile
@@ -42,6 +41,4 @@ jobs:
           files: dist.tar.gz
 
       - name: Publish package
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: yarn publish
