@@ -30,7 +30,7 @@ jobs:
         run: yarn run make-docs
 
       - name: Upload docs artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: docs/
 
