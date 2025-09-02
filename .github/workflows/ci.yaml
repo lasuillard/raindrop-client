@@ -24,7 +24,7 @@ jobs:
           cache: npm
 
       - name: Update npm
-        run: npm install -g npm@latest
+        run: npm install --global npm@latest
 
       - name: Install deps
         run: npm ci
@@ -55,7 +55,7 @@ jobs:
           cache: npm
 
       - name: Update npm
-        run: npm install -g npm@latest
+        run: npm install --global npm@latest
 
       - name: Install deps
         run: npm ci
