@@ -81,7 +81,7 @@ export async function generateAllTests() {
 		const filepath = generateTest(dir, spec);
 		await new Promise((resolve, reject) => {
 			exec(
-				`yarn run biome check --write --unsafe ${filepath}`,
+				`npm exec -- biome check --write --unsafe ${filepath}`,
 				(err, stdout, stderr) => {
 					if (err) {
 						console.error(stderr);

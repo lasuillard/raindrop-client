@@ -24,19 +24,19 @@ help: Makefile  ## Show help
 # Common
 # =============================================================================
 install:  ## Install deps and tools
-	yarn install
+	npm install
 	pre-commit install --install-hooks
 .PHONY: install
 
 update:  ## Update deps and tools
-	yarn upgrade
+	npm update
 	pre-commit autoupdate
 .PHONY: update
 
 release:  ## Create new release
 	echo -n 'Enter new version: '
 	read new_version
-	yarn version --strict-semver --new-version "$$new_version"
+	npm version "$$new_version"
 .PHONY: release
 
 
@@ -54,7 +54,7 @@ generate:  ## Generate codes from schemas
 	}
 
 	before="$$(sig)"
-	yarn run generate
+	npm run generate
 	after="$$(sig)"
 
 	if [[ "$$after" != "$$before" ]]; then
@@ -64,26 +64,26 @@ generate:  ## Generate codes from schemas
 .PHONY: generate
 
 format:  ## Run autoformatters
-	yarn run biome format --write .
+	npm exec -- biome format --write .
 .PHONY: format
 
 lint: generate  ## Run all linters
-	yarn run biome lint .
-	yarn run tsc --noEmit
+	npm exec -- biome lint .
+	npm exec -- tsc --noEmit
 .PHONY: lint
 
 test: generate  ## Run tests
-	yarn run test
+	npm run test
 .PHONY: test
 
 test-refresh: generate  ## Invalidate recordings and run tests to update them
 	rm -rf ./tests/__recordings__/*
-	yarn run test:unit --update
-	yarn run test:type
+	npm run test:unit --update
+	npm run test:type
 .PHONY: test-refresh
 
 docs:  ## Generate dev documents
-	yarn run make-docs
+	npm run make-docs
 .PHONY: docs
 
 

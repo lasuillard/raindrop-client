@@ -20,16 +20,16 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version-file: .node-version
-          cache: yarn
+          node-version-file: package.json
+          cache: npm
           registry-url: https://registry.npmjs.org
           scope: "@lasuillard"
 
       - name: Install deps
-        run: yarn install --frozen-lockfile
+        run: npm ci
 
       - name: Build app
-        run: yarn run build
+        run: npm run build
 
       - name: Archive build
         run: tar -czvf dist.tar.gz dist
@@ -41,4 +41,4 @@ jobs:
           files: dist.tar.gz
 
       - name: Publish package
-        run: yarn publish
+        run: npm publish
