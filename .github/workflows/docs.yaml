@@ -17,17 +17,17 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version-file: .node-version
-          cache: yarn
+          node-version-file: package.json
+          cache: npm
 
       - name: Install deps
-        run: yarn install --frozen-lockfile
+        run: npm ci
 
       - name: Build package
-        run: yarn run build
+        run: npm run build
 
       - name: Generate API docs
-        run: yarn run make-docs
+        run: npm run make-docs
 
       - name: Upload docs artifact
         uses: actions/upload-pages-artifact@v4

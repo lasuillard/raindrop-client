@@ -25,7 +25,7 @@ repos:
         name: Fix with Biome
         language: system
         types_or: [javascript, ts, json]
-        entry: yarn run biome check
+        entry: npm exec biome check
         args: [--write, --no-errors-on-unmatched]
 
       - id: typescript
@@ -33,7 +33,7 @@ repos:
         language: system
         types_or: [javascript, ts]
         pass_filenames: false
-        entry: yarn run tsc
+        entry: npm exec tsc
         args: [--noEmit]
 
       - id: vitest
@@ -41,4 +41,4 @@ repos:
         language: system
         types_or: [javascript, ts]
         pass_filenames: false
-        entry: yarn run test
+        entry: npm run test

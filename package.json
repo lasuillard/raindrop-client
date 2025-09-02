@@ -21,6 +21,9 @@
 	"bugs": {
 		"url": "https://github.com/lasuillard/raindrop-client/issues"
 	},
+  "engines": {
+    "node": ">=20"
+  },
 	"main": "./dist/index.cjs.js",
 	"module": "./dist/index.es.js",
 	"types": "./dist/index.d.ts",
@@ -35,10 +38,10 @@
 		"dev": "vite",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
-		"test": "yarn test:unit && yarn test:type",
+		"test": "npm run test:unit && npm run test:type",
 		"test:unit": "vitest --coverage --run --outputFile.junit=./junit.xml",
 		"test:type": "vitest --typecheck.only --run --outputFile.junit=./typecheck.junit.xml",
-		"make-docs": "yarn run typedoc --plugin typedoc-plugin-missing-exports src"
+		"make-docs": "npm exec typedoc --plugin typedoc-plugin-missing-exports src"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.0.6",
