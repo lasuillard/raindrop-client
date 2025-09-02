@@ -64,12 +64,12 @@ generate:  ## Generate codes from schemas
 .PHONY: generate
 
 format:  ## Run autoformatters
-	npm exec biome format --write .
+	npm exec -- biome format --write .
 .PHONY: format
 
 lint: generate  ## Run all linters
-	npm exec biome lint .
-	npm exec tsc --noEmit
+	npm exec -- biome lint .
+	npm exec -- tsc --noEmit
 .PHONY: lint
 
 test: generate  ## Run tests

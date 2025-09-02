@@ -41,7 +41,7 @@
 		"test": "npm run test:unit && npm run test:type",
 		"test:unit": "vitest --coverage --run --outputFile.junit=./junit.xml",
 		"test:type": "vitest --typecheck.only --run --outputFile.junit=./typecheck.junit.xml",
-		"make-docs": "npm exec typedoc --plugin typedoc-plugin-missing-exports src"
+		"make-docs": "typedoc --plugin typedoc-plugin-missing-exports src"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.0.6",
